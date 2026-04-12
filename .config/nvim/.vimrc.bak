@@ -1,0 +1,128 @@
+" Vim configuration based on Neovim init.lua
+" Excludes plugins - backup created from init.lua settings
+
+" Set <space> as the leader key
+let g:mapleader = ' '
+let g:maplocalleader = ' '
+
+" Set to true if you have a Nerd Font installed
+let g:have_nerd_font = v:true
+
+" Make line numbers default
+set number
+set relativenumber
+
+" Enable mouse mode
+set mouse=a
+
+" Don't show the mode, since it's already in the status line
+set noshowmode
+
+" Sync clipboard between OS and Neovim
+set clipboard=unnamedplus
+
+" Enable break indent
+set breakindent
+
+" Save undo history
+set undofile
+
+" Case-insensitive searching UNLESS \C or capital letters in search term
+set ignorecase
+set smartcase
+
+" Keep signcolumn on by default
+set signcolumn=yes
+
+" Decrease update time
+set updatetime=250
+
+" Decrease mapped sequence wait time
+set timeoutlen=300
+
+" Configure how new splits should be opened
+set splitright
+set splitbelow
+
+" Show which line your cursor is on
+set cursorline
+
+" Minimal screen lines to keep above and below cursor
+set scrolloff=10
+
+set guicursor=
+set colorcolumn=100
+
+" Tab settings
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set autoindent
+set softtabstop=2
+
+" Disable netrw
+let g:loaded_netrw = 1
+let g:loaded_netrwPlugin = 1
+
+" Enable 24-bit colour
+set termguicolors
+
+" Set rounded borders for floating windows (Neovim 0.11+ only)
+" set winborder=single
+
+" Spelling
+set spell
+set spelllang=en_us,pl
+
+" Keymaps
+nnoremap <Esc> :nohlsearch<CR>
+nnoremap <leader>ll :cexpr []<CR>:copen<CR>
+nnoremap <leader>lo :lopen<CR>
+nnoremap <leader>lc :lclose<CR>
+nnoremap <leader>ln :lnext<CR>
+nnoremap <leader>lp :lprevious<CR>
+nnoremap <leader>lf :lfirst<CR>
+nnoremap <leader>la :llast<CR>
+nnoremap <leader>qo :copen<CR>
+nnoremap <leader>qc :cclose<CR>
+nnoremap <leader>qn :cnext<CR>
+nnoremap <leader>qp :cprevious<CR>
+nnoremap <leader>qf :cfirst<CR>
+nnoremap <leader>qa :clast<CR>
+tnoremap <C-Esc> <C-\><C-n>
+
+" Arrow keys to resize windows
+nnoremap <left> :vertical resize -1<CR>
+nnoremap <right> :vertical resize +1<CR>
+nnoremap <up> :resize +1<CR>
+nnoremap <down> :resize -1<CR>
+
+" Window navigation with Ctrl+hjkl
+nnoremap <C-h> <C-w><C-h>
+nnoremap <C-l> <C-w><C-l>
+nnoremap <C-j> <C-w><C-j>
+nnoremap <C-k> <C-w><C-k>
+
+" Replace all occurrences of word under cursor
+nnoremap <leader>R :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
+
+" Open URL under cursor
+nnoremap <leader>U :call OpenURL()<CR>
+
+function! OpenURL()
+  let url = expand('<cWORD>')
+  if url =~? '^https\?://'
+    call jobstart(['xdg-open', url], {'detach': 1})
+  else
+    echohl WarningMsg
+    echo 'No valid URL found under cursor'
+    echohl None
+  endif
+endfunction
+
+" Quality of life mappings
+inoremap <C-,> ()
+inoremap <C-.> =>
+inoremap <C-/> ->
+inoremap <C-;> () => 
+nnoremap <C-'> V$%
