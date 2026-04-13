@@ -3,7 +3,8 @@ config-file = ./auto/theme.ghostty
 
 # general
 cursor-style = block
-font-family = "0xProto Nerd Font Mono"
+font-family = 0xProto Nerd Font Mono
+font-family = Symbol Nerd Font Mono
 gtk-single-instance = false
 shell-integration-features = no-cursor
 tab-inherit-working-directory = false
