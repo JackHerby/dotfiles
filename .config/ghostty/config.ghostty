@@ -1,0 +1,19 @@
+# source config files
+config-file = ./auto/theme.ghostty
+
+# general
+cursor-style = block
+font-family = "0xProto Nerd Font Mono"
+gtk-single-instance = false
+shell-integration-features = no-cursor
+tab-inherit-working-directory = false
+window-inherit-working-directory = false
+working-directory = home
+
+# keybinds
+keybind = ctrl+,=unbind
+keybind = ctrl+shift+alt+arrow_left=move_tab:-1
+keybind = ctrl+shift+alt+arrow_right=move_tab:1
+keybind = ctrl+shift+alt+t=prompt_tab_title
+keybind = ctrl+shift+j=unbind
+keybind = ctrl+shift+w=close_surface
