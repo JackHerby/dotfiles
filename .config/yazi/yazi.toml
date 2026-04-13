@@ -1,0 +1,15 @@
+[opener]
+open_dir = [
+    { run = "zsh -c \"cd \"$0\" && nvim\"", block = true, desc = "Open directory in Neovim" }
+]
+edit = [
+    { run = 'nvim "$@"', block = true, desc = "Open file in Neovim" }
+]
+
+[open]
+prepend_rules = [
+    { mime = "inode/directory", use = "open_dir" }
+]
+append_rules = [
+    { name = "*", use = "edit" }
+]
