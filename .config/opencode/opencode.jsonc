@@ -1,0 +1,18 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "agent": {
+    "plan": {
+      "permission": {
+        "todoread": "allow",
+        "todowrite": "allow"
+      }
+    }
+  },
+  "default_agent": "plan",
+  "permission": {
+    "bash": "ask",
+    "webfetch": "ask",
+    "websearch": "ask"
+  },
+  "plugin": ["opencode-anthropic-auth"]
+}
