@@ -1,0 +1,189 @@
+[
+  {
+    // MAIN BAR //
+    "layer": "top",
+    "position": "top",
+    "name": "main",
+    "height": 40,
+    "reload_style_on_change": true,
+
+    "modules-left": [
+      "group/traym",
+      "hyprland/workspaces",
+      "hyprland/submap",
+      "hyprland/window"
+    ],
+
+    "modules-right": [
+      "network#info",
+      "pulseaudio#input",
+      "pulseaudio#output",
+      "hyprland/language",
+      "custom/battery",
+      "clock",
+      "custom/power"
+    ],
+
+    // Modules
+    "group/traym": {
+      "orientation": "horizontal",
+      "drawer": {},
+      "modules": ["custom/trayicon", "tray"]
+    },
+
+    "custom/battery": {
+      "interval": 4,
+      "return-type": "json",
+      "exec": "~/.config/hypr/themes/Mocha-Power/bat-pp.sh refresh",
+      "exec-on-event": true,
+      "format": "{text}%",
+      "on-click": "~/.config/hypr/themes/Mocha-Power/bat-pp.sh toggle & aplay ~/.config/sounds/interact.wav",
+      "tooltip": "true",
+      "tooltip-format": "{alt}"
+    },
+
+    "clock": {
+      "interval": 1,
+      "format": " {:%H:%M:%S    %a %d.%m}",
+      "tooltip-format": "{calendar}",
+      "calendar": {
+        "weeks-pos": "right",
+        "mode": "month",
+        "format": {
+          "months": "<span color='#fe8019'><b>{}</b></span>",
+          "days": "<span color='#ebdbb2'><b>{}</b></span>",
+          "weeks": "<span color='#83a598'> W{}</span>",
+          "weekdays": "<span color='#fabd2f'><b>{}</b></span>",
+          "today": "<span color='#fb4934'><b><u>{}</u></b></span>"
+        }
+      },
+      "on-click": "chromium --app=https://calendar.google.com & aplay ~/.config/sounds/interact.wav"
+    },
+
+    "hyprland/language": {
+      "format": " {}",
+      "format-fi": "Vittu",
+      "format-ru": "Блять",
+      "min-length": 8,
+      "on-click": "hyprctl switchxkblayout current next & aplay ~/.config/sounds/interact.wav",
+      "tooltip": false,
+      "class": "language"
+    },
+
+    "network#info": {
+      "interval": 2,
+      "format": "󱘖  Offline",
+      "format-wifi": "{icon} {bandwidthDownBits}",
+      "format-ethernet": "󰈀 {bandwidthDownBits}",
+      "min-length": 11,
+      "tooltip": "{}",
+      "tooltip-format-wifi": "{ifname}\n{essid}\n{signalStrength}% \n{frequency} GHz\n󰇚 {bandwidthDownBits}\n󰕒 {bandwidthUpBits}",
+      "tooltip-format-ethernet": "{ifname}\n󰇚 {bandwidthDownBits} \n󰕒 {bandwidthUpBits}",
+      "on-click": "iwgtk& aplay ~/.config/sounds/interact.wav",
+      "format-icons": ["󰤫", "󰤟", "󰤢", "󰤥", "󰤨"],
+      "states": {
+        "normal": 25
+      }
+    },
+
+    "hyprland/submap": {
+      "always-on": true,
+      "default-submap": "",
+      "format": "{}",
+      "format-RESIZE": "{}lol",
+      "tooltip": false
+    },
+
+    "hyprland/window": {
+      "format": "{title}",
+      "max-length": 48,
+      "tooltip": false,
+      "icon": true,
+      "icon-size": 18,
+      "tooltip": true
+    },
+
+    "hyprland/workspaces": {
+      "disable-scroll-wraparound": true,
+      "smooth-scrolling-threshold": 4,
+      "enable-bar-scroll": true,
+      "format": "{icon}",
+      "show-special": true,
+      "special-visible-only": false,
+    },
+
+    "pulseaudio#output": {
+      "format": "{icon} {volume}%",
+      "format-bluetooth": "{icon} {volume}%",
+      "format-source-muted": "{volume}",
+      "format-icons": {
+        "headphone": "",
+        "hands-free": "",
+        "headset": "",
+        "phone": "",
+        "portable": "",
+        "car": "",
+        "default": ["", ""]
+      },
+      "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+      "on-click-right": "pwvucontrol & aplay ~/.config/sounds/interact.wav",
+      "tooltip": true,
+      "scroll-step": 2
+    },
+
+    "pulseaudio#input": {
+      "format": " {format_source}%",
+      "format-source": "{volume}",
+      "format-source-muted": "{volume}",
+      "on-scroll-up": "sh -c 'vol=$(pactl get-source-volume @DEFAULT_SOURCE@ | grep -oP \"\\d+(?=%)\" | head -1); if [ \"$vol\" -lt 100 ]; then pactl set-source-volume @DEFAULT_SOURCE@ +2%; else pactl set-source-volume @DEFAULT_SOURCE@ 100%; fi'",
+      "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -2%",
+      "max-volume": "100",
+      "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+      "on-click-right": "pwvucontrol & aplay ~/.config/sounds/interact.wav",
+      "tooltip-format": "{source_desc}"
+    },
+
+    "tray": {
+      "icon-size": 18,
+      "spacing": 8
+    },
+
+    "custom/trayicon": {
+      "format": " ",
+      "tooltip": false,
+      "on-click": " bash ~/.config/scripts/pacman.sh",
+      "on-scroll-up": "",
+      "on-scroll-down": "",
+    },
+
+    "custom/power": {
+      "format" : "⏻",
+      "tooltip": false,
+      "on-click": "wlogout"
+    }
+  },
+
+  {
+    // INDICATOR BAR //
+    "layer": "top",
+    "position": "top",
+    "name": "indicator",
+    "passthrough": true,
+    "reload_style_on_change": true,
+
+    "height": 30,
+
+    "margin-top": -29,
+    "margin-right": 24,
+
+    "modules-right": ["custom/batteryindicator"],
+
+    "custom/batteryindicator": {
+      "interval": 4,
+      "return-type": "json",
+      "tooltip": false,
+      "format": " ",
+      "exec": "~/.config/hypr/themes/Mocha-Power/bat-pp.sh bar"
+    }
+  }
+]
