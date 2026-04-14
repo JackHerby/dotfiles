@@ -139,6 +139,9 @@ if vim.g.neovide then
   vim.env.TERM = 'xterm-256color'
 end
 
+-- Enable experimental ui2
+require('vim._core.ui2').enable()
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 local keymap = require('utils.keymap')
@@ -302,3 +305,4 @@ require('lazy').setup({
     },
   },
 })
+
