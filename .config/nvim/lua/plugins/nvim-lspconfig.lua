@@ -113,6 +113,7 @@ return {
       },
       cssls = {},
       emmet_language_server = {},
+      eslint = {},
       html = {},
       hyprls = {},
       lemminx = {
@@ -214,11 +215,6 @@ return {
       { desc = 'Fix stylelint issues via LSP formatting' }
     )
 
-    -- Key maps for lsp commands
-    keymap('<leader>aI', function() vim.cmd('LspInfo') end, { desc = 'Lsp[I]nfo' })
-    keymap('<leader>aR', function() vim.cmd('LspRestart') end, { desc = 'Lsp[R]estart' })
-    keymap('<leader>aS', function() vim.cmd('LspStart') end, { desc = 'Lsp[S]tart' })
-    keymap('<leader>aT', function() vim.cmd('LspStop') end, { desc = 'LspS[t]op' })
     keymap('<leader>S', function() vim.cmd('StylelintFix') end, { desc = 'Style[l]int fix all' })
   end,
 }
