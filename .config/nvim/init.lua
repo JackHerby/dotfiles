@@ -140,7 +140,7 @@ if vim.g.neovide then
 end
 
 -- Enable experimental ui2
-require('vim._core.ui2').enable()
+pcall(function() require('vim._core.ui2').enable() end)
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
