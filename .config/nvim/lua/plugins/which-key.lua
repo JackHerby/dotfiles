@@ -23,7 +23,7 @@ return {
       { '<leader>h', group = '[H]arpoon' },
       { '<leader>l', group = '[L]ocation list' },
       { '<leader>q', group = '[Q]uickfix list' },
-      { '<leader>s', group = 'Telescope [s]earch' },
+      { '<leader>s', group = 'Fzf [s]earch' },
       { '<leader>t', group = 'Pretty [T]S errors' },
       { '<leader>u', group = '[U]ndoo tree' },
     },
