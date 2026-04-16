@@ -10,9 +10,9 @@ return {
     local mini_bufremove = require('mini.bufremove')
     mini_bufremove.setup()
     local keymap = require('utils.keymap')
-    keymap('<leader>bd', mini_bufremove.delete, { desc = '[D]elete buffer.' })
-    keymap('<leader>bw', mini_bufremove.wipeout, { desc = '[W]ipeout buffer.' })
-    keymap('<leader>bu', mini_bufremove.unshow, { desc = '[U]nshow buffer.' })
+    keymap('<leader>bd', mini_bufremove.delete, { desc = '[d]elete buffer' })
+    keymap('<leader>bw', mini_bufremove.wipeout, { desc = '[w]ipeout buffer' })
+    keymap('<leader>bu', mini_bufremove.unshow, { desc = '[u]nshow buffer' })
 
     require('mini.diff').setup({
       view = {

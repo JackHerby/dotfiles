@@ -24,17 +24,17 @@ return {
     keymap(
       '<leader>te',
       function() require('pretty-ts-errors').show_formatted_error() end,
-      { desc = 'Show TS [e]rror.' }
+      { desc = 'show TypeScript [e]rror' }
     )
     keymap(
       '<leader>ta',
       function() require('pretty-ts-errors').open_all_errors() end,
-      { desc = 'Show [a]ll TS errors.' }
+      { desc = 'show [a]ll TypeScript errors' }
     )
     keymap(
       '<leader>tt',
       function() require('pretty-ts-errors').toggle_auto_open() end,
-      { desc = '[T]oggle TS error auto-display.' }
+      { desc = '[t]oggle TypeScript error auto-display' }
     )
   end,
 }

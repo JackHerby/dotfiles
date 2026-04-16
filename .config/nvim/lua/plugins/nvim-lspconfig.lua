@@ -42,15 +42,15 @@ return {
       group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
       callback = function(event)
         local fzf = require('fzf-lua')
-        keymap('<leader>an', vim.lsp.buf.rename, { desc = 'Re[n]ame symbol.' })
-        keymap('<leader>aa', vim.lsp.buf.code_action, { desc = 'Goto code [a]ction.' }, { 'n', 'x' })
-        keymap('<leader>ar', function() fzf.lsp_references() end, { desc = 'Goto [r]eferences.' })
-        keymap('<leader>ai', function() fzf.lsp_implementations() end, { desc = 'Goto [i]mplementation.' })
-        keymap('<leader>ad', function() fzf.lsp_definitions() end, { desc = 'Goto [d]efinition.' })
-        keymap('<leader>aD', vim.lsp.buf.declaration, { desc = 'Goto [d]eclaration.' })
-        keymap('<leader>aO', function() fzf.lsp_document_symbols() end, { desc = 'Open document symb[o]ls.' })
-        keymap('<leader>aW', function() fzf.lsp_live_workspace_symbols() end, { desc = 'Open [w]orkspace symbols.' })
-        keymap('<leader>at', function() fzf.lsp_typedefs() end, { desc = 'Goto [t]ype definition.' })
+        keymap('<leader>an', vim.lsp.buf.rename, { desc = 're[n]ame symbol' })
+        keymap('<leader>aa', vim.lsp.buf.code_action, { desc = 'goto code [a]ction' }, { 'n', 'x' })
+        keymap('<leader>ar', function() fzf.lsp_references() end, { desc = 'goto [r]eferences' })
+        keymap('<leader>ai', function() fzf.lsp_implementations() end, { desc = 'goto [i]mplementation' })
+        keymap('<leader>ad', function() fzf.lsp_definitions() end, { desc = 'goto [d]efinition' })
+        keymap('<leader>aD', vim.lsp.buf.declaration, { desc = 'goto [d]eclaration' })
+        keymap('<leader>aO', function() fzf.lsp_document_symbols() end, { desc = 'open document symb[o]ls' })
+        keymap('<leader>aW', function() fzf.lsp_live_workspace_symbols() end, { desc = 'open [w]orkspace symbols' })
+        keymap('<leader>at', function() fzf.lsp_typedefs() end, { desc = 'goto [t]ype definition' })
 
         local function diagnostic_open_float()
           vim.diagnostic.open_float({
@@ -59,7 +59,7 @@ return {
             width = 128,
           })
         end
-        keymap('<leader>af', diagnostic_open_float, { desc = 'Open [f]loating window for diagnostics.' })
+        keymap('<leader>af', diagnostic_open_float, { desc = 'open [f]loating window for diagnostics' })
 
         -- The following two autocommands are used to highlight references of the
         -- word under your cursor when your cursor rests there for a little while.
@@ -96,7 +96,7 @@ return {
           keymap(
             '<leader>ah',
             function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf })) end,
-            { desc = 'Toggle inlay [h]ints.' }
+            { desc = 'toggle inlay [h]ints' }
           )
         end
       end,
@@ -183,6 +183,6 @@ return {
       { desc = 'Fix stylelint issues via LSP formatting.' }
     )
 
-    keymap('<leader>S', function() vim.cmd('StylelintFix') end, { desc = 'Style[l]int fix all.' })
+    keymap('<leader>S', function() vim.cmd('StylelintFix') end, { desc = 'style[l]int fix all' })
   end,
 }

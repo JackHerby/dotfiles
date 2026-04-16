@@ -7,7 +7,7 @@ return {
   event = 'VeryLazy',
   config = function()
     local keymap = require('utils.keymap')
-    keymap('<leader>uu', vim.cmd.UndotreeToggle, { desc = 'Toggle [U]ndotree.' })
+    keymap('<leader>uu', vim.cmd.UndotreeToggle, { desc = 'toggle [U]ndotree' })
 
     vim.g.undotree_WindowLayout = 4
     vim.g.undotree_SplitWidth = 50

@@ -17,36 +17,36 @@ return {
     },
   },
   keys = {
-    { '<Leader>dB', function() require('dap').set_breakpoint() end, desc = 'Set [b]reakpoint.' },
-    { '<Leader>db', function() require('dap').toggle_breakpoint() end, desc = 'Toggle [b]reakpoint.' },
-    { '<leader>dc', function() require('dap').continue() end, desc = '[C]ontinue.' },
+    { '<Leader>dB', function() require('dap').set_breakpoint() end, desc = 'set [b]reakpoint' },
+    { '<Leader>db', function() require('dap').toggle_breakpoint() end, desc = 'toggle [b]reakpoint' },
+    { '<leader>dc', function() require('dap').continue() end, desc = '[c]ontinue' },
     {
       '<leader>df',
       function()
         local widgets = require('dap.ui.widgets')
         widgets.centered_float(widgets.frames)
       end,
-      desc = 'Centered float [f]rames.',
+      desc = 'centered float [f]rames',
     },
-    { '<leader>dh', function() require('dap.ui.widgets').hover() end, desc = '[H]over.' },
-    { '<leader>di', function() require('dap').step_into() end, desc = 'Step [i]nto.' },
-    { '<leader>dl', function() require('dapui').toggle() end, desc = 'See [l]ast session result.' },
+    { '<leader>dh', function() require('dap.ui.widgets').hover() end, desc = '[h]over' },
+    { '<leader>di', function() require('dap').step_into() end, desc = 'step [i]nto' },
+    { '<leader>dl', function() require('dapui').toggle() end, desc = 'see [l]ast session result' },
     {
       '<Leader>dm',
       function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end,
-      desc = 'Set breakpoint with [m]essage.',
+      desc = 'set breakpoint with [m]essage',
     },
-    { '<leader>do', function() require('dap').step_over() end, desc = 'Step [o]ver.' },
-    { '<leader>dp', function() require('dap.ui.widgets').preview() end, desc = '[P]review.' },
+    { '<leader>do', function() require('dap').step_over() end, desc = 'step [o]ver' },
+    { '<leader>dp', function() require('dap.ui.widgets').preview() end, desc = '[p]review' },
     {
       '<leader>ds',
       function()
         local widgets = require('dap.ui.widgets')
         widgets.centered_float(widgets.scopes)
       end,
-      desc = 'Centered float [s]copes.',
+      desc = 'centered float [s]copes',
     },
-    { '<leader>dt', function() require('dap').step_out() end, desc = 'Step ou[t].' },
+    { '<leader>dt', function() require('dap').step_out() end, desc = 'step ou[t]' },
   },
   config = function()
     local dap = require('dap')

@@ -148,7 +148,7 @@ local keymap = require('utils.keymap')
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode.
 -- See `:help hlsearch`.
-keymap('<Esc>', function() vim.cmd('nohlsearch') end, { desc = 'Clear highligth search.' })
+keymap('<Esc>', function() vim.cmd('nohlsearch') end, { desc = 'clear highligth search' })
 
 -- Diagnostic Config & Keymaps.
 -- See :help vim.diagnostic.Opts.
@@ -167,26 +167,26 @@ vim.diagnostic.config({
 })
 
 -- Diagnostic list.
-keymap('<leader>ll', vim.diagnostic.setloclist, { desc = 'Open diagnostic [L]ocation list.' })
+keymap('<leader>ll', vim.diagnostic.setloclist, { desc = 'open diagnostic [L]ocation list' })
 
 -- Location list keymaps.
-keymap('<leader>lo', function() vim.cmd('lopen') end, { desc = '[O]pen Location list.' })
-keymap('<leader>lc', function() vim.cmd('lclose') end, { desc = '[C]lose Location list.' })
-keymap('<leader>ln', function() vim.cmd('lnext') end, { desc = '[N]ext location item.' })
-keymap('<leader>lp', function() vim.cmd('lprevious') end, { desc = '[P]revious location item.' })
-keymap('<leader>lf', function() vim.cmd('lfirst') end, { desc = '[F]irst location item.' })
-keymap('<leader>la', function() vim.cmd('llast') end, { desc = 'L[a]st location item.' })
+keymap('<leader>lo', function() vim.cmd('lopen') end, { desc = '[o]pen Location list' })
+keymap('<leader>lc', function() vim.cmd('lclose') end, { desc = '[c]lose Location list' })
+keymap('<leader>ln', function() vim.cmd('lnext') end, { desc = '[n]ext location item' })
+keymap('<leader>lp', function() vim.cmd('lprevious') end, { desc = '[p]revious location item' })
+keymap('<leader>lf', function() vim.cmd('lfirst') end, { desc = '[f]irst location item' })
+keymap('<leader>la', function() vim.cmd('llast') end, { desc = 'l[a]st location item' })
 
 -- Quickfix list keymaps.
-keymap('<leader>qo', function() vim.cmd('copen') end, { desc = '[O]pen Quickfix list.' })
-keymap('<leader>qc', function() vim.cmd('cclose') end, { desc = '[C]lose Quickfix list.' })
-keymap('<leader>qn', function() vim.cmd('cnext') end, { desc = '[N]ext quickfix item.' })
-keymap('<leader>qp', function() vim.cmd('cprevious') end, { desc = '[P]revious quickfix item.' })
-keymap('<leader>qf', function() vim.cmd('cfirst') end, { desc = '[F]irst quickfix item.' })
-keymap('<leader>qa', function() vim.cmd('clast') end, { desc = 'L[a]st quickfix item.' })
+keymap('<leader>qo', function() vim.cmd('copen') end, { desc = '[o]pen Quickfix list' })
+keymap('<leader>qc', function() vim.cmd('cclose') end, { desc = '[c]lose Quickfix list' })
+keymap('<leader>qn', function() vim.cmd('cnext') end, { desc = '[n]ext quickfix item' })
+keymap('<leader>qp', function() vim.cmd('cprevious') end, { desc = '[p]revious quickfix item' })
+keymap('<leader>qf', function() vim.cmd('cfirst') end, { desc = '[f]irst quickfix item' })
+keymap('<leader>qa', function() vim.cmd('clast') end, { desc = 'l[a]st quickfix item' })
 
 -- Terminal mode.
-keymap('<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode.' }, 't')
+keymap('<Esc><Esc>', '<C-\\><C-n>', { desc = 'exit terminal mode' }, 't')
 
 -- Open terminal mode window in bottom split.
 local function open_term()
@@ -195,30 +195,30 @@ local function open_term()
   vim.api.nvim_win_set_height(0, 20)
   vim.cmd('startinsert')
 end
-keymap('<leader>T', open_term, { desc = 'Open [t]erminal in bottom split.' })
+keymap('<leader>T', open_term, { desc = 'open [t]erminal in bottom split' })
 
 -- TIP: Disable arrow keys in normal mode.
 -- Utilize arrows to resize windows in normal mode.
-keymap('<left>', function() vim.cmd('vertical resize -1') end, { desc = 'Resize window left.' })
-keymap('<right>', function() vim.cmd('vertical resize +1') end, { desc = 'Resize window right.' })
-keymap('<up>', function() vim.cmd('resize +1') end, { desc = 'Resize window up.' })
-keymap('<down>', function() vim.cmd('resize -1') end, { desc = 'Resize window down.' })
+keymap('<left>', function() vim.cmd('vertical resize -1') end, { desc = 'resize window left' })
+keymap('<right>', function() vim.cmd('vertical resize +1') end, { desc = 'resize window right' })
+keymap('<up>', function() vim.cmd('resize +1') end, { desc = 'resize window up' })
+keymap('<down>', function() vim.cmd('resize -1') end, { desc = 'resize window down' })
 
 -- Keybinds to make split navigation easier.
-keymap('<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window.' })
-keymap('<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window.' })
-keymap('<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window.' })
-keymap('<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window.' })
+keymap('<C-h>', '<C-w><C-h>', { desc = 'move focus to the left window' })
+keymap('<C-l>', '<C-w><C-l>', { desc = 'move focus to the right window' })
+keymap('<C-j>', '<C-w><C-j>', { desc = 'move focus to the lower window' })
+keymap('<C-k>', '<C-w><C-k>', { desc = 'move focus to the upper window' })
 
 -- Move select.
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes.
-keymap('<C-M-h>', '<C-w>H', { desc = 'Move window to the left.' })
-keymap('<C-M-l>', '<C-w>L', { desc = 'Move window to the right.' })
-keymap('<C-M-j>', '<C-w>J', { desc = 'Move window to the lower.' })
-keymap('<C-M-k>', '<C-w>K', { desc = 'Move window to the upper.' })
+keymap('<C-M-h>', '<C-w>H', { desc = 'move window to the left' })
+keymap('<C-M-l>', '<C-w>L', { desc = 'move window to the right' })
+keymap('<C-M-j>', '<C-w>J', { desc = 'move window to the lower' })
+keymap('<C-M-k>', '<C-w>K', { desc = 'move window to the upper' })
 
 -- Change all occurances of the word under the cursor.
-keymap('<leader>r', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = '[R]ename all occurances.' })
+keymap('<leader>r', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = '[r]ename all occurances' })
 
 -- Open URL under cursor.
 keymap('<leader>U', function()
@@ -228,7 +228,7 @@ keymap('<leader>U', function()
   else
     vim.notify('No valid URL found under cursor', vim.log.levels.WARN)
   end
-end, { desc = 'Open [U]RL under the cursor.' })
+end, { desc = 'Open [U]RL under the cursor' })
 
 -- JavaScript/Typescript quality of life mappings.
 keymap('<C-,>', '()', nil, 'i')
@@ -237,7 +237,7 @@ keymap('<C-/>', '->', nil, 'i')
 keymap("<C-'>", '() => ', nil, 'i')
 
 -- Trigger lint command providerd by eslint language server.
-keymap('<leader>E', function() vim.cmd('LspEslintFixAll') end, { desc = '[E]slint fix all.' })
+keymap('<leader>E', function() vim.cmd('LspEslintFixAll') end, { desc = '[E]SLint fix all' })
 
 -- Basic autocommands.
 --  See `:help lua-guide-autocommands`.
@@ -246,7 +246,7 @@ keymap('<leader>E', function() vim.cmd('LspEslintFixAll') end, { desc = '[E]slin
 --  Try it with `yap` in normal mode.
 --  See `:help vim.highlight.on_yank()`.
 vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking text',
+  desc = 'Highlight when yanking text.',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
   callback = function() vim.highlight.on_yank() end,
 })
@@ -259,13 +259,13 @@ vim.api.nvim_create_autocmd('TermOpen', {
     vim.opt.relativenumber = false
     vim.cmd('setlocal bufhidden=wipe')
   end,
-  desc = 'Customize terminal mode',
+  desc = 'Customize terminal mode.',
   group = vim.api.nvim_create_augroup('custom-term-open', { clear = true }),
 })
 
 vim.api.nvim_create_autocmd('FileType', {
   callback = function() vim.opt_local.spell = false end,
-  desc = 'Disable spellcheck in quickfix/location list',
+  desc = 'Disable spellcheck in quickfix/location list.',
   group = vim.api.nvim_create_augroup('custom-qf-loclist', { clear = true }),
   pattern = 'qf',
 })

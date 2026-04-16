@@ -28,9 +28,9 @@ return {
     end
 
     local keymap = require('utils.keymap')
-    keymap('<leader>ha', function() harpoon:list():add() end, { desc = 'Harpoon [a]dd.' })
-    keymap('<leader>hh', toggle_quick_menu, { desc = 'Harpoon [t]oggle.' })
-    keymap('<leader>hp', function() harpoon:list():prepend() end, { desc = 'Harpoon [p]repend.' })
+    keymap('<leader>ha', function() harpoon:list():add() end, { desc = 'Harpoon [a]dd' })
+    keymap('<leader>hh', toggle_quick_menu, { desc = 'Harpoon [t]oggle' })
+    keymap('<leader>hp', function() harpoon:list():prepend() end, { desc = 'Harpoon [p]repend' })
     keymap('<C-1>', function() harpoon:list():select(1) end)
     keymap('<C-2>', function() harpoon:list():select(2) end)
     keymap('<C-3>', function() harpoon:list():select(3) end)
