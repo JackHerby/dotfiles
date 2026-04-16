@@ -51,26 +51,26 @@ return {
 --     keymap(
 --       '<leader>sc',
 --       function() builtin.live_grep({ type_filter = 'css' }) end,
---       { desc = 'Search by grep in [c]ss files' }
+--       { desc = 'Search by grep in [c]ss files.' }
 --     )
---     keymap('<leader>sd', builtin.diagnostics, { desc = 'Search in [d]iagnostics' })
---     keymap('<leader>sf', builtin.find_files, { desc = 'Search for [f]iles' })
+--     keymap('<leader>sd', builtin.diagnostics, { desc = 'Search in [d]iagnostics.' })
+--     keymap('<leader>sf', builtin.find_files, { desc = 'Search for [f]iles.' })
 --     keymap(
 --       '<leader>sF',
 --       function() builtin.find_files({ default_text = vim.fn.expand('<cword>') }) end,
---       { desc = 'Search [F]iles by word under cursor' }
+--       { desc = 'Search [F]iles by word under cursor.' }
 --     )
---     keymap('<leader>sg', builtin.live_grep, { desc = 'Search by [g]rep' })
---     keymap('<leader>sh', builtin.help_tags, { desc = 'Search in [h]elp' })
+--     keymap('<leader>sg', builtin.live_grep, { desc = 'Search by [g]rep.' })
+--     keymap('<leader>sh', builtin.help_tags, { desc = 'Search in [h]elp.' })
 --     keymap(
 --       '<leader>sH',
 --       function() builtin.help_tags({ default_text = vim.fn.expand('<cword>') }) end,
---       { desc = 'Search [h]elp for the word under the cursor' }
+--       { desc = 'Search [h]elp for the word under the cursor.' }
 --     )
 --     keymap(
 --       '<leader>si',
 --       function() builtin.find_files({ hidden = true, no_ignore = true }) end,
---       { desc = 'Search by grep including hidden and git [i]gnored files' }
+--       { desc = 'Search by grep including hidden and git [i]gnored files.' }
 --     )
 --     keymap(
 --       '<leader>sj',
@@ -80,20 +80,20 @@ return {
 --           additional_args = { '--type=ts' },
 --         })
 --       end,
---       { desc = 'Search by grep in [J]avaScript files' }
+--       { desc = 'Search by grep in [J]avaScript files.' }
 --     )
---     keymap('<leader>sk', builtin.keymaps, { desc = 'Search [k]eymaps' })
+--     keymap('<leader>sk', builtin.keymaps, { desc = 'Search [k]eymaps.' })
 --     keymap(
 --       '<leader>sn',
 --       function() builtin.find_files({ cwd = vim.fn.stdpath('config') }) end,
---       { desc = 'Search in [N]eovim files' }
+--       { desc = 'Search in [N]eovim files.' }
 --     )
---     keymap('<leader>sm', function() extensions.node_modules.list() end, { desc = 'Search in node [m]odules' })
---     keymap('<leader>sp', function() extensions.project.project() end, { desc = 'Search in [p]rojects' })
---     keymap('<leader>sr', builtin.resume, { desc = '[R]esume search' })
---     keymap('<leader>ss', builtin.symbols, { desc = 'Search for [s]ymbols' })
---     keymap('<leader>sw', builtin.grep_string, { desc = 'Search for current [w]ord' })
---     keymap('<leader>s.', builtin.oldfiles, { desc = 'Search recent files ("." for repeat)' })
+--     keymap('<leader>sm', function() extensions.node_modules.list() end, { desc = 'Search in node [m]odules.' })
+--     keymap('<leader>sp', function() extensions.project.project() end, { desc = 'Search in [p]rojects.' })
+--     keymap('<leader>sr', builtin.resume, { desc = '[R]esume search.' })
+--     keymap('<leader>ss', builtin.symbols, { desc = 'Search for [s]ymbols.' })
+--     keymap('<leader>sw', builtin.grep_string, { desc = 'Search for current [w]ord.' })
+--     keymap('<leader>s.', builtin.oldfiles, { desc = 'Search recent files ("." for repeat.)' })
 --     keymap(
 --       '<leader>s/',
 --       function()
@@ -102,9 +102,9 @@ return {
 --           prompt_title = 'Live Grep in Open Files',
 --         })
 --       end,
---       { desc = 'Search [/] in open files' }
+--       { desc = 'Search [/] in open files.' }
 --     )
---     keymap('<leader><leader>', builtin.buffers, { desc = 'Search in opened buffers' })
+--     keymap('<leader><leader>', builtin.buffers, { desc = 'Search in opened buffers.' })
 --     keymap(
 --       '<leader>/',
 --       function()
@@ -113,7 +113,7 @@ return {
 --           previewer = false,
 --         }))
 --       end,
---       { desc = 'Fuzzily search in current buffer' }
+--       { desc = 'Fuzzily search in current buffer.' }
 --     )
 --   end,
 }

@@ -10,7 +10,7 @@ return {
       auto_open = false,
     })
 
-    -- Add ts-plugin as a source
+    -- Add ts-plugin as a source.
     require('pretty-ts-errors.utils').is_ts_source = function(source)
       return vim.tbl_contains({
         'tsserver',
@@ -22,12 +22,12 @@ return {
     end
 
     local keymap = require('utils.keymap')
-    keymap('<leader>te', function() require('pretty-ts-errors').show_formatted_error() end, { desc = 'Show TS [e]rror' })
-    keymap('<leader>ta', function() require('pretty-ts-errors').open_all_errors() end, { desc = 'Show [a]ll TS errors' })
+    keymap('<leader>te', function() require('pretty-ts-errors').show_formatted_error() end, { desc = 'Show TS [e]rror.' })
+    keymap('<leader>ta', function() require('pretty-ts-errors').open_all_errors() end, { desc = 'Show [a]ll TS errors.' })
     keymap(
       '<leader>tt',
       function() require('pretty-ts-errors').toggle_auto_open() end,
-      { desc = '[T]oggle TS error auto-display' }
+      { desc = '[T]oggle TS error auto-display.' }
     )
   end,
 }

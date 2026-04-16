@@ -18,43 +18,43 @@ return {
     },
   },
   keys = {
-    { '<Leader>dB', function() require('dap').set_breakpoint() end, desc = 'Set [b]reakpoint' },
-    { '<Leader>db', function() require('dap').toggle_breakpoint() end, desc = 'Toggle [b]reakpoint' },
-    { '<leader>dc', function() require('dap').continue() end, desc = '[C]ontinue' },
+    { '<Leader>dB', function() require('dap').set_breakpoint() end, desc = 'Set [b]reakpoint.' },
+    { '<Leader>db', function() require('dap').toggle_breakpoint() end, desc = 'Toggle [b]reakpoint.' },
+    { '<leader>dc', function() require('dap').continue() end, desc = '[C]ontinue.' },
     {
       '<leader>df',
       function()
         local widgets = require('dap.ui.widgets')
         widgets.centered_float(widgets.frames)
       end,
-      desc = 'Centered float [f]rames',
+      desc = 'Centered float [f]rames.',
     },
-    { '<leader>dh', function() require('dap.ui.widgets').hover() end, desc = '[H]over' },
-    { '<leader>di', function() require('dap').step_into() end, desc = 'Step [i]nto' },
-    { '<leader>dl', function() require('dapui').toggle() end, desc = 'See [l]ast session result' },
+    { '<leader>dh', function() require('dap.ui.widgets').hover() end, desc = '[H]over.' },
+    { '<leader>di', function() require('dap').step_into() end, desc = 'Step [i]nto.' },
+    { '<leader>dl', function() require('dapui').toggle() end, desc = 'See [l]ast session result.' },
     {
       '<Leader>dm',
       function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end,
-      desc = 'Set breakpoint with [m]essage',
+      desc = 'Set breakpoint with [m]essage.',
     },
-    { '<leader>do', function() require('dap').step_over() end, desc = 'Step [o]ver' },
-    { '<leader>dp', function() require('dap.ui.widgets').preview() end, desc = '[P]review' },
+    { '<leader>do', function() require('dap').step_over() end, desc = 'Step [o]ver.' },
+    { '<leader>dp', function() require('dap.ui.widgets').preview() end, desc = '[P]review.' },
     {
       '<leader>ds',
       function()
         local widgets = require('dap.ui.widgets')
         widgets.centered_float(widgets.scopes)
       end,
-      desc = 'Centered float [s]copes',
+      desc = 'Centered float [s]copes.',
     },
-    { '<leader>dt', function() require('dap').step_out() end, desc = 'Step ou[t]' },
+    { '<leader>dt', function() require('dap').step_out() end, desc = 'Step ou[t].' },
   },
   config = function()
     local dap = require('dap')
     local dapui = require('dapui')
 
-    -- Dap UI setup
-    -- For more information, see |:help nvim-dap-ui|
+    -- Dap UI setup.
+    -- For more information, see |:help nvim-dap-ui|.
     dapui.setup({
       layouts = {
         {
@@ -78,7 +78,7 @@ return {
       },
     })
 
-    -- Change breakpoint icons
+    -- Change breakpoint icons.
     vim.api.nvim_set_hl(0, 'DapBreak', { fg = '#e51400' })
     vim.api.nvim_set_hl(0, 'DapStop', { fg = '#ffcc00' })
     local breakpoint_icons = vim.g.have_nerd_font
@@ -113,7 +113,7 @@ return {
 
     for _, language in ipairs({ 'typescript', 'javascript', 'vue', 'typescriptreact', 'javascriptreact' }) do
       dap.configurations[language] = {
-        -- Debug single nodejs files
+        -- Debug single nodejs files.
         {
           type = 'pwa-node',
           request = 'launch',
@@ -122,7 +122,7 @@ return {
           cwd = '${workspaceFolder}',
           sourceMaps = true,
         },
-        -- Debug nodejs processes (make sure to add --inspect when you run the process)
+        -- Debug nodejs processes (make sure to add --inspect when you run the process).
         {
           type = 'pwa-node',
           request = 'attach',
@@ -131,7 +131,7 @@ return {
           cwd = '${workspaceFolder}',
           sourceMaps = true,
         },
-        -- Debug web applications (client side)
+        -- Debug web applications (client side).
         {
           type = 'pwa-chrome',
           request = 'launch',
@@ -157,7 +157,7 @@ return {
           sourceMaps = true,
           userDataDir = false,
         },
-        -- Divider for the launch.json derived configs
+        -- Divider for the launch.json derived configs.
         {
           name = '----- ↓ launch.json configs ↓ -----',
           type = '',

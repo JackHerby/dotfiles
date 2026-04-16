@@ -33,8 +33,8 @@ return {
   opts = {
     keymap = {
       -- TODO: For an understanding of why the 'default' preset is recommended,
-      -- you will need to read `:help ins-completion`
-      -- See :h blink-cmp-config-keymap for defining your own keymap
+      -- you will need to read `:help ins-completion`.
+      -- See :h blink-cmp-config-keymap for defining your own keymap.
       preset = 'default',
     },
 
@@ -55,10 +55,10 @@ return {
 
     snippets = { preset = 'luasnip' },
 
-    -- See :h blink-cmp-config-fuzzy for more information
+    -- See :h blink-cmp-config-fuzzy for more information.
     fuzzy = { implementation = 'prefer_rust_with_warning' },
 
-    -- Shows a signature help window while you type arguments for a function
+    -- Shows a signature help window while you type arguments for a function.
     signature = { enabled = true },
   },
 }

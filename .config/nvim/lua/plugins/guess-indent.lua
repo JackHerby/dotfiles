@@ -4,7 +4,7 @@
 ---@module 'lazy'
 ---@type LazySpec
 return {
-  -- Detect tabstop and shiftwidth automatically
+  -- Detect tabstop and shiftwidth automatically.
   'NMAC427/guess-indent.nvim',
   opts = {},
 }

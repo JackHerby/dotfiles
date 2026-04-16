@@ -37,21 +37,21 @@ return {
     -- This function gets run when an LSP attaches to a particular buffer.
     -- That is to say, every time a new file is opened that is associated with
     -- an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
-    -- function will be executed to configure the current buffer
+    -- function will be executed to configure the current buffer.
     local keymap = require('utils.keymap')
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
       callback = function(event)
         local fzf = require('fzf-lua')
-        keymap('<leader>an', vim.lsp.buf.rename, { desc = 'Re[n]ame symbol' })
-        keymap('<leader>aa', vim.lsp.buf.code_action, { desc = 'Goto code [a]ction' }, { 'n', 'x' })
-        keymap('<leader>ar', function() fzf.lsp_references() end, { desc = 'Goto [r]eferences' })
-        keymap('<leader>ai', function() fzf.lsp_implementations() end, { desc = 'Goto [i]mplementation' })
-        keymap('<leader>ad', function() fzf.lsp_definitions() end, { desc = 'Goto [d]efinition' })
-        keymap('<leader>aD', vim.lsp.buf.declaration, { desc = 'Goto [d]eclaration' })
-        keymap('<leader>aO', function() fzf.lsp_document_symbols() end, { desc = 'Open document symb[o]ls' })
-        keymap('<leader>aW', function() fzf.lsp_live_workspace_symbols() end, { desc = 'Open [w]orkspace symbols' })
-        keymap('<leader>at', function() fzf.lsp_typedefs() end, { desc = 'Goto [t]ype definition' })
+        keymap('<leader>an', vim.lsp.buf.rename, { desc = 'Re[n]ame symbol.' })
+        keymap('<leader>aa', vim.lsp.buf.code_action, { desc = 'Goto code [a]ction.' }, { 'n', 'x' })
+        keymap('<leader>ar', function() fzf.lsp_references() end, { desc = 'Goto [r]eferences.' })
+        keymap('<leader>ai', function() fzf.lsp_implementations() end, { desc = 'Goto [i]mplementation.' })
+        keymap('<leader>ad', function() fzf.lsp_definitions() end, { desc = 'Goto [d]efinition.' })
+        keymap('<leader>aD', vim.lsp.buf.declaration, { desc = 'Goto [d]eclaration.' })
+        keymap('<leader>aO', function() fzf.lsp_document_symbols() end, { desc = 'Open document symb[o]ls.' })
+        keymap('<leader>aW', function() fzf.lsp_live_workspace_symbols() end, { desc = 'Open [w]orkspace symbols.' })
+        keymap('<leader>at', function() fzf.lsp_typedefs() end, { desc = 'Goto [t]ype definition.' })
 
         local function diagnostic_open_float()
           vim.diagnostic.open_float({
@@ -60,11 +60,11 @@ return {
             width = 128,
           })
         end
-        keymap('<leader>af', diagnostic_open_float, { desc = 'Open [f]loating window for diagnostics' })
+        keymap('<leader>af', diagnostic_open_float, { desc = 'Open [f]loating window for diagnostics.' })
 
         -- The following two autocommands are used to highlight references of the
         -- word under your cursor when your cursor rests there for a little while.
-        -- See `:help CursorHold` for information about when this is executed
+        -- See `:help CursorHold` for information about when this is executed.
         -- When you move your cursor, the highlights will be cleared (the second autocommand).
         local client = vim.lsp.get_client_by_id(event.data.client_id)
         if client and client:supports_method('textDocument/documentHighlight', event.buf) then
@@ -90,20 +90,20 @@ return {
           })
         end
 
-        -- The following code creates a keymap to toggle inlay hints in your
-        -- code, if the language server you are using supports them
-        -- This may be unwanted, since they displace some of your code
+        -- The following code creates a keymap to toggle inlay hints in your code,
+        -- if the language server you are using supports them.
+        -- This may be unwanted, since they displace some of your code.
         if client and client:supports_method('textDocument/inlayHint', event.buf) then
           keymap(
             '<leader>ah',
             function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf })) end,
-            { desc = 'Toggle inlay [h]ints' }
+            { desc = 'Toggle inlay [h]ints.' }
           )
         end
       end,
     })
 
-    -- Enable the following language servers
+    -- Enable the following language servers.
     local vue_language_server_path = vim.fn.expand('$MASON/packages')
       .. '/vue-language-server'
       .. '/node_modules/@vue/language-server'
@@ -157,7 +157,7 @@ return {
       automatic_enable = vim.tbl_keys(servers or {}),
     })
 
-    -- Ensure the servers and tools above are installed
+    -- Ensure the servers and tools above are installed.
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
       'beautysh',
@@ -181,9 +181,9 @@ return {
     vim.api.nvim_create_user_command(
       'StylelintFixAll',
       function() vim.lsp.buf.format({ name = 'stylelint_lsp', async = false }) end,
-      { desc = 'Fix stylelint issues via LSP formatting' }
+      { desc = 'Fix stylelint issues via LSP formatting.' }
     )
 
-    keymap('<leader>S', function() vim.cmd('StylelintFix') end, { desc = 'Style[l]int fix all' })
+    keymap('<leader>S', function() vim.cmd('StylelintFix') end, { desc = 'Style[l]int fix all.' })
   end,
 }

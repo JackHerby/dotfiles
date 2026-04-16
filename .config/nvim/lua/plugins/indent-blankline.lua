@@ -15,7 +15,7 @@ return {
   },
   config = function(_, opts)
     require('ibl').setup(opts)
-    -- Enable list mode to show whitespace characters
+    -- Enable list mode to show white space characters.
     vim.opt.list = true
     vim.opt.listchars = {
       space = '·',
