@@ -12,11 +12,23 @@ return {
     local fzf = require('fzf-lua')
     -- Register as the handler for vim.ui.select (replaces telescope-ui-select)
     fzf.register_ui_select()
+    fzf.setup({
+      keymap = {
+        fzf = {
+          true,
+          -- Use <c-q> to select all items and add them to the quickfix list
+          ['ctrl-q'] = 'select-all+accept',
+        },
+      },
+    })
 
     local keymap = require('utils.keymap')
+    keymap('<leader>sb', function() fzf.builtin() end, { desc = 'Search in [b]uiltin pickers.' })
     keymap(
       '<leader>sc',
-      function() fzf.live_grep({ rg_opts = '--type=css --column --line-number --no-heading --color=always --smart-case' }) end,
+      function()
+        fzf.live_grep({ rg_opts = '--type=css --column --line-number --no-heading --color=always --smart-case' })
+      end,
       { desc = 'Search by grep in [c]ss files' }
     )
     keymap('<leader>sd', function() fzf.diagnostics_workspace() end, { desc = 'Search in [d]iagnostics' })
@@ -40,7 +52,11 @@ return {
     )
     keymap(
       '<leader>sj',
-      function() fzf.live_grep({ rg_opts = '--type=js --type=ts --column --line-number --no-heading --color=always --smart-case' }) end,
+      function()
+        fzf.live_grep({
+          rg_opts = '--type=js --type=ts --column --line-number --no-heading --color=always --smart-case',
+        })
+      end,
       { desc = 'Search by grep in [J]avaScript files' }
     )
     keymap('<leader>sk', function() fzf.keymaps() end, { desc = 'Search [k]eymaps' })
