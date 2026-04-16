@@ -1,4 +1,5 @@
 -- https://github.com/ibhagwan/fzf-lua
+-- Fzf-lua aims to be as plug and play as possible with sane defaults.
 
 ---@module 'lazy'
 ---@type LazySpec

@@ -1,4 +1,5 @@
 -- https://github.com/NickvanDyke/opencode.nvim
+-- Opencode integration for Neovim.
 
 ---@module 'lazy'
 ---@type LazySpec

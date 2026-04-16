@@ -1,4 +1,5 @@
 -- https://github.com/NMAC427/guess-indent.nvim
+-- Blazing fast indentation style detection for Neovim written in Lua.
 
 ---@module 'lazy'
 ---@type LazySpec

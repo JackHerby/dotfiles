@@ -1,4 +1,5 @@
 -- https://github.com/lukas-reineke/indent-blankline.nvim
+-- This plugin adds indentation guides to Neovim.
 
 ---@module 'lazy'
 ---@type LazySpec

@@ -1,4 +1,5 @@
 -- https://github.com/mfussenegger/nvim-lint
+-- An asynchronous linter plugin for Neovim (>= 0.9.5) complementary to the built-in Language Server Protocol support.
 
 ---@module 'lazy'
 ---@type LazySpec

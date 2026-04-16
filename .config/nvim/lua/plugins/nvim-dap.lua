@@ -1,4 +1,5 @@
 -- https://github.com/mfussenegger/nvim-dap
+-- Debug Adapter Protocol client implementation for Neovim.
 
 ---@module 'lazy'
 ---@type LazySpec

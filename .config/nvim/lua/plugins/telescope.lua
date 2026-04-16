@@ -1,4 +1,6 @@
 -- https://github.com/nvim-telescope/telescope.nvim
+-- Gaze deeply into unknown regions using the power of the moon.
+
 
 ---@module 'lazy'
 ---@type LazySpec

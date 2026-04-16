@@ -1,4 +1,5 @@
 -- https://github.com/neovim/nvim-lspconfig
+-- Nvim-lspconfig is a collection of LSP server configurations for the Nvim LSP client.
 
 ---@module 'lazy'
 ---@type LazySpec

@@ -1,4 +1,5 @@
 -- https://github.com/Saghen/blink.cmp
+-- A completion plugin with support for LSPs, cmdline, signature help, and snippets.
 
 ---@module 'lazy'
 ---@type LazySpec

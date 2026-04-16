@@ -1,4 +1,5 @@
 -- https://github.com/folke/lazydev.nvim
+-- Lazydev.nvim is a plugin that properly configures LuaLS for editing your Neovim config by lazily updating your workspace libraries.
 
 ---@module 'lazy'
 ---@type LazySpec

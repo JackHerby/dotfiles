@@ -1,4 +1,5 @@
 -- https://github.com/ellisonleao/gruvbox.nvim
+-- A port of gruvbox community theme to lua with treesitter and semantic highlights support.
 
 ---@module 'lazy'
 ---@type LazySpec

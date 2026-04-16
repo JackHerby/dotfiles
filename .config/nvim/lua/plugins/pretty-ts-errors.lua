@@ -1,4 +1,5 @@
 -- https://github.com/youyoumu/pretty-ts-errors.nvim
+-- A Neovim plugin that enhances TypeScript errors by formatting them into readable, markdown-formatted.
 
 ---@module 'lazy'
 ---@type LazySpec

@@ -1,4 +1,5 @@
 -- https://github.com/stevearc/conform.nvim
+-- Lightweight yet powerful formatter plugin for Neovim.
 
 ---@module 'lazy'
 ---@type LazySpec
