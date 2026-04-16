@@ -1,27 +1,26 @@
--- https://github.com/neovim/nvim-lspconfig
 -- Nvim-lspconfig is a collection of LSP server configurations for the Nvim LSP client.
 
 ---@module 'lazy'
 ---@type LazySpec
 return {
   -- :help lsp-vs-treesitter
-  'neovim/nvim-lspconfig',
+  'neovim/nvim-lspconfig', -- https://github.com/neovim/nvim-lspconfig
   dependencies = {
-    { -- https://github.com/mason-org/mason.nvim
-      'mason-org/mason.nvim',
+    {
+      'mason-org/mason.nvim', -- https://github.com/mason-org/mason.nvim
       ---@module 'mason.settings'
       ---@type MasonSettings
       ---@diagnostic disable-next-line: missing-fields
       opts = {},
     },
-    { -- https://github.com/mason-org/mason-lspconfig.nvim
-      'mason-org/mason-lspconfig.nvim',
+    {
+      'mason-org/mason-lspconfig.nvim', -- https://github.com/mason-org/mason-lspconfig.nvim
     },
-    { -- https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim
-      'WhoIsSethDaniel/mason-tool-installer.nvim',
+    {
+      'WhoIsSethDaniel/mason-tool-installer.nvim', -- https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim
     },
-    { -- https://github.com/j-hui/fidget.nvim
-      'j-hui/fidget.nvim',
+    {
+      'j-hui/fidget.nvim', -- https://github.com/j-hui/fidget.nvim
       opts = {
         notification = {
           window = {

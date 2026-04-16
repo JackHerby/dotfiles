@@ -143,7 +143,7 @@ end
 pcall(function() require('vim._core.ui2').enable() end)
 
 -- Basic keymaps.
---  See `:help vim.keymap.set()`.
+-- See `:help vim.keymap.set()`.
 local keymap = require('utils.keymap')
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode.
@@ -271,7 +271,7 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 -- Install `lazy.nvim` plugin manager.
---    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info.
+-- See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info.
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
@@ -305,4 +305,3 @@ require('lazy').setup({
     },
   },
 })
-

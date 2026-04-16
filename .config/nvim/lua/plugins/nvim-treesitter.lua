@@ -1,4 +1,3 @@
--- https://github.com/nvim-treesitter/nvim-treesitter
 -- The nvim-treesitter plugin provides
 -- 1. functions for installing, updating, and removing tree-sitter parsers;
 -- 2. a collection of queries for enabling tree-sitter features built into Neovim for these languages;
@@ -7,7 +6,7 @@
 ---@module 'lazy'
 ---@type LazySpec
 return {
-  'nvim-treesitter/nvim-treesitter',
+  'nvim-treesitter/nvim-treesitter', -- https://github.com/nvim-treesitter/nvim-treesitter
   lazy = false,
   build = ':TSUpdate',
   branch = 'main',

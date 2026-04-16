@@ -1,10 +1,9 @@
--- https://github.com/stevearc/conform.nvim
 -- Lightweight yet powerful formatter plugin for Neovim.
 
 ---@module 'lazy'
 ---@type LazySpec
 return {
-  'stevearc/conform.nvim',
+  'stevearc/conform.nvim', -- https://github.com/stevearc/conform.nvim
   event = { 'BufWritePre' },
   cmd = { 'ConformInfo' },
   keys = {

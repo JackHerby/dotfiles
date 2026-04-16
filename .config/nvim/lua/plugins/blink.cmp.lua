@@ -1,15 +1,14 @@
--- https://github.com/Saghen/blink.cmp
 -- A completion plugin with support for LSPs, cmdline, signature help, and snippets.
 
 ---@module 'lazy'
 ---@type LazySpec
 return {
-  'saghen/blink.cmp',
+  'saghen/blink.cmp', -- https://github.com/Saghen/blink.cmp
   event = 'VimEnter',
   version = '1.*',
   dependencies = {
-    { -- https://github.com/L3MON4D3/LuaSnip
-      'L3MON4D3/LuaSnip',
+    {
+      'L3MON4D3/LuaSnip', -- https://github.com/L3MON4D3/LuaSnip
       version = '2.*',
       build = (function()
         -- Build Step is needed for regex support in snippets.
@@ -19,14 +18,14 @@ return {
         return 'make install_jsregexp'
       end)(),
       dependencies = {
-        { -- https://github.com/rafamadriz/friendly-snippets
+        {
           'rafamadriz/friendly-snippets',
           config = function() require('luasnip.loaders.from_vscode').lazy_load() end,
         },
       },
       opts = {},
     },
-    'folke/lazydev.nvim',
+    'folke/lazydev.nvim', -- https://github.com/folke/lazydev.nvim
   },
   --- @module 'blink.cmp'
   --- @type blink.cmp.Config

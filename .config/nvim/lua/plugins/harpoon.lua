@@ -1,13 +1,12 @@
--- https://github.com/ThePrimeagen/harpoon
 -- Getting you where you want with the fewest keystrokes.
 
 ---@module 'lazy'
 ---@type LazySpec
 return {
-  'ThePrimeagen/harpoon',
+  'ThePrimeagen/harpoon', -- https://github.com/ThePrimeagen/harpoon
   branch = 'harpoon2',
   dependencies = {
-    'nvim-lua/plenary.nvim',
+    'nvim-lua/plenary.nvim', -- https://github.com/nvim-lua/plenary.nvim
   },
   config = function()
     local harpoon = require('harpoon')

@@ -1,10 +1,9 @@
--- https://github.com/echasnovski/mini.nvim
 -- Library of 40+ independent Lua modules improving overall Neovim (version 0.10 and higher) experience with minimal effort.
 
 ---@module 'lazy'
 ---@type LazySpec
 return {
-  'echasnovski/mini.nvim',
+  'echasnovski/mini.nvim', -- https://github.com/echasnovski/mini.nvim
   config = function()
     require('mini.ai').setup({ n_lines = 500 })
 

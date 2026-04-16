@@ -1,4 +1,3 @@
--- https://github.com/tpope/vim-fugitive
 -- Fugitive is the premier Vim plugin for Git.
 -- Or maybe it's the premier Git plugin for Vim? Either way, it's "so awesome, it should be illegal".
 -- That's why it's called Fugitive.
@@ -6,7 +5,7 @@
 ---@module 'lazy'
 ---@type LazySpec
 return {
-  'tpope/vim-fugitive',
+  'tpope/vim-fugitive', -- https://github.com/tpope/vim-fugitive
   event = 'VeryLazy',
   config = function()
     local keymap = require('utils.keymap')

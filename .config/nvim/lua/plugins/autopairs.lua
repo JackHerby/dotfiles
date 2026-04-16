@@ -1,10 +1,9 @@
--- https://github.com/windwp/nvim-autopairs
 -- A super powerful autopair plugin for Neovim that supports multiple characters.
 
 ---@module 'lazy'
 ---@type LazySpec
 return {
-  'windwp/nvim-autopairs',
+  'windwp/nvim-autopairs', -- https://github.com/windwp/nvim-autopairs
   event = 'InsertEnter',
   config = function()
     local npairs = require('nvim-autopairs')

@@ -1,18 +1,17 @@
--- https://github.com/mfussenegger/nvim-dap
 -- Debug Adapter Protocol client implementation for Neovim.
 
 ---@module 'lazy'
 ---@type LazySpec
 return {
-  'mfussenegger/nvim-dap',
+  'mfussenegger/nvim-dap', -- https://github.com/mfussenegger/nvim-dap
   event = 'VeryLazy',
   dependencies = {
-    'rcarriga/nvim-dap-ui',
-    'nvim-neotest/nvim-nio',
-    'mason-org/mason.nvim',
-    'mxsdev/nvim-dap-vscode-js',
+    'rcarriga/nvim-dap-ui', -- https://github.com/rcarriga/nvim-dap-ui
+    'nvim-neotest/nvim-nio', -- https://github.com/nvim-neotest/nvim-nio
+    'mason-org/mason.nvim', -- https://github.com/mason-org/mason.nvim
+    'mxsdev/nvim-dap-vscode-js', -- https://github.com/mxsdev/nvim-dap-vscode-js
     {
-      'microsoft/vscode-js-debug',
+      'microsoft/vscode-js-debug', -- https://github.com/microsoft/vscode-js-debug
       version = '1.x',
       build = 'npm i && npm run compile vsDebugServerBundle && mv dist out',
     },

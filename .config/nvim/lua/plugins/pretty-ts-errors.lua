@@ -1,10 +1,9 @@
--- https://github.com/youyoumu/pretty-ts-errors.nvim
 -- A Neovim plugin that enhances TypeScript errors by formatting them into readable, markdown-formatted.
 
 ---@module 'lazy'
 ---@type LazySpec
 return {
-  'youyoumu/pretty-ts-errors.nvim',
+  'youyoumu/pretty-ts-errors.nvim', -- https://github.com/youyoumu/pretty-ts-errors.nvim
   config = function()
     require('pretty-ts-errors').setup({
       auto_open = false,
@@ -22,8 +21,16 @@ return {
     end
 
     local keymap = require('utils.keymap')
-    keymap('<leader>te', function() require('pretty-ts-errors').show_formatted_error() end, { desc = 'Show TS [e]rror.' })
-    keymap('<leader>ta', function() require('pretty-ts-errors').open_all_errors() end, { desc = 'Show [a]ll TS errors.' })
+    keymap(
+      '<leader>te',
+      function() require('pretty-ts-errors').show_formatted_error() end,
+      { desc = 'Show TS [e]rror.' }
+    )
+    keymap(
+      '<leader>ta',
+      function() require('pretty-ts-errors').open_all_errors() end,
+      { desc = 'Show [a]ll TS errors.' }
+    )
     keymap(
       '<leader>tt',
       function() require('pretty-ts-errors').toggle_auto_open() end,

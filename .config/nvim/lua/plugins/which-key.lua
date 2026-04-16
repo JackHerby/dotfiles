@@ -1,10 +1,9 @@
--- https://github.com/folke/which-key.nvim
 -- WhichKey helps you remember your Neovim keymaps, by showing available keybindings in a popup as you type.
 
 ---@module 'lazy'
 ---@type LazySpec
 return {
-  'folke/which-key.nvim',
+  'folke/which-key.nvim', -- https://github.com/folke/which-key.nvim
   event = 'VimEnter', -- Sets the loading event to 'VimEnter'.
   ---@module 'which-key'
   ---@type wk.Opts

@@ -1,10 +1,9 @@
--- https://github.com/mbbill/undotree
 -- Undotree visualizes the undo history and makes it easy to browse and switch between different undo branches.
 
 ---@module 'lazy'
 ---@type LazySpec
 return {
-  'mbbill/undotree',
+  'mbbill/undotree', -- https://github.com/mbbill/undotree
   event = 'VeryLazy',
   config = function()
     local keymap = require('utils.keymap')

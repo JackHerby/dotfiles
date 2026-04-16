@@ -1,10 +1,9 @@
--- https://github.com/mfussenegger/nvim-lint
 -- An asynchronous linter plugin for Neovim (>= 0.9.5) complementary to the built-in Language Server Protocol support.
 
 ---@module 'lazy'
 ---@type LazySpec
 return {
-  'mfussenegger/nvim-lint',
+  'mfussenegger/nvim-lint', -- https://github.com/mfussenegger/nvim-lint
   event = { 'BufReadPre', 'BufNewFile' },
   config = function()
     local lint = require('lint')

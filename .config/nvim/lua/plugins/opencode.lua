@@ -1,10 +1,9 @@
--- https://github.com/NickvanDyke/opencode.nvim
 -- Opencode integration for Neovim.
 
 ---@module 'lazy'
 ---@type LazySpec
 return {
-  'NickvanDyke/opencode.nvim',
+  'NickvanDyke/opencode.nvim', -- https://github.com/NickvanDyke/opencode.nvim
   config = function()
     ---@type opencode.Opts
     vim.g.opencode_opts = {

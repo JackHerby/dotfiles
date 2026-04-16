@@ -1,10 +1,9 @@
--- https://github.com/ellisonleao/gruvbox.nvim
 -- A port of gruvbox community theme to lua with treesitter and semantic highlights support.
 
 ---@module 'lazy'
 ---@type LazySpec
 return {
-  'ellisonleao/gruvbox.nvim',
+  'ellisonleao/gruvbox.nvim', -- https://github.com/ellisonleao/gruvbox.nvim
   priority = 1000,
   config = function()
     require('gruvbox').setup({

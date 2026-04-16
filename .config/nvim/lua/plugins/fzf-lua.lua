@@ -1,12 +1,14 @@
--- https://github.com/ibhagwan/fzf-lua
 -- Fzf-lua aims to be as plug and play as possible with sane defaults.
 
 ---@module 'lazy'
 ---@type LazySpec
 return {
-  'ibhagwan/fzf-lua',
+  'ibhagwan/fzf-lua', -- https://github.com/ibhagwan/fzf-lua
   dependencies = {
-    { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+    {
+      'nvim-tree/nvim-web-devicons', -- https://github.com/nvim-tree/nvim-web-devicons
+      enabled = vim.g.have_nerd_font,
+    },
   },
   config = function()
     local fzf = require('fzf-lua')
