@@ -15,6 +15,9 @@ return {
     -- Register as the handler for vim.ui.select (replaces telescope-ui-select).
     fzf.register_ui_select()
     fzf.setup({
+      fzf_opts = {
+        ['--layout'] = 'default',
+      },
       keymap = {
         fzf = {
           true,

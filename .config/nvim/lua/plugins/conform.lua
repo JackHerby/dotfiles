@@ -85,11 +85,7 @@ return {
       return { timeout_ms = 500, lsp_format = 'fallback' }
     end,
     -- Customize formatters.
-    formatters = {
-      -- shfmt = {
-      --   append_args = { '-i', '2' },
-      -- },
-    },
+    formatters = {},
   },
   init = function()
     -- If you want the formatexpr, here is the place to set it.

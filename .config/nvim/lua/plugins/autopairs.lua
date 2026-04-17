@@ -57,11 +57,6 @@ return {
 
     -- Auto-pair <> for generics but not as greater-than/less-than operators.
     npairs.add_rule(Rule('<', '>', {
-      -- If you use nvim-ts-autotag, you may want to exclude these filetypes from this rule
-      -- so that it doesn't conflict with nvim-ts-autotag.
-      -- '-html',
-      -- '-javascriptreact',
-      -- '-typescriptreact',
     }):with_pair(
       -- Regex will make it so that it will auto-pair on `a<` but not `a <`.
       -- The `:?:?` part makes it also work on Rust generics like `some_func::<T>()`.
