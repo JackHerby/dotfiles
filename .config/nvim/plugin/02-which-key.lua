@@ -21,6 +21,7 @@ require('which-key').setup({
     { '<leader>h', group = '[H]arpoon' },
     { '<leader>l', group = '[l]ocation list' },
     { '<leader>o', group = '[O]pencode' },
+    { '<leader>p', group = 'vim.[p]ack' },
     { '<leader>q', group = '[q]uickfix list' },
     { '<leader>s', group = 'fzf [s]earch' },
     { '<leader>t', group = 'Pretty [T]S errors' },

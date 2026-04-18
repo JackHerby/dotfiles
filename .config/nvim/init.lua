@@ -146,6 +146,15 @@ pcall(function() require('vim._core.ui2').enable() end)
 -- See `:help vim.keymap.set()`.
 local keymap = require('utils.keymap')
 
+-- Vim.pack keymaps.
+keymap('<leader>pl', function()
+  local packages = vim.pack.get()
+  for idx, pkg in ipairs(packages) do
+    print(idx, '| Name:', pkg.spec.name, '| Active:', pkg.active, '| Path:', pkg.path)
+  end
+end, { desc = '[l]ist packages' })
+keymap('<leader>pu', function() vim.pack.update() end, { desc = '[u]pdate packages' })
+
 -- Set highlight on search, but clear on pressing <Esc> in normal mode.
 -- See `:help hlsearch`.
 keymap('<Esc>', function() vim.cmd('nohlsearch') end, { desc = 'clear highligth search' })
