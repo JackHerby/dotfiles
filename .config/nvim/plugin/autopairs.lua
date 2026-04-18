@@ -1,11 +1,12 @@
 -- A super powerful autopair plugin for Neovim that supports multiple characters.
 
----@module 'lazy'
----@type LazySpec
-return {
-  'windwp/nvim-autopairs', -- https://github.com/windwp/nvim-autopairs
-  event = 'InsertEnter',
-  config = function()
+local github_url = require('utils.github_url')
+vim.pack.add({
+  github_url('windwp/nvim-autopairs'), -- https://github.com/windwp/nvim-autopairs
+})
+
+vim.api.nvim_create_autocmd('InsertEnter', {
+  callback = function()
     local npairs = require('nvim-autopairs')
     npairs.setup()
     local Rule = require('nvim-autopairs.rule')
@@ -56,11 +57,11 @@ return {
     end
 
     -- Auto-pair <> for generics but not as greater-than/less-than operators.
-    npairs.add_rule(Rule('<', '>', {
-    }):with_pair(
+    npairs.add_rule(Rule('<', '>', {}):with_pair(
       -- Regex will make it so that it will auto-pair on `a<` but not `a <`.
       -- The `:?:?` part makes it also work on Rust generics like `some_func::<T>()`.
       cond.before_regex('%a+:?:?$', 3)
     ):with_move(function(opts) return opts.char == '>' end))
   end,
-}
+  once = true,
+})

@@ -243,9 +243,9 @@ keymap('<leader>E', function() vim.cmd('LspEslintFixAll') end, { desc = '[E]SLin
 --  Try it with `yap` in normal mode.
 --  See `:help vim.highlight.on_yank()`.
 vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function() vim.highlight.on_yank() end,
   desc = 'Highlight when yanking text.',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
-  callback = function() vim.highlight.on_yank() end,
 })
 
 -- Terminal mode customization.
@@ -267,38 +267,22 @@ vim.api.nvim_create_autocmd('FileType', {
   pattern = 'qf',
 })
 
--- Install `lazy.nvim` plugin manager.
--- See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info.
-local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
-  local out = vim.fn.system({ 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath })
-  if vim.v.shell_error ~= 0 then error('Error cloning lazy.nvim:\n' .. out) end
-end ---@diagnostic disable-next-line: undefined-field
-vim.opt.rtp:prepend(lazypath)
+-- Must be defined before the very first vim.pack.add() call.
+vim.api.nvim_create_autocmd('PackChanged', {
+  callback = function(event)
+    local name, kind = event.data.spec.name, event.data.kind
+    local pack_dir = vim.fn.stdpath('data') .. '/site/pack/core/opt/'
 
--- Configure and install plugins.
-require('lazy').setup({
-  { import = 'plugins' },
-}, {
-  ui = {
-    -- If you are using a Nerd Font: set icons to an empty table which will use the.
-    -- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table.
-    border = 'single',
-    icons = vim.g.have_nerd_font and {} or {
-      cmd = '⌘',
-      config = '🛠',
-      event = '📅',
-      ft = '📂',
-      init = '⚙',
-      keys = '🗝',
-      plugin = '🔌',
-      runtime = '💻',
-      require = '🌙',
-      source = '📄',
-      start = '🚀',
-      task = '📌',
-      lazy = '💤 ',
-    },
-  },
+    if name == 'LuaSnip' and (kind == 'instal' or kind == 'update') then
+      if vim.fn.has('win32') == 0 and vim.fn.executable('make') == 1 then
+        vim.fn.system({ 'make', 'install_jsregexp', '-C', pack_dir .. 'LuaSnip' })
+      end
+    end
+
+    if name == 'nvim-treesitter' and kind == 'update' then
+      if not ev.data.active then vim.cmd.packadd('nvim-treesitter') end
+      vim.cmd('TSUpdate')
+    end
+  end,
+  desc = 'Hooks for plugins with build steps.',
 })
