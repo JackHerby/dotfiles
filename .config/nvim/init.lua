@@ -264,7 +264,7 @@ vim.api.nvim_create_autocmd('FileType', {
   callback = function() vim.opt_local.spell = false end,
   desc = 'Disable spellcheck in quickfix/location list.',
   group = vim.api.nvim_create_augroup('custom-qf-loclist', { clear = true }),
-  pattern = 'qf',
+  pattern = { 'qf', 'nvim-pack', 'checkhealth' },
 })
 
 -- Must be defined before the very first vim.pack.add() call.
@@ -280,7 +280,7 @@ vim.api.nvim_create_autocmd('PackChanged', {
     end
 
     if name == 'nvim-treesitter' and kind == 'update' then
-      if not ev.data.active then vim.cmd.packadd('nvim-treesitter') end
+      if not event.data.active then vim.cmd.packadd('nvim-treesitter') end
       vim.cmd('TSUpdate')
     end
   end,
