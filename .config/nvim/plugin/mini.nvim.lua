@@ -23,7 +23,9 @@ require('mini.diff').setup({
 require('mini.move').setup()
 
 local mini_statusline = require('mini.statusline')
-mini_statusline.setup({ use_icons = vim.g.have_nerd_font })
-mini_statusline.section_location = function() return '%2l:%-2v' end
+mini_statusline.setup({
+  use_icons = vim.g.have_nerd_font,
+  section_location = function() return '%2l:%-2v' end,
+})
 
 require('mini.surround').setup()

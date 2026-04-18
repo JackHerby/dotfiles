@@ -4,6 +4,7 @@ local github_url = require('utils.github_url')
 vim.pack.add({
   github_url('ellisonleao/gruvbox.nvim'), -- https://github.com/ellisonleao/gruvbox.nvim
 })
+
 require('gruvbox').setup({
   contrast = 'hard',
 })

@@ -7,19 +7,18 @@ vim.pack.add({
 
 require('pretty-ts-errors').setup({
   auto_open = false,
+  is_ts_source = function(source)
+    return vim.tbl_contains({
+      'tsserver',
+      'ts',
+      'typescript',
+      'deno-ts',
+      'ts-plugin',
+    }, source)
+  end,
 })
 
 -- Add ts-plugin as a source.
-require('pretty-ts-errors.utils').is_ts_source = function(source)
-  return vim.tbl_contains({
-    'tsserver',
-    'ts',
-    'typescript',
-    'deno-ts',
-    'ts-plugin',
-  }, source)
-end
-
 local keymap = require('utils.keymap')
 keymap(
   '<leader>te',
