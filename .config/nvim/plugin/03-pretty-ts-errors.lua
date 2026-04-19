@@ -7,16 +7,19 @@ vim.pack.add({
 
 require("pretty-ts-errors").setup({
   auto_open = false,
-  is_ts_source = function(source)
-    return vim.tbl_contains({
-      "tsserver",
-      "ts",
-      "typescript",
-      "deno-ts",
-      "ts-plugin",
-    }, source)
-  end,
 })
+
+-- Add ts-plugin as a source.
+---@diagnostic disable-next-line: duplicate-set-field
+require("pretty-ts-errors.utils").is_ts_source = function(source)
+  return vim.tbl_contains({
+    "tsserver",
+    "ts",
+    "typescript",
+    "deno-ts",
+    "ts-plugin",
+  }, source)
+end
 
 -- Add ts-plugin as a source.
 local keymap = require("utils.keymap")

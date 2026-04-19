@@ -25,7 +25,8 @@ require("mini.move").setup()
 local miniStatusline = require("mini.statusline")
 miniStatusline.setup({
   use_icons = vim.g.have_nerd_font,
-  section_location = function() return "%2l:%-2v" end,
 })
+---@diagnostic disable-next-line: duplicate-set-field
+miniStatusline.section_location = function() return "%2l:%-2v" end
 
 require("mini.surround").setup()
