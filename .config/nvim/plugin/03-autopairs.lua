@@ -1,22 +1,22 @@
 -- A super powerful autopair plugin for Neovim that supports multiple characters.
 
-local githubUrl = require('utils.github-url')
+local githubUrl = require("utils.github-url")
 vim.pack.add({
-  githubUrl('windwp/nvim-autopairs'), -- https://github.com/windwp/nvim-autopairs
+  githubUrl("windwp/nvim-autopairs"), -- https://github.com/windwp/nvim-autopairs
 })
 
-vim.api.nvim_create_autocmd('InsertEnter', {
+vim.api.nvim_create_autocmd("InsertEnter", {
   callback = function()
-    local npairs = require('nvim-autopairs')
+    local npairs = require("nvim-autopairs")
     npairs.setup()
-    local Rule = require('nvim-autopairs.rule')
-    local cond = require('nvim-autopairs.conds')
+    local Rule = require("nvim-autopairs.rule")
+    local cond = require("nvim-autopairs.conds")
 
     -- Add spaces between brackets.
-    local brackets = { { '(', ')' }, { '[', ']' }, { '{', '}' } }
+    local brackets = { { "(", ")" }, { "[", "]" }, { "{", "}" } }
     npairs.add_rules({
       -- Rule for a pair with left-side ' ' and right side ' '.
-      Rule(' ', ' ')
+      Rule(" ", " ")
         -- Pair will only occur if the conditional function returns true.
         :with_pair(function(opts)
           -- We are checking if we are inserting a space in (), [], or {}.
@@ -34,9 +34,9 @@ vim.api.nvim_create_autocmd('InsertEnter', {
           local col = vim.api.nvim_win_get_cursor(0)[2]
           local context = opts.line:sub(col - 1, col + 2)
           return vim.tbl_contains({
-            brackets[1][1] .. '  ' .. brackets[1][2],
-            brackets[2][1] .. '  ' .. brackets[2][2],
-            brackets[3][1] .. '  ' .. brackets[3][2],
+            brackets[1][1] .. "  " .. brackets[1][2],
+            brackets[2][1] .. "  " .. brackets[2][2],
+            brackets[3][1] .. "  " .. brackets[3][2],
           }, context)
         end),
     })
@@ -44,24 +44,24 @@ vim.api.nvim_create_autocmd('InsertEnter', {
     for _, bracket in pairs(brackets) do
       npairs.add_rules({
         -- Each of these rules is for a pair with left-side '( ' and right-side ' )' for each bracket type.
-        Rule(bracket[1] .. ' ', ' ' .. bracket[2])
+        Rule(bracket[1] .. " ", " " .. bracket[2])
           :with_pair(cond.none())
           :with_move(function(opts) return opts.char == bracket[2] end)
           :with_del(cond.none())
           :use_key(bracket[2])
           -- Removes the trailing whitespace that can occur without this.
           :replace_map_cr(
-            function(_) return '<C-c>2xi<CR><C-c>O' end
+            function(_) return "<C-c>2xi<CR><C-c>O" end
           ),
       })
     end
 
     -- Auto-pair <> for generics but not as greater-than/less-than operators.
-    npairs.add_rule(Rule('<', '>', {}):with_pair(
+    npairs.add_rule(Rule("<", ">", {}):with_pair(
       -- Regex will make it so that it will auto-pair on `a<` but not `a <`.
       -- The `:?:?` part makes it also work on Rust generics like `some_func::<T>()`.
-      cond.before_regex('%a+:?:?$', 3)
-    ):with_move(function(opts) return opts.char == '>' end))
+      cond.before_regex("%a+:?:?$", 3)
+    ):with_move(function(opts) return opts.char == ">" end))
   end,
   once = true,
 })
