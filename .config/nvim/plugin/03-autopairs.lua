@@ -1,8 +1,8 @@
 -- A super powerful autopair plugin for Neovim that supports multiple characters.
 
-local github_url = require('utils.github_url')
+local githubUrl = require('utils.github-url')
 vim.pack.add({
-  github_url('windwp/nvim-autopairs'), -- https://github.com/windwp/nvim-autopairs
+  githubUrl('windwp/nvim-autopairs'), -- https://github.com/windwp/nvim-autopairs
 })
 
 vim.api.nvim_create_autocmd('InsertEnter', {

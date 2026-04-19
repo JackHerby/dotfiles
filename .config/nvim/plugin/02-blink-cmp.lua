@@ -1,11 +1,11 @@
 -- A completion plugin with support for LSPs, cmdline, signature help, and snippets.
 
-local github_url = require('utils.github_url')
+local githubUrl = require('utils.github-url')
 vim.pack.add({
-  github_url('rafamadriz/friendly-snippets'), -- https://github.com/rafamadriz/friendly-snippets
-  { src = github_url('L3MON4D3/LuaSnip'), version = vim.version.range('2.x') }, -- https://github.com/L3MON4D3/LuaSnip
-  github_url('folke/lazydev.nvim'), -- https://github.com/folke/lazydev.nvim
-  { src = github_url('saghen/blink.cmp'), version = vim.version.range('1.x') }, -- https://github.com/Sagithub_urlen/blink.cmp
+  githubUrl('rafamadriz/friendly-snippets'), -- https://github.com/rafamadriz/friendly-snippets
+  { src = githubUrl('L3MON4D3/LuaSnip'), version = vim.version.range('2.x') }, -- https://github.com/L3MON4D3/LuaSnip
+  githubUrl('folke/lazydev.nvim'), -- https://github.com/folke/lazydev.nvim
+  { src = githubUrl('saghen/blink.cmp'), version = vim.version.range('1.x') }, -- https://github.com/Sagithub_urlen/blink.cmp
 })
 
 require('luasnip.loaders.from_vscode').lazy_load()

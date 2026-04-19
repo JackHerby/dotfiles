@@ -3,9 +3,9 @@
 -- 2. a collection of queries for enabling tree-sitter features built into Neovim for these languages;
 -- 3. a staging ground for treesitter-based features considered for upstreaming to Neovim.
 
-local github_url = require('utils.github_url')
+local githubUrl = require('utils.github-url')
 vim.pack.add({
-  { src = github_url('nvim-treesitter/nvim-treesitter'), version = 'main' }, -- https://github.com/nvim-treesitter/nvim-treesitter
+  { src = githubUrl('nvim-treesitter/nvim-treesitter'), version = 'main' }, -- https://github.com/nvim-treesitter/nvim-treesitter
 })
 
 -- Ensure basic parser are installed.

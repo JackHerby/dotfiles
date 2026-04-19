@@ -1,8 +1,8 @@
 -- A File Explorer For Neovim Written In Lua.
 
-local github_url = require('utils.github_url')
+local githubUrl = require('utils.github-url')
 vim.pack.add({
-  github_url('nvim-tree/nvim-tree.lua'), -- https://github.com/nvim-tree/nvim-tree.lua
+  githubUrl('nvim-tree/nvim-tree.lua'), -- https://github.com/nvim-tree/nvim-tree.lua
 })
 
 require('nvim-tree').setup({

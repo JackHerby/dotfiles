@@ -1,8 +1,8 @@
 -- Getting you where you want with the fewest keystrokes.
 
-local github_url = require('utils.github_url')
+local githubUrl = require('utils.github-url')
 vim.pack.add({
-  { src = github_url('ThePrimeagen/harpoon'), version = 'harpoon2' }, -- https://github.com/ThePrimeagen/harpoon
+  { src = githubUrl('ThePrimeagen/harpoon'), version = 'harpoon2' }, -- https://github.com/ThePrimeagen/harpoon
 })
 
 local harpoon = require('harpoon')

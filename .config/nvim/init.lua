@@ -195,13 +195,12 @@ keymap('<leader>qa', function() vim.cmd('clast') end, { desc = 'l[a]st quickfix 
 keymap('<Esc><Esc>', '<C-\\><C-n>', { desc = 'exit terminal mode' }, 't')
 
 -- Open terminal mode window in bottom split.
-local function open_term()
+keymap('<leader>T', function()
   vim.cmd.new()
   vim.cmd.term()
   vim.api.nvim_win_set_height(0, 20)
   vim.cmd('startinsert')
-end
-keymap('<leader>T', open_term, { desc = 'open [t]erminal in bottom split' })
+end, { desc = 'open [t]erminal in bottom split' })
 
 -- TIP: Disable arrow keys in normal mode.
 -- Utilize arrows to resize windows in normal mode.

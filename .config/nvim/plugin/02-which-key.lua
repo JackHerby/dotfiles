@@ -1,8 +1,8 @@
 -- WhichKey helps you remember your Neovim keymaps, by showing available keybindings in a popup as you type.
 
-local github_url = require('utils.github_url')
+local githubUrl = require('utils.github-url')
 vim.pack.add({
-  github_url('folke/which-key.nvim'), -- https://github.com/folke/which-key.nvim
+  githubUrl('folke/which-key.nvim'), -- https://github.com/folke/which-key.nvim
 })
 
 require('which-key').setup({

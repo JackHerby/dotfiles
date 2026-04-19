@@ -1,8 +1,8 @@
 -- Library of 40+ independent Lua modules improving overall Neovim (version 0.10 and higher) experience with minimal effort.
 
-local github_url = require('utils.github_url')
+local githubUrl = require('utils.github-url')
 vim.pack.add({
-  github_url('echasnovski/mini.nvim'), -- https://github.com/echasnovski/mini.nvim
+  githubUrl('echasnovski/mini.nvim'), -- https://github.com/echasnovski/mini.nvim
 })
 
 require('mini.ai').setup({ n_lines = 500 })

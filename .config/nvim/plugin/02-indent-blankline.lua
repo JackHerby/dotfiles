@@ -1,8 +1,8 @@
 -- This plugin adds indentation guides to Neovim.
 
-local github_url = require('utils.github_url')
+local githubUrl = require('utils.github-url')
 vim.pack.add({
-  github_url('lukas-reineke/indent-blankline.nvim'), -- https://github.com/lukas-reineke/indent-blankline.nvim
+  githubUrl('lukas-reineke/indent-blankline.nvim'), -- https://github.com/lukas-reineke/indent-blankline.nvim
 })
 
 require('ibl').setup({

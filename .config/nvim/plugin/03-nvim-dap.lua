@@ -1,9 +1,9 @@
 -- Debug Adapter Protocol client implementation for Neovim.
 -- TODO: I've set this up with a lot of vibe coding, I need to check if it works and why if so.
 
-local github_url = require('utils.github_url')
+local githubUrl = require('utils.github-url')
 vim.pack.add({
-  github_url('mfussenegger/nvim-dap'), -- https://github.com/mfussenegger/nvim-dap
+  githubUrl('mfussenegger/nvim-dap'), -- https://github.com/mfussenegger/nvim-dap
 })
 
 local dap = require('dap')

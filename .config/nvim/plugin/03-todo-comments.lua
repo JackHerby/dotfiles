@@ -1,8 +1,8 @@
 -- Todo-comments is a lua plugin for Neovim >= 0.8.0 to highlight and search for todo comments like TODO, HACK, BUG in your code base.
 
-local github_url = require('utils.github_url')
+local githubUrl = require('utils.github-url')
 vim.pack.add({
-  github_url('folke/todo-comments.nvim'), -- https://github.com/folke/todo-comments.nvim
+  githubUrl('folke/todo-comments.nvim'), -- https://github.com/folke/todo-comments.nvim
 })
 
 require('todo-comments').setup({ signs = false })

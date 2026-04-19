@@ -2,9 +2,9 @@
 -- Or maybe it's the premier Git plugin for Vim? Either way, it's "so awesome, it should be illegal".
 -- That's why it's called Fugitive.
 
-local github_url = require('utils.github_url')
+local githubUrl = require('utils.github-url')
 vim.pack.add({
-  github_url('tpope/vim-fugitive'), -- https://github.com/tpope/vim-fugitive
+  githubUrl('tpope/vim-fugitive'), -- https://github.com/tpope/vim-fugitive
 })
 
 local keymap = require('utils.keymap')

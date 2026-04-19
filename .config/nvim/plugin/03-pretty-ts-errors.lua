@@ -1,8 +1,8 @@
 -- A Neovim plugin that enhances TypeScript errors by formatting them into readable, markdown-formatted.
 
-local github_url = require('utils.github_url')
+local githubUrl = require('utils.github-url')
 vim.pack.add({
-  github_url('youyoumu/pretty-ts-errors.nvim'), -- https://github.com/youyoumu/pretty-ts-errors.nvim
+  githubUrl('youyoumu/pretty-ts-errors.nvim'), -- https://github.com/youyoumu/pretty-ts-errors.nvim
 })
 
 require('pretty-ts-errors').setup({

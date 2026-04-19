@@ -1,8 +1,8 @@
 -- Opencode integration for Neovim.
 
-local github_url = require('utils.github_url')
+local githubUrl = require('utils.github-url')
 vim.pack.add({
-  github_url('NickvanDyke/opencode.nvim'), -- https://github.com/NickvanDyke/opencode.nvim
+  githubUrl('NickvanDyke/opencode.nvim'), -- https://github.com/NickvanDyke/opencode.nvim
 })
 
 ---@type opencode.Opts

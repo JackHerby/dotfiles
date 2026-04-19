@@ -1,8 +1,8 @@
 -- Fzf-lua aims to be as plug and play as possible with sane defaults.
 
-local github_url = require('utils.github_url')
+local githubUrl = require('utils.github-url')
 vim.pack.add({
-  github_url('ibhagwan/fzf-lua'), -- https://github.com/ibhagwan/fzf-lua
+  githubUrl('ibhagwan/fzf-lua'), -- https://github.com/ibhagwan/fzf-lua
 })
 
 local fzf = require('fzf-lua')

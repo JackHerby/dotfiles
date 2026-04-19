@@ -1,12 +1,12 @@
 -- Nvim-lspconfig is a collection of LSP server configurations for the Nvim LSP client.
 
-local github_url = require('utils.github_url')
+local githubUrl = require('utils.github-url')
 vim.pack.add({
-  github_url('j-hui/fidget.nvim'), -- https://github.com/j-hui/fidget.nvim
-  github_url('mason-org/mason.nvim'), -- https://github.com/mason-org/mason.nvim
-  github_url('mason-org/mason-lspconfig.nvim'), -- https://github.com/mason-org/mason-lspconfig.nvim
-  github_url('WhoIsSethDaniel/mason-tool-installer.nvim'), -- https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim
-  github_url('neovim/nvim-lspconfig'), -- https://github.com/neovim/nvim-lspconfig
+  githubUrl('j-hui/fidget.nvim'), -- https://github.com/j-hui/fidget.nvim
+  githubUrl('mason-org/mason.nvim'), -- https://github.com/mason-org/mason.nvim
+  githubUrl('mason-org/mason-lspconfig.nvim'), -- https://github.com/mason-org/mason-lspconfig.nvim
+  githubUrl('WhoIsSethDaniel/mason-tool-installer.nvim'), -- https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim
+  githubUrl('neovim/nvim-lspconfig'), -- https://github.com/neovim/nvim-lspconfig
 })
 
 require('fidget').setup({
