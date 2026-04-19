@@ -20,6 +20,13 @@ fzf.setup({
       ["ctrl-q"] = "select-all+accept",
     },
   },
+  winopts = {
+    border = "single",
+    ---@diagnostic disable-next-line: missing-fields
+    preview = {
+      border = "single",
+    },
+  },
 })
 
 local keymap = require("utils.keymap")

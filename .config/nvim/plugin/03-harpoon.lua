@@ -19,7 +19,7 @@ local function toggleQuickMenu()
     ui_width_ratio = 0.6,
     ui_max_width = 120,
     height_in_lines = 10,
-    border = "rounded",
+    border = "single",
     title = "Harpoon",
   })
 end
