@@ -39,30 +39,34 @@ conform.setup({
 
 vim.g.disable_autoformat = true
 
-vim.api.nvim_create_user_command("FormatDisable", function(args)
+local nvimCreateUserCommand = require("utils.nvim-create-user-command")
+nvimCreateUserCommand("FormatDisable", function(args)
   if args.bang then
     -- FormatDisable! will disable formatting just for this buffer.
     vim.b.disable_autoformat = true
+    print("Format on save has been disabled in the current buffer.")
   else
     vim.g.disable_autoformat = true
+    print("Format on save has been disabled globally.")
   end
 end, {
   desc = "Disable formatting on save.",
   bang = true,
 })
 
-vim.api.nvim_create_user_command("FormatEnable", function()
+nvimCreateUserCommand("FormatEnable", function()
   vim.b.disable_autoformat = false
   vim.g.disable_autoformat = false
+  print("Format on save has been enabled.")
 end, {
   desc = "Re-enable formatting on save.",
 })
 
-vim.api.nvim_create_user_command("FormatInfo", function()
+nvimCreateUserCommand("FormatInfo", function()
   if vim.b.disable_autoformat then
-    print("Formatting is disabled for this buffer.")
+    print("Format on save is disabled for this buffer.")
   else
-    print("Formatting is enabled for this buffer.")
+    print("Format on save is enabled for this buffer.")
   end
 
   if vim.g.disable_autoformat then
@@ -79,8 +83,8 @@ keymap(
   { desc = "[f]ormat buffer" },
   ""
 )
-keymap("<leader>fe", "<cmd>FormatEnable<CR>", { desc = "[e]nable autoformatting" })
-keymap("<leader>fd", "<cmd>FormatDisable<CR>", { desc = "[d]isable autoformatting" })
-keymap("<leader>fb", "<cmd>FormatDisable!<CR>", { desc = "[d]isable autoformatting in current buffer" })
-keymap("<leader>fi", "<cmd>FormatInfo<CR>", { desc = "autoformat [i]nfo" })
-keymap("<leader>fc", "<cmd>ConformInfo<CR>", { desc = "[C]onform info" })
+keymap("<leader>fe", function() vim.cmd("FormatEnable") end, { desc = "[e]nable autoformatting" })
+keymap("<leader>fd", function() vim.cmd("FormatDisable") end, { desc = "[d]isable autoformatting" })
+keymap("<leader>fb", function() vim.cmd("FormatDisable!") end, { desc = "[d]isable autoformatting in current buffer" })
+keymap("<leader>fi", function() vim.cmd("FormatInfo") end, { desc = "autoformat [i]nfo" })
+keymap("<leader>fc", function() vim.cmd("ConformInfo") end, { desc = "[C]onform info" })
