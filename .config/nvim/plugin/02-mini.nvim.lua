@@ -30,3 +30,5 @@ miniStatusline.setup({
 miniStatusline.section_location = function() return "%2l:%-2v" end
 
 require("mini.surround").setup()
+
+require("mini.tabline").setup()
