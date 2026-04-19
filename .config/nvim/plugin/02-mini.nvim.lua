@@ -7,12 +7,12 @@ vim.pack.add({
 
 require("mini.ai").setup({ n_lines = 500 })
 
-local mini_bufremove = require("mini.bufremove")
-mini_bufremove.setup()
+local miniBufremove = require("mini.bufremove")
+miniBufremove.setup()
 local keymap = require("utils.keymap")
-keymap("<leader>bd", mini_bufremove.delete, { desc = "[d]elete buffer" })
-keymap("<leader>bw", mini_bufremove.wipeout, { desc = "[w]ipeout buffer" })
-keymap("<leader>bu", mini_bufremove.unshow, { desc = "[u]nshow buffer" })
+keymap("<leader>bd", miniBufremove.delete, { desc = "[d]elete buffer" })
+keymap("<leader>bw", miniBufremove.wipeout, { desc = "[w]ipeout buffer" })
+keymap("<leader>bu", miniBufremove.unshow, { desc = "[u]nshow buffer" })
 
 require("mini.diff").setup({
   view = {
@@ -22,8 +22,8 @@ require("mini.diff").setup({
 
 require("mini.move").setup()
 
-local mini_statusline = require("mini.statusline")
-mini_statusline.setup({
+local miniStatusline = require("mini.statusline")
+miniStatusline.setup({
   use_icons = vim.g.have_nerd_font,
   section_location = function() return "%2l:%-2v" end,
 })

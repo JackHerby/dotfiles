@@ -13,7 +13,7 @@ harpoon:setup({
   },
 })
 
-local function toggle_quick_menu()
+local function toggleQuickMenu()
   harpoon.ui:toggle_quick_menu(harpoon:list(), {
     ui_width_ratio = 0.6,
     ui_max_width = 120,
@@ -25,7 +25,7 @@ end
 
 local keymap = require("utils.keymap")
 keymap("<leader>ha", function() harpoon:list():add() end, { desc = "Harpoon [a]dd" })
-keymap("<leader>hh", toggle_quick_menu, { desc = "Harpoon [t]oggle" })
+keymap("<leader>hh", toggleQuickMenu, { desc = "Harpoon [t]oggle" })
 keymap("<leader>hp", function() harpoon:list():prepend() end, { desc = "Harpoon [p]repend" })
 keymap("<C-1>", function() harpoon:list():select(1) end)
 keymap("<C-2>", function() harpoon:list():select(2) end)

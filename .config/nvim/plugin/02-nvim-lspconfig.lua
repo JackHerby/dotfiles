@@ -41,14 +41,14 @@ nvimCreateAutocmd("LspAttach", {
     keymap("<leader>aW", function() fzf.lsp_live_workspace_symbols() end, { desc = "open [w]orkspace symbols" })
     keymap("<leader>at", function() fzf.lsp_typedefs() end, { desc = "goto [t]ype definition" })
 
-    local function diagnostic_open_float()
+    local function diagnosticOpenFloat()
       vim.diagnostic.open_float({
         scope = "cursor",
         source = true,
         width = 128,
       })
     end
-    keymap("<leader>af", diagnostic_open_float, { desc = "open [f]loating window for diagnostics" })
+    keymap("<leader>af", diagnosticOpenFloat, { desc = "open [f]loating window for diagnostics" })
 
     -- The following two autocommands are used to highlight references of the
     -- word under your cursor when your cursor rests there for a little while.
@@ -56,16 +56,16 @@ nvimCreateAutocmd("LspAttach", {
     -- When you move your cursor, the highlights will be cleared (the second autocommand).
     local client = vim.lsp.get_client_by_id(event.data.client_id)
     if client and client:supports_method("textDocument/documentHighlight", event.buf) then
-      local highlight_augroup = vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
+      local highlightAugroup = vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
       nvimCreateAutocmd({ "CursorHold", "CursorHoldI" }, {
         buffer = event.buf,
-        group = highlight_augroup,
+        group = highlightAugroup,
         callback = vim.lsp.buf.document_highlight,
       })
 
       nvimCreateAutocmd({ "CursorMoved", "CursorMovedI" }, {
         buffer = event.buf,
-        group = highlight_augroup,
+        group = highlightAugroup,
         callback = vim.lsp.buf.clear_references,
       })
 
@@ -92,7 +92,7 @@ nvimCreateAutocmd("LspAttach", {
 })
 
 -- Enable the following language servers.
-local vue_language_server_path = vim.fn.expand("$MASON/packages")
+local vueLanguageServerPath = vim.fn.expand("$MASON/packages")
   .. "/vue-language-server"
   .. "/node_modules/@vue/language-server"
 
@@ -126,7 +126,7 @@ local servers = {
           globalPlugins = {
             {
               name = "@vue/typescript-plugin",
-              location = vue_language_server_path,
+              location = vueLanguageServerPath,
               languages = { "vue" },
               configNamespace = "typescript",
             },
@@ -146,8 +146,8 @@ require("mason-lspconfig").setup({
 })
 
 -- Ensure the servers and tools above are installed.
-local ensure_installed = vim.tbl_keys(servers or {})
-vim.list_extend(ensure_installed, {
+local ensureInstalled = vim.tbl_keys(servers or {})
+vim.list_extend(ensureInstalled, {
   "beautysh",
   "eslint",
   "js-debug-adapter",
@@ -159,7 +159,7 @@ vim.list_extend(ensure_installed, {
   "stylua",
 })
 
-require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+require("mason-tool-installer").setup({ ensureInstalled = ensureInstalled })
 
 for name, server in pairs(servers) do
   vim.lsp.config(name, server)

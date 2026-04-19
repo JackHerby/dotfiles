@@ -46,14 +46,14 @@ dap.adapters["node"] = function(cb, config)
 end
 
 -- Configurations.
-local js_filetypes = {
+local jsFiletypes = {
   "javascript",
   "typescript",
   "javascriptreact",
   "typescriptreact",
   "vue",
 }
-for _, lang in ipairs(js_filetypes) do
+for _, lang in ipairs(jsFiletypes) do
   dap.configurations[lang] = {
     {
       type = "pwa-node",
