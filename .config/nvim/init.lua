@@ -250,14 +250,15 @@ keymap("<leader>E", function() vim.cmd("LspEslintFixAll") end, { desc = "[E]SLin
 -- Highlight when yanking (copying) text.
 --  Try it with `yap` in normal mode.
 --  See `:help vim.highlight.on_yank()`.
-vim.api.nvim_create_autocmd("TextYankPost", {
+local nvimCreateAutocmd = require("utils.nvim-create-autocmd")
+nvimCreateAutocmd("TextYankPost", {
   callback = function() vim.highlight.on_yank() end,
   desc = "Highlight when yanking text.",
   group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
 })
 
 -- Terminal mode customization.
-vim.api.nvim_create_autocmd("TermOpen", {
+nvimCreateAutocmd("TermOpen", {
   callback = function()
     vim.opt.spell = false
     vim.opt.number = false
@@ -268,7 +269,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
   group = vim.api.nvim_create_augroup("custom-term-open", { clear = true }),
 })
 
-vim.api.nvim_create_autocmd("FileType", {
+nvimCreateAutocmd("FileType", {
   callback = function() vim.opt_local.spell = false end,
   desc = "Disable spellcheck in quickfix/location list.",
   group = vim.api.nvim_create_augroup("custom-qf-loclist", { clear = true }),
@@ -276,7 +277,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Must be defined before the very first vim.pack.add() call.
-vim.api.nvim_create_autocmd("PackChanged", {
+nvimCreateAutocmd("PackChanged", {
   callback = function(event)
     local name, kind = event.data.spec.name, event.data.kind
     local pack_dir = vim.fn.stdpath("data") .. "/site/pack/core/opt/"

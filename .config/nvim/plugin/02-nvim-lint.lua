@@ -15,7 +15,8 @@ lint.linters_by_ft = {
   vue = { "eslint" },
 }
 
-vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+local nvimCreateAutocmd = require("utils.nvim-create-autocmd")
+nvimCreateAutocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
   callback = function()
     -- Only run the linter in buffers that you can modify in order to avoid superfluous noise,
     -- notably within the handy LSP pop-ups that describes the hovered symbol using Markdown.

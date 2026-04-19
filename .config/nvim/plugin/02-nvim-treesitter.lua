@@ -42,7 +42,8 @@ end
 
 local available_parsers = require("nvim-treesitter").get_available()
 
-vim.api.nvim_create_autocmd("FileType", {
+local nvimCreateAutocmd = require("utils.nvim-create-autocmd")
+nvimCreateAutocmd("FileType", {
   callback = function(args)
     local buf, filetype = args.buf, args.match
 

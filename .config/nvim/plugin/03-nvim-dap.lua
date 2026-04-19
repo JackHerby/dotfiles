@@ -112,7 +112,8 @@ for type, icon in pairs(icons) do
 end
 
 -- REPL auto-completion.
-vim.api.nvim_create_autocmd("FileType", {
+local nvimCreateAutocmd = require("utils.nvim-create-autocmd")
+nvimCreateAutocmd("FileType", {
   pattern = "dap-repl",
   callback = function() require("dap.ext.autocompl").attach() end,
 })

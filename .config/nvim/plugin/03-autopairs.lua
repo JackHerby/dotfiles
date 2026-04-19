@@ -5,7 +5,8 @@ vim.pack.add({
   githubUrl("windwp/nvim-autopairs"), -- https://github.com/windwp/nvim-autopairs
 })
 
-vim.api.nvim_create_autocmd("InsertEnter", {
+local nvimCreateAutocmd = require("utils.nvim-create-autocmd")
+nvimCreateAutocmd("InsertEnter", {
   callback = function()
     local npairs = require("nvim-autopairs")
     npairs.setup()
