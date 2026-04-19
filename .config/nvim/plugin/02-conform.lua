@@ -4,7 +4,8 @@
 vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 
 local githubUrl = require("utils.github-url")
-vim.pack.add({
+local packAdd = require("utils.pack-add")
+packAdd({
   githubUrl("stevearc/conform.nvim"), -- https://github.com/stevearc/conform.nvim
 })
 

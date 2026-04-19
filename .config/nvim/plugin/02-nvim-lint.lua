@@ -1,7 +1,8 @@
 -- An asynchronous linter plugin for Neovim (>= 0.9.5) complementary to the built-in Language Server Protocol support.
 
 local githubUrl = require("utils.github-url")
-vim.pack.add({
+local packAdd = require("utils.pack-add")
+packAdd({
   githubUrl("mfussenegger/nvim-lint"), -- https://github.com/mfussenegger/nvim-lint
 })
 

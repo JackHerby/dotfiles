@@ -1,7 +1,8 @@
 -- A completion plugin with support for LSPs, cmdline, signature help, and snippets.
 
 local githubUrl = require("utils.github-url")
-vim.pack.add({
+local packAdd = require("utils.pack-add")
+packAdd({
   githubUrl("rafamadriz/friendly-snippets"), -- https://github.com/rafamadriz/friendly-snippets
   { src = githubUrl("L3MON4D3/LuaSnip"), version = vim.version.range("2.x") }, -- https://github.com/L3MON4D3/LuaSnip
   githubUrl("folke/lazydev.nvim"), -- https://github.com/folke/lazydev.nvim

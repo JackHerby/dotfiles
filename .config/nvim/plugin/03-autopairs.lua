@@ -1,7 +1,8 @@
 -- A super powerful autopair plugin for Neovim that supports multiple characters.
 
 local githubUrl = require("utils.github-url")
-vim.pack.add({
+local packAdd = require("utils.pack-add")
+packAdd({
   githubUrl("windwp/nvim-autopairs"), -- https://github.com/windwp/nvim-autopairs
 })
 

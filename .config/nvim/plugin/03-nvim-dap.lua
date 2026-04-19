@@ -2,7 +2,8 @@
 -- TODO: I've set this up with a lot of vibe coding, I need to check if it works and why if so.
 
 local githubUrl = require("utils.github-url")
-vim.pack.add({
+local packAdd = require("utils.pack-add")
+packAdd({
   githubUrl("mfussenegger/nvim-dap"), -- https://github.com/mfussenegger/nvim-dap
 })
 

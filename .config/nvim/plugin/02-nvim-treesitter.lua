@@ -4,7 +4,8 @@
 -- 3. a staging ground for treesitter-based features considered for upstreaming to Neovim.
 
 local githubUrl = require("utils.github-url")
-vim.pack.add({
+local packAdd = require("utils.pack-add")
+packAdd({
   { src = githubUrl("nvim-treesitter/nvim-treesitter"), version = "main" }, -- https://github.com/nvim-treesitter/nvim-treesitter
 })
 

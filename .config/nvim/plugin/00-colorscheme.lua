@@ -1,7 +1,8 @@
 -- A port of gruvbox community theme to lua with treesitter and semantic highlights support.
 
 local githubUrl = require("utils.github-url")
-vim.pack.add({
+local packAdd = require("utils.pack-add")
+packAdd({
   githubUrl("ellisonleao/gruvbox.nvim"), -- https://github.com/ellisonleao/gruvbox.nvim
 })
 

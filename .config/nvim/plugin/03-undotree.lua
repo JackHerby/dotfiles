@@ -1,7 +1,8 @@
 -- Undotree visualizes the undo history and makes it easy to browse and switch between different undo branches.
 
 local githubUrl = require("utils.github-url")
-vim.pack.add({
+local packAdd = require("utils.pack-add")
+packAdd({
   githubUrl("mbbill/undotree"), -- https://github.com/mbbill/undotree
 })
 

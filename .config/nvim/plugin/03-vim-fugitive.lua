@@ -3,7 +3,8 @@
 -- That's why it's called Fugitive.
 
 local githubUrl = require("utils.github-url")
-vim.pack.add({
+local packAdd = require("utils.pack-add")
+packAdd({
   githubUrl("tpope/vim-fugitive"), -- https://github.com/tpope/vim-fugitive
 })
 

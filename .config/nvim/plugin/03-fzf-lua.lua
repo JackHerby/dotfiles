@@ -1,7 +1,8 @@
 -- Fzf-lua aims to be as plug and play as possible with sane defaults.
 
 local githubUrl = require("utils.github-url")
-vim.pack.add({
+local packAdd = require("utils.pack-add")
+packAdd({
   githubUrl("ibhagwan/fzf-lua"), -- https://github.com/ibhagwan/fzf-lua
 })
 

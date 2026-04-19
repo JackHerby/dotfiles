@@ -1,7 +1,8 @@
 -- Nvim-lspconfig is a collection of LSP server configurations for the Nvim LSP client.
 
 local githubUrl = require("utils.github-url")
-vim.pack.add({
+local packAdd = require("utils.pack-add")
+packAdd({
   githubUrl("j-hui/fidget.nvim"), -- https://github.com/j-hui/fidget.nvim
   githubUrl("mason-org/mason.nvim"), -- https://github.com/mason-org/mason.nvim
   githubUrl("mason-org/mason-lspconfig.nvim"), -- https://github.com/mason-org/mason-lspconfig.nvim
