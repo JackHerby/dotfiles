@@ -159,7 +159,7 @@ vim.list_extend(ensureInstalled, {
   "stylua",
 })
 
-require("mason-tool-installer").setup({ ensureInstalled = ensureInstalled })
+require("mason-tool-installer").setup({ ensure_installed = ensureInstalled })
 
 for name, server in pairs(servers) do
   vim.lsp.config(name, server)
