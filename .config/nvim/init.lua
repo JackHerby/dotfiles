@@ -131,7 +131,7 @@ if vim.g.neovide then
   vim.opt.guicursor =
     "n-v-c-i-ci-ve-r-cr-o:block,a:blinkwait800-blinkoff500-blinkon350-Cursor/lCursor,sm:block-blinkwait275-blinkoff250-blinkon275"
   vim.g.neovide_cursor_smooth_blink = true
-  vim.g.neovide_cursor_vfx_mode = "torpedo"
+  vim.g.neovide_cursor_vfx_mode = "railgun"
 
   vim.env.TERM = "xterm-256color"
 end
