@@ -187,9 +187,10 @@ keymap("<C-Esc>", "<C-\\><C-n>", { desc = "exit terminal mode" }, "t")
 
 -- Open terminal mode window in bottom split.
 keymap("<leader>T", function()
-  vim.cmd.new()
+  vim.cmd.vnew()
   vim.cmd.term()
-  vim.api.nvim_win_set_height(0, 20)
+  local calculateWindowWidth = function() return math.floor(vim.o.columns * 0.4) end
+  vim.api.nvim_win_set_width(0, calculateWindowWidth())
   vim.cmd("startinsert")
 end, { desc = "open [t]erminal in bottom split" })
 
