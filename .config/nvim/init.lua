@@ -192,7 +192,7 @@ keymap("<leader>qf", function() vim.cmd("cfirst") end, { desc = "[f]irst quickfi
 keymap("<leader>qa", function() vim.cmd("clast") end, { desc = "l[a]st quickfix item" })
 
 -- Terminal mode.
-keymap("<Esc><Esc>", "<C-\\><C-n>", { desc = "exit terminal mode" }, "t")
+keymap("<C-Esc>", "<C-\\><C-n>", { desc = "exit terminal mode" }, "t")
 
 -- Open terminal mode window in bottom split.
 keymap("<leader>T", function()
@@ -243,6 +243,16 @@ keymap("<C-'>", "() => ", nil, "i")
 
 -- Trigger lint command providerd by eslint language server.
 keymap("<leader>E", function() vim.cmd("LspEslintFixAll") end, { desc = "[E]SLint fix all" })
+
+if vim.g.neovide then
+  -- Print window width (usefull for Neovide without tiling window manager).
+  keymap("<leader>.", function() print("Neovide window width: ", vim.api.nvim_win_get_width(0)) end)
+
+  -- Increase/decrease font size.
+  keymap("<C-=>", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1<CR>", { silent = true })
+  keymap("<C-->", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1<CR>", { silent = true })
+  keymap("<C-0>", ":lua vim.g.neovide_scale_factor = 1<CR>", { silent = true })
+end
 
 -- Basic autocommands.
 --  See `:help lua-guide-autocommands`.
