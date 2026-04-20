@@ -2,6 +2,7 @@
 config-file = ./auto/theme.ghostty
 
 # general
+background-opacity = 0.95
 cursor-style = block
 cursor-style-blink = false
 custom-shader = ./shaders/cursor-wrap.glsl
@@ -15,8 +16,8 @@ working-directory = home
 
 # keybinds
 keybind = ctrl+,=unbind
-keybind = ctrl+shift+alt+arrow_left=move_tab:-1
-keybind = ctrl+shift+alt+arrow_right=move_tab:1
+keybind = ctrl+shift+alt+[=move_tab:-1
+keybind = ctrl+shift+alt+]=move_tab:1
 keybind = ctrl+shift+alt+t=prompt_tab_title
 keybind = ctrl+shift+j=unbind
 keybind = ctrl+shift+w=close_surface
