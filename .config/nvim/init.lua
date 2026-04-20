@@ -127,9 +127,6 @@ if vim.g.neovide then
   vim.g.neovide_theme = "dark"
 
   -- cursor
-  vim.g.neovide_cursor_animation_length = 0.1
-  vim.g.neovide_cursor_short_animation_length = 0.01
-  vim.g.neovide_cursor_trail_size = 0.3
   vim.g.neovide_cursor_animate_in_insert_mode = false
   vim.opt.guicursor =
     "n-v-c-i-ci-ve-r-cr-o:block,a:blinkwait800-blinkoff500-blinkon350-Cursor/lCursor,sm:block-blinkwait275-blinkoff250-blinkon275"
