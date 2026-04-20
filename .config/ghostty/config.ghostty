@@ -3,6 +3,7 @@ config-file = ./auto/theme.ghostty
 
 # general
 cursor-style = block
+cursor-style-blink = false
 custom-shader = ./shaders/cursor-wrap.glsl
 font-family = 0xProto Nerd Font Mono
 font-family = Symbol Nerd Font Mono
