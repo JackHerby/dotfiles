@@ -178,16 +178,12 @@ keymap("<leader>ll", vim.diagnostic.setloclist, { desc = "open diagnostic [L]oca
 -- Location list keymaps.
 keymap("<leader>lo", function() vim.cmd("lopen") end, { desc = "[o]pen Location list" })
 keymap("<leader>lc", function() vim.cmd("lclose") end, { desc = "[c]lose Location list" })
-keymap("<leader>ln", function() vim.cmd("lnext") end, { desc = "[n]ext location item" })
-keymap("<leader>lp", function() vim.cmd("lprevious") end, { desc = "[p]revious location item" })
 keymap("<leader>lf", function() vim.cmd("lfirst") end, { desc = "[f]irst location item" })
 keymap("<leader>la", function() vim.cmd("llast") end, { desc = "l[a]st location item" })
 
 -- Quickfix list keymaps.
 keymap("<leader>qo", function() vim.cmd("copen") end, { desc = "[o]pen Quickfix list" })
 keymap("<leader>qc", function() vim.cmd("cclose") end, { desc = "[c]lose Quickfix list" })
-keymap("<leader>qn", function() vim.cmd("cnext") end, { desc = "[n]ext quickfix item" })
-keymap("<leader>qp", function() vim.cmd("cprevious") end, { desc = "[p]revious quickfix item" })
 keymap("<leader>qf", function() vim.cmd("cfirst") end, { desc = "[f]irst quickfix item" })
 keymap("<leader>qa", function() vim.cmd("clast") end, { desc = "l[a]st quickfix item" })
 
