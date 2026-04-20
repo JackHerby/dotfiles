@@ -128,8 +128,6 @@ if vim.g.neovide then
 
   -- cursor
   vim.g.neovide_cursor_animate_in_insert_mode = false
-  vim.opt.guicursor =
-    "n-v-c-i-ci-ve-r-cr-o:block,a:blinkwait800-blinkoff500-blinkon350-Cursor/lCursor,sm:block-blinkwait275-blinkoff250-blinkon275"
   vim.g.neovide_cursor_smooth_blink = true
   vim.g.neovide_cursor_vfx_mode = "railgun"
 
