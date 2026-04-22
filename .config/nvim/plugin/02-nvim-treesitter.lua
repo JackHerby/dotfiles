@@ -7,6 +7,7 @@ local githubUrl = require("utils.github-url")
 local packAdd = require("utils.pack-add")
 packAdd({
   { src = githubUrl("nvim-treesitter/nvim-treesitter"), version = "main" }, -- https://github.com/nvim-treesitter/nvim-treesitter
+  githubUrl("nvim-treesitter/nvim-treesitter-context"),
 })
 
 -- Ensure basic parser are installed.
@@ -65,3 +66,11 @@ nvimCreateAutocmd("FileType", {
     end
   end,
 })
+
+require("treesitter-context").setup({
+  multiwindow = true,
+  separator = "─",
+})
+
+local keymap = require("utils.keymap")
+keymap("[c", function() require("treesitter-context").go_to_context(vim.v.count1) end, { silent = true })
