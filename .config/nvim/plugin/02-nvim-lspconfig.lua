@@ -41,15 +41,17 @@ nvimCreateAutocmd("LspAttach", {
     keymap("<leader>aO", function() fzf.lsp_document_symbols() end, { desc = "open document symb[o]ls" })
     keymap("<leader>aW", function() fzf.lsp_live_workspace_symbols() end, { desc = "open [w]orkspace symbols" })
     keymap("<leader>at", function() fzf.lsp_typedefs() end, { desc = "goto [t]ype definition" })
-
-    local function diagnosticOpenFloat()
-      vim.diagnostic.open_float({
-        scope = "cursor",
-        source = true,
-        width = 128,
-      })
-    end
-    keymap("<leader>af", diagnosticOpenFloat, { desc = "open [f]loating window for diagnostics" })
+    keymap(
+      "<leader>af",
+      function()
+        vim.diagnostic.open_float({
+          scope = "cursor",
+          source = true,
+          width = 128,
+        })
+      end,
+      { desc = "open [f]loating window for diagnostics" }
+    )
 
     -- The following two autocommands are used to highlight references of the
     -- word under your cursor when your cursor rests there for a little while.
