@@ -119,9 +119,6 @@ function y() {
 	rm -f -- "$tmp"
 }
 
-# nvm
-source /usr/share/nvm/init-nvm.sh
-
 # bun completions
 [ -s "/home/jackherby/.bun/_bun" ] && source "/home/jackherby/.bun/_bun"
 
@@ -131,3 +128,6 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # fzf
 export FZF_DEFAULT_OPTS="--layout=reverse --preview 'bat --style=numbers --color=always {}'"
+
+#fnm
+eval "$(fnm env --use-on-cd --shell zsh)"
