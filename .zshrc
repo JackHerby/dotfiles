@@ -2,7 +2,7 @@
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
 # Path to your Oh My Zsh installation.
-ZSH=/usr/share/oh-my-zsh/
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
@@ -26,7 +26,7 @@ HYPHEN_INSENSITIVE="true"
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
 # zstyle ':omz:update' mode auto      # update automatically without asking
-# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
 # zstyle ':omz:update' frequency 13
@@ -70,7 +70,16 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(pass)
+plugins=(
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  example
+  you-should-use
+  pass
+  ubuntu
+)
+
+source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
@@ -101,33 +110,37 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
-if [[ ! -d $ZSH_CACHE_DIR ]]; then
-  mkdir $ZSH_CACHE_DIR
-fi
+export PATH=/usr/local/node/bin:$PATH
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 
-source $ZSH/oh-my-zsh.sh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.oh-my-zsh/custom/aliases.zsh
+export FZF_DEFAULT_OPTS='--layout=reverse'
 
-function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	yazi "$@" --cwd-file="$tmp"
-	IFS= read -r -d '' cwd < "$tmp"
-	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
-	rm -f -- "$tmp"
-}
+export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u)/bus"
 
 # bun completions
-[ -s "/home/jackherby/.bun/_bun" ] && source "/home/jackherby/.bun/_bun"
+[ -s "/home/jacek/.bun/_bun" ] && source "/home/jacek/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-# fzf
-export FZF_DEFAULT_OPTS="--layout=reverse --preview 'bat --style=numbers --color=always {}'"
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
 
-#fnm
-eval "$(fnm env --use-on-cd --shell zsh)"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - bash)"
+
+eval "$(pyenv virtualenv-init -)"
+
+# opencode
+export PATH=/home/jacek/.opencode/bin:$PATH
+
+# Launch Neofetch on new terminal session
+# neofetch
