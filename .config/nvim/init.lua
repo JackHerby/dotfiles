@@ -237,9 +237,6 @@ keymap("<C-'>", "() => ", nil, "i")
 keymap("<leader>E", function() vim.cmd("LspEslintFixAll") end, { desc = "[E]SLint fix all" })
 
 if vim.g.neovide then
-  -- Print window width (usefull for Neovide without tiling window manager).
-  keymap("<leader>.", function() print("Neovide window width: ", vim.api.nvim_win_get_width(0)) end)
-
   -- Increase/decrease font size.
   keymap("<C-=>", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1<CR>", { silent = true })
   keymap("<C-->", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1<CR>", { silent = true })
@@ -297,3 +294,17 @@ nvimCreateAutocmd("PackChanged", {
   end,
   desc = "Hooks for plugins with build steps.",
 })
+
+if vim.g.neovide then
+  -- Prints out Neovide window size on resize.
+  nvimCreateAutocmd("VimResized", {
+    callback = function()
+      local winWidth = vim.api.nvim_win_get_width(0)
+      local winHeight = vim.api.nvim_win_get_height(0)
+
+      vim.api.nvim_echo({ { ("Neovide size: %dx%d"):format(winWidth, winHeight) } }, false, { id = "resizeMsg" })
+    end,
+    desc = "Print Neovide window parameters on resize.",
+    group = vim.api.nvim_create_augroup("print-window-size", { clear = true }),
+  })
+end
