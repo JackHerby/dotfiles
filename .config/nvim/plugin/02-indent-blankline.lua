@@ -7,6 +7,9 @@ packAdd({
 })
 
 require("ibl").setup({
+  scope = {
+    show_start = false,
+  },
   whitespace = {
     highlight = { "Whitespace", "NonText" },
   },
