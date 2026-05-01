@@ -142,6 +142,14 @@ pcall(function() require("vim._core.ui2").enable() end)
 local keymap = require("utils.keymap")
 
 -- Vim.pack keymaps.
+keymap("<leader>pd", function ()
+  local onConfirmCallback= function (packageName)
+    if not packageName or packageName == "" then return end
+    vim.pack.del({ packageName })
+  end
+  local options = { prompt = "Package name: " }
+  vim.ui.input(options, onConfirmCallback)
+end, { desc = "[d]elete package" })
 keymap("<leader>pl", function()
   local packages = vim.pack.get()
   for idx, pkg in ipairs(packages) do
