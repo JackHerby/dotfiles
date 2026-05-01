@@ -16,7 +16,6 @@ require("which-key").setup({
     { "<leader>a", group = "LSP [a]ctions" },
     { "<leader>b", group = "Mini [b]ufremove" },
     { "<leader>d", group = "[D]AP" },
-    { "<leader>e", group = "Nvim Tr[e]e" },
     { "<leader>f", group = "Conform [f]ormat on save enable/disable" },
     { "<leader>g", group = "Fugitive [g]it" },
     { "<leader>h", group = "[H]arpoon" },
