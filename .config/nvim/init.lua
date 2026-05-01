@@ -94,7 +94,7 @@ vim.opt.spelllang = { "en_us", "pl" }
 -- Neovide/GUI settings.
 if vim.g.neovide then
   -- font
-  vim.o.guifont = "0xProto Nerd Font Mono:h12"
+  vim.o.guifont = "0xProto Nerd Font Mono:h10"
 
   -- padding
   vim.g.neovide_padding_top = 2

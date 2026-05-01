@@ -7,6 +7,7 @@ cursor-style-blink = false
 custom-shader = ./shaders/cursor-wrap.glsl
 font-family = 0xProto Nerd Font Mono
 font-family = Symbol Nerd Font Mono
+font-size = 11
 gtk-single-instance = false
 shell-integration-features = no-cursor
 tab-inherit-working-directory = false

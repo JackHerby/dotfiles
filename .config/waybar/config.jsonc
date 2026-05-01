@@ -10,8 +10,7 @@
     "modules-left": [
       "group/traym",
       "hyprland/workspaces",
-      "hyprland/submap",
-      "hyprland/window"
+      "hyprland/submap"
     ],
 
     "modules-right": [
@@ -19,7 +18,7 @@
       "pulseaudio#input",
       "pulseaudio#output",
       "hyprland/language",
-      "custom/battery",
+      "battery",
       "clock",
       "custom/power"
     ],
@@ -31,15 +30,16 @@
       "modules": ["custom/trayicon", "tray"]
     },
 
-    "custom/battery": {
-      "interval": 4,
-      "return-type": "json",
-      "exec": "~/.config/hypr/themes/Mocha-Power/bat-pp.sh refresh",
-      "exec-on-event": true,
-      "format": "{text}%",
-      "on-click": "~/.config/hypr/themes/Mocha-Power/bat-pp.sh toggle & aplay ~/.config/sounds/interact.wav",
-      "tooltip": "true",
-      "tooltip-format": "{alt}"
+    "battery": {
+      "states": {
+        "good": 95,
+        "warning": 30,
+        "critical": 15
+      },
+      "format": "{icon} {capacity}%",
+      "format-charging": "󰂄 {capacity}%",
+      "format-plugged": "󱘖 {capacity}%",
+      "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
     },
 
     "clock": {
@@ -92,15 +92,6 @@
       "format": "{}",
       "format-RESIZE": "{}lol",
       "tooltip": false
-    },
-
-    "hyprland/window": {
-      "format": "{title}",
-      "max-length": 48,
-      "tooltip": false,
-      "icon": true,
-      "icon-size": 18,
-      "tooltip": true
     },
 
     "hyprland/workspaces": {
@@ -176,14 +167,15 @@
     "margin-top": -29,
     "margin-right": 24,
 
-    "modules-right": ["custom/batteryindicator"],
+    "modules-right": ["battery"],
 
-    "custom/batteryindicator": {
-      "interval": 4,
-      "return-type": "json",
-      "tooltip": false,
+    "battery": {
       "format": " ",
-      "exec": "~/.config/hypr/themes/Mocha-Power/bat-pp.sh bar"
+      "states": {
+        "good": 95,
+        "warning": 30,
+        "critical": 15
+      }
     }
   }
 ]
