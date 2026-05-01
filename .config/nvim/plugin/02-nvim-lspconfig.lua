@@ -158,7 +158,7 @@ vim.list_extend(ensureInstalled, {
   "prettier",
   "prettierd",
   "shellcheck",
-  "stylelint-lsp",
+  "stylelint-language-server",
   "stylua",
 })
 
