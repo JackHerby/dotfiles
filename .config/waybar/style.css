@@ -1,118 +1,87 @@
 @import "mocha.css";
 
-/* vim:fileencoding=utf-8:foldmethod=marker */
 * {
   border: none;
   border-radius: 8;
-  font-family: "JetbrainsMono Nerd Font";
-  font-size: 18px;
-  min-height: 20px;
+  font-family: "0xProto Nerd Font Mono";
+  font-size: 1rem;
 }
 
-window#waybar {
+#waybar {
   background: transparent;
-}
-
-window#waybar.hidden {
-  opacity: 0.2;
-}
-
-#window {
-  margin-top: 6px;
-  padding-left: 10px;
-  padding-right: 10px;
-  border-radius: 10px;
-  transition: none;
-  color: transparent;
-  background: transparent;
+  color: @text;
 }
 
 #workspaces {
-  margin-top: 6px;
-  margin-left: 12px;
-  font-size: 20px;
-  font-weight: 500;
-  margin-bottom: 0px;
-  border-radius: 10px;
-  background: @base;
-  transition: none;
-}
-
-#workspaces button {
-  transition: none;
-  color: @text;
-  background: transparent;
-  border-radius: 2px;
-}
-
-#workspaces button.active {
-  color: @peach;
-}
-
-#workspaces button:hover {
-  transition: none;
-  box-shadow: inherit;
-  text-shadow: inherit;
-  color: @yellow;
-  border-color: @yellow;
-}
-
-#network {
-  margin-top: 6px;
-  margin-left: 8px;
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-bottom: 0px;
-  border-radius: 10px;
-  transition: none;
-  color: @base;
-  background: @red;
-}
-
-#clock {
-  margin-top: 6px;
-  margin-left: 12px;
-  margin-right: 8px;
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-bottom: 0px;
-  border-radius: 10px;
-  transition: none;
-  color: @base;
-  background: @green;
-}
-
-#pulseaudio,
-#language,
-#custom-battery,
-#custom-power {
-  margin-top: 6px;
-  margin-left: 12px;
-  padding-left: 10px;
-  padding-right: 16px;
-  margin-bottom: 0px;
-  border-radius: 10px;
-  transition: none;
-  color: @base;
-}
-
-#pulseaudio {
-  background: @pink;
-}
-
-#language {
-  background: @teal;
-}
-
-#custom-battery {
-  background: @teal;
-}
-
-#custom-power {
-  background: @red;
-  margin-right: 8px;
+  background-color: @surface0;
+  margin: 0 0.5rem;
 }
 
 #custom-trayicon {
-  margin-left: 8px;
+  font-size: 2rem;
+}
+
+#window,
+#workspaces,
+#custom-trayicon {
+  margin-top: 0.5rem;
+}
+
+#workspaces button {
+  color: @lavender;
+}
+
+#workspaces button.active {
+  color: @sky;
+}
+
+#workspaces button:hover {
+  color: @sapphire;
+}
+
+button {
+  background: transparent;
+}
+
+#backlight,
+#battery,
+#cava,
+#clock,
+#custom-lock,
+#custom-music,
+#custom-power,
+#language,
+#network,
+#pulseaudio,
+#tray {
+  background-color: @surface0;
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+#clock {
+  color: @blue;
+}
+
+#backlight,
+#battery {
+}
+
+#pulseaudio {
+  color: @maroon;
+}
+
+#language {
+  color: @lavender;
+}
+
+#custom-power {
+  color: @red;
+  font-size: 1.5rem;
+  padding: 0 1rem;
+}
+
+#workspaces button.urgent {
+  color: @red;
 }

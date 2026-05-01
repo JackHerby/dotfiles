@@ -149,7 +149,7 @@
     },
 
     "custom/trayicon": {
-      "format": " ",
+      "format": "",
       "tooltip": false,
       "on-click": " bash ~/.config/scripts/pacman.sh",
       "on-scroll-up": "",
