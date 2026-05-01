@@ -60,13 +60,6 @@ vim.opt.timeoutlen = 300
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
--- Sets how neovim will display certain whitespace characters in the editor.
---  See `:help 'list'`
---  and `:help 'listchars'`.
--- Commented out since setting is used in ident blankie plugin.
--- vim.opt.list = true
--- vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
-
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = "split"
 
@@ -88,7 +81,7 @@ vim.opt.autoindent = true
 -- Specifies the number of spaces to use for a tab character when editing a buffer.
 vim.bo.softtabstop = 2
 
--- Optionally enable 24-bit colour.
+-- Optionally enable 24-bit color.
 vim.opt.termguicolors = true
 
 -- Set rounded borders for all floating windows (Neovim 0.11+).
@@ -141,9 +134,52 @@ pcall(function() require("vim._core.ui2").enable() end)
 -- See `:help vim.keymap.set()`.
 local keymap = require("utils.keymap")
 
+-- Convenient keymaps.
+-- Trigger lint command provided by ESLint language server.
+keymap("<leader>ce", function() vim.cmd("LspEslintFixAll") end, { desc = "[E]SLint fix all" })
+-- Change all occurrences of the word under the cursor.
+keymap("<leader>cr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "[r]ename all occurances" })
+-- Open terminal mode window in bottom split.
+keymap("<leader>ct", function()
+  vim.cmd.vnew()
+  vim.cmd.term()
+  local calculateWindowWidth = function() return math.floor(vim.o.columns * 0.4) end
+  vim.api.nvim_win_set_width(0, calculateWindowWidth())
+  vim.cmd("startinsert")
+end, { desc = "open [t]erminal in bottom split" })
+-- Open URL under cursor.
+keymap("<leader>cu", function()
+  local url = vim.fn.expand("<cWORD>")
+  if url:match("^https?://") then
+    vim.fn.jobstart({ "xdg-open", url }, { detach = true })
+  else
+    vim.notify("No valid URL found under cursor", vim.log.levels.WARN)
+  end
+
+-- Diagnostic Config & Keymaps.
+-- See :help vim.diagnostic.Opts.
+vim.diagnostic.config({
+  update_in_insert = false,
+  severity_sort = true,
+  float = { border = "single", source = "if_many" },
+  underline = { severity = { min = vim.diagnostic.severity.WARN } },
+
+  -- Can switch between these as you prefer.
+  virtual_text = true, -- Text shows up at the end of the line.
+  virtual_lines = false, -- Text shows up underneath the line, with virtual lines.
+})
+end, { desc = "Open [U]RL under the cursor" })
+-- Diagnostic list.
+keymap("<leader>ll", vim.diagnostic.setloclist, { desc = "open diagnostic [L]ocation list" })
+-- Location list keymaps.
+keymap("<leader>lo", function() vim.cmd("lopen") end, { desc = "[o]pen Location list" })
+keymap("<leader>lc", function() vim.cmd("lclose") end, { desc = "[c]lose Location list" })
+keymap("<leader>lf", function() vim.cmd("lfirst") end, { desc = "[f]irst location item" })
+keymap("<leader>la", function() vim.cmd("llast") end, { desc = "l[a]st location item" })
+
 -- Vim.pack keymaps.
-keymap("<leader>pd", function ()
-  local onConfirmCallback= function (packageName)
+keymap("<leader>pd", function()
+  local onConfirmCallback = function(packageName)
     if not packageName or packageName == "" then return end
     vim.pack.del({ packageName })
   end
@@ -158,49 +194,11 @@ keymap("<leader>pl", function()
 end, { desc = "[l]ist packages" })
 keymap("<leader>pu", function() vim.pack.update() end, { desc = "[u]pdate packages" })
 
--- Set highlight on search, but clear on pressing <Esc> in normal mode.
--- See `:help hlsearch`.
-keymap("<Esc>", function() vim.cmd("nohlsearch") end, { desc = "clear highligth search" })
-
--- Diagnostic Config & Keymaps.
--- See :help vim.diagnostic.Opts.
-vim.diagnostic.config({
-  update_in_insert = false,
-  severity_sort = true,
-  float = { border = "single", source = "if_many" },
-  underline = { severity = { min = vim.diagnostic.severity.WARN } },
-
-  -- Can switch between these as you prefer.
-  virtual_text = true, -- Text shows up at the end of the line.
-  virtual_lines = false, -- Text shows up underneath the line, with virtual lines.
-})
-
--- Diagnostic list.
-keymap("<leader>ll", vim.diagnostic.setloclist, { desc = "open diagnostic [L]ocation list" })
-
--- Location list keymaps.
-keymap("<leader>lo", function() vim.cmd("lopen") end, { desc = "[o]pen Location list" })
-keymap("<leader>lc", function() vim.cmd("lclose") end, { desc = "[c]lose Location list" })
-keymap("<leader>lf", function() vim.cmd("lfirst") end, { desc = "[f]irst location item" })
-keymap("<leader>la", function() vim.cmd("llast") end, { desc = "l[a]st location item" })
-
 -- Quickfix list keymaps.
 keymap("<leader>qo", function() vim.cmd("copen") end, { desc = "[o]pen Quickfix list" })
 keymap("<leader>qc", function() vim.cmd("cclose") end, { desc = "[c]lose Quickfix list" })
 keymap("<leader>qf", function() vim.cmd("cfirst") end, { desc = "[f]irst quickfix item" })
 keymap("<leader>qa", function() vim.cmd("clast") end, { desc = "l[a]st quickfix item" })
-
--- Terminal mode.
-keymap("<C-Esc>", "<C-\\><C-n>", { desc = "exit terminal mode" }, "t")
-
--- Open terminal mode window in bottom split.
-keymap("<leader>T", function()
-  vim.cmd.vnew()
-  vim.cmd.term()
-  local calculateWindowWidth = function() return math.floor(vim.o.columns * 0.4) end
-  vim.api.nvim_win_set_width(0, calculateWindowWidth())
-  vim.cmd("startinsert")
-end, { desc = "open [t]erminal in bottom split" })
 
 -- TIP: Disable arrow keys in normal mode.
 -- Utilize arrows to resize windows in normal mode.
@@ -222,27 +220,14 @@ keymap("<C-M-l>", "<C-w>L", { desc = "move window to the right" })
 keymap("<C-M-j>", "<C-w>J", { desc = "move window to the lower" })
 keymap("<C-M-k>", "<C-w>K", { desc = "move window to the upper" })
 
--- Change all occurances of the word under the cursor.
-keymap("<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "[r]ename all occurances" })
-
--- Open URL under cursor.
-keymap("<leader>U", function()
-  local url = vim.fn.expand("<cWORD>")
-  if url:match("^https?://") then
-    vim.fn.jobstart({ "xdg-open", url }, { detach = true })
-  else
-    vim.notify("No valid URL found under cursor", vim.log.levels.WARN)
-  end
-end, { desc = "Open [U]RL under the cursor" })
+-- Exit terminal mode.
+keymap("<C-Esc>", "<C-\\><C-n>", { desc = "exit terminal mode" }, "t")
 
 -- JavaScript/Typescript quality of life mappings.
 keymap("<C-,>", "()", nil, "i")
 keymap("<C-.>", "=>", nil, "i")
 keymap("<C-/>", "->", nil, "i")
 keymap("<C-'>", "() => ", nil, "i")
-
--- Trigger lint command providerd by eslint language server.
-keymap("<leader>E", function() vim.cmd("LspEslintFixAll") end, { desc = "[E]SLint fix all" })
 
 if vim.g.neovide then
   -- Increase/decrease font size.
@@ -251,8 +236,12 @@ if vim.g.neovide then
   keymap("<C-0>", ":lua vim.g.neovide_scale_factor = 1<CR>", { silent = true })
 end
 
+-- Set highlight on search, but clear on pressing <Esc> in normal mode.
+-- See `:help hlsearch`.
+keymap("<Esc>", function() vim.cmd("nohlsearch") end, { desc = "clear highligth search" })
+
 -- Basic autocommands.
---  See `:help lua-guide-autocommands`.
+-- See `:help lua-guide-autocommands`.
 
 -- Highlight when yanking (copying) text.
 --  Try it with `yap` in normal mode.

@@ -1,5 +1,4 @@
--- If you want the formatexpr, here is the place to set it.
--- After migration to vim.pack it means before plugin loads its runtime files.
+-- Lightweight yet powerful formatter plugin for Neovim
 
 vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 
@@ -79,7 +78,7 @@ end, { desc = "Print autoformat-on-save info." })
 
 local keymap = require("utils.keymap")
 keymap(
-  "<leader>F",
+  "<leader>ff",
   function() conform.format({ async = true, lsp_format = "fallback" }) end,
   { desc = "[f]ormat buffer" },
   ""

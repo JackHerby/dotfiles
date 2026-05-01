@@ -1,7 +1,7 @@
 -- The nvim-treesitter plugin provides
--- 1. functions for installing, updating, and removing tree-sitter parsers;
--- 2. a collection of queries for enabling tree-sitter features built into Neovim for these languages;
--- 3. a staging ground for treesitter-based features considered for upstreaming to Neovim.
+-- 1. Functions for installing, updating, and removing tree-sitter parsers;
+-- 2. A collection of queries for enabling tree-sitter features built into Neovim for these languages;
+-- 3. A staging ground for treesitter-based features considered for upstreaming to Neovim.
 
 local githubUrl = require("utils.github-url")
 local packAdd = require("utils.pack-add")

@@ -27,7 +27,7 @@ fzf.setup({
 })
 
 local keymap = require("utils.keymap")
-keymap("<leader>sb", function() fzf.builtin() end, { desc = "search in [b]uiltin pickers" })
+keymap("<leader>sb", function() fzf.buffers() end, { desc = "search in opened [b]uffers" })
 keymap(
   "<leader>sc",
   function() fzf.live_grep({ rg_opts = "--type=css --column --line-number --no-heading --color=always --smart-case" }) end,
@@ -67,6 +67,6 @@ keymap(
   function() fzf.files({ cwd = vim.fn.stdpath("config") }) end,
   { desc = "search in [N]eovim files" }
 )
+keymap("<leader>sp", function() fzf.builtin() end, { desc = "search in builtin [p]ickers" })
 keymap("<leader>sr", function() fzf.resume() end, { desc = "[r]esume search" })
 keymap("<leader>sw", function() fzf.grep_cword() end, { desc = "search for current [w]ord" })
-keymap("<leader><leader>", function() fzf.buffers() end, { desc = "search in opened buffers" })

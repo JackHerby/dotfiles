@@ -175,4 +175,4 @@ vim.api.nvim_create_user_command(
   { desc = "Fix stylelint issues via LSP formatting." }
 )
 
-keymap("<leader>S", function() vim.cmd("StylelintFix") end, { desc = "style[l]int fix all" })
+keymap("<leader>cs", function() vim.cmd("StylelintFix") end, { desc = "style[l]int fix all" })

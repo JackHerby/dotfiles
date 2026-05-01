@@ -14,8 +14,9 @@ require("which-key").setup({
   -- Document existing key chains.
   spec = {
     { "<leader>a", group = "LSP [a]ctions" },
-    { "<leader>b", group = "Mini [b]ufremove" },
-    { "<leader>d", group = "[D]AP" },
+    { "<leader>b", group = "Mini [B]ufremove" },
+    { "<leader>c", group = "[c]onvenient keymaps" },
+    { "<leader>d", group = "[D]ebug Adapter Protocol" },
     { "<leader>f", group = "Conform [f]ormat on save enable/disable" },
     { "<leader>g", group = "Fugitive [g]it" },
     { "<leader>h", group = "[H]arpoon" },
@@ -24,7 +25,7 @@ require("which-key").setup({
     { "<leader>p", group = "vim.[p]ack" },
     { "<leader>q", group = "[q]uickfix list" },
     { "<leader>s", group = "fzf [s]earch" },
-    { "<leader>t", group = "Pretty [T]S errors" },
-    { "<leader>u", group = "[U]ndo Tree." },
+    { "<leader>t", group = "Pretty [T]S Errors" },
+    { "<leader>u", group = "[U]ndotree" },
   },
 })
