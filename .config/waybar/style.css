@@ -1,3 +1,5 @@
+@import "mocha.css";
+
 /* vim:fileencoding=utf-8:foldmethod=marker */
 * {
   border: none;
@@ -32,27 +34,27 @@ window#waybar.hidden {
   font-weight: 500;
   margin-bottom: 0px;
   border-radius: 10px;
-  background: #1d2021;
+  background: @base;
   transition: none;
 }
 
 #workspaces button {
   transition: none;
-  color: #ebdbb2;
+  color: @text;
   background: transparent;
   border-radius: 2px;
 }
 
 #workspaces button.active {
-  color: #fe8019;
+  color: @peach;
 }
 
 #workspaces button:hover {
   transition: none;
   box-shadow: inherit;
   text-shadow: inherit;
-  color: #fabd2f;
-  border-color: #fabd2f;
+  color: @yellow;
+  border-color: @yellow;
 }
 
 #network {
@@ -63,8 +65,8 @@ window#waybar.hidden {
   margin-bottom: 0px;
   border-radius: 10px;
   transition: none;
-  color: #1d2021;
-  background: #fb4934;
+  color: @base;
+  background: @red;
 }
 
 #clock {
@@ -76,8 +78,8 @@ window#waybar.hidden {
   margin-bottom: 0px;
   border-radius: 10px;
   transition: none;
-  color: #1d2021;
-  background: #b8bb26;
+  color: @base;
+  background: @green;
 }
 
 #pulseaudio,
@@ -91,23 +93,23 @@ window#waybar.hidden {
   margin-bottom: 0px;
   border-radius: 10px;
   transition: none;
-  color: #1d2021;
+  color: @base;
 }
 
 #pulseaudio {
-  background: #d3869b;
+  background: @pink;
 }
 
 #language {
-  background: #8ec07c;
+  background: @teal;
 }
 
 #custom-battery {
-  background: #8ec07c;
+  background: @teal;
 }
 
 #custom-power {
-  background: #fb4934;
+  background: @red;
   margin-right: 8px;
 }
 
