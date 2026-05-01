@@ -1,9 +1,9 @@
 [opener]
 open_dir = [
-    { run = "zsh -c \"cd \"$0\" && neovide --fork\"", block = true, desc = "Open directory in Neovim" }
+    { run = "zsh -c \"cd \"$0\" && nvim\"", block = true, desc = "Open directory in Neovim" }
 ]
 edit = [
-    { run = 'neovide --fork "$@"', block = true, desc = "Open file in Neovim" }
+    { run = 'nvim "$@"', block = true, desc = "Open file in Neovim" }
 ]
 
 [open]
