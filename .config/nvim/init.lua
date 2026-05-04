@@ -139,14 +139,6 @@ local keymap = require("utils.keymap")
 keymap("<leader>ce", function() vim.cmd("LspEslintFixAll") end, { desc = "[E]SLint fix all" })
 -- Change all occurrences of the word under the cursor.
 keymap("<leader>cr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "[r]ename all occurances" })
--- Open terminal mode window in bottom split.
-keymap("<leader>ct", function()
-  vim.cmd.vnew()
-  vim.cmd.term()
-  local calculateWindowWidth = function() return math.floor(vim.o.columns * 0.4) end
-  vim.api.nvim_win_set_width(0, calculateWindowWidth())
-  vim.cmd("startinsert")
-end, { desc = "open [t]erminal in bottom split" })
 -- Open URL under cursor.
 keymap("<leader>cu", function()
   local url = vim.fn.expand("<cWORD>")
@@ -155,6 +147,17 @@ keymap("<leader>cu", function()
   else
     vim.notify("No valid URL found under cursor", vim.log.levels.WARN)
   end
+end, { desc = "Open [U]RL under the cursor" })
+-- Open terminal mode window in vertical split.
+keymap("<leader>ct", function()
+  vim.cmd.vnew()
+  vim.cmd.term()
+  local calculateWindowWidth = function() return math.floor(vim.o.columns * 0.4) end
+  vim.api.nvim_win_set_width(0, calculateWindowWidth())
+  vim.cmd("startinsert")
+end, { desc = "open [t]erminal in vertical split" })
+-- Yank file name to unnamedplus register.
+keymap("<leader>cy", function() vim.fn.setreg("+", vim.fn.expand("%:t:r")) end, { desc = "[y]ank file name" })
 
 -- Diagnostic Config & Keymaps.
 -- See :help vim.diagnostic.Opts.
@@ -168,7 +171,6 @@ vim.diagnostic.config({
   virtual_text = true, -- Text shows up at the end of the line.
   virtual_lines = false, -- Text shows up underneath the line, with virtual lines.
 })
-end, { desc = "Open [U]RL under the cursor" })
 -- Diagnostic list.
 keymap("<leader>ll", vim.diagnostic.setloclist, { desc = "open diagnostic [L]ocation list" })
 -- Location list keymaps.
