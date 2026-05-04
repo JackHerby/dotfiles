@@ -19,7 +19,7 @@ require("catppuccin").setup({
     mason = true,
     which_key = true,
   },
-  transparent_background = true,
+  transparent_background = not vim.g.neovide,
 })
 
 vim.cmd("colorscheme catppuccin-nvim")
