@@ -156,8 +156,9 @@ keymap("<leader>ct", function()
   vim.api.nvim_win_set_width(0, calculateWindowWidth())
   vim.cmd("startinsert")
 end, { desc = "open [t]erminal in vertical split" })
--- Yank file name to unnamedplus register.
-keymap("<leader>cy", function() vim.fn.setreg("+", vim.fn.expand("%:t:r")) end, { desc = "[y]ank file name" })
+-- Yank relative file path or file name to unnamedplus register.
+keymap("<leader>cy", function() vim.fn.setreg("+", vim.fn.expand("%")) end, { desc = "[y]ank relative file path" })
+keymap("<leader>cY", function() vim.fn.setreg("+", vim.fn.expand("%:t:r")) end, { desc = "[y]ank file name" })
 
 -- Diagnostic Config & Keymaps.
 -- See :help vim.diagnostic.Opts.
