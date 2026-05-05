@@ -9,9 +9,7 @@ packAdd({
 })
 
 local keymap = require("utils.keymap")
-keymap("<leader>gg", function() vim.cmd("Git") end, { desc = "[g]it status" })
-keymap("<leader>gt", function() vim.cmd("vertical Gdiffsplit!") end, { desc = "[t]hree-way diff view" })
-keymap("<leader>gd", function() vim.cmd("Gdiffsplit") end, { desc = "two-way [d]iff view" })
+keymap("<leader>gb", function() vim.cmd("Git blame") end, { desc = "git [b]lame" })
 keymap("<leader>gD", function()
   local verticalGdiffsplit = function(branch)
     if not branch or branch == "" then return end
@@ -19,5 +17,7 @@ keymap("<leader>gD", function()
   end
   vim.ui.input({ prompt = "Branch: " }, verticalGdiffsplit)
 end, { desc = "two-way [d]iff view (choose branch to diff againts)" })
+keymap("<leader>gd", function() vim.cmd("Gdiffsplit") end, { desc = "two-way [d]iff view" })
+keymap("<leader>gg", function() vim.cmd("Git") end, { desc = "[g]it status" })
 keymap("<leader>gs", function() vim.cmd("Gwrite!") end, { desc = "[s]tage file" })
-keymap("<leader>gb", function() vim.cmd("Git blame") end, { desc = "git [b]lame" })
+keymap("<leader>gt", function() vim.cmd("vertical Gdiffsplit!") end, { desc = "[t]hree-way diff view" })

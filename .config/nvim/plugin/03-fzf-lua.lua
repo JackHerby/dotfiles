@@ -55,9 +55,7 @@ keymap(
 keymap(
   "<leader>sj",
   function()
-    fzf.live_grep({
-      rg_opts = "--type=js --type=ts --column --line-number --no-heading --color=always --smart-case",
-    })
+    fzf.live_grep({ rg_opts = "--type=js --type=ts --column --line-number --no-heading --color=always --smart-case" })
   end,
   { desc = "search by grep in [J]avaScript files" }
 )

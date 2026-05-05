@@ -134,13 +134,18 @@ pcall(function() require("vim._core.ui2").enable() end)
 -- See `:help vim.keymap.set()`.
 local keymap = require("utils.keymap")
 
--- Convenient keymaps.
--- Trigger lint command provided by ESLint language server.
-keymap("<leader>ce", function() vim.cmd("LspEslintFixAll") end, { desc = "[E]SLint fix all" })
--- Change all occurrences of the word under the cursor.
-keymap("<leader>cr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "[r]ename all occurances" })
--- Open URL under cursor.
-keymap("<leader>cu", function()
+-- Random, convenient keymaps.
+keymap("<leader>ke", function() vim.cmd("LspEslintFixAll") end, { desc = "[E]SLint fix all" })
+keymap("<leader>kr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "[r]ename all occurances" })
+keymap("<leader>ks", function() vim.cmd("StylelintFix") end, { desc = "style[l]int fix all" })
+keymap("<leader>kt", function()
+  vim.cmd.vnew()
+  vim.cmd.term()
+  local calculateWindowWidth = function() return math.floor(vim.o.columns * 0.4) end
+  vim.api.nvim_win_set_width(0, calculateWindowWidth())
+  vim.cmd("startinsert")
+end, { desc = "open [t]erminal in vertical split" })
+keymap("<leader>ku", function()
   local url = vim.fn.expand("<cWORD>")
   if url:match("^https?://") then
     vim.fn.jobstart({ "xdg-open", url }, { detach = true })
@@ -148,17 +153,8 @@ keymap("<leader>cu", function()
     vim.notify("No valid URL found under cursor", vim.log.levels.WARN)
   end
 end, { desc = "Open [U]RL under the cursor" })
--- Open terminal mode window in vertical split.
-keymap("<leader>ct", function()
-  vim.cmd.vnew()
-  vim.cmd.term()
-  local calculateWindowWidth = function() return math.floor(vim.o.columns * 0.4) end
-  vim.api.nvim_win_set_width(0, calculateWindowWidth())
-  vim.cmd("startinsert")
-end, { desc = "open [t]erminal in vertical split" })
--- Yank relative file path or file name to unnamedplus register.
-keymap("<leader>cy", function() vim.fn.setreg("+", vim.fn.expand("%")) end, { desc = "[y]ank relative file path" })
-keymap("<leader>cY", function() vim.fn.setreg("+", vim.fn.expand("%:t:r")) end, { desc = "[y]ank file name" })
+keymap("<leader>ky", function() vim.fn.setreg("+", vim.fn.expand("%")) end, { desc = "[y]ank relative file path" })
+keymap("<leader>kY", function() vim.fn.setreg("+", vim.fn.expand("%:t:r")) end, { desc = "[y]ank file name" })
 
 -- Diagnostic Config & Keymaps.
 -- See :help vim.diagnostic.Opts.
@@ -174,11 +170,6 @@ vim.diagnostic.config({
 })
 -- Diagnostic list.
 keymap("<leader>ll", vim.diagnostic.setloclist, { desc = "open diagnostic [L]ocation list" })
--- Location list keymaps.
-keymap("<leader>lo", function() vim.cmd("lopen") end, { desc = "[o]pen Location list" })
-keymap("<leader>lc", function() vim.cmd("lclose") end, { desc = "[c]lose Location list" })
-keymap("<leader>lf", function() vim.cmd("lfirst") end, { desc = "[f]irst location item" })
-keymap("<leader>la", function() vim.cmd("llast") end, { desc = "l[a]st location item" })
 
 -- Vim.pack keymaps.
 keymap("<leader>pd", function()
@@ -197,18 +188,12 @@ keymap("<leader>pl", function()
 end, { desc = "[l]ist packages" })
 keymap("<leader>pu", function() vim.pack.update() end, { desc = "[u]pdate packages" })
 
--- Quickfix list keymaps.
-keymap("<leader>qo", function() vim.cmd("copen") end, { desc = "[o]pen Quickfix list" })
-keymap("<leader>qc", function() vim.cmd("cclose") end, { desc = "[c]lose Quickfix list" })
-keymap("<leader>qf", function() vim.cmd("cfirst") end, { desc = "[f]irst quickfix item" })
-keymap("<leader>qa", function() vim.cmd("clast") end, { desc = "l[a]st quickfix item" })
-
 -- TIP: Disable arrow keys in normal mode.
 -- Utilize arrows to resize windows in normal mode.
+keymap("<down>", function() vim.cmd("resize -1") end, { desc = "resize window down" })
 keymap("<left>", function() vim.cmd("vertical resize -1") end, { desc = "resize window left" })
 keymap("<right>", function() vim.cmd("vertical resize +1") end, { desc = "resize window right" })
 keymap("<up>", function() vim.cmd("resize +1") end, { desc = "resize window up" })
-keymap("<down>", function() vim.cmd("resize -1") end, { desc = "resize window down" })
 
 -- Keybinds to make split navigation easier.
 keymap("<C-h>", "<C-w><C-h>", { desc = "move focus to the left window" })
@@ -219,24 +204,24 @@ keymap("<C-k>", "<C-w><C-k>", { desc = "move focus to the upper window" })
 -- Move select.
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes.
 keymap("<C-M-h>", "<C-w>H", { desc = "move window to the left" })
-keymap("<C-M-l>", "<C-w>L", { desc = "move window to the right" })
 keymap("<C-M-j>", "<C-w>J", { desc = "move window to the lower" })
 keymap("<C-M-k>", "<C-w>K", { desc = "move window to the upper" })
+keymap("<C-M-l>", "<C-w>L", { desc = "move window to the right" })
 
 -- Exit terminal mode.
 keymap("<C-Esc>", "<C-\\><C-n>", { desc = "exit terminal mode" }, "t")
 
 -- JavaScript/Typescript quality of life mappings.
+keymap("<C-'>", "() => ", nil, "i")
 keymap("<C-,>", "()", nil, "i")
 keymap("<C-.>", "=>", nil, "i")
 keymap("<C-/>", "->", nil, "i")
-keymap("<C-'>", "() => ", nil, "i")
 
 if vim.g.neovide then
   -- Increase/decrease font size.
-  keymap("<C-=>", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1<CR>", { silent = true })
   keymap("<C-->", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1<CR>", { silent = true })
   keymap("<C-0>", ":lua vim.g.neovide_scale_factor = 1<CR>", { silent = true })
+  keymap("<C-=>", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1<CR>", { silent = true })
 end
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode.

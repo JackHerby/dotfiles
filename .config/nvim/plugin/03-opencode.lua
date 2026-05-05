@@ -31,8 +31,6 @@ keymap(
   { desc = "half page down" },
   { "n", "x" }
 )
-keymap("+", "<C-a>", { desc = "increment", noremap = true })
-keymap("-", "<C-x>", { desc = "decrement", noremap = true })
 keymap(
   "<leader>oa",
   function() require("opencode").ask("", { submit = true }) end,
@@ -62,3 +60,5 @@ keymap(
   { desc = "execute Opencode [s]elected action" },
   { "n", "v", "x" }
 )
+keymap("+", "<C-a>", { desc = "increment", noremap = true })
+keymap("-", "<C-x>", { desc = "decrement", noremap = true })
