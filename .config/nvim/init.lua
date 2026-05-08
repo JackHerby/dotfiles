@@ -251,9 +251,9 @@ nvimCreateAutocmd("TermOpen", {
 
 nvimCreateAutocmd("FileType", {
   callback = function() vim.opt_local.spell = false end,
-  desc = "Disable spellcheck in quickfix/location list.",
-  group = vim.api.nvim_create_augroup("custom-qf-loclist", { clear = true }),
-  pattern = { "qf", "nvim-pack", "checkhealth" },
+  desc = "Disable spellcheck in selected file types.",
+  group = vim.api.nvim_create_augroup("custom-disable-spellcheck", { clear = true }),
+  pattern = { "checkhealth", "git", "nvim-pack", "qf" },
 })
 
 -- Must be defined before the very first vim.pack.add() call.
