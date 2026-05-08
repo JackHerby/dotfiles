@@ -17,6 +17,7 @@ require("which-key").setup({
     { "<leader>b", group = "Mini [B]ufremove" },
     { "<leader>c", group = "[C]onform formatting" },
     { "<leader>d", group = "[D]ebug Adapter Protocol" },
+    { "<leader>e", group = "Nvim Tr[e]e" },
     { "<leader>g", group = "Fugitive [g]it" },
     { "<leader>h", group = "[H]arpoon" },
     { "<leader>k", group = "random [k]eymaps" },
