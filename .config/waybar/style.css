@@ -1,13 +1,28 @@
+/* vim:fileencoding=utf-8:foldmethod=marker */
 * {
   border: none;
-  border-radius: 0.5rem;
-  font-family: "0xProto Nerd Font Mono";
-  font-size: 1rem;
+  border-radius: 8;
+  font-family: "JetbrainsMono Nerd Font";
+  font-size: 18px;
+  min-height: 20px;
 }
 
-#waybar {
+window#waybar {
   background: transparent;
-  color: @text;
+}
+
+window#waybar.hidden {
+  opacity: 0.2;
+}
+
+#window {
+  margin-top: 6px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 10px;
+  transition: none;
+  color: transparent;
+  background: transparent;
 }
 
 #workspaces {
@@ -94,74 +109,8 @@
 #custom-power {
   background: #fb4934;
   margin-right: 8px;
->>>>>>> parent of 2db55f7 (feat: Catppuccin all the way, baby!)
 }
 
 #custom-trayicon {
-  font-size: 2rem;
-}
-
-#window,
-#workspaces,
-#custom-trayicon {
-  margin-top: 0.5rem;
-}
-
-#workspaces button {
-  color: @lavender;
-}
-
-#workspaces button.active {
-  color: @sky;
-}
-
-#workspaces button:hover {
-  color: @sapphire;
-}
-
-button {
-  background: transparent;
-}
-
-#backlight,
-#battery,
-#cava,
-#clock,
-#custom-lock,
-#custom-music,
-#custom-power,
-#language,
-#network,
-#pulseaudio,
-#tray {
-  background-color: @surface0;
-  padding: 0.5rem 1rem;
-  margin-right: 0.5rem;
-  margin-top: 0.5rem;
-}
-
-#clock {
-  color: @blue;
-}
-
-#backlight,
-#battery {
-}
-
-#pulseaudio {
-  color: @maroon;
-}
-
-#language {
-  color: @lavender;
-}
-
-#custom-power {
-  color: @red;
-  font-size: 1.5rem;
-  padding: 0 1rem;
-}
-
-#workspaces button.urgent {
-  color: @red;
+  margin-left: 8px;
 }
