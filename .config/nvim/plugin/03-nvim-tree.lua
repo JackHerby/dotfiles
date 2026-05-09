@@ -24,13 +24,13 @@ require("nvim-tree").setup({
 })
 
 local keymap = require("utils.keymap")
-keymap("<leader>ec", function() vim.cmd("NvimTreeCollapse") end, { desc = "[c]ollapse nvim-tree recursively" })
-keymap("<leader>ee", function() vim.cmd("NvimTreeToggle") end, { desc = "[t]oggle Nvim Tree" })
+keymap("<leader>tc", function() vim.cmd("NvimTreeCollapse") end, { desc = "[c]ollapse nvim-tree recursively" })
+keymap("<leader>te", function() vim.cmd("NvimTreeToggle") end, { desc = "[t]oggle Nvim Tree" })
 keymap(
-  "<leader>ef",
+  "<leader>tf",
   function() vim.cmd("NvimTreeFindFile") end,
   { desc = "move cursor to current [f]ile in Nvim Tree" }
 )
-keymap("<leader>eg", function() vim.cmd("NvimTreeFindFileToggle") end, { desc = "find file or to[g]gle Nvim Tree" })
-keymap("<leader>er", function() vim.cmd("NvimTreeRefresh") end, { desc = "[r]efresh Nvim Tree" })
-keymap("<leader>es", function() vim.cmd("NvimTreeFocus") end, { desc = "Nvim Tree focu[s]" })
+keymap("<leader>tg", function() vim.cmd("NvimTreeFindFileToggle") end, { desc = "find file or to[g]gle Nvim Tree" })
+keymap("<leader>tr", function() vim.cmd("NvimTreeRefresh") end, { desc = "[r]efresh Nvim Tree" })
+keymap("<leader>ts", function() vim.cmd("NvimTreeFocus") end, { desc = "Nvim Tree focu[s]" })

@@ -25,17 +25,17 @@ end
 -- Add ts-plugin as a source.
 local keymap = require("utils.keymap")
 keymap(
-  "<leader>ta",
+  "<leader>ea",
   function() require("pretty-ts-errors").open_all_errors() end,
   { desc = "show [a]ll TypeScript errors" }
 )
 keymap(
-  "<leader>te",
+  "<leader>ee",
   function() require("pretty-ts-errors").show_formatted_error() end,
   { desc = "show TypeScript [e]rror" }
 )
 keymap(
-  "<leader>tt",
+  "<leader>et",
   function() require("pretty-ts-errors").toggle_auto_open() end,
   { desc = "[t]oggle TypeScript error auto-display" }
 )
