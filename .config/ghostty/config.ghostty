@@ -2,6 +2,7 @@
 config-file = ./auto/theme.ghostty
 
 # general
+background-opacity = 0.98
 cursor-style = block
 cursor-style-blink = false
 custom-shader = ./shaders/cursor-wrap.glsl
