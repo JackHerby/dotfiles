@@ -1,5 +1,3 @@
-@theme "./themes/catppuccin-default.rasi"
-
 configuration {
 /*	modes: "window,drun,run,ssh";*/
 /*	font: "mono 12";*/
@@ -168,3 +166,5 @@ configuration {
       sorting-method:    "name";
   }
 }
+
+@theme "/usr/share/rofi/themes/gruvbox-dark-hard.rasi"
