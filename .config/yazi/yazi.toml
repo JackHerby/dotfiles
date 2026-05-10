@@ -11,5 +11,5 @@ prepend_rules = [
     { mime = "inode/directory", use = "open_dir" }
 ]
 append_rules = [
-    { name = "*", use = "edit" }
+    { url = "*", use = "edit" }
 ]
