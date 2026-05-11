@@ -73,4 +73,4 @@ require("treesitter-context").setup({
 })
 
 local keymap = require("utils.keymap")
-keymap("[c", function() require("treesitter-context").go_to_context(vim.v.count1) end, { silent = true })
+keymap("[x", function() require("treesitter-context").go_to_context(vim.v.count1) end, { silent = true })
