@@ -23,6 +23,5 @@ require("which-key").setup({
     { "<leader>o", group = "[O]pencode" },
     { "<leader>p", group = "vim.[p]ack" },
     { "<leader>s", group = "fzf [s]earch" },
-    { "<leader>t", group = "Nvim [T]ree" },
   },
 })
