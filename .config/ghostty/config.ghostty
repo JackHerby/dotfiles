@@ -14,22 +14,10 @@ tab-inherit-working-directory = false
 window-inherit-working-directory = false
 working-directory = home
 
-# unbinds
-keybind = ctrl+,=unbind
-keybind = ctrl+shift+j=unbind
-keybind = shift+arrow_down=unbind
-keybind = shift+arrow_left=unbind
-keybind = shift+arrow_right=unbind
-keybind = shift+arrow_up=unbind
-
 # keybinds
-keybind = alt+shift+arrow_down=adjust_selection:down
-keybind = alt+shift+arrow_left=adjust_selection:left
-keybind = alt+shift+arrow_right=adjust_selection:right
-keybind = alt+shift+arrow_up=adjust_selection:up
+keybind = ctrl+,=unbind
 keybind = ctrl+shift+alt+[=move_tab:-1
 keybind = ctrl+shift+alt+]=move_tab:1
 keybind = ctrl+shift+alt+t=prompt_tab_title
+keybind = ctrl+shift+j=unbind
 keybind = ctrl+shift+w=close_surface
-keybind = shift+arrow_down=scroll_page_lines:1
-keybind = shift+arrow_up=scroll_page_lines:-1
