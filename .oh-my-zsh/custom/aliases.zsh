@@ -4,11 +4,11 @@ alias cdghostty='cd ~/.config/ghostty'
 alias cdkitty='cd ~/.config/kitty'
 alias cdnvim='cd ~/.config/nvim'
 alias cdoc='cd ~/.config/opencode'
-alias cdomz='cd /usr/share/oh-my-zsh/'
+alias cdomz='cd ~/.oh-my-zsh'
 alias cn='clear && neofetch'
 alias df='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
-alias dfnorm='df config status.showUntrackedFiles normal'
 alias dfno='df config status.showUntrackedFiles no'
+alias dfnorm='df config status.showUntrackedFiles normal'
 alias nf='neovide --fork'
 alias nomza='nvim ~/.oh-my-zsh/custom/aliases.zsh'
 alias nzh='nvim ~/.zsh_history'
@@ -26,18 +26,35 @@ hg() {
     history | grep "$1" | less
 }
 
-# Docker
-alias dcup='docker compose up'
-alias dcupbuild='docker compose up --build'
-alias dcdown='docker compose down'
-alias dcbuild='docker compose build'
-alias dclogs='docker compose logs'
-alias dcrestart='docker compose restart'
-
-# Recovered work aliases and helpers from live shell state.
-DIVIDER_MAIN='================================================================================'
-DIVIDER_SUB='--------------------------------------------------------------------------------'
+#Bonprix
 CHECK_RUNPY='if [ ! -f "run.py" ]; then echo "Error: run.py not found in current directory" >&2; return 1; fi'
+service_down() {
+    eval "${CHECK_RUNPY}"
+    python run.py "$1" down
+}
+
+service_logs() {
+    eval "${CHECK_RUNPY}"
+    if [ -n "$2" ]; then
+        python run.py "$1" logs "$2"
+    else
+        python run.py "$1" logs
+    fi
+}
+
+service_restart() {
+    eval "${CHECK_RUNPY}"
+    if [ -n "$2" ]; then
+        python run.py "$1" restart "$2"
+    else
+        python run.py "$1" restart
+    fi
+}
+
+service_up() {
+    eval "${CHECK_RUNPY}"
+    python run.py "$1" up
+}
 
 alias cdfrc='cd ~/Projects/fr/cms/'
 alias cdfrct='cd ~/Projects/fr/cms/tools/'
@@ -53,6 +70,7 @@ alias cdplw='cd ~/Projects/pl/bonprix-www/'
 alias cdplwb='cd ~/Projects/pl/bonprix-www/base/'
 alias cdplws='cd ~/Projects/pl/bonprix-www/ssr/'
 alias cdplwt='cd ~/Projects/pl/bonprix-www/tools/'
+
 alias dbefl='service_down dev/befl'
 alias dbewa='service_down dev/bewa'
 alias dcms='service_down dev/cms'
@@ -61,18 +79,11 @@ alias dfr='service_down dev/fr'
 alias dhu='service_down dev/hu'
 alias dnl='service_down dev/nl'
 alias dpl='service_down dev/pl'
-alias dpsa='docker ps -a --format "{{.Names}}"'
-alias dpsbefl='docker ps -f "name=bonprix-dev-befl-nginx-ssr"'
-alias dpsbewa='docker ps -f "name=bonprix-dev-bewa-nginx-ssr"'
-alias dpscz='docker ps -f "name=bonprix-dev-cz-nginx-ssr"'
-alias dpsfr='docker ps -f "name=bonprix-dev-fr-nginx-ssr"'
-alias dpshu='docker ps -f "name=bonprix-dev-hu-nginx-ssr"'
-alias dpsnl='docker ps -f "name=bonprix-dev-nl-nginx-ssr"'
-alias dpspl='docker ps -f "name=bonprix-dev-pl-nginx-ssr"'
-alias dpsro='docker ps -f "name=bonprix-dev-ro-nginx-ssr"'
-alias dpssk='docker ps -f "name=bonprix-dev-sk-nginx-ssr"'
 alias dro='service_down dev/ro'
 alias dsk='service_down dev/sk'
+alias dtc='service_down tools/connection'
+alias dua='service_down dev/ua'
+
 alias dstackbefl='dbefl && dtc'
 alias dstackbeflp='dbeflp && dtc'
 alias dstackbewa='dbewa && dtc'
@@ -94,8 +105,7 @@ alias dstacksk='dsk && dtc'
 alias dstackskp='dskp && dtc'
 alias dstackua='dua && dtc'
 alias dstackuap='duap && dtc'
-alias dtc='service_down tools/connection'
-alias dua='service_down dev/ua'
+
 alias lbefl='service_logs dev/befl'
 alias lbeflp='service_logs dev/befl/local'
 alias lbewa='service_logs dev/bewa'
@@ -118,7 +128,7 @@ alias lskp='service_logs dev/sk/local'
 alias ltc='service_logs tools/connection'
 alias lua='service_logs dev/ua'
 alias luap='service_logs dev/ua/local'
-alias mongotunnel='~/db_tunnels.sh'
+
 alias rbefl='service_restart dev/befl'
 alias rbeflp='service_restart dev/befl/local'
 alias rbewa='service_restart dev/bewa'
@@ -141,6 +151,7 @@ alias rskp='service_restart dev/sk/local'
 alias rtc='service_restart tools/connection'
 alias rua='service_restart dev/ua'
 alias ruap='service_restart dev/ua/local'
+
 alias ubefl='service_up dev/befl'
 alias ubeflp='service_up dev/befl/local'
 alias ubewa='service_up dev/bewa'
@@ -163,13 +174,57 @@ alias uskp='service_up dev/sk/local'
 alias utc='service_up tools/connection'
 alias uua='service_up dev/ua'
 alias uuap='service_up dev/ua/local'
+
+# Mongo DB
+alias mongotunnel='~/db_tunnels.sh'
 alias zdt='zsh ~/db_tunnels.sh'
+
+# Git
+DIVIDER_MAIN='================================================================================'
+DIVIDER_SUB='--------------------------------------------------------------------------------'
 
 print_section() {
     echo "${DIVIDER_MAIN}"
     echo "$1"
     echo "${DIVIDER_MAIN}"
     echo
+}
+
+gbprune() {
+    if ! git rev-parse --git-dir > /dev/null 2>&1; then
+        echo "Error: Not in a git repository" >&2
+        return 1
+    fi
+
+    git fetch --prune >/dev/null 2>&1 || {
+        echo "Error: Failed to fetch and prune remotes" >&2
+        return 1
+    }
+
+    local branches_to_delete
+    branches_to_delete=$(git for-each-ref --format='%(refname:short) %(upstream:track)' refs/heads | awk '$2 == "[gone]" { print $1 }')
+
+    if [ -z "${branches_to_delete}" ]; then
+        echo "No local branches to delete"
+        return 0
+    fi
+
+    echo "Found branches without upstream:"
+    echo "${branches_to_delete}" | while IFS= read -r branch; do
+        [ -n "${branch}" ] || continue
+        echo "  - ${branch}"
+    done
+
+    echo "${branches_to_delete}" | while IFS= read -r branch; do
+        [ -n "${branch}" ] || continue
+        if git branch -d "${branch}" 2>/dev/null; then
+            echo "  [deleted] ${branch}"
+        elif git branch -D "${branch}" 2>/dev/null; then
+            echo "  [force deleted] ${branch}"
+        else
+            echo "  [failed] ${branch}" >&2
+        fi
+    done
 }
 
 gsbprune() {
@@ -181,7 +236,7 @@ gsbprune() {
     gbprune
     echo
     print_section "Cleaning up submodules"
-    git submodule foreach --quiet '
+    git submodule foreach --recursive --quiet '
   echo "'"$DIVIDER_SUB"'"
   echo "Processing submodule: $name"
   echo "'"$DIVIDER_SUB"'"
@@ -190,7 +245,7 @@ gsbprune() {
   git fetch --prune >/dev/null 2>&1
 
   # Find branches without upstream
-  branches_to_delete=$(git branch -vv | grep ": gone]" | awk "{print \$1}")
+  branches_to_delete=$(git for-each-ref --format="%(refname:short) %(upstream:track)" refs/heads | awk "\$2 == \"[gone]\" { print \$1 }")
 
   if [ -z "$branches_to_delete" ]; then
     echo "No local branches to delete"
@@ -202,11 +257,11 @@ gsbprune() {
 
     echo "$branches_to_delete" | while read branch; do
       if git branch -d "$branch" 2>/dev/null; then
-        echo "  ✓ Deleted $branch"
+        echo "  [deleted] $branch"
       elif git branch -D "$branch" 2>/dev/null; then
-        echo "  ✓ Force deleted $branch"
+        echo "  [force deleted] $branch"
       else
-        echo "  ✗ Failed to delete $branch" >&2
+        echo "  [failed] $branch" >&2
       fi
     done
   fi
@@ -236,7 +291,7 @@ gscheckout() {
         echo
     fi
     print_section "Checking out '$target_branch' in submodules..."
-    git submodule foreach --quiet "
+    git submodule foreach --recursive --quiet "
   echo \"$DIVIDER_SUB\"
   echo \"Checking out $target_branch in submodule: \$name\"
   echo \"$DIVIDER_SUB\"
@@ -274,7 +329,7 @@ gsdel() {
     fi
     echo
     print_section "Deleting branch '$target_branch' in submodules..."
-    git submodule foreach --quiet "
+    git submodule foreach --recursive --quiet "
   echo \"$DIVIDER_SUB\"
   echo \"Processing submodule: \$name\"
   echo \"$DIVIDER_SUB\"
@@ -296,7 +351,7 @@ gspull() {
     git pull
     echo
     print_section "Pulling submodules..."
-    git submodule foreach "git pull && echo '$DIVIDER_SUB'"
+    git submodule foreach --recursive "git pull && echo '$DIVIDER_SUB'"
 }
 
 gsrestore() {
@@ -308,7 +363,7 @@ gsrestore() {
     git restore . && git clean -fd
     echo
     print_section "Restoring changes in submodules..."
-    git submodule foreach --quiet '
+    git submodule foreach --recursive --quiet '
   echo "'"$DIVIDER_SUB"'"
   echo "Restoring in submodule: $name"
   echo "'"$DIVIDER_SUB"'"
@@ -326,7 +381,7 @@ gsrestorestaged() {
     git restore --staged . && git clean -fd
     echo
     print_section "Restoring changes in submodules..."
-    git submodule foreach --quiet '
+    git submodule foreach --recursive --quiet '
   echo "'"$DIVIDER_SUB"'"
   echo "Restoring in submodule: $name"
   echo "'"$DIVIDER_SUB"'"
@@ -344,7 +399,7 @@ gsstatus() {
     git status
     echo
     print_section "Status of submodules"
-    git submodule foreach --quiet '
+    git submodule foreach --recursive --quiet '
   echo "'"$DIVIDER_SUB"'"
   echo "Submodule: $name"
   echo "'"$DIVIDER_SUB"'"
@@ -362,7 +417,7 @@ gstprune() {
     git fetch --prune origin "+refs/tags/*:refs/tags/*"
     echo
     print_section "Pruning tags in submodules"
-    git submodule foreach --quiet '
+    git submodule foreach --recursive --quiet '
   echo "'"$DIVIDER_SUB"'"
   echo "Processing submodule: $name"
   echo "'"$DIVIDER_SUB"'"
@@ -372,30 +427,20 @@ gstprune() {
     echo "Submodule tag cleanup complete!"
 }
 
-service_down() {
-    eval "${CHECK_RUNPY}"
-    python run.py "$1" down
-}
-
-service_logs() {
-    eval "${CHECK_RUNPY}"
-    if [ -n "$2" ]; then
-        python run.py "$1" logs "$2"
-    else
-        python run.py "$1" logs
-    fi
-}
-
-service_restart() {
-    eval "${CHECK_RUNPY}"
-    if [ -n "$2" ]; then
-        python run.py "$1" restart "$2"
-    else
-        python run.py "$1" restart
-    fi
-}
-
-service_up() {
-    eval "${CHECK_RUNPY}"
-    python run.py "$1" up
-}
+# Docker
+alias dcbuild='docker compose build'
+alias dcdown='docker compose down'
+alias dclogs='docker compose logs'
+alias dcrestart='docker compose restart'
+alias dcup='docker compose up'
+alias dcupbuild='docker compose up --build'
+alias dpsa='docker ps -a --format "{{.Names}}"'
+alias dpsbefl='docker ps -f "name=bonprix-dev-befl-nginx-ssr"'
+alias dpsbewa='docker ps -f "name=bonprix-dev-bewa-nginx-ssr"'
+alias dpscz='docker ps -f "name=bonprix-dev-cz-nginx-ssr"'
+alias dpsfr='docker ps -f "name=bonprix-dev-fr-nginx-ssr"'
+alias dpshu='docker ps -f "name=bonprix-dev-hu-nginx-ssr"'
+alias dpsnl='docker ps -f "name=bonprix-dev-nl-nginx-ssr"'
+alias dpspl='docker ps -f "name=bonprix-dev-pl-nginx-ssr"'
+alias dpsro='docker ps -f "name=bonprix-dev-ro-nginx-ssr"'
+alias dpssk='docker ps -f "name=bonprix-dev-sk-nginx-ssr"'
