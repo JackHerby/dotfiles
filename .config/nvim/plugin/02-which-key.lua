@@ -20,7 +20,6 @@ require("which-key").setup({
     { "<leader>e", group = "Pretty TS [E]rrors" },
     { "<leader>h", group = "[H]arpoon" },
     { "<leader>k", group = "random [k]eymaps" },
-    { "<leader>o", group = "[O]pencode" },
     { "<leader>p", group = "vim.[p]ack" },
     { "<leader>s", group = "fzf [s]earch" },
     { "<leader>t", group = "Nvim [T]ree" },
