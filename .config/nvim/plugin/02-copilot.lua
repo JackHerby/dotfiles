@@ -23,6 +23,14 @@ nvimCreateAutocmd("InsertEnter", {
   once = true,
 })
 
+-- Auto-command to customize chat buffer behavior
+nvimCreateAutocmd("BufEnter", {
+  callback = function()
+    vim.opt_local.conceallevel = 0
+  end,
+  pattern = "copilot-chat",
+})
+
 local keymap = require("utils.keymap")
 keymap("<leader>cc", function() vim.cmd("CopilotChat") end, { desc = "Open [c]hat with optional input." }, { "n", "v" })
 keymap("<leader>cm", function() vim.cmd("CopilotChatModels") end, { desc = "View/Select available [m]odels." })

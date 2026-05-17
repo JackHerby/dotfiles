@@ -64,6 +64,9 @@ nvimCreateAutocmd("InsertEnter", {
       -- The `:?:?` part makes it also work on Rust generics like `some_func::<T>()`.
       cond.before_regex("%a+:?:?$", 3)
     ):with_move(function(opts) return opts.char == ">" end))
+
+    -- Auto-pair markdown code fences in Copilot Chat.
+    npairs.add_rule(Rule("```", "```", "copilot-chat"):with_move(cond.none()))
   end,
   once = true,
 })
