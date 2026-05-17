@@ -32,20 +32,20 @@ nvimCreateAutocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
   callback = function(event)
     local fzf = require("fzf-lua")
-    keymap("<leader>aa", vim.lsp.buf.code_action, { desc = "goto code [a]ction" }, { "n", "x" })
-    keymap("<leader>ad", function() fzf.lsp_definitions() end, { desc = "goto [d]efinition" })
-    keymap("<leader>aD", vim.lsp.buf.declaration, { desc = "goto [d]eclaration" })
+    keymap("<leader>aa", vim.lsp.buf.code_action, { desc = "Goto code [a]ction." }, { "n", "x" })
+    keymap("<leader>ad", function() fzf.lsp_definitions() end, { desc = "Goto [d]efinition." })
+    keymap("<leader>aD", vim.lsp.buf.declaration, { desc = "Goto [d]eclaration." })
     keymap(
       "<leader>af",
       function() vim.diagnostic.open_float({ scope = "cursor", source = true, width = 128 }) end,
-      { desc = "open [f]loating window for diagnostics" }
+      { desc = "Open [f]loating window for diagnostics." }
     )
-    keymap("<leader>ai", function() fzf.lsp_implementations() end, { desc = "goto [i]mplementation" })
-    keymap("<leader>an", vim.lsp.buf.rename, { desc = "re[n]ame symbol" })
-    keymap("<leader>aO", function() fzf.lsp_document_symbols() end, { desc = "open document symb[o]ls" })
-    keymap("<leader>ar", function() fzf.lsp_references() end, { desc = "goto [r]eferences" })
-    keymap("<leader>at", function() fzf.lsp_typedefs() end, { desc = "goto [t]ype definition" })
-    keymap("<leader>aW", function() fzf.lsp_live_workspace_symbols() end, { desc = "open [w]orkspace symbols" })
+    keymap("<leader>ai", function() fzf.lsp_implementations() end, { desc = "Goto [i]mplementation." })
+    keymap("<leader>an", vim.lsp.buf.rename, { desc = "Re[n]ame symbol." })
+    keymap("<leader>aO", function() fzf.lsp_document_symbols() end, { desc = "Open document symb[o]ls." })
+    keymap("<leader>ar", function() fzf.lsp_references() end, { desc = "Goto [r]eferences." })
+    keymap("<leader>at", function() fzf.lsp_typedefs() end, { desc = "Goto [t]ype definition." })
+    keymap("<leader>aW", function() fzf.lsp_live_workspace_symbols() end, { desc = "Open [w]orkspace symbols." })
 
     -- The following two autocommands are used to highlight references of the
     -- word under your cursor when your cursor rests there for a little while.
@@ -82,7 +82,7 @@ nvimCreateAutocmd("LspAttach", {
       keymap(
         "<leader>ah",
         function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf })) end,
-        { desc = "toggle inlay [h]ints" }
+        { desc = "Toggle inlay [h]ints." }
       )
     end
   end,
@@ -146,6 +146,7 @@ require("mason-lspconfig").setup({
 local ensureInstalled = vim.tbl_keys(servers or {})
 vim.list_extend(ensureInstalled, {
   "beautysh",
+  "copilot",
   "eslint",
   "js-debug-adapter",
   "markdownlint",
@@ -163,7 +164,8 @@ for name, server in pairs(servers) do
   vim.lsp.enable(name)
 end
 
-vim.api.nvim_create_user_command(
+local nvimCreateUserCommand = require("utils.nvim-create-user-command")
+nvimCreateUserCommand(
   "StylelintFixAll",
   function() vim.lsp.buf.format({ name = "stylelint_lsp", async = false }) end,
   { desc = "Fix stylelint issues via LSP formatting." }

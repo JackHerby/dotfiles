@@ -11,9 +11,9 @@ require("mini.ai").setup({ n_lines = 500 })
 local miniBufremove = require("mini.bufremove")
 miniBufremove.setup()
 local keymap = require("utils.keymap")
-keymap("<leader>bd", miniBufremove.delete, { desc = "[d]elete buffer" })
-keymap("<leader>bu", miniBufremove.unshow, { desc = "[u]nshow buffer" })
-keymap("<leader>bw", miniBufremove.wipeout, { desc = "[w]ipeout buffer" })
+keymap("<leader>bd", miniBufremove.delete, { desc = "[D]elete buffer." })
+keymap("<leader>bu", miniBufremove.unshow, { desc = "[U]nshow buffer." })
+keymap("<leader>bw", miniBufremove.wipeout, { desc = "[W]ipeout buffer." })
 
 require("mini.diff").setup({
   view = {

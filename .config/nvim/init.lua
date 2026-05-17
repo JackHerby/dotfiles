@@ -131,16 +131,16 @@ pcall(function() require("vim._core.ui2").enable() end)
 local keymap = require("utils.keymap")
 
 -- Random, convenient keymaps.
-keymap("<leader>ke", function() vim.cmd("LspEslintFixAll") end, { desc = "[E]SLint fix all" })
-keymap("<leader>kr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "[r]ename all occurances" })
-keymap("<leader>ks", function() vim.cmd("StylelintFix") end, { desc = "style[l]int fix all" })
+keymap("<leader>ke", function() vim.cmd("LspEslintFixAll") end, { desc = "[E]SLint fix all." })
+keymap("<leader>kr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "[R]ename all occurances." })
+keymap("<leader>ks", function() vim.cmd("StylelintFix") end, { desc = "Style[l]int fix all." })
 keymap("<leader>kt", function()
   vim.cmd.vnew()
   vim.cmd.term()
   local calculateWindowWidth = function() return math.floor(vim.o.columns * 0.4) end
   vim.api.nvim_win_set_width(0, calculateWindowWidth())
   vim.cmd("startinsert")
-end, { desc = "open [t]erminal in vertical split" })
+end, { desc = "Open [t]erminal in vertical split." })
 keymap("<leader>ku", function()
   local url = vim.fn.expand("<cWORD>")
   if url:match("^https?://") then
@@ -148,9 +148,9 @@ keymap("<leader>ku", function()
   else
     vim.notify("No valid URL found under cursor", vim.log.levels.WARN)
   end
-end, { desc = "Open [U]RL under the cursor" })
-keymap("<leader>ky", function() vim.fn.setreg("+", vim.fn.expand("%")) end, { desc = "[y]ank relative file path" })
-keymap("<leader>kY", function() vim.fn.setreg("+", vim.fn.expand("%:t:r")) end, { desc = "[y]ank file name" })
+end, { desc = "Open [U]RL under the cursor." })
+keymap("<leader>ky", function() vim.fn.setreg("+", vim.fn.expand("%")) end, { desc = "[Y]ank relative file path." })
+keymap("<leader>kY", function() vim.fn.setreg("+", vim.fn.expand("%:t:r")) end, { desc = "[Y]ank file name." })
 
 -- Diagnostic Config & Keymaps.
 -- See :help vim.diagnostic.Opts.
@@ -165,7 +165,7 @@ vim.diagnostic.config({
   virtual_lines = false, -- Text shows up underneath the line, with virtual lines.
 })
 -- Diagnostic list.
-keymap("<leader>ll", vim.diagnostic.setloclist, { desc = "open diagnostic [L]ocation list" })
+keymap("<leader>ll", vim.diagnostic.setloclist, { desc = "Open diagnostic [L]ocation list." })
 
 -- Vim.pack keymaps.
 keymap("<leader>pd", function()
@@ -175,37 +175,37 @@ keymap("<leader>pd", function()
   end
   local options = { prompt = "Package name: " }
   vim.ui.input(options, onConfirmCallback)
-end, { desc = "[d]elete package" })
+end, { desc = "[D]elete selected package." })
 keymap("<leader>pl", function()
   local packages = vim.pack.get()
   for idx, pkg in ipairs(packages) do
     print(idx, "| Name:", pkg.spec.name, "| Active:", pkg.active, "| Path:", pkg.path)
   end
-end, { desc = "[l]ist packages" })
-keymap("<leader>pu", function() vim.pack.update() end, { desc = "[u]pdate packages" })
+end, { desc = "[L]ist packages." })
+keymap("<leader>pu", function() vim.pack.update() end, { desc = "[U]pdate packages." })
 
 -- TIP: Disable arrow keys in normal mode.
 -- Utilize arrows to resize windows in normal mode.
-keymap("<down>", function() vim.cmd("resize -1") end, { desc = "resize window down" })
-keymap("<left>", function() vim.cmd("vertical resize -1") end, { desc = "resize window left" })
-keymap("<right>", function() vim.cmd("vertical resize +1") end, { desc = "resize window right" })
-keymap("<up>", function() vim.cmd("resize +1") end, { desc = "resize window up" })
+keymap("<down>", function() vim.cmd("resize -1") end, { desc = "Resize window down." })
+keymap("<left>", function() vim.cmd("vertical resize -1") end, { desc = "Resize window left." })
+keymap("<right>", function() vim.cmd("vertical resize +1") end, { desc = "Resize window right." })
+keymap("<up>", function() vim.cmd("resize +1") end, { desc = "Resize window up." })
 
 -- Keybinds to make split navigation easier.
-keymap("<C-h>", "<C-w><C-h>", { desc = "move focus to the left window" })
-keymap("<C-l>", "<C-w><C-l>", { desc = "move focus to the right window" })
-keymap("<C-j>", "<C-w><C-j>", { desc = "move focus to the lower window" })
-keymap("<C-k>", "<C-w><C-k>", { desc = "move focus to the upper window" })
+keymap("<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window." })
+keymap("<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window." })
+keymap("<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window." })
+keymap("<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window." })
 
 -- Move select.
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes.
-keymap("<C-M-h>", "<C-w>H", { desc = "move window to the left" })
-keymap("<C-M-j>", "<C-w>J", { desc = "move window to the lower" })
-keymap("<C-M-k>", "<C-w>K", { desc = "move window to the upper" })
-keymap("<C-M-l>", "<C-w>L", { desc = "move window to the right" })
+keymap("<C-M-h>", "<C-w>H", { desc = "Move window to the left." })
+keymap("<C-M-j>", "<C-w>J", { desc = "Move window to the lower." })
+keymap("<C-M-k>", "<C-w>K", { desc = "Move window to the upper." })
+keymap("<C-M-l>", "<C-w>L", { desc = "Move window to the right." })
 
 -- Exit terminal mode.
-keymap("<C-Esc>", "<C-\\><C-n>", { desc = "exit terminal mode" }, "t")
+keymap("<C-Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode." }, "t")
 
 -- JavaScript/Typescript quality of life mappings.
 keymap("<C-'>", "() => ", nil, "i")
@@ -222,7 +222,7 @@ end
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode.
 -- See `:help hlsearch`.
-keymap("<Esc>", function() vim.cmd("nohlsearch") end, { desc = "clear highligth search" })
+keymap("<Esc>", function() vim.cmd("nohlsearch") end, { desc = "Clear highligth search." })
 
 -- Basic autocommands.
 -- See `:help lua-guide-autocommands`.
