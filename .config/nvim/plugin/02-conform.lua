@@ -86,4 +86,4 @@ keymap(
   function() conform.format({ async = true, lsp_format = "fallback" }) end,
   { desc = "[F]ormat buffer." }
 )
-keymap("<leader>ci", function() vim.cmd("FormatInfo") end, { desc = "autoformat [i]nfo" })
+keymap("<leader>ci", function() vim.cmd("FormatInfo") end, { desc = "Autoformat [i]nfo." })
