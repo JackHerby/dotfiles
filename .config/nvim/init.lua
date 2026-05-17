@@ -169,7 +169,7 @@ vim.diagnostic.config({
   virtual_lines = false, -- Text shows up underneath the line, with virtual lines.
 })
 -- Diagnostic list.
-keymap("<leader>ll", vim.diagnostic.setloclist, { desc = "Open diagnostic [L]ocation list." })
+keymap("<leader>kl", vim.diagnostic.setloclist, { desc = "Open diagnostic [L]ocation list." })
 
 -- Vim.pack keymaps.
 keymap("<leader>pd", function()
