@@ -146,7 +146,6 @@ require("mason-lspconfig").setup({
 local ensureInstalled = vim.tbl_keys(servers or {})
 vim.list_extend(ensureInstalled, {
   "beautysh",
-  "copilot",
   "eslint",
   "js-debug-adapter",
   "markdownlint",

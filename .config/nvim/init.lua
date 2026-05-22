@@ -222,10 +222,7 @@ end
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode.
 -- See `:help hlsearch`.
-keymap("<Esc>", function()
-  if vim.b.nes_state then require("copilot-lsp.nes").clear() end
-  vim.cmd("nohlsearch")
-end, { desc = "Clear highligth search and nes suggestions if any." })
+keymap("<Esc>", function() vim.cmd("nohlsearch") end, { desc = "Clear highligth search and." })
 
 -- Basic autocommands.
 -- See `:help lua-guide-autocommands`.
