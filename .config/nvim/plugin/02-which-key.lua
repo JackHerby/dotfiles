@@ -15,7 +15,6 @@ require("which-key").setup({
   spec = {
     { "<leader>a", group = "LSP [a]ctions." },
     { "<leader>b", group = "Mini [B]ufremove." },
-    { "<leader>c", group = "Copilot [C]hat." },
     { "<leader>d", group = "[D]ebug Adapter Protocol." },
     { "<leader>e", group = "Pretty TS [E]rrors." },
     { "<leader>f", group = "Conform [f]ormatting." },

@@ -31,15 +31,9 @@ require("blink.cmp").setup({
     documentation = { auto_show = false, auto_show_delay_ms = 500 },
   },
   sources = {
-    default = { "lsp", "path", "snippets", "lazydev", "buffer", "copilot" },
+    default = { "lsp", "path", "snippets", "lazydev", "buffer" },
     providers = {
       lazydev = { module = "lazydev.integrations.blink", score_offset = 100 },
-      copilot = {
-        name = "copilot",
-        module = "blink-copilot",
-        score_offset = 100,
-        async = true,
-      },
     },
   },
   snippets = { preset = "luasnip" },
