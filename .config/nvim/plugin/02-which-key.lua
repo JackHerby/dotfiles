@@ -20,6 +20,7 @@ require("which-key").setup({
     { "<leader>f", group = "Conform [f]ormatting." },
     { "<leader>h", group = "[H]arpoon." },
     { "<leader>k", group = "Random [k]eymaps." },
+    { "<leader>o", group = "[O]pencode." },
     { "<leader>p", group = "Neovim [p]ackage manager." },
     { "<leader>s", group = "Fzf [s]earch." },
     { "<leader>t", group = "Nvim [T]ree." },
