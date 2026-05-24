@@ -19,6 +19,7 @@ conform.setup({
     json = { "prettier", "prettierd", stop_after_first = true },
     lua = { "stylua" },
     markdown = { "markdownlint" },
+    python = { "isort", "black" },
     sh = { "shellcheck" },
     typescript = { "prettier", "prettierd", stop_after_first = true },
     typescriptreact = { "prettier", "prettierd", stop_after_first = true },

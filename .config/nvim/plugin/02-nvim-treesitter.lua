@@ -18,6 +18,7 @@ local parsers = {
   "html",
   "javascript",
   "lua",
+  "python",
   "rust",
   "typescript",
   "vimdoc",

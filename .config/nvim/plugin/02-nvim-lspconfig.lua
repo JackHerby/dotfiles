@@ -106,6 +106,7 @@ local servers = {
     filetypes = { "xml", "xsd", "xsl", "xslt", "svg", "xlf", "xliff", "tmx" },
   },
   lua_ls = {},
+  pyright = {},
   rust_analyzer = {},
   stylelint_lsp = {
     filetypes = { "css", "scss", "less", "vue" },
@@ -146,7 +147,9 @@ require("mason-lspconfig").setup({
 local ensureInstalled = vim.tbl_keys(servers or {})
 vim.list_extend(ensureInstalled, {
   "beautysh",
+  "black",
   "eslint",
+  "isort",
   "js-debug-adapter",
   "markdownlint",
   "prettier",
