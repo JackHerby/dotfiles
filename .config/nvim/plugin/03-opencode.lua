@@ -40,7 +40,7 @@ keymap(
 keymap(
   "<leader>oc",
   function() require("opencode").ask("@this: ", { submit = true }) end,
-  { desc = "opencode ask with [c]ontext." },
+  { desc = "Opencode ask with [c]ontext." },
   { "n", "v", "x" }
 )
 keymap(
