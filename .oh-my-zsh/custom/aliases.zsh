@@ -15,6 +15,7 @@ alias nzh='nvim ~/.zsh_history'
 alias ocp='opencode --port'
 alias or='omz reload'
 alias tcheck='sudo timeshift --check'
+alias eve='echo $VIRTUAL_ENV'
 
 myfuncs() { grep -E "^[a-zA-Z_][a-zA-Z0-9_]*\(\)" ~/.oh-my-zsh/custom/aliases.zsh | sed 's/().*//'; }
 
@@ -56,6 +57,9 @@ service_up() {
     python run.py "$1" up
 }
 
+alias softnuke='sudo rm -rf ssr/src/node_modules && sudo rm -rf base/src/node_modules && sudo find . -wholename "*var/cache" -type d -exec rm -r {} +'
+alias nuke=' sudo rm -rf ssr/src/node_modules && sudo  rm -rf base/src/node_modules && sudo  docker system prune -a'
+
 alias cdfrc='cd ~/Projects/fr/cms/'
 alias cdfrct='cd ~/Projects/fr/cms/tools/'
 alias cdfre='cd ~/Projects/fr/end-to-end/'
@@ -63,6 +67,7 @@ alias cdfrw='cd ~/Projects/fr/bonprix-www/'
 alias cdfrwb='cd ~/Projects/fr/bonprix-www/base/'
 alias cdfrws='cd ~/Projects/fr/bonprix-www/ssr/'
 alias cdfrwt='cd ~/Projects/fr/bonprix-www/tools/'
+alias cdfrwtr='cd ~/Projects/fr/bonprix-www/translations/'
 alias cdplc='cd ~/Projects/pl/bonprix-cms/'
 alias cdplct='cd ~/Projects/pl/bonprix-cms/tools/'
 alias cdple='cd ~/Projects/pl/end-to-end/'
@@ -70,6 +75,7 @@ alias cdplw='cd ~/Projects/pl/bonprix-www/'
 alias cdplwb='cd ~/Projects/pl/bonprix-www/base/'
 alias cdplws='cd ~/Projects/pl/bonprix-www/ssr/'
 alias cdplwt='cd ~/Projects/pl/bonprix-www/tools/'
+alias cdplwtr='cd ~/Projects/pl/bonprix-www/translations/'
 
 alias dbefl='service_down dev/befl'
 alias dbewa='service_down dev/bewa'
