@@ -23,5 +23,6 @@ require("which-key").setup({
     { "<leader>o", group = "[O]pencode." },
     { "<leader>p", group = "Neovim [p]ackage manager." },
     { "<leader>s", group = "Fzf [s]earch." },
+    { "<leader>y", group = "[Y]azi file manager." },
   },
 })
