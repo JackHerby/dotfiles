@@ -105,7 +105,15 @@ local servers = {
   lemminx = {
     filetypes = { "xml", "xsd", "xsl", "xslt", "svg", "xlf", "xliff", "tmx" },
   },
-  lua_ls = {},
+  lua_ls = {
+    settings = {
+      Lua = {
+        diagnostics = {
+          globals = { "hl" },
+        },
+      },
+    },
+  },
   pyright = {},
   rust_analyzer = {},
   stylelint_lsp = {
