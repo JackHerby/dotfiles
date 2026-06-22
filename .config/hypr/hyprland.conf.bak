@@ -28,7 +28,7 @@ monitor = HDMI-A-1, 1920x1080@60, -3360x0, 1
 
 # Set programs that you use
 
-$terminal = ghostty
+$terminal = kitty
 $browser = brave
 $fileManager = thunar
 $menu = rofi -show drun
@@ -283,9 +283,11 @@ bind = $mainMod, I, exec, networkmanager_dmenu
 bind = $mainMod, K, killactive
 bind = $mainMod, L, exec, hyprctl reload
 bind = $mainMod, M, exec, hyprctl dispatch layoutmsg mfact exact 0.66 # master
+# bind = $mainMod, M, exec, hyprctl dispatch layoutmsg moveroot # dwindle
 bind = $mainMod, N, exec, neovide
 bind = $mainMod, P, exec, pavucontrol
 bind = $mainMod, R, exec, $menu
+# bind = $mainMod, T, exec, hyprctl dispatch layoutmsg togglesplit # dwindle
 bind = $mainMod, V, togglefloating
 # bind = $mainMod, X, exec, firefox
 bind = $mainMod, Print, exec, grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +%Y%m%d_%H%M%S).png
@@ -309,8 +311,6 @@ bind = $mainMod CTRL, left, resizeactive, -8 0
 bind = $mainMod CTRL, right, resizeactive, 8 0
 bind = $mainMod CTRL, up, resizeactive, 0 -8
 bind = $mainMod CTRL, down, resizeactive, 0 8
-
-# Window keybinds moved to local.conf
 
 # Example special workspace (scratchpad)
 bind = $mainMod, S, togglespecialworkspace, magic
