@@ -120,7 +120,7 @@ hl.config({
     -- Please see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Tearing/ before you turn this on
     allow_tearing = false,
 
-    layout = "dwindle",
+    layout = "master",
   },
 
   decoration = {
@@ -291,12 +291,12 @@ hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ action = "toggle", mode = 
 hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("networkmanager_dmenu"))
 hl.bind(mainMod .. " + K", hl.dsp.window.close())
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprctl reload"))
--- hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("hyprctl dispatch layoutmsg mfact exact 0.66")) -- master
-hl.bind(mainMod .. " + M", hl.dsp.layout("movetoroot")) -- dwindle
+hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("hyprctl dispatch layoutmsg mfact exact 0.66")) -- master
+-- hl.bind(mainMod .. " + M", hl.dsp.layout("movetoroot")) -- dwindle
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("neovide"))
 hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("pavucontrol"))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
-hl.bind(mainMod .. " + T", hl.dsp.layout("togglesplit")) -- dwindle
+-- hl.bind(mainMod .. " + T", hl.dsp.layout("togglesplit")) -- dwindle
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd('grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +%Y%m%d_%H%M%S).png'))
