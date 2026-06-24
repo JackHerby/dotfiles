@@ -7,9 +7,6 @@ packAdd({
 })
 
 require("ibl").setup({
-  scope = {
-    show_start = false,
-  },
   whitespace = {
     highlight = { "Whitespace", "NonText" },
   },
@@ -18,11 +15,11 @@ require("ibl").setup({
 -- Enable list mode to show white space characters.
 vim.opt.list = true
 vim.opt.listchars = {
+  eol = "↵",
+  extends = "›",
+  nbsp = "⊗",
+  precedes = "‹",
   space = "·",
-  tab = "󰌒 ",
+  tab = "» ",
   trail = "∘",
-  extends = "",
-  precedes = "",
-  nbsp = "󱁐",
-  eol = "󰘌",
 }
