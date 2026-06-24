@@ -42,7 +42,7 @@ font_size 12.0
 #: to get BIDI support, because it will force kitty to always treat
 #: the text as LTR, which FriBidi expects for terminals.
 
-# symbol_map
+# symbol_map U+e000-U+e00a,U+e0a0-U+e0a2,U+e0a3,U+e0b0-U+e0b3,U+e0b4-U+e0c8,U+e0ca,U+e0cc-U+e0d7,U+e200-U+e2a9,U+e300-U+e3e3,U+e5fa-U+e6b7,U+e700-U+e8ef,U+ea60-U+ec1e,U+ed00-U+efce,U+f000-U+f2ff,U+f300-U+f381,U+f400-U+f533,U+f0001-U+f1af0 Symbols Nerd Font Mono
 
 #: E.g. symbol_map U+E0A0-U+E0A3,U+E0C0-U+E0C7 PowerlineSymbols
 
@@ -289,7 +289,7 @@ font_size 12.0
 #: so if you want to override it, place your value after the lines
 #: where the theme file is included.
 
-# cursor_shape block
+cursor_shape block
 
 #: The cursor shape can be one of block, beam, underline. Note that
 #: when reloading the config this will be changed only if the cursor
@@ -339,7 +339,7 @@ font_size 12.0
 #: setting also controls blinking text, which blinks in exact rhythm
 #: with the cursor.
 
-# cursor_trail 0
+cursor_trail 1
 
 #: Set this to a value larger than zero to enable a "cursor trail"
 #: animation. This is an animation that shows a "trail" following the
@@ -355,7 +355,7 @@ font_size 12.0
 #: cursor_trail_start_threshold to control when a cursor trail is
 #: started.
 
-# cursor_trail_decay 0.1 0.4
+cursor_trail_decay 0.1 0.4
 
 #: Controls the decay times for the cursor trail effect when the
 #: cursor_trail is enabled. This option accepts two positive float
@@ -367,7 +367,7 @@ font_size 12.0
 #: trail. Adjust these values to control how quickly the cursor trail
 #: fades away.
 
-# cursor_trail_start_threshold 2
+cursor_trail_start_threshold 2
 
 #: Set the distance threshold for starting the cursor trail. This
 #: option accepts a positive integer value that represents the minimum
@@ -1149,7 +1149,7 @@ font_size 12.0
 #: works on Wayland. See also kitty --position to specify the position
 #: when launching kitty.
 
-# enabled_layouts *
+enabled_layouts tall:mirrored=true,splits
 
 #: The enabled window layouts. A comma separated list of layout names.
 #: The special value all means all layouts. The first listed layout
@@ -1157,8 +1157,8 @@ font_size 12.0
 #: layouts in alphabetical order. For a list of available layouts, see
 #: the layouts <https://sw.kovidgoyal.net/kitty/overview/#layouts>.
 
-# window_resize_step_cells 2
-# window_resize_step_lines 2
+window_resize_step_cells 1
+window_resize_step_lines 1
 
 #: The step size (in units of cell width/cell height) to use when
 #: resizing kitty windows in a layout with the shortcut
@@ -1207,7 +1207,7 @@ font_size 12.0
 #: set the vertical and horizontal sides. Three values set top,
 #: horizontal and bottom. Four values set top, right, bottom and left.
 
-# window_padding_width 0
+window_padding_width 4
 
 #: The window padding (in pts) (blank area between the text and the
 #: window border). A single value sets all four sides. Two values set
@@ -2154,7 +2154,7 @@ font_size 12.0
 #: special value of ask means that kitty will ask before opening the
 #: link when clicked.
 
-# shell_integration enabled
+shell_integration no-cursor
 
 #: Enable shell integration on supported shells. This enables features
 #: such as jumping to previous prompts, browsing the output of the
@@ -3266,7 +3266,7 @@ font_size 12.0
 include keymaps.conf
 
 # BEGIN_KITTY_FONTS
-font_family      family="0xProto Nerd Font Mono"
+font_family      family="JetBrains Mono"
 bold_font        auto
 italic_font      auto
 bold_italic_font auto
