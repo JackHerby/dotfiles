@@ -120,7 +120,7 @@ hl.config({
     -- Please see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Tearing/ before you turn this on
     allow_tearing = false,
 
-    layout = "master",
+    layout = "dwindle",
   },
 
   decoration = {
@@ -291,12 +291,12 @@ hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ action = "toggle", mode = 
 hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("networkmanager_dmenu"))
 hl.bind(mainMod .. " + K", hl.dsp.window.close())
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprctl reload"))
-hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("hyprctl dispatch layoutmsg mfact exact 0.66")) -- master
--- hl.bind(mainMod .. " + M", hl.dsp.layout("movetoroot")) -- dwindle
+-- hl.bind(mainMod .. " + M", hl.dsp.layout("mfact exact 0.66")) -- master
+hl.bind(mainMod .. " + M", hl.dsp.layout("movetoroot")) -- dwindle
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("neovide"))
 hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("pavucontrol"))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
--- hl.bind(mainMod .. " + T", hl.dsp.layout("togglesplit")) -- dwindle
+hl.bind(mainMod .. " + T", hl.dsp.layout("togglesplit")) -- dwindle
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd('grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +%Y%m%d_%H%M%S).png'))
@@ -491,22 +491,3 @@ hl.window_rule({
   workspace = 3,
   no_initial_focus = true,
 })
-
------------------
----- PLUGINS ----
------------------
-
--- NOTE: LLM hallucinated the shit out of this one, maybe I'll fix it later.
--- hl.config({
---   plugin = {
---     hyprbars = {
---       bar_height = 32,
---       bar_color = "rgb(1d2021)",
---       hyprbars_button = {
---         { color = "rgb(ff4040)", size = 20, icon = "󰖭", cmd = "hyprctl dispatch killactive" },
---         { color = "rgb(eeee11)", size = 20, icon = "", cmd = "hyprctl dispatch fullscreen 1" },
---       },
---       on_double_click = "hyprctl dispatch fullscreen 1",
---     },
---   },
--- })
