@@ -1,6 +1,6 @@
 * {
   border-radius: 5px;
-  font-size: 16px;
+  font-size: 12px;
 }
 
 window#waybar {
@@ -67,6 +67,7 @@ button {
   background-color: #b16286;
 }
 
+#battery,
 #clock,
 #custom-power,
 #idle_inhibitor,
@@ -80,7 +81,7 @@ button {
 #wireplumber {
   background-color: #282828;
   color: #ebdbb2;
-  padding: 0 12px;
+  padding: 0 8px;
 }
 
 #submap {

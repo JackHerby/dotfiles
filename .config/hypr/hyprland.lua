@@ -15,22 +15,9 @@
 
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/ for more.
 hl.monitor({
-  output = "DP-1",
-  mode = "3440x1440@180",
+  output = "eDP-1",
+  mode = "1366x768@60",
   position = "0x0",
-  scale = 1,
-})
-hl.monitor({
-  output = "DP-2",
-  mode = "2560x1440@200",
-  position = "3440x0",
-  scale = 1,
-  transform = 1,
-})
-hl.monitor({
-  output = "HDMI-A-1",
-  mode = "1920x1080@60",
-  position = "-1920x0",
   scale = 1,
 })
 
@@ -58,7 +45,6 @@ hl.on("hyprland.start", function()
   hl.exec_cmd("hyprpm reload -n")
   hl.exec_cmd(terminal .. " --hold fastfetch", { workspace = 1 })
   hl.exec_cmd(browser, { workspace = 2 })
-  hl.exec_cmd("steam", { workspace = 3 })
   hl.exec_cmd(terminal .. " -e btop", { workspace = 4 })
 end)
 
@@ -333,9 +319,9 @@ hl.bind(mainMod .. " + CTRL + left", hl.dsp.window.resize({ x = -8, y = 0, relat
 hl.bind(mainMod .. " + CTRL + right", hl.dsp.window.resize({ x = 8, y = 0, relative = true }))
 hl.bind(mainMod .. " + CTRL + up", hl.dsp.window.resize({ x = 0, y = -8, relative = true }))
 
--- Switch workspaces with mainMod + [1-6].
--- Move active window to a workspace with mainMod + SHIFT + [1-6].
-for i = 1, 6 do
+-- Switch workspaces with mainMod + [1-4]
+-- Move active window to a workspace with mainMod + SHIFT + [1-4]
+for i = 1, 4 do
   hl.bind(mainMod .. " + " .. i, hl.dsp.focus({ workspace = i }))
   hl.bind(mainMod .. " + SHIFT + " .. i, hl.dsp.window.move({ workspace = i }))
 end
@@ -395,38 +381,25 @@ hl.bind(mainMod .. " + v", hl.dsp.window.float({ action = "toggle" }))
 hl.workspace_rule({
   workspace = 1,
   default_name = " Dev",
-  monitor = "DP-1",
+  monitor = "eDP-1",
   persistent = true,
 })
 hl.workspace_rule({
   workspace = 2,
-  default_name = "󰖟 Misc",
-  monitor = "DP-1",
+  default_name = " Browser",
+  monitor = "eDP-1",
   persistent = true,
 })
 hl.workspace_rule({
   workspace = 3,
-  default_name = "󰊴 Gaming",
-  monitor = "DP-1",
+  default_name = "󰖟 Misc",
+  monitor = "eDP-1",
   persistent = true,
 })
 hl.workspace_rule({
   workspace = 4,
   default_name = " Btop",
-  monitor = "DP-1",
-  persistent = true,
-})
-hl.workspace_rule({
-  workspace = 5,
-  default_name = "󰆡 Portrait",
-  monitor = "DP-2",
-  persistent = true,
-  layout_opts = { orientation = "bottom" },
-})
-hl.workspace_rule({
-  workspace = 6,
-  default_name = "󰔂 TV",
-  monitor = "HDMI-A-1",
+  monitor = "eDP-1",
   persistent = true,
 })
 
@@ -473,34 +446,23 @@ hl.window_rule({
   move = "20 monitor_h-120",
   float = true,
 })
-
 hl.window_rule({
   name = "windowrule-brave",
   match = { class = "^(brave-browser)$" },
   opacity = "1.0 override",
 })
-
 hl.window_rule({
   name = "windowrule-firefox",
   match = { initial_title = "^(Mozilla Firefox)$" },
   opacity = "1.0 override",
 })
-
 hl.window_rule({
   name = "windowrule-float",
   match = { float = true },
   center = true,
 })
-
 hl.window_rule({
   name = "float-apps",
   match = { title = "^(Bluetooth|Volume Control)$" },
   float = true,
-})
-
-hl.window_rule({
-  name = "steam-workspace",
-  match = { class = "^(steam)$" },
-  workspace = 3,
-  no_initial_focus = true,
 })
