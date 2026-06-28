@@ -29,6 +29,26 @@ require("gruvbox").setup({
       undercurl = false,
       underline = true,
     },
+    SpellBad = {
+      sp = "#cc241d",
+      undercurl = false,
+      underline = true,
+    },
+    SpellCap = {
+      sp = "#d79921",
+      undercurl = false,
+      underline = true,
+    },
+    SpellLocal = {
+      sp = "#458588",
+      undercurl = false,
+      underline = true,
+    },
+    SpellRare = {
+      sp = "#98971a",
+      undercurl = false,
+      underline = true,
+    },
   },
   transparent_mode = not vim.g.neovide,
 })
