@@ -17,6 +17,7 @@ nvimCreateAutocmd("UIEnter", {
   callback = function()
     require("yazi").setup({
       open_for_directories = true,
+      yazi_floating_window_border = "single",
     })
   end,
 })
