@@ -43,11 +43,6 @@ keymap(
 keymap("<leader>sg", function() fzf.live_grep() end, { desc = "Search by [g]rep." })
 keymap("<leader>sh", function() fzf.helptags() end, { desc = "Search in [h]elp." })
 keymap(
-  "<leader>sH",
-  function() fzf.helptags({ query = vim.fn.expand("<cword>") }) end,
-  { desc = "Search [h]elp for the word under the cursor." }
-)
-keymap(
   "<leader>si",
   function() fzf.files({ fd_opts = "--type f --hidden --no-ignore --follow" }) end,
   { desc = "Search including hidden and git [i]gnored files." }
@@ -68,3 +63,4 @@ keymap(
 keymap("<leader>sp", function() fzf.builtin() end, { desc = "Search in builtin [p]ickers." })
 keymap("<leader>sr", function() fzf.resume() end, { desc = "[R]esume search." })
 keymap("<leader>sw", function() fzf.grep_cword() end, { desc = "Search for current [w]ord." })
+keymap("<leader>sw", function() fzf.grep_visual() end, { desc = "Search for current [w]ord." }, "v")
