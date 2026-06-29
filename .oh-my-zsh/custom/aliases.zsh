@@ -1,4 +1,5 @@
 # Utils
+alias bat='batcat'
 alias ccn='cd && clear && neofetch'
 alias cdghostty='cd ~/.config/ghostty'
 alias cdkitty='cd ~/.config/kitty'
