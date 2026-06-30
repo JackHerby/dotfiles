@@ -111,8 +111,9 @@ local servers = {
   stylelint_lsp = {
     filetypes = { "css", "scss", "less", "vue" },
     settings = {
-      stylelintplus = {
-        autoFixOnFormat = true,
+      stylelint = {
+        validate = { "css", "scss", "less", "postcss", "vue" },
+        snippet = { "css", "scss", "less", "postcss", "vue" },
       },
     },
   },
@@ -164,10 +165,3 @@ for name, server in pairs(servers) do
   vim.lsp.config(name, server)
   vim.lsp.enable(name)
 end
-
-local nvimCreateUserCommand = require("utils.nvim-create-user-command")
-nvimCreateUserCommand(
-  "StylelintFixAll",
-  function() vim.lsp.buf.format({ name = "stylelint_lsp", async = false }) end,
-  { desc = "Fix stylelint issues via LSP formatting." }
-)
