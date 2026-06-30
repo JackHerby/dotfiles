@@ -285,27 +285,27 @@ local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 -- See https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 
 -- Launch programs
-hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
-hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
-hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ action = "toggle", mode = "maximized" }))
-hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("networkmanager_dmenu"))
-hl.bind(mainMod .. " + K", hl.dsp.window.close())
-hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprctl reload"))
-hl.bind(mainMod .. " + M", hl.dsp.layout("mfact exact 0.66")) -- master
--- hl.bind(mainMod .. " + M", hl.dsp.layout("movetoroot")) -- dwindle
-hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("neovide"))
-hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("pavucontrol"))
-hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
--- hl.bind(mainMod .. " + T", hl.dsp.layout("togglesplit")) -- dwindle
-hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
-hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd('grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +%Y%m%d_%H%M%S).png'))
+hl.bind(mainMod .. " + return", hl.dsp.exec_cmd(terminal))
+hl.bind(mainMod .. " + b", hl.dsp.exec_cmd(browser))
+hl.bind(mainMod .. " + e", hl.dsp.exec_cmd(fileManager))
+hl.bind(mainMod .. " + i", hl.dsp.exec_cmd("networkmanager_dmenu"))
+hl.bind(mainMod .. " + k", hl.dsp.window.close())
+hl.bind(mainMod .. " + n", hl.dsp.exec_cmd("neovide"))
+hl.bind(mainMod .. " + p", hl.dsp.exec_cmd("pavucontrol"))
+hl.bind(mainMod .. " + r", hl.dsp.exec_cmd(menu))
+hl.bind(mainMod .. " + print", hl.dsp.exec_cmd('grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +%Y%m%d_%H%M%S).png'))
 hl.bind(
-  mainMod .. " + SHIFT + Print",
+  mainMod .. " + SHIFT + print",
   hl.dsp.exec_cmd(
     "grim -o $(hyprctl monitors -j | jq -r '.[] | select(.focused) | .name') ~/Pictures/Screenshots/$(date +%Y%m%d_%H%M%S).png"
   )
 )
+
+-- Layout actions
+hl.bind(mainMod .. " + m", hl.dsp.layout("mfact exact 0.66"))
+hl.bind(mainMod .. " + w", hl.dsp.layout("swapwithmaster master"))
+hl.bind(mainMod .. " + bracketleft", hl.dsp.layout("swapprev"))
+hl.bind(mainMod .. " + bracketright", hl.dsp.layout("swapnext"))
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "down" }))
@@ -333,8 +333,8 @@ for i = 1, 6 do
 end
 
 -- Example special workspace (scratchpad)
-hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
+hl.bind(mainMod .. " + s", hl.dsp.workspace.toggle_special("magic"))
+hl.bind(mainMod .. " + SHIFT + s", hl.dsp.window.move({ workspace = "special:magic" }))
 
 -- Scroll through existing workspaces with mainMod + scroll
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
@@ -373,6 +373,11 @@ hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
 hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
+
+-- Misc
+hl.bind(mainMod .. " + f", hl.dsp.window.fullscreen({ action = "toggle", mode = "maximized" }))
+hl.bind(mainMod .. " + l", hl.dsp.exec_cmd("hyprctl reload"))
+hl.bind(mainMod .. " + v", hl.dsp.window.float({ action = "toggle" }))
 
 --------------------------------
 ---- WINDOWS AND WORKSPACES ----
