@@ -133,7 +133,7 @@ local keymap = require("utils.keymap")
 -- Random, convenient keymaps.
 keymap("<leader>ke", function() vim.cmd("LspEslintFixAll") end, { desc = "[E]SLint fix all." })
 keymap("<leader>kr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "[R]ename all occurances." })
-keymap("<leader>ks", function() vim.cmd("StylelintFix") end, { desc = "Style[l]int fix all." })
+keymap("<leader>ks", function() vim.cmd("LspStylelintFix") end, { desc = "Style[l]int fix all." })
 keymap("<leader>kt", function()
   vim.cmd.vnew()
   vim.cmd.term()
