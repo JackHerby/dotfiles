@@ -120,7 +120,7 @@ hl.config({
     -- Please see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Tearing/ before you turn this on.
     allow_tearing = false,
 
-    layout = "master",
+    layout = "dwindle",
   },
 
   decoration = {
@@ -302,10 +302,14 @@ hl.bind(
 )
 
 -- Layout actions.
-hl.bind(mainMod .. " + m", hl.dsp.layout("mfact exact 0.66"))
-hl.bind(mainMod .. " + w", hl.dsp.layout("swapwithmaster master"))
-hl.bind(mainMod .. " + bracketleft", hl.dsp.layout("swapprev"))
-hl.bind(mainMod .. " + bracketright", hl.dsp.layout("swapnext"))
+-- hl.bind(mainMod .. " + m", hl.dsp.layout("mfact exact 0.66"))
+-- hl.bind(mainMod .. " + w", hl.dsp.layout("swapwithmaster master"))
+-- hl.bind(mainMod .. " + bracketleft", hl.dsp.layout("swapprev"))
+-- hl.bind(mainMod .. " + bracketright", hl.dsp.layout("swapnext"))
+hl.bind(mainMod .. " + equal", hl.dsp.layout("movetoroot"))
+hl.bind(mainMod .. " + minus", hl.dsp.layout("swapsplit"))
+hl.bind(mainMod .. " + bracketleft", hl.dsp.layout("rotatesplit -90"))
+hl.bind(mainMod .. " + bracketright", hl.dsp.layout("rotatesplit"))
 
 -- Move focus with mainMod + arrow keys.
 hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "down" }))
