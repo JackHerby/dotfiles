@@ -9,19 +9,13 @@ packAdd({
 local fzf = require("fzf-lua")
 fzf.register_ui_select()
 fzf.setup({
+  "ivy",
   fzf_colors = true,
   keymap = {
     fzf = {
       true,
       -- Use <c-q> to select all items and add them to the quickfix list.
       ["ctrl-q"] = "select-all+accept",
-    },
-  },
-  winopts = {
-    border = "single",
-    ---@diagnostic disable-next-line: missing-fields
-    preview = {
-      border = "single",
     },
   },
 })
