@@ -256,6 +256,15 @@ nvimCreateAutocmd("FileType", {
   pattern = { "qf", "nvim-pack", "checkhealth" },
 })
 
+nvimCreateAutocmd("FileType", {
+  callback = function()
+    vim.opt_local.number = true
+    vim.opt_local.relativenumber = true
+  end,
+  desc = "Enable absolute and relative line numbers in help buffers.",
+  pattern = "help",
+})
+
 -- Must be defined before the very first vim.pack.add() call.
 nvimCreateAutocmd("PackChanged", {
   callback = function(event)
