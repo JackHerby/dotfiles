@@ -23,14 +23,14 @@ hl.monitor({
 hl.monitor({
   output = "DP-2",
   mode = "2560x1440@200",
-  position = "-1440x0",
+  position = "3440x0",
   scale = 1,
-  transform = 3,
+  transform = 1,
 })
 hl.monitor({
   output = "HDMI-A-1",
   mode = "1920x1080@60",
-  position = "-3360x0",
+  position = "-1920x0",
   scale = 1,
 })
 
@@ -56,7 +56,7 @@ local menu = "rofi -show drun"
 hl.on("hyprland.start", function()
   hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
   hl.exec_cmd("hyprpm reload -n")
-  hl.exec_cmd(terminal, { workspace = 1 })
+  hl.exec_cmd(terminal .. " --hold fastfetch", { workspace = 1 })
   hl.exec_cmd(browser, { workspace = 2 })
   hl.exec_cmd("steam", { workspace = 3 })
   hl.exec_cmd(terminal .. " -e btop", { workspace = 4 })
