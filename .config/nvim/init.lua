@@ -257,7 +257,13 @@ nvimCreateAutocmd("FileType", {
   callback = function() vim.opt_local.spell = false end,
   desc = "Disable spellcheck in selected file types.",
   group = vim.api.nvim_create_augroup("custom-disable-spellcheck", { clear = true }),
-  pattern = { "checkhealth", "git", "nvim-pack", "qf" },
+  pattern = {
+    "checkhealth",
+    "git",
+    "man",
+    "nvim-pack",
+    "qf",
+  },
 })
 
 nvimCreateAutocmd("FileType", {
