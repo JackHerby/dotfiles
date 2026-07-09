@@ -194,7 +194,7 @@ hl.config({
 hl.config({
   master = {
     new_status = "master",
-    mfact = 0.66,
+    mfact = 0.5,
     orientation = "right",
   },
 })
