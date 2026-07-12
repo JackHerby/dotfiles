@@ -1,39 +1,39 @@
 -- Library of 40+ independent Lua modules improving overall Neovim (version 0.10 and higher) experience with minimal effort.
 
-local githubUrl = require("utils.github-url")
-local packAdd = require("utils.pack-add")
+local githubUrl = require('utils.github-url')
+local packAdd = require('utils.pack-add')
 packAdd({
-  githubUrl("echasnovski/mini.nvim"), -- https://github.com/echasnovski/mini.nvim
+  githubUrl('echasnovski/mini.nvim'), -- https://github.com/echasnovski/mini.nvim
 })
 
-require("mini.ai").setup({ n_lines = 500 })
+require('mini.ai').setup({ n_lines = 500 })
 
-local miniBufremove = require("mini.bufremove")
+local miniBufremove = require('mini.bufremove')
 miniBufremove.setup()
-local keymap = require("utils.keymap")
-keymap("<leader>bd", miniBufremove.delete, { desc = "[D]elete buffer." })
-keymap("<leader>bu", miniBufremove.unshow, { desc = "[U]nshow buffer." })
-keymap("<leader>bw", miniBufremove.wipeout, { desc = "[W]ipeout buffer." })
+local keymap = require('utils.keymap')
+keymap('<leader>bd', miniBufremove.delete, { desc = '[D]elete buffer.' })
+keymap('<leader>bu', miniBufremove.unshow, { desc = '[U]nshow buffer.' })
+keymap('<leader>bw', miniBufremove.wipeout, { desc = '[W]ipeout buffer.' })
 
-require("mini.diff").setup({
+require('mini.diff').setup({
   view = {
-    style = "sign",
+    style = 'sign',
   },
 })
 
-require("mini.indentscope").setup()
+require('mini.indentscope').setup()
 
-require("mini.move").setup()
+require('mini.move').setup()
 
-local miniStatusline = require("mini.statusline")
+local miniStatusline = require('mini.statusline')
 miniStatusline.setup({
   use_icons = vim.g.have_nerd_font,
 })
 ---@diagnostic disable-next-line: duplicate-set-field
-miniStatusline.section_location = function() return "%2l:%-2v" end
+miniStatusline.section_location = function() return '%2l:%-2v' end
 
-require("mini.surround").setup()
+require('mini.surround').setup()
 
-require("mini.tabline").setup()
+require('mini.tabline').setup()
 
-require("mini.trailspace").setup()
+require('mini.trailspace').setup()

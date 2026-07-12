@@ -6,8 +6,8 @@
 -- Set <space> as the leader key.
 -- See `:help mapleader`.
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used).
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed.
 vim.g.have_nerd_font = true
@@ -25,7 +25,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
-vim.opt.mouse = "a"
+vim.opt.mouse = 'a'
 
 -- Don't show the mode, since it's already in the status line.
 vim.opt.showmode = false
@@ -34,7 +34,7 @@ vim.opt.showmode = false
 -- Schedule the setting after `UiEnter` because it can increase startup-time.
 -- Remove this option if you want your OS clipboard to remain independent.
 -- See `:help 'clipboard'`.
-vim.schedule(function() vim.opt.clipboard = "unnamedplus" end)
+vim.schedule(function() vim.opt.clipboard = 'unnamedplus' end)
 
 -- Enable break indent.
 vim.opt.breakindent = true
@@ -47,7 +47,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Keep signcolumn on by default.
-vim.opt.signcolumn = "yes"
+vim.opt.signcolumn = 'yes'
 
 -- Decrease update time.
 vim.opt.updatetime = 250
@@ -61,7 +61,7 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 
 -- Preview substitutions live, as you type!
-vim.opt.inccommand = "split"
+vim.opt.inccommand = 'split'
 
 -- Show which line your cursor is on.
 vim.opt.cursorline = true
@@ -69,8 +69,8 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
-vim.opt.guicursor = ""
-vim.opt.colorcolumn = "120"
+vim.opt.guicursor = ''
+vim.opt.colorcolumn = '120'
 
 -- Tab settings.
 vim.opt.tabstop = 2
@@ -85,27 +85,27 @@ vim.bo.softtabstop = 2
 vim.opt.termguicolors = true
 
 -- Set rounded borders for all floating windows (Neovim 0.11+).
-vim.o.winborder = "single"
+vim.o.winborder = 'single'
 
 -- Spelling options.
 vim.opt.spell = true
-vim.opt.spelllang = { "en_us", "pl" }
+vim.opt.spelllang = { 'en_us', 'pl' }
 
 -- Enable list mode to show white space characters.
 vim.opt.listchars = {
-  eol = "↵",
-  extends = "›",
-  nbsp = "⊗",
-  precedes = "‹",
-  space = "·",
-  tab = "» ",
-  trail = "∘",
+  eol = '↵',
+  extends = '›',
+  nbsp = '⊗',
+  precedes = '‹',
+  space = '·',
+  tab = '» ',
+  trail = '∘',
 }
 
 -- Neovide/GUI settings.
 if vim.g.neovide then
   -- font
-  vim.o.guifont = "0xProto Nerd Font Mono:h12"
+  vim.o.guifont = '0xProto Nerd Font Mono:h12'
 
   -- padding
   vim.g.neovide_padding_top = 2
@@ -128,57 +128,57 @@ if vim.g.neovide then
   vim.g.neovide_progress_bar_hide_delay = 0.2
 
   -- theme
-  vim.g.neovide_theme = "dark"
+  vim.g.neovide_theme = 'dark'
 
   -- cursor
   vim.g.neovide_cursor_animate_in_insert_mode = false
   vim.g.neovide_cursor_smooth_blink = true
-  vim.g.neovide_cursor_vfx_mode = "railgun"
+  vim.g.neovide_cursor_vfx_mode = 'railgun'
 
-  vim.env.TERM = "xterm-256color"
+  vim.env.TERM = 'xterm-256color'
 end
 
 -- Enable experimental ui2.
-pcall(function() require("vim._core.ui2").enable() end)
+pcall(function() require('vim._core.ui2').enable() end)
 
 -- Basic keymaps.
 -- See `:help vim.keymap.set()`.
-local keymap = require("utils.keymap")
+local keymap = require('utils.keymap')
 
 -- Random, convenient keymaps.
-keymap("<leader>ke", function() vim.cmd("LspEslintFixAll") end, { desc = "[E]SLint fix all." })
-keymap("<leader>kl", function()
+keymap('<leader>ke', function() vim.cmd('LspEslintFixAll') end, { desc = '[E]SLint fix all.' })
+keymap('<leader>kl', function()
   ---@diagnostic disable-next-line undefined-field
   vim.opt.list = not vim.opt.list:get()
   ---@diagnostic disable-next-line undefined-field
-  vim.notify("listchars " .. (vim.opt.list:get() and "on" or "off"))
-end, { desc = "Display listchars." })
-keymap("<leader>kr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "[R]ename all occurances." })
-keymap("<leader>ks", function() vim.cmd("LspStylelintFix") end, { desc = "Style[l]int fix all." })
-keymap("<leader>kt", function()
+  vim.notify('listchars ' .. (vim.opt.list:get() and 'on' or 'off'))
+end, { desc = 'Display listchars.' })
+keymap('<leader>kr', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = '[R]ename all occurances.' })
+keymap('<leader>ks', function() vim.cmd('LspStylelintFix') end, { desc = 'Style[l]int fix all.' })
+keymap('<leader>kt', function()
   vim.cmd.vnew()
   vim.cmd.term()
   local calculateWindowWidth = function() return math.floor(vim.o.columns * 0.4) end
   vim.api.nvim_win_set_width(0, calculateWindowWidth())
-  vim.cmd("startinsert")
-end, { desc = "Open [t]erminal in vertical split." })
-keymap("<leader>ku", function()
-  local url = vim.fn.expand("<cWORD>")
-  if url:match("^https?://") then
-    vim.fn.jobstart({ "xdg-open", url }, { detach = true })
+  vim.cmd('startinsert')
+end, { desc = 'Open [t]erminal in vertical split.' })
+keymap('<leader>ku', function()
+  local url = vim.fn.expand('<cWORD>')
+  if url:match('^https?://') then
+    vim.fn.jobstart({ 'xdg-open', url }, { detach = true })
   else
-    vim.notify("No valid URL found under cursor", vim.log.levels.WARN)
+    vim.notify('No valid URL found under cursor', vim.log.levels.WARN)
   end
-end, { desc = "Open [U]RL under the cursor." })
-keymap("<leader>ky", function() vim.fn.setreg("+", vim.fn.expand("%")) end, { desc = "[Y]ank relative file path." })
-keymap("<leader>kY", function() vim.fn.setreg("+", vim.fn.expand("%:t:r")) end, { desc = "[Y]ank file name." })
+end, { desc = 'Open [U]RL under the cursor.' })
+keymap('<leader>ky', function() vim.fn.setreg('+', vim.fn.expand('%')) end, { desc = '[Y]ank relative file path.' })
+keymap('<leader>kY', function() vim.fn.setreg('+', vim.fn.expand('%:t:r')) end, { desc = '[Y]ank file name.' })
 
 -- Diagnostic Config & Keymaps.
 -- See :help vim.diagnostic.Opts.
 vim.diagnostic.config({
   update_in_insert = false,
   severity_sort = true,
-  float = { border = "single", source = "if_many" },
+  float = { border = 'single', source = 'if_many' },
   underline = { severity = { min = vim.diagnostic.severity.WARN } },
 
   -- Can switch between these as you prefer.
@@ -186,10 +186,10 @@ vim.diagnostic.config({
   virtual_lines = false, -- Text shows up underneath the line, with virtual lines.
 })
 -- Diagnostic list.
-keymap("<leader>ll", vim.diagnostic.setloclist, { desc = "Open diagnostic [L]ocation list." })
+keymap('<leader>ll', vim.diagnostic.setloclist, { desc = 'Open diagnostic [L]ocation list.' })
 
 -- Vim.pack keymaps.
-keymap("<leader>pd", function()
+keymap('<leader>pd', function()
   local pluginsToDelete = vim
     .iter(vim.pack.get())
     :filter(function(x) return not x.active end)
@@ -197,56 +197,56 @@ keymap("<leader>pd", function()
     :totable()
   vim.pack.del(pluginsToDelete)
   for _, plugin in ipairs(pluginsToDelete) do
-    print("Deleted plugins: " .. plugin)
+    print('Deleted plugins: ' .. plugin)
   end
-end, { desc = "[D]elete inactive plugins." })
-keymap("<leader>pl", function()
+end, { desc = '[D]elete inactive plugins.' })
+keymap('<leader>pl', function()
   local packages = vim.pack.get()
   for idx, pkg in ipairs(packages) do
-    print(idx <= 9 and "0" .. idx or idx, "| ", pkg.spec.name, pkg.active and "| active" or "| inactive")
+    print(idx <= 9 and '0' .. idx or idx, '| ', pkg.spec.name, pkg.active and '| active' or '| inactive')
   end
-end, { desc = "[L]ist plugins." })
-keymap("<leader>pu", function() vim.pack.update() end, { desc = "[U]pdate plugins." })
+end, { desc = '[L]ist plugins.' })
+keymap('<leader>pu', function() vim.pack.update() end, { desc = '[U]pdate plugins.' })
 
 -- TIP: Disable arrow keys in normal mode.
 -- Utilize arrows to resize windows in normal mode.
-keymap("<down>", function() vim.cmd("resize -1") end, { desc = "Resize window down." })
-keymap("<left>", function() vim.cmd("vertical resize -1") end, { desc = "Resize window left." })
-keymap("<right>", function() vim.cmd("vertical resize +1") end, { desc = "Resize window right." })
-keymap("<up>", function() vim.cmd("resize +1") end, { desc = "Resize window up." })
+keymap('<down>', function() vim.cmd('resize -1') end, { desc = 'Resize window down.' })
+keymap('<left>', function() vim.cmd('vertical resize -1') end, { desc = 'Resize window left.' })
+keymap('<right>', function() vim.cmd('vertical resize +1') end, { desc = 'Resize window right.' })
+keymap('<up>', function() vim.cmd('resize +1') end, { desc = 'Resize window up.' })
 
 -- Keybinds to make split navigation easier.
-keymap("<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window." })
-keymap("<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window." })
-keymap("<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window." })
-keymap("<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window." })
+keymap('<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window.' })
+keymap('<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window.' })
+keymap('<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window.' })
+keymap('<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window.' })
 
 -- Move select.
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes.
-keymap("<C-M-h>", "<C-w>H", { desc = "Move window to the left." })
-keymap("<C-M-j>", "<C-w>J", { desc = "Move window to the lower." })
-keymap("<C-M-k>", "<C-w>K", { desc = "Move window to the upper." })
-keymap("<C-M-l>", "<C-w>L", { desc = "Move window to the right." })
+keymap('<C-M-h>', '<C-w>H', { desc = 'Move window to the left.' })
+keymap('<C-M-j>', '<C-w>J', { desc = 'Move window to the lower.' })
+keymap('<C-M-k>', '<C-w>K', { desc = 'Move window to the upper.' })
+keymap('<C-M-l>', '<C-w>L', { desc = 'Move window to the right.' })
 
 -- Exit terminal mode.
-keymap("<C-Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode." }, "t")
+keymap('<C-Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode.' }, 't')
 
 -- JavaScript/Typescript quality of life mappings.
-keymap("<C-'>", "() => ", nil, "i")
-keymap("<C-,>", "()", nil, "i")
-keymap("<C-.>", "=>", nil, "i")
-keymap("<C-/>", "->", nil, "i")
+keymap("<C-'>", '() => ', nil, 'i')
+keymap('<C-,>', '()', nil, 'i')
+keymap('<C-.>', '=>', nil, 'i')
+keymap('<C-/>', '->', nil, 'i')
 
 if vim.g.neovide then
   -- Increase/decrease font size.
-  keymap("<C-->", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1<CR>", { silent = true })
-  keymap("<C-0>", ":lua vim.g.neovide_scale_factor = 1<CR>", { silent = true })
-  keymap("<C-=>", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1<CR>", { silent = true })
+  keymap('<C-->', ':lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1<CR>', { silent = true })
+  keymap('<C-0>', ':lua vim.g.neovide_scale_factor = 1<CR>', { silent = true })
+  keymap('<C-=>', ':lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1<CR>', { silent = true })
 end
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode.
 -- See `:help hlsearch`.
-keymap("<Esc>", function() vim.cmd("nohlsearch") end, { desc = "Clear highligth search." })
+keymap('<Esc>', function() vim.cmd('nohlsearch') end, { desc = 'Clear highligth search.' })
 
 -- Basic autocommands.
 -- See `:help lua-guide-autocommands`.
@@ -254,77 +254,77 @@ keymap("<Esc>", function() vim.cmd("nohlsearch") end, { desc = "Clear highligth 
 -- Highlight when yanking (copying) text.
 --  Try it with `yap` in normal mode.
 --  See `:help vim.highlight.on_yank()`.
-local nvimCreateAutocmd = require("utils.nvim-create-autocmd")
-nvimCreateAutocmd("TextYankPost", {
+local nvimCreateAutocmd = require('utils.nvim-create-autocmd')
+nvimCreateAutocmd('TextYankPost', {
   callback = function() vim.highlight.on_yank() end,
-  desc = "Highlight when yanking text.",
-  group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+  desc = 'Highlight when yanking text.',
+  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
 })
 
 -- Terminal mode customization.
-nvimCreateAutocmd("TermOpen", {
+nvimCreateAutocmd('TermOpen', {
   callback = function()
     vim.opt.spell = false
     vim.opt.number = false
     vim.opt.relativenumber = false
-    vim.cmd("setlocal bufhidden=wipe")
+    vim.cmd('setlocal bufhidden=wipe')
   end,
-  desc = "Customize terminal mode.",
-  group = vim.api.nvim_create_augroup("custom-term-open", { clear = true }),
+  desc = 'Customize terminal mode.',
+  group = vim.api.nvim_create_augroup('custom-term-open', { clear = true }),
 })
 
-nvimCreateAutocmd("FileType", {
+nvimCreateAutocmd('FileType', {
   callback = function() vim.opt_local.spell = false end,
-  desc = "Disable spellcheck in selected file types.",
-  group = vim.api.nvim_create_augroup("custom-disable-spellcheck", { clear = true }),
+  desc = 'Disable spellcheck in selected file types.',
+  group = vim.api.nvim_create_augroup('custom-disable-spellcheck', { clear = true }),
   pattern = {
-    "checkhealth",
-    "git",
-    "man",
-    "nvim-pack",
-    "qf",
+    'checkhealth',
+    'git',
+    'man',
+    'nvim-pack',
+    'qf',
   },
 })
 
-nvimCreateAutocmd("FileType", {
+nvimCreateAutocmd('FileType', {
   callback = function()
     vim.opt_local.number = true
     vim.opt_local.relativenumber = true
   end,
-  desc = "Enable absolute and relative line numbers in help buffers.",
-  pattern = "help",
+  desc = 'Enable absolute and relative line numbers in help buffers.',
+  pattern = 'help',
 })
 
 -- Must be defined before the very first vim.pack.add() call.
-nvimCreateAutocmd("PackChanged", {
+nvimCreateAutocmd('PackChanged', {
   callback = function(event)
     local name, kind = event.data.spec.name, event.data.kind
-    local pack_dir = vim.fn.stdpath("data") .. "/site/pack/core/opt/"
+    local pack_dir = vim.fn.stdpath('data') .. '/site/pack/core/opt/'
 
-    if name == "LuaSnip" and (kind == "instal" or kind == "update") then
-      if vim.fn.has("win32") == 0 and vim.fn.executable("make") == 1 then
-        vim.fn.system({ "make", "install_jsregexp", "-C", pack_dir .. "LuaSnip" })
+    if name == 'LuaSnip' and (kind == 'instal' or kind == 'update') then
+      if vim.fn.has('win32') == 0 and vim.fn.executable('make') == 1 then
+        vim.fn.system({ 'make', 'install_jsregexp', '-C', pack_dir .. 'LuaSnip' })
       end
     end
 
-    if name == "nvim-treesitter" and kind == "update" then
-      if not event.data.active then vim.cmd.packadd("nvim-treesitter") end
-      vim.cmd("TSUpdate")
+    if name == 'nvim-treesitter' and kind == 'update' then
+      if not event.data.active then vim.cmd.packadd('nvim-treesitter') end
+      vim.cmd('TSUpdate')
     end
   end,
-  desc = "Hooks for plugins with build steps.",
+  desc = 'Hooks for plugins with build steps.',
 })
 
 if vim.g.neovide then
   -- Prints out Neovide window size on resize.
-  nvimCreateAutocmd("VimResized", {
+  nvimCreateAutocmd('VimResized', {
     callback = function()
       local winWidth = vim.api.nvim_win_get_width(0)
       local winHeight = vim.api.nvim_win_get_height(0)
 
-      vim.api.nvim_echo({ { ("Neovide size: %dx%d"):format(winWidth, winHeight) } }, false, { id = "resizeMsg" })
+      vim.api.nvim_echo({ { ('Neovide size: %dx%d'):format(winWidth, winHeight) } }, false, { id = 'resizeMsg' })
     end,
-    desc = "Print Neovide window parameters on resize.",
-    group = vim.api.nvim_create_augroup("print-window-size", { clear = true }),
+    desc = 'Print Neovide window parameters on resize.',
+    group = vim.api.nvim_create_augroup('print-window-size', { clear = true }),
   })
 end

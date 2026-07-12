@@ -2,38 +2,38 @@
 
 vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 
-local githubUrl = require("utils.github-url")
-local packAdd = require("utils.pack-add")
+local githubUrl = require('utils.github-url')
+local packAdd = require('utils.pack-add')
 packAdd({
-  githubUrl("stevearc/conform.nvim"), -- https://github.com/stevearc/conform.nvim
+  githubUrl('stevearc/conform.nvim'), -- https://github.com/stevearc/conform.nvim
 })
 
-local conform = require("conform")
+local conform = require('conform')
 conform.setup({
   formatters_by_ft = {
-    bash = { "shellcheck" },
-    css = { "prettier", "prettierd", stop_after_first = true },
-    html = { "prettier", "prettierd", stop_after_first = true },
-    javascript = { "prettier", "prettierd", stop_after_first = true },
-    javascriptreact = { "prettier", "prettierd", stop_after_first = true },
-    json = { "prettier", "prettierd", stop_after_first = true },
-    jsonc = { "prettier", "prettierd", stop_after_first = true },
-    lua = { "stylua" },
-    markdown = { "markdownlint" },
-    python = { "isort", "black" },
-    sh = { "shellcheck" },
-    typescript = { "prettier", "prettierd", stop_after_first = true },
-    typescriptreact = { "prettier", "prettierd", stop_after_first = true },
-    vue = { "prettier", "prettierd", stop_after_first = true },
-    yaml = { "prettier", "prettierd", stop_after_first = true },
-    zsh = { "beautysh" },
+    bash = { 'shellcheck' },
+    css = { 'prettier', 'prettierd', stop_after_first = true },
+    html = { 'prettier', 'prettierd', stop_after_first = true },
+    javascript = { 'prettier', 'prettierd', stop_after_first = true },
+    javascriptreact = { 'prettier', 'prettierd', stop_after_first = true },
+    json = { 'prettier', 'prettierd', stop_after_first = true },
+    jsonc = { 'prettier', 'prettierd', stop_after_first = true },
+    lua = { 'stylua' },
+    markdown = { 'markdownlint' },
+    python = { 'isort', 'black' },
+    sh = { 'shellcheck' },
+    typescript = { 'prettier', 'prettierd', stop_after_first = true },
+    typescriptreact = { 'prettier', 'prettierd', stop_after_first = true },
+    vue = { 'prettier', 'prettierd', stop_after_first = true },
+    yaml = { 'prettier', 'prettierd', stop_after_first = true },
+    zsh = { 'beautysh' },
   },
   default_format_opts = {
-    lsp_format = "fallback",
+    lsp_format = 'fallback',
   },
   format_on_save = function(bufnr)
     if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then return end
-    return { timeout_ms = 500, lsp_format = "fallback" }
+    return { timeout_ms = 500, lsp_format = 'fallback' }
   end,
   -- Customize formatters.
   formatters = {},
@@ -41,51 +41,51 @@ conform.setup({
 
 vim.g.disable_autoformat = true
 
-local nvimCreateUserCommand = require("utils.nvim-create-user-command")
-nvimCreateUserCommand("FormatDisable", function(args)
+local nvimCreateUserCommand = require('utils.nvim-create-user-command')
+nvimCreateUserCommand('FormatDisable', function(args)
   if args.bang then
     -- FormatDisable! will disable formatting just for this buffer.
     vim.b.disable_autoformat = true
-    print("Format on save has been disabled in the current buffer.")
+    print('Format on save has been disabled in the current buffer.')
   else
     vim.g.disable_autoformat = true
-    print("Format on save has been disabled globally.")
+    print('Format on save has been disabled globally.')
   end
 end, {
-  desc = "Disable formatting on save.",
+  desc = 'Disable formatting on save.',
   bang = true,
 })
 
-nvimCreateUserCommand("FormatEnable", function()
+nvimCreateUserCommand('FormatEnable', function()
   vim.b.disable_autoformat = false
   vim.g.disable_autoformat = false
-  print("Format on save has been enabled.")
+  print('Format on save has been enabled.')
 end, {
-  desc = "Re-enable formatting on save.",
+  desc = 'Re-enable formatting on save.',
 })
 
-nvimCreateUserCommand("FormatInfo", function()
+nvimCreateUserCommand('FormatInfo', function()
   if vim.b.disable_autoformat then
-    print("Format on save is disabled for this buffer.")
+    print('Format on save is disabled for this buffer.')
   else
-    print("Format on save is enabled for this buffer.")
+    print('Format on save is enabled for this buffer.')
   end
 
   if vim.g.disable_autoformat then
-    print("Format on save is disabled.")
+    print('Format on save is disabled.')
   else
-    print("Format on save is enabled.")
+    print('Format on save is enabled.')
   end
-end, { desc = "Print autoformat-on-save info." })
+end, { desc = 'Print autoformat-on-save info.' })
 
-local keymap = require("utils.keymap")
-keymap("<leader>fb", function() vim.cmd("FormatDisable!") end, { desc = "Disable autoformatting in current [b]uffer." })
-keymap("<leader>fc", function() vim.cmd("ConformInfo") end, { desc = "[C]onform info." })
-keymap("<leader>fd", function() vim.cmd("FormatDisable") end, { desc = "[D]isable autoformatting." })
-keymap("<leader>fe", function() vim.cmd("FormatEnable") end, { desc = "[E]nable autoformatting." })
+local keymap = require('utils.keymap')
+keymap('<leader>fb', function() vim.cmd('FormatDisable!') end, { desc = 'Disable autoformatting in current [b]uffer.' })
+keymap('<leader>fc', function() vim.cmd('ConformInfo') end, { desc = '[C]onform info.' })
+keymap('<leader>fd', function() vim.cmd('FormatDisable') end, { desc = '[D]isable autoformatting.' })
+keymap('<leader>fe', function() vim.cmd('FormatEnable') end, { desc = '[E]nable autoformatting.' })
 keymap(
-  "<leader>ff",
-  function() conform.format({ async = true, lsp_format = "fallback" }) end,
-  { desc = "[F]ormat buffer." }
+  '<leader>ff',
+  function() conform.format({ async = true, lsp_format = 'fallback' }) end,
+  { desc = '[F]ormat buffer.' }
 )
-keymap("<leader>fi", function() vim.cmd("FormatInfo") end, { desc = "Autoformat [i]nfo." })
+keymap('<leader>fi', function() vim.cmd('FormatInfo') end, { desc = 'Autoformat [i]nfo.' })
