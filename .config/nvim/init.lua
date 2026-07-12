@@ -173,20 +173,23 @@ keymap("<leader>kl", vim.diagnostic.setloclist, { desc = "Open diagnostic [L]oca
 
 -- Vim.pack keymaps.
 keymap("<leader>pd", function()
-  local onConfirmCallback = function(packageName)
-    if not packageName or packageName == "" then return end
-    vim.pack.del({ packageName })
+  local pluginsToDelete = vim
+    .iter(vim.pack.get())
+    :filter(function(x) return not x.active end)
+    :map(function(x) return x.spec.name end)
+    :totable()
+  vim.pack.del(pluginsToDelete)
+  for _, plugin in ipairs(pluginsToDelete) do
+    print("Deleted plugins: " .. plugin)
   end
-  local options = { prompt = "Package name: " }
-  vim.ui.input(options, onConfirmCallback)
-end, { desc = "[D]elete selected package." })
+end, { desc = "[D]elete inactive plugins." })
 keymap("<leader>pl", function()
   local packages = vim.pack.get()
   for idx, pkg in ipairs(packages) do
-    print(idx, "| Name:", pkg.spec.name, "| Active:", pkg.active, "| Path:", pkg.path)
+    print(idx <= 9 and "0" .. idx or idx, "| ", pkg.spec.name, pkg.active and "| active" or "| inactive")
   end
-end, { desc = "[L]ist packages." })
-keymap("<leader>pu", function() vim.pack.update() end, { desc = "[U]pdate packages." })
+end, { desc = "[L]ist plugins." })
+keymap("<leader>pu", function() vim.pack.update() end, { desc = "[U]pdate plugins." })
 
 -- TIP: Disable arrow keys in normal mode.
 -- Utilize arrows to resize windows in normal mode.
