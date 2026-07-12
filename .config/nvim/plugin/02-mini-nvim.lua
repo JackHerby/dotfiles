@@ -21,6 +21,8 @@ require("mini.diff").setup({
   },
 })
 
+require("mini.indentscope").setup()
+
 require("mini.move").setup()
 
 local miniStatusline = require("mini.statusline")
@@ -33,3 +35,5 @@ miniStatusline.section_location = function() return "%2l:%-2v" end
 require("mini.surround").setup()
 
 require("mini.tabline").setup()
+
+require("mini.trailspace").setup()

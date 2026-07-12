@@ -91,6 +91,17 @@ vim.o.winborder = "single"
 vim.opt.spell = true
 vim.opt.spelllang = { "en_us", "pl" }
 
+-- Enable list mode to show white space characters.
+vim.opt.listchars = {
+  eol = "↵",
+  extends = "›",
+  nbsp = "⊗",
+  precedes = "‹",
+  space = "·",
+  tab = "» ",
+  trail = "∘",
+}
+
 -- Neovide/GUI settings.
 if vim.g.neovide then
   -- font
@@ -136,6 +147,12 @@ local keymap = require("utils.keymap")
 
 -- Random, convenient keymaps.
 keymap("<leader>ke", function() vim.cmd("LspEslintFixAll") end, { desc = "[E]SLint fix all." })
+keymap("<leader>kl", function()
+  ---@diagnostic disable-next-line undefined-field
+  vim.opt.list = not vim.opt.list:get()
+  ---@diagnostic disable-next-line undefined-field
+  vim.notify("listchars " .. (vim.opt.list:get() and "on" or "off"))
+end, { desc = "Display listchars." })
 keymap("<leader>kr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "[R]ename all occurances." })
 keymap("<leader>ks", function() vim.cmd("LspStylelintFix") end, { desc = "Style[l]int fix all." })
 keymap("<leader>kt", function()
@@ -169,7 +186,7 @@ vim.diagnostic.config({
   virtual_lines = false, -- Text shows up underneath the line, with virtual lines.
 })
 -- Diagnostic list.
-keymap("<leader>kl", vim.diagnostic.setloclist, { desc = "Open diagnostic [L]ocation list." })
+keymap("<leader>ll", vim.diagnostic.setloclist, { desc = "Open diagnostic [L]ocation list." })
 
 -- Vim.pack keymaps.
 keymap("<leader>pd", function()
