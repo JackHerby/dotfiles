@@ -9,9 +9,7 @@ packAdd({
 ---@type opencode.Opts
 vim.g.opencode_opts = {
   server = {
-    start = false,
-    stop = false,
-    toggle = false,
+    -- Your configuration, if any; goto definition on the type for details
   },
 }
 
@@ -31,15 +29,10 @@ keymap(
   { desc = 'Half page down.' },
   { 'n', 'x' }
 )
-keymap(
-  '<leader>oa',
-  function() require('opencode').ask('', { submit = true }) end,
-  { desc = '[A]sk Opencode.' },
-  { 'n', 'v', 'x' }
-)
+keymap('<leader>oa', function() require('opencode').ask('') end, { desc = '[A]sk Opencode.' }, { 'n', 'v', 'x' })
 keymap(
   '<leader>oc',
-  function() require('opencode').ask('@this: ', { submit = true }) end,
+  function() require('opencode').ask('@this: ') end,
   { desc = 'Opencode ask with [c]ontext.' },
   { 'n', 'v', 'x' }
 )
