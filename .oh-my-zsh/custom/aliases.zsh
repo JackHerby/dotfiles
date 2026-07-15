@@ -436,6 +436,16 @@ gstprune() {
   '
     echo "Submodule tag cleanup complete!"
 }
+#
+# Git tags
+gstag() {
+  if [ -z "$1" ] || [ -z "$2" ]; then
+    echo "Usage: gstag <version> <build>"
+    echo "Example: gstag 26.31.0 08"
+    return 1
+  fi
+  git tag "v${1}-stage${2}" && git tag "v${1}-test${2}"
+}
 
 # Docker
 alias dcbuild='docker compose build'
