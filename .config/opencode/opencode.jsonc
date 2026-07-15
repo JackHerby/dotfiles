@@ -9,7 +9,7 @@
     }
   },
   "default_agent": "plan",
-  "model": "opencode/grok-build-0.1",
+  "model": "opencode/grok-4.5",
   "permission": {
     "bash": "ask",
     "webfetch": "ask",
