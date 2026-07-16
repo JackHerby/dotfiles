@@ -17,7 +17,6 @@ require('which-key').setup({
     { '<leader>d', group = '[D]ebug Adapter Protocol.' },
     { '<leader>e', group = 'Pretty TS [E]rrors.' },
     { '<leader>f', group = 'Conform [f]ormatting.' },
-    { '<leader>h', group = '[H]arpoon.' },
     { '<leader>k', group = 'Random [k]eymaps.' },
     { '<leader>m', group = '[M]ini' },
     { '<leader>o', group = '[O]pencode.' },
