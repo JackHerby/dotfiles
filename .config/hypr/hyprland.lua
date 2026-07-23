@@ -253,7 +253,7 @@ hl.config({
 hl.config({
   input = {
     follow_mouse = 2,
-    kb_layout = "pl, us",
+    kb_layout = "pl,us",
     kb_model = "pc105",
     kb_options = "caps:swapescape",
     kb_rules = "",
