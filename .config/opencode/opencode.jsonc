@@ -4,16 +4,33 @@
     "plan": {
       "permission": {
         "todoread": "allow",
-        "todowrite": "allow"
-      }
-    }
+        "todowrite": "allow",
+      },
+    },
   },
   "default_agent": "plan",
   "model": "opencode/grok-4.5",
   "permission": {
     "bash": "ask",
     "webfetch": "ask",
-    "websearch": "ask"
+    "websearch": "ask",
   },
-  "plugin": ["opencode-anthropic-auth"]
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama",
+      "options": {
+        "baseURL": "http://localhost:11434/v1",
+      },
+      "models": {
+        "qwen3.5": {
+          "name": "qwen3.5",
+        },
+        "qwen3.6": {
+          "name": "qwen3.6",
+        },
+      },
+    },
+  },
+  "plugin": ["opencode-anthropic-auth"],
 }
