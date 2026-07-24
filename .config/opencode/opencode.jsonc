@@ -4,16 +4,16 @@
     "plan": {
       "permission": {
         "todoread": "allow",
-        "todowrite": "allow"
-      }
-    }
+        "todowrite": "allow",
+      },
+    },
   },
   "default_agent": "plan",
   "model": "opencode/grok-4.5",
   "permission": {
     "bash": "ask",
     "webfetch": "ask",
-    "websearch": "ask"
+    "websearch": "ask",
   },
-  "plugin": ["opencode-anthropic-auth"]
+  "plugin": ["opencode-anthropic-auth"],
 }
