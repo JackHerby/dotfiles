@@ -32,5 +32,4 @@
       },
     },
   },
-  "plugin": ["opencode-anthropic-auth"],
 }
