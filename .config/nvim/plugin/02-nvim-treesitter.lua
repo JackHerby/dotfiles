@@ -7,7 +7,8 @@ local githubUrl = require('utils.github-url')
 local packAdd = require('utils.pack-add')
 packAdd({
   { src = githubUrl('nvim-treesitter/nvim-treesitter'), version = 'main' }, -- https://github.com/nvim-treesitter/nvim-treesitter
-  githubUrl('nvim-treesitter/nvim-treesitter-context'),
+  githubUrl('nvim-treesitter/nvim-treesitter-context'), -- https://github.com/nvim-treesitter/nvim-treesitter-context
+  githubUrl('nvim-treesitter/nvim-treesitter-textobjects'), -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 })
 
 -- Ensure basic parser are installed.
@@ -74,4 +75,162 @@ require('treesitter-context').setup({
 })
 
 local keymap = require('utils.keymap')
-keymap('[x', function() require('treesitter-context').go_to_context(vim.v.count1) end, { silent = true })
+keymap(
+  '[x',
+  function() require('treesitter-context').go_to_context(vim.v.count1) end,
+  { desc = 'Go to context.', silent = true }
+)
+
+-- Disable entire built-in ftplugin mappings to avoid conflicts.
+-- See https://github.com/neovim/neovim/tree/master/runtime/ftplugin for built-in ftplugins.
+vim.g.no_plugin_maps = true
+
+require('nvim-treesitter-textobjects').setup({
+  select = {
+    lookahead = true,
+  },
+  move = {
+    set_jumps = true,
+  },
+})
+
+-- Keymaps
+-- You can use the capture groups defined in `textobjects.scm`
+keymap(
+  'af',
+  function() require('nvim-treesitter-textobjects.select').select_textobject('@function.outer', 'textobjects') end,
+  { desc = 'Around function.' },
+  { 'x', 'o' }
+)
+keymap(
+  'if',
+  function() require('nvim-treesitter-textobjects.select').select_textobject('@function.inner', 'textobjects') end,
+  { desc = 'Inside function.' },
+  { 'x', 'o' }
+)
+keymap(
+  'ac',
+  function() require('nvim-treesitter-textobjects.select').select_textobject('@class.outer', 'textobjects') end,
+  { desc = 'Around class.' },
+  { 'x', 'o' }
+)
+keymap(
+  'ic',
+  function() require('nvim-treesitter-textobjects.select').select_textobject('@class.inner', 'textobjects') end,
+  { desc = 'Inside class.' },
+  { 'x', 'o' }
+)
+-- You can also use captures from other query groups like `locals.scm`
+keymap(
+  'as',
+  function() require('nvim-treesitter-textobjects.select').select_textobject('@local.scope', 'locals') end,
+  { desc = 'Around scope.' },
+  { 'x', 'o' }
+)
+
+-- Move
+keymap(
+  ']f',
+  function() require('nvim-treesitter-textobjects.move').goto_next_start('@function.outer', 'textobjects') end,
+  { desc = 'Next function start.' },
+  { 'n', 'x', 'o' }
+)
+keymap(
+  ']]',
+  function() require('nvim-treesitter-textobjects.move').goto_next_start('@class.outer', 'textobjects') end,
+  { desc = 'Next class start.' },
+  { 'n', 'x', 'o' }
+)
+-- You can also pass a list to group multiple queries.
+keymap(
+  ']o',
+  function()
+    require('nvim-treesitter-textobjects.move').goto_next_start({ '@loop.inner', '@loop.outer' }, 'textobjects')
+  end,
+  { desc = 'Next loop start.' },
+  { 'n', 'x', 'o' }
+)
+-- You can also use captures from other query groups like `locals.scm` or `folds.scm`
+keymap(
+  ']s',
+  function() require('nvim-treesitter-textobjects.move').goto_next_start('@local.scope', 'locals') end,
+  { desc = 'Next scope start.' },
+  { 'n', 'x', 'o' }
+)
+keymap(
+  ']z',
+  function() require('nvim-treesitter-textobjects.move').goto_next_start('@fold', 'folds') end,
+  { desc = 'Next fold start.' },
+  { 'n', 'x', 'o' }
+)
+
+keymap(
+  ']F',
+  function() require('nvim-treesitter-textobjects.move').goto_next_end('@function.outer', 'textobjects') end,
+  { desc = 'Next function end.' },
+  { 'n', 'x', 'o' }
+)
+keymap(
+  '][',
+  function() require('nvim-treesitter-textobjects.move').goto_next_end('@class.outer', 'textobjects') end,
+  { desc = 'Next class end.' },
+  { 'n', 'x', 'o' }
+)
+
+keymap(
+  '[f',
+  function() require('nvim-treesitter-textobjects.move').goto_previous_start('@function.outer', 'textobjects') end,
+  { desc = 'Previous function start.' },
+  { 'n', 'x', 'o' }
+)
+keymap(
+  '[[',
+  function() require('nvim-treesitter-textobjects.move').goto_previous_start('@class.outer', 'textobjects') end,
+  { desc = 'Previous class start.' },
+  { 'n', 'x', 'o' }
+)
+
+keymap(
+  '[F',
+  function() require('nvim-treesitter-textobjects.move').goto_previous_end('@function.outer', 'textobjects') end,
+  { desc = 'Previous function end.' },
+  { 'n', 'x', 'o' }
+)
+keymap(
+  '[]',
+  function() require('nvim-treesitter-textobjects.move').goto_previous_end('@class.outer', 'textobjects') end,
+  { desc = 'Previous class end.' },
+  { 'n', 'x', 'o' }
+)
+
+-- Go to either the start or the end, whichever is closer.
+-- Use if you want more granular movements
+keymap(
+  ']n',
+  function() require('nvim-treesitter-textobjects.move').goto_next('@conditional.outer', 'textobjects') end,
+  { desc = 'Next conditional.' },
+  { 'n', 'x', 'o' }
+)
+keymap(
+  '[n',
+  function() require('nvim-treesitter-textobjects.move').goto_previous('@conditional.outer', 'textobjects') end,
+  { desc = 'Previous conditional.' },
+  { 'n', 'x', 'o' }
+)
+
+local ts_repeat_move = require('nvim-treesitter-textobjects.repeatable_move')
+
+-- Repeat movement with ; and ,
+-- ensure ; goes forward and , goes backward regardless of the last direction
+keymap(';', ts_repeat_move.repeat_last_move_next, {}, { 'n', 'x', 'o' })
+keymap(',', ts_repeat_move.repeat_last_move_previous, {}, { 'n', 'x', 'o' })
+
+-- vim way: ; goes to the direction you were moving.
+-- keymap(";", ts_repeat_move.repeat_last_move, {}, { "n", "x", "o" })
+-- keymap(",", ts_repeat_move.repeat_last_move_opposite, {}, { "n", "x", "o" })
+
+-- Optionally, make builtin f, F, t, T also repeatable with ; and ,
+keymap('f', ts_repeat_move.builtin_f_expr, { expr = true }, { 'n', 'x', 'o' })
+keymap('F', ts_repeat_move.builtin_F_expr, { expr = true }, { 'n', 'x', 'o' })
+keymap('t', ts_repeat_move.builtin_t_expr, { expr = true }, { 'n', 'x', 'o' })
+keymap('T', ts_repeat_move.builtin_T_expr, { expr = true }, { 'n', 'x', 'o' })
