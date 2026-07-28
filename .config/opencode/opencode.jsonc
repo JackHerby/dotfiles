@@ -9,11 +9,10 @@
     },
   },
   "default_agent": "plan",
-  "model": "opencode/grok-4.5",
+  "model": "opencode-go/deepseek-v4-flash",
   "permission": {
     "bash": "ask",
     "webfetch": "ask",
     "websearch": "ask",
   },
-  "plugin": ["opencode-anthropic-auth"],
 }
