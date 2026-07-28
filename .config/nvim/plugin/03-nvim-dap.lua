@@ -121,31 +121,31 @@ nvimCreateAutocmd('FileType', {
 
 -- Keymaps.
 local keymap = require('utils.keymap')
-keymap('<leader>db', dap.toggle_breakpoint, { desc = 'Toggle [b]reakpoint.' })
+keymap('<leader>db', dap.toggle_breakpoint, { desc = 'Toggle [b]reakpoint' })
 keymap(
   '<leader>dB',
   function() dap.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end,
-  { desc = 'Conditional [B]reakpoint.' }
+  { desc = 'Conditional [B]reakpoint' }
 )
-keymap('<leader>dc', dap.continue, { desc = '[C]ontinue / start.' })
+keymap('<leader>dc', dap.continue, { desc = '[C]ontinue / start' })
 keymap('<leader>df', function()
   local w = require('dap.ui.widgets')
   w.centered_float(w.frames)
-end, { desc = 'Float [f]rames.' })
-keymap('<leader>dh', function() require('dap.ui.widgets').hover() end, { desc = '[H]over value.' }, { 'n', 'v' })
-keymap('<leader>di', dap.step_into, { desc = 'Step [i]nto.' })
-keymap('<leader>dl', dap.run_last, { desc = 'Run [l]ast.' })
+end, { desc = 'Float [f]rames' })
+keymap('<leader>dh', function() require('dap.ui.widgets').hover() end, { desc = '[H]over value' }, { 'n', 'v' })
+keymap('<leader>di', dap.step_into, { desc = 'Step [i]nto' })
+keymap('<leader>dl', dap.run_last, { desc = 'Run [l]ast' })
 keymap(
   '<leader>dm',
   function() dap.set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end,
-  { desc = 'Log point [m]essage.' }
+  { desc = 'Log point [m]essage' }
 )
-keymap('<leader>do', dap.step_over, { desc = 'Step [o]ver.' })
-keymap('<leader>dp', function() require('dap.ui.widgets').preview() end, { desc = '[P]review value.' }, { 'n', 'v' })
-keymap('<leader>dr', dap.repl.toggle, { desc = 'Toggle [R]EPL.' })
+keymap('<leader>do', dap.step_over, { desc = 'Step [o]ver' })
+keymap('<leader>dp', function() require('dap.ui.widgets').preview() end, { desc = '[P]review value' }, { 'n', 'v' })
+keymap('<leader>dr', dap.repl.toggle, { desc = 'Toggle [R]EPL' })
 keymap('<leader>ds', function()
   local w = require('dap.ui.widgets')
   w.centered_float(w.scopes)
-end, { desc = 'Float [s]copes.' })
-keymap('<leader>dt', dap.step_out, { desc = 'Step out.' })
-keymap('<leader>dx', dap.terminate, { desc = 'Terminate session.' })
+end, { desc = 'Float [s]copes' })
+keymap('<leader>dt', dap.step_out, { desc = 'Step out' })
+keymap('<leader>dx', dap.terminate, { desc = 'Terminate session' })

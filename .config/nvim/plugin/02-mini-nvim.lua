@@ -18,8 +18,8 @@ MiniStatusline.section_location = function() return '%2l:%-2v' end
 require('mini.tabline').setup()
 require('mini.trailspace').setup()
 
-keymap('<leader>md', MiniBufremove.delete, { desc = '[D]elete buffer.' })
-keymap('<leader>ml', MiniTrailspace.trim_last_lines, { desc = 'Trim [l]ast lines.' })
-keymap('<leader>mt', MiniTrailspace.trim, { desc = '[T]rim.' })
-keymap('<leader>mu', MiniBufremove.unshow, { desc = '[U]nshow buffer.' })
-keymap('<leader>mw', MiniBufremove.wipeout, { desc = '[W]ipeout buffer.' })
+keymap('<leader>md', MiniBufremove.delete, { desc = '[D]elete buffer' })
+keymap('<leader>ml', MiniTrailspace.trim_last_lines, { desc = 'Trim [l]ast lines' })
+keymap('<leader>mt', MiniTrailspace.trim, { desc = '[T]rim' })
+keymap('<leader>mu', MiniBufremove.unshow, { desc = '[U]nshow buffer' })
+keymap('<leader>mw', MiniBufremove.wipeout, { desc = '[W]ipeout buffer' })

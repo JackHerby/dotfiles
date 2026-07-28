@@ -142,22 +142,22 @@ pcall(function() require('vim._core.ui2').enable() end)
 local keymap = require('utils.keymap')
 
 -- Random, convenient keymaps.
-keymap('<leader>ke', function() vim.cmd('LspEslintFixAll') end, { desc = '[E]SLint fix all.' })
+keymap('<leader>ke', function() vim.cmd('LspEslintFixAll') end, { desc = '[E]SLint fix all' })
 keymap('<leader>kl', function()
   ---@diagnostic disable-next-line undefined-field
   vim.opt.list = not vim.opt.list:get()
   ---@diagnostic disable-next-line undefined-field
   vim.notify('listchars ' .. (vim.opt.list:get() and 'on' or 'off'))
-end, { desc = 'Display listchars.' })
-keymap('<leader>kr', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = '[R]ename all occurances.' })
-keymap('<leader>ks', function() vim.cmd('LspStylelintFix') end, { desc = 'Style[l]int fix all.' })
+end, { desc = 'Display listchars' })
+keymap('<leader>kr', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = '[R]ename all occurances' })
+keymap('<leader>ks', function() vim.cmd('LspStylelintFix') end, { desc = 'Style[l]int fix all' })
 keymap('<leader>kt', function()
   vim.cmd.vnew()
   vim.cmd.term()
   local calculateWindowWidth = function() return math.floor(vim.o.columns * 0.4) end
   vim.api.nvim_win_set_width(0, calculateWindowWidth())
   vim.cmd('startinsert')
-end, { desc = 'Open [t]erminal in vertical split.' })
+end, { desc = 'Open [t]erminal in vertical split' })
 keymap('<leader>ku', function()
   local url = vim.fn.expand('<cWORD>')
   if url:match('^https?://') then
@@ -165,9 +165,9 @@ keymap('<leader>ku', function()
   else
     vim.notify('No valid URL found under cursor', vim.log.levels.WARN)
   end
-end, { desc = 'Open [U]RL under the cursor.' })
-keymap('<leader>ky', function() vim.fn.setreg('+', vim.fn.expand('%')) end, { desc = '[Y]ank relative file path.' })
-keymap('<leader>kY', function() vim.fn.setreg('+', vim.fn.expand('%:t:r')) end, { desc = '[Y]ank file name.' })
+end, { desc = 'Open [U]RL under the cursor' })
+keymap('<leader>ky', function() vim.fn.setreg('+', vim.fn.expand('%')) end, { desc = '[Y]ank relative file path' })
+keymap('<leader>kY', function() vim.fn.setreg('+', vim.fn.expand('%:t:r')) end, { desc = '[Y]ank file name' })
 
 -- Diagnostic Config & Keymaps.
 -- See :help vim.diagnostic.Opts.
@@ -182,7 +182,7 @@ vim.diagnostic.config({
   virtual_lines = false, -- Text shows up underneath the line, with virtual lines.
 })
 -- Diagnostic list.
-keymap('<leader>ll', vim.diagnostic.setloclist, { desc = 'Open diagnostic [L]ocation list.' })
+keymap('<leader>ll', vim.diagnostic.setloclist, { desc = 'Open diagnostic [l]ocation list' })
 
 -- Vim.pack keymaps.
 keymap('<leader>pd', function()
@@ -195,37 +195,37 @@ keymap('<leader>pd', function()
   for _, plugin in ipairs(pluginsToDelete) do
     print('Deleted plugins: ' .. plugin)
   end
-end, { desc = '[D]elete inactive plugins.' })
+end, { desc = '[D]elete inactive plugins' })
 keymap('<leader>pl', function()
   local packages = vim.pack.get()
   for idx, pkg in ipairs(packages) do
     print(idx <= 9 and '0' .. idx or idx, '| ', pkg.spec.name, pkg.active and '| active' or '| inactive')
   end
-end, { desc = '[L]ist plugins.' })
-keymap('<leader>pu', function() vim.pack.update() end, { desc = '[U]pdate plugins.' })
+end, { desc = '[L]ist plugins' })
+keymap('<leader>pu', function() vim.pack.update() end, { desc = '[U]pdate plugins' })
 
 -- TIP: Disable arrow keys in normal mode.
 -- Utilize arrows to resize windows in normal mode.
-keymap('<down>', function() vim.cmd('resize -1') end, { desc = 'Resize window down.' })
-keymap('<left>', function() vim.cmd('vertical resize -1') end, { desc = 'Resize window left.' })
-keymap('<right>', function() vim.cmd('vertical resize +1') end, { desc = 'Resize window right.' })
-keymap('<up>', function() vim.cmd('resize +1') end, { desc = 'Resize window up.' })
+keymap('<down>', function() vim.cmd('resize -1') end, { desc = 'Resize window down' })
+keymap('<left>', function() vim.cmd('vertical resize -1') end, { desc = 'Resize window left' })
+keymap('<right>', function() vim.cmd('vertical resize +1') end, { desc = 'Resize window right' })
+keymap('<up>', function() vim.cmd('resize +1') end, { desc = 'Resize window up' })
 
 -- Keybinds to make split navigation easier.
-keymap('<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window.' })
-keymap('<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window.' })
-keymap('<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window.' })
-keymap('<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window.' })
+keymap('<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+keymap('<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+keymap('<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+keymap('<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- Move select.
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes.
-keymap('<C-M-h>', '<C-w>H', { desc = 'Move window to the left.' })
-keymap('<C-M-j>', '<C-w>J', { desc = 'Move window to the lower.' })
-keymap('<C-M-k>', '<C-w>K', { desc = 'Move window to the upper.' })
-keymap('<C-M-l>', '<C-w>L', { desc = 'Move window to the right.' })
+keymap('<C-M-h>', '<C-w>H', { desc = 'Move window to the left' })
+keymap('<C-M-j>', '<C-w>J', { desc = 'Move window to the lower' })
+keymap('<C-M-k>', '<C-w>K', { desc = 'Move window to the upper' })
+keymap('<C-M-l>', '<C-w>L', { desc = 'Move window to the right' })
 
 -- Exit terminal mode.
-keymap('<C-Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode.' }, 't')
+keymap('<C-Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }, 't')
 
 -- JavaScript/Typescript quality of life mappings.
 keymap("<C-'>", '() => ', nil, 'i')
@@ -242,7 +242,7 @@ end
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode.
 -- See `:help hlsearch`.
-keymap('<Esc>', function() vim.cmd('nohlsearch') end, { desc = 'Clear highligth search and.' })
+keymap('<Esc>', function() vim.cmd('nohlsearch') end, { desc = 'Clear highligth search and' })
 
 -- Basic autocommands.
 -- See `:help lua-guide-autocommands`.

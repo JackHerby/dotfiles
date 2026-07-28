@@ -13,15 +13,15 @@ require('which-key').setup({
 
   -- Document existing key chains.
   spec = {
-    { '<leader>a', group = 'LSP [a]ctions.' },
-    { '<leader>d', group = '[D]ebug Adapter Protocol.' },
-    { '<leader>e', group = 'Pretty TS [E]rrors.' },
-    { '<leader>f', group = 'Conform [f]ormatting.' },
-    { '<leader>k', group = 'Random [k]eymaps.' },
+    { '<leader>a', group = 'LSP [a]ctions' },
+    { '<leader>d', group = '[D]ebug Adapter Protocol' },
+    { '<leader>e', group = 'Pretty TS [E]rrors' },
+    { '<leader>f', group = 'Conform [f]ormatting' },
+    { '<leader>k', group = 'Random [k]eymaps' },
     { '<leader>m', group = '[M]ini' },
-    { '<leader>o', group = '[O]pencode.' },
-    { '<leader>p', group = 'Neovim [p]ackage manager.' },
-    { '<leader>s', group = 'Fzf [s]earch.' },
-    { '<leader>y', group = '[Y]azi file manager.' },
+    { '<leader>o', group = '[O]pencode' },
+    { '<leader>p', group = 'Neovim [p]ackage manager' },
+    { '<leader>s', group = 'Fzf [s]earch' },
+    { '<leader>y', group = '[Y]azi file manager' },
   },
 })
