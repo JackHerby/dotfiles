@@ -27,15 +27,15 @@ local keymap = require('utils.keymap')
 keymap(
   '<leader>ea',
   function() require('pretty-ts-errors').open_all_errors() end,
-  { desc = 'Show [a]ll TypeScript errors.' }
+  { desc = 'Show [a]ll TypeScript errors' }
 )
 keymap(
   '<leader>ee',
   function() require('pretty-ts-errors').show_formatted_error() end,
-  { desc = 'Show TypeScript [e]rror.' }
+  { desc = 'Show TypeScript [e]rror' }
 )
 keymap(
   '<leader>et',
   function() require('pretty-ts-errors').toggle_auto_open() end,
-  { desc = '[T]oggle TypeScript error auto-display.' }
+  { desc = '[T]oggle TypeScript error auto-display' }
 )

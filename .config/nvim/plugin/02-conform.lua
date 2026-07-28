@@ -76,16 +76,16 @@ nvimCreateUserCommand('FormatInfo', function()
   else
     print('Format on save is enabled.')
   end
-end, { desc = 'Print autoformat-on-save info.' })
+end, { desc = 'Print autoformat-on-save info' })
 
 local keymap = require('utils.keymap')
-keymap('<leader>fb', function() vim.cmd('FormatDisable!') end, { desc = 'Disable autoformatting in current [b]uffer.' })
-keymap('<leader>fc', function() vim.cmd('ConformInfo') end, { desc = '[C]onform info.' })
-keymap('<leader>fd', function() vim.cmd('FormatDisable') end, { desc = '[D]isable autoformatting.' })
-keymap('<leader>fe', function() vim.cmd('FormatEnable') end, { desc = '[E]nable autoformatting.' })
+keymap('<leader>fb', function() vim.cmd('FormatDisable!') end, { desc = 'Disable autoformatting in current [b]uffer' })
+keymap('<leader>fc', function() vim.cmd('ConformInfo') end, { desc = '[C]onform info' })
+keymap('<leader>fd', function() vim.cmd('FormatDisable') end, { desc = '[D]isable autoformatting' })
+keymap('<leader>fe', function() vim.cmd('FormatEnable') end, { desc = '[E]nable autoformatting' })
 keymap(
   '<leader>ff',
   function() conform.format({ async = true, lsp_format = 'fallback' }) end,
-  { desc = '[F]ormat buffer.' }
+  { desc = '[F]ormat buffer' }
 )
-keymap('<leader>fi', function() vim.cmd('FormatInfo') end, { desc = 'Autoformat [i]nfo.' })
+keymap('<leader>fi', function() vim.cmd('FormatInfo') end, { desc = 'Autoformat [i]nfo' })

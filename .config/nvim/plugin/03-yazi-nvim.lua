@@ -8,9 +8,9 @@ packAdd({
 })
 
 local keymap = require('utils.keymap')
-keymap('<leader>yy', function() vim.cmd('Yazi cwd') end, { desc = "Open [Y]azi in Neovim's working directory." })
-keymap('<leader>yf', function() vim.cmd('Yazi') end, { desc = 'Open Yazi at the current [f]ile.' })
-keymap('<leader>yr', function() vim.cmd('Yazi toggle') end, { desc = '[R]esume Yazi session.' })
+keymap('<leader>yy', function() vim.cmd('Yazi cwd') end, { desc = "Open [Y]azi in Neovim's working directory" })
+keymap('<leader>yf', function() vim.cmd('Yazi') end, { desc = 'Open Yazi at the current [f]ile' })
+keymap('<leader>yr', function() vim.cmd('Yazi toggle') end, { desc = '[R]esume Yazi session' })
 
 local nvimCreateAutocmd = require('utils.nvim-create-autocmd')
 nvimCreateAutocmd('UIEnter', {
