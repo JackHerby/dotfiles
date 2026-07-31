@@ -324,10 +324,10 @@ hl.bind(mainMod .. " + SHIFT + right", hl.dsp.window.move({ direction = "right" 
 hl.bind(mainMod .. " + SHIFT + up", hl.dsp.window.move({ direction = "up" }))
 
 -- Resize active window with mainMod + CTRL + arrow keys.
-hl.bind(mainMod .. " + CTRL + down", hl.dsp.window.resize({ x = 0, y = 8, relative = true }))
-hl.bind(mainMod .. " + CTRL + left", hl.dsp.window.resize({ x = -8, y = 0, relative = true }))
-hl.bind(mainMod .. " + CTRL + right", hl.dsp.window.resize({ x = 8, y = 0, relative = true }))
-hl.bind(mainMod .. " + CTRL + up", hl.dsp.window.resize({ x = 0, y = -8, relative = true }))
+hl.bind(mainMod .. " + CTRL + down", hl.dsp.window.resize({ x = 0, y = 24, relative = true }))
+hl.bind(mainMod .. " + CTRL + left", hl.dsp.window.resize({ x = -24, y = 0, relative = true }))
+hl.bind(mainMod .. " + CTRL + right", hl.dsp.window.resize({ x = 24, y = 0, relative = true }))
+hl.bind(mainMod .. " + CTRL + up", hl.dsp.window.resize({ x = 0, y = -24, relative = true }))
 
 -- Switch workspaces with mainMod + [1-6].
 -- Move active window to a workspace with mainMod + SHIFT + [1-6].
