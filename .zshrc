@@ -127,7 +127,7 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 # fzf
-export FZF_DEFAULT_OPTS="--layout=reverse --preview 'bat --style=numbers --color=always {}'"
+export FZF_DEFAULT_OPTS="--layout=reverse --preview 'bat --style=numbers --color=always {}' --bind 'enter:become($EDITOR {})'"
 
 #fnm
 eval "$(fnm env --use-on-cd --shell zsh)"
