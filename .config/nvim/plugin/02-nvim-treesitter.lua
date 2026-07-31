@@ -152,7 +152,7 @@ keymap(
 )
 -- You can also use captures from other query groups like `locals.scm` or `folds.scm`.
 keymap(
-  ']s',
+  ']p',
   function() require('nvim-treesitter-textobjects.move').goto_next_start('@local.scope', 'locals') end,
   { desc = 'Next scope start' },
   { 'n', 'x', 'o' }
