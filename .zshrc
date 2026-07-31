@@ -113,8 +113,6 @@ fi
 export PATH=/usr/local/node/bin:$PATH
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 
-export FZF_DEFAULT_OPTS='--layout=reverse'
-
 export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u)/bus"
 
 # bun completions
@@ -141,6 +139,9 @@ eval "$(pyenv virtualenv-init -)"
 
 # opencode
 export PATH=/home/jacek/.opencode/bin:$PATH
+
+# fzf
+export FZF_DEFAULT_OPTS="--layout=reverse --preview 'batcat --style=numbers --color=always {}' --bind 'enter:become($EDITOR {})'"
 
 # Launch Neofetch on new terminal session
 # neofetch
