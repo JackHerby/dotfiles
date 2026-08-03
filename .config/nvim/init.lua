@@ -70,7 +70,7 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 
 vim.opt.guicursor = ''
-vim.opt.colorcolumn = '120'
+vim.opt.colorcolumn = '100'
 
 -- Tab settings.
 vim.opt.tabstop = 2
