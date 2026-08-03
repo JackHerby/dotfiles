@@ -504,3 +504,36 @@ hl.window_rule({
   workspace = 3,
   no_initial_focus = true,
 })
+
+-----------------
+---- PLUGINS ----
+-----------------
+
+hl.config({
+  plugin = {
+    hyprbars = {
+      bar_color = "rgb(1d2021)",
+      bar_height = 32,
+      bar_text_size = 16,
+      on_double_click = [[hyprctl dispatch 'hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" })"]],
+    },
+  },
+})
+
+if hl.plugin.hyprbars ~= nil then
+  hl.plugin.hyprbars.add_button({
+    action = "hyprctl dispatch 'hl.dsp.window.close()'",
+    bg_color = "rgb(ff4040)",
+    fg_color = "rgb(ffffff)",
+    icon = "󰖭",
+    size = 20,
+  })
+
+  hl.plugin.hyprbars.add_button({
+    action = [[hyprctl dispatch 'hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" })']],
+    bg_color = "rgb(eeee11)",
+    fg_color = "rgb(000000)",
+    icon = "",
+    size = 20,
+  })
+end
