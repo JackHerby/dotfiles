@@ -172,6 +172,7 @@ keymap('<leader>ku', function()
 end, { desc = 'Open [U]RL under the cursor' })
 keymap('<leader>ky', function() vim.fn.setreg('+', vim.fn.expand('%')) end, { desc = '[Y]ank relative file path' })
 keymap('<leader>kY', function() vim.fn.setreg('+', vim.fn.expand('%:t:r')) end, { desc = '[Y]ank file name' })
+keymap('<leader>q', function() vim.cmd('quit') end, { desc = '[Q]uit the current window' })
 
 -- Diagnostic Config & Keymaps.
 -- See :help vim.diagnostic.Opts.
