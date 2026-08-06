@@ -20,27 +20,31 @@ nvimCreateAutocmd('InsertEnter', {
       -- Rule for a pair with left-side ' ' and right side ' '.
       Rule(' ', ' ')
         -- Pair will only occur if the conditional function returns true.
-        :with_pair(function(opts)
-          -- We are checking if we are inserting a space in (), [], or {}.
-          local pair = opts.line:sub(opts.col - 1, opts.col)
-          return vim.tbl_contains({
-            brackets[1][1] .. brackets[1][2],
-            brackets[2][1] .. brackets[2][2],
-            brackets[3][1] .. brackets[3][2],
-          }, pair)
-        end)
+        :with_pair(
+          function(opts)
+            -- We are checking if we are inserting a space in (), [], or {}.
+            local pair = opts.line:sub(opts.col - 1, opts.col)
+            return vim.tbl_contains({
+              brackets[1][1] .. brackets[1][2],
+              brackets[2][1] .. brackets[2][2],
+              brackets[3][1] .. brackets[3][2],
+            }, pair)
+          end
+        )
         :with_move(cond.none())
         :with_cr(cond.none())
         -- We only want to delete the pair of spaces when the cursor is as such: ( | ).
-        :with_del(function(opts)
-          local col = vim.api.nvim_win_get_cursor(0)[2]
-          local context = opts.line:sub(col - 1, col + 2)
-          return vim.tbl_contains({
-            brackets[1][1] .. '  ' .. brackets[1][2],
-            brackets[2][1] .. '  ' .. brackets[2][2],
-            brackets[3][1] .. '  ' .. brackets[3][2],
-          }, context)
-        end),
+        :with_del(
+          function(opts)
+            local col = vim.api.nvim_win_get_cursor(0)[2]
+            local context = opts.line:sub(col - 1, col + 2)
+            return vim.tbl_contains({
+              brackets[1][1] .. '  ' .. brackets[1][2],
+              brackets[2][1] .. '  ' .. brackets[2][2],
+              brackets[3][1] .. '  ' .. brackets[3][2],
+            }, context)
+          end
+        ),
     })
     -- For each pair of brackets we will add another rule.
     for _, bracket in pairs(brackets) do

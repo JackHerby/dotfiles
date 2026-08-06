@@ -13,6 +13,10 @@ vim.g.undotree_DiffpanelHeight = 20
 local keymap = require('utils.keymap')
 keymap('<leader>uf', function() vim.cmd('UndotreeFocus') end, { desc = '[F]ocus Undotree' })
 keymap('<leader>uh', function() vim.cmd('UndotreeHide') end, { desc = '[H]ide Undotree' })
-keymap('<leader>up', function() vim.cmd('UndotreePersistUndo') end, { desc = 'Undotree [p]ersist undo' })
+keymap(
+  '<leader>up',
+  function() vim.cmd('UndotreePersistUndo') end,
+  { desc = 'Undotree [p]ersist undo' }
+)
 keymap('<leader>us', function() vim.cmd('UndotreeShow') end, { desc = '[S]how Undotree' })
 keymap('<leader>uu', function() vim.cmd('UndotreeToggle') end, { desc = 'Toggle [U]ndotree' })

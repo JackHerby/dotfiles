@@ -24,10 +24,18 @@ local keymap = require('utils.keymap')
 keymap('<leader>sb', function() fzf.buffers() end, { desc = 'Search in opened [b]uffers' })
 keymap(
   '<leader>sc',
-  function() fzf.live_grep({ rg_opts = '--type=css --column --line-number --no-heading --color=always --smart-case' }) end,
+  function()
+    fzf.live_grep({
+      rg_opts = '--type=css --column --line-number --no-heading --color=always --smart-case',
+    })
+  end,
   { desc = 'Search by grep in [c]ss files' }
 )
-keymap('<leader>sd', function() fzf.diagnostics_workspace() end, { desc = 'Search in [d]iagnostics' })
+keymap(
+  '<leader>sd',
+  function() fzf.diagnostics_workspace() end,
+  { desc = 'Search in [d]iagnostics' }
+)
 keymap('<leader>sf', function() fzf.files() end, { desc = 'Search for [f]iles' })
 keymap(
   '<leader>sF',
@@ -44,7 +52,9 @@ keymap(
 keymap(
   '<leader>sj',
   function()
-    fzf.live_grep({ rg_opts = '--type=js --type=ts --column --line-number --no-heading --color=always --smart-case' })
+    fzf.live_grep({
+      rg_opts = '--type=js --type=ts --column --line-number --no-heading --color=always --smart-case',
+    })
   end,
   { desc = 'Search by grep in [J]avaScript files' }
 )
