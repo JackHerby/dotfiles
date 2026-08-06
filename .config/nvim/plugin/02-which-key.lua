@@ -20,6 +20,7 @@ require('which-key').setup({
     { '<leader>g', group = 'Vim Fugitive [g]it' },
     { '<leader>h', group = '[H]arpoon' },
     { '<leader>k', group = 'Random [k]eymaps' },
+    { '<leader>l', group = '[L]ocation list' },
     { '<leader>m', group = '[M]ini' },
     { '<leader>o', group = '[O]pencode' },
     { '<leader>p', group = 'Neovim [p]ackage manager' },
