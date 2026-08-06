@@ -40,12 +40,24 @@ nvimCreateAutocmd('LspAttach', {
       function() vim.diagnostic.open_float({ scope = 'cursor', source = true, width = 128 }) end,
       { desc = 'Open [f]loating window for diagnostics' }
     )
-    keymap('<leader>ai', function() fzf.lsp_implementations() end, { desc = 'Goto [i]mplementation' })
+    keymap(
+      '<leader>ai',
+      function() fzf.lsp_implementations() end,
+      { desc = 'Goto [i]mplementation' }
+    )
     keymap('<leader>an', vim.lsp.buf.rename, { desc = 'Re[n]ame symbol' })
-    keymap('<leader>aO', function() fzf.lsp_document_symbols() end, { desc = 'Open document symb[o]ls' })
+    keymap(
+      '<leader>aO',
+      function() fzf.lsp_document_symbols() end,
+      { desc = 'Open document symb[o]ls' }
+    )
     keymap('<leader>ar', function() fzf.lsp_references() end, { desc = 'Goto [r]eferences' })
     keymap('<leader>at', function() fzf.lsp_typedefs() end, { desc = 'Goto [t]ype definition' })
-    keymap('<leader>aW', function() fzf.lsp_live_workspace_symbols() end, { desc = 'Open [w]orkspace symbols' })
+    keymap(
+      '<leader>aW',
+      function() fzf.lsp_live_workspace_symbols() end,
+      { desc = 'Open [w]orkspace symbols' }
+    )
 
     -- The following two autocommands are used to highlight references of the
     -- word under your cursor when your cursor rests there for a little while.
@@ -53,7 +65,8 @@ nvimCreateAutocmd('LspAttach', {
     -- When you move your cursor, the highlights will be cleared (the second autocommand).
     local client = vim.lsp.get_client_by_id(event.data.client_id)
     if client and client:supports_method('textDocument/documentHighlight', event.buf) then
-      local highlightAugroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
+      local highlightAugroup =
+        vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
       nvimCreateAutocmd({ 'CursorHold', 'CursorHoldI' }, {
         buffer = event.buf,
         group = highlightAugroup,
@@ -81,7 +94,9 @@ nvimCreateAutocmd('LspAttach', {
     if client and client:supports_method('textDocument/inlayHint', event.buf) then
       keymap(
         '<leader>ah',
-        function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf })) end,
+        function()
+          vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
+        end,
         { desc = 'Toggle inlay [h]ints' }
       )
     end

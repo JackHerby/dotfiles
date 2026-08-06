@@ -32,7 +32,12 @@ keymap(
   { desc = 'Half page down' },
   { 'n', 'x' }
 )
-keymap('<leader>oa', function() require('opencode').ask('') end, { desc = '[A]sk Opencode' }, { 'n', 'v', 'x' })
+keymap(
+  '<leader>oa',
+  function() require('opencode').ask('') end,
+  { desc = '[A]sk Opencode' },
+  { 'n', 'v', 'x' }
+)
 keymap(
   '<leader>oc',
   function() require('opencode').ask('@this: ') end,

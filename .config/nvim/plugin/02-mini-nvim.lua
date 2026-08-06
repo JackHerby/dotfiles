@@ -12,7 +12,7 @@ require('mini.bufremove').setup()
 require('mini.diff').setup({ view = { style = 'sign' } })
 require('mini.indentscope').setup()
 require('mini.move').setup()
-require('mini.statusline').setup({ use_icons = vim.g.have_nerd_font, })
+require('mini.statusline').setup({ use_icons = vim.g.have_nerd_font })
 ---@diagnostic disable-next-line: duplicate-set-field
 MiniStatusline.section_location = function() return '%2l:%-2v' end
 require('mini.tabline').setup()
