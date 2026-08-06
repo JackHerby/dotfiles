@@ -1,0 +1,37 @@
+-- Getting you where you want with the fewest keystrokes.
+
+local githubUrl = require('utils.github-url')
+local packAdd = require('utils.pack-add')
+packAdd({
+  { src = githubUrl('ThePrimeagen/harpoon'), version = 'harpoon2' }, -- https://github.com/ThePrimeagen/harpoon
+})
+
+local harpoon = require('harpoon')
+harpoon:setup({
+  settings = {
+    save_on_toggle = true,
+    sync_on_ui_close = true,
+  },
+})
+
+local function toggleQuickMenu()
+  harpoon.ui:toggle_quick_menu(harpoon:list(), {
+    ui_width_ratio = 0.6,
+    ui_max_width = 120,
+    height_in_lines = 10,
+    border = 'single',
+    title = 'Harpoon',
+  })
+end
+
+local keymap = require('utils.keymap')
+keymap('<C-1>', function() harpoon:list():select(1) end)
+keymap('<C-2>', function() harpoon:list():select(2) end)
+keymap('<C-3>', function() harpoon:list():select(3) end)
+keymap('<C-4>', function() harpoon:list():select(4) end)
+keymap('<C-5>', function() harpoon:list():select(5) end)
+keymap('<C-S-J>', function() harpoon:list():prev() end)
+keymap('<C-S-K>', function() harpoon:list():next() end)
+keymap('<leader>ha', function() harpoon:list():add() end, { desc = 'Harpoon [a]dd.' })
+keymap('<leader>hh', toggleQuickMenu, { desc = 'Harpoon [t]oggle.' })
+keymap('<leader>hp', function() harpoon:list():prepend() end, { desc = 'Harpoon [p]repend.' })
