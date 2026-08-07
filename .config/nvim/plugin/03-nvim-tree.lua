@@ -13,6 +13,9 @@ require('nvim-tree').setup({
     },
   },
   disable_netrw = true,
+  filesystem_watchers = {
+    whitelist_dirs = { '/node_modules' },
+  },
   view = {
     width = function() return math.floor(vim.o.columns * 0.33) end,
     side = 'right',
