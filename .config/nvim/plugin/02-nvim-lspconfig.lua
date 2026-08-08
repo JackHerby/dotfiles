@@ -168,7 +168,10 @@ require('mason-lspconfig').setup({
 })
 
 -- Ensure the servers and tools above are installed.
-local ensureInstalled = vim.tbl_keys(servers or {})
+local ensureInstalled = vim
+  .iter(vim.tbl_keys(servers or {}))
+  :filter(function(name) return name ~= 'stylelint_lsp' end)
+  :totable()
 vim.list_extend(ensureInstalled, {
   'beautysh',
   'black',
@@ -179,6 +182,7 @@ vim.list_extend(ensureInstalled, {
   'prettier',
   'prettierd',
   'shellcheck',
+  'stylelint-language-server',
   'stylua',
 })
 
