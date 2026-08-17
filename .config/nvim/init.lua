@@ -141,6 +141,10 @@ pcall(function() require('vim._core.ui2').enable() end)
 -- See `:help vim.keymap.set()`.
 local keymap = require('utils.keymap')
 
+-- Go to next/previous buffer.
+keymap('<C-S-J>', function() vim.cmd('bnext') end)
+keymap('<C-S-K>', function() vim.cmd('bprev') end)
+
 -- Random, convenient keymaps.
 keymap('<leader>ke', function() vim.cmd('LspEslintFixAll') end, { desc = '[E]SLint fix all' })
 keymap('<leader>kl', function()
