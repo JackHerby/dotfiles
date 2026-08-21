@@ -189,6 +189,7 @@ keymap(
   { desc = '[Y]ank file name' }
 )
 keymap('<leader>q', function() vim.cmd('quit') end, { desc = '[Q]uit the current window' })
+keymap('<leader>w', function() vim.cmd('write') end, { desc = '[W]rite the current buffer' })
 
 -- Diagnostic Config & Keymaps.
 -- See :help vim.diagnostic.Opts.
