@@ -61,8 +61,8 @@ service_up() {
     python run.py "$1" up
 }
 
-alias softnuke='sudo rm -rf ssr/src/node_modules && sudo rm -rf base/src/node_modules && sudo find . -wholename "*var/cache" -type d -exec rm -r {} +'
-alias nuke=' sudo rm -rf ssr/src/node_modules && sudo  rm -rf base/src/node_modules && sudo  docker system prune -a'
+alias softnuke='sudo rm -rf ssr/src/node_modules ssr/src/.output ssr/src/.nuxt base/src/node_modules && sudo find . -wholename "*var/cache" -type d -exec rm -r {} +'
+alias nuke='sudo rm -rf ssr/src/node_modules ssr/src/.output ssr/src/.nuxt base/src/node_modules && sudo  docker system prune -a'
 
 alias cdfrc='cd ~/Projects/fr/cms/'
 alias cdfrct='cd ~/Projects/fr/cms/tools/'
