@@ -113,6 +113,10 @@ if vim.g.neovide then
   vim.g.neovide_padding_right = 2
   vim.g.neovide_padding_left = 2
 
+  -- opacity
+  vim.g.neovide_opacity = 1
+  vim.g.neovide_normal_opacity = 0.95
+
   -- animations
   vim.g.neovide_position_animation_length = 0.1
   vim.g.neovide_scroll_animation_length = 0.15
