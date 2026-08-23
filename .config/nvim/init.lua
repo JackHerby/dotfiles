@@ -105,7 +105,7 @@ vim.opt.listchars = {
 -- Neovide/GUI settings.
 if vim.g.neovide then
   -- font
-  vim.o.guifont = '0xProto Nerd Font Mono:h12'
+  vim.o.guifont = 'FiraCode Nerd Font Mono:h12'
 
   -- padding
   vim.g.neovide_padding_top = 2
@@ -115,7 +115,7 @@ if vim.g.neovide then
 
   -- opacity
   vim.g.neovide_opacity = 1
-  vim.g.neovide_normal_opacity = 0.98
+  vim.g.neovide_normal_opacity = 0.95
 
   -- animations
   vim.g.neovide_position_animation_length = 0.1
