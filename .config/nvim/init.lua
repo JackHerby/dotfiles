@@ -164,12 +164,10 @@ keymap(
 )
 keymap('<leader>ks', function() vim.cmd('LspStylelintFix') end, { desc = 'Style[l]int fix all' })
 keymap('<leader>kt', function()
-  vim.cmd.vnew()
-  vim.cmd.term()
-  local calculateWindowWidth = function() return math.floor(vim.o.columns * 0.4) end
-  vim.api.nvim_win_set_width(0, calculateWindowWidth())
-  vim.cmd('startinsert')
-end, { desc = 'Open [t]erminal in vertical split' })
+  vim.ui.input({ prompt = 'Title: ' }, function(input)
+    if input then vim.o.titlestring = input end
+  end)
+end, { desc = 'Set [t]itlestring' })
 keymap('<leader>ku', function()
   local url = vim.fn.expand('<cWORD>')
   if url:match('^https?://') then
@@ -189,6 +187,13 @@ keymap(
   { desc = '[Y]ank file name' }
 )
 keymap('<leader>q', function() vim.cmd('quit') end, { desc = '[Q]uit the current window' })
+keymap('<leader>t', function()
+  vim.cmd.vnew()
+  vim.cmd.term()
+  local calculateWindowWidth = function() return math.floor(vim.o.columns * 0.4) end
+  vim.api.nvim_win_set_width(0, calculateWindowWidth())
+  vim.cmd('startinsert')
+end, { desc = 'Open [t]erminal in vertical split' })
 keymap('<leader>w', function() vim.cmd('write') end, { desc = '[W]rite the current buffer' })
 
 -- Diagnostic Config & Keymaps.
@@ -252,7 +257,7 @@ keymap('<C-M-k>', '<C-w>K', { desc = 'Move window to the upper' })
 keymap('<C-M-l>', '<C-w>L', { desc = 'Move window to the right' })
 
 -- Exit terminal mode.
-keymap('<C-Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }, 't')
+keymap('<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }, 't')
 
 -- JavaScript/Typescript quality of life mappings.
 keymap("<C-'>", '() => ', nil, 'i')
