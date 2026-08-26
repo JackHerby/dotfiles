@@ -18,6 +18,11 @@ fzf.setup({
       ['ctrl-q'] = 'select-all+accept',
     },
   },
+  winopts = {
+    preview = {
+      border = 'border-top',
+    },
+  },
 })
 
 local keymap = require('utils.keymap')
