@@ -31,31 +31,27 @@ local nvimCreateAutocmd = require('utils.nvim-create-autocmd')
 nvimCreateAutocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
   callback = function(event)
-    local fzf = require('fzf-lua')
+    local telescopeBuiltin = require('telescope.builtin')
     keymap('<leader>aa', vim.lsp.buf.code_action, { desc = 'Goto code [a]ction' }, { 'n', 'x' })
-    keymap('<leader>ad', function() fzf.lsp_definitions() end, { desc = 'Goto [d]efinition' })
+    keymap('<leader>ad', telescopeBuiltin.lsp_definitions, { desc = 'Goto [d]efinition' })
     keymap('<leader>aD', vim.lsp.buf.declaration, { desc = 'Goto [d]eclaration' })
     keymap(
       '<leader>af',
       function() vim.diagnostic.open_float({ scope = 'cursor', source = true, width = 128 }) end,
       { desc = 'Open [f]loating window for diagnostics' }
     )
-    keymap(
-      '<leader>ai',
-      function() fzf.lsp_implementations() end,
-      { desc = 'Goto [i]mplementation' }
-    )
+    keymap('<leader>ai', telescopeBuiltin.lsp_implementations, { desc = 'Goto [i]mplementation' })
     keymap('<leader>an', vim.lsp.buf.rename, { desc = 'Re[n]ame symbol' })
     keymap(
       '<leader>aO',
-      function() fzf.lsp_document_symbols() end,
+      telescopeBuiltin.lsp_document_symbols,
       { desc = 'Open document symb[o]ls' }
     )
-    keymap('<leader>ar', function() fzf.lsp_references() end, { desc = 'Goto [r]eferences' })
-    keymap('<leader>at', function() fzf.lsp_typedefs() end, { desc = 'Goto [t]ype definition' })
+    keymap('<leader>ar', telescopeBuiltin.lsp_references, { desc = 'Goto [r]eferences' })
+    keymap('<leader>at', telescopeBuiltin.lsp_type_definitions, { desc = 'Goto [t]ype definition' })
     keymap(
       '<leader>aW',
-      function() fzf.lsp_live_workspace_symbols() end,
+      telescopeBuiltin.lsp_dynamic_workspace_symbols,
       { desc = 'Open [w]orkspace symbols' }
     )
 
