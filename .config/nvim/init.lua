@@ -70,7 +70,7 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 
 vim.opt.guicursor = ''
-vim.opt.colorcolumn = '100'
+vim.opt.colorcolumn = '120'
 
 -- Tab settings.
 vim.opt.tabstop = 2
@@ -157,11 +157,7 @@ keymap('<leader>kl', function()
   ---@diagnostic disable-next-line undefined-field
   vim.notify('listchars ' .. (vim.opt.list:get() and 'on' or 'off'))
 end, { desc = 'Display listchars' })
-keymap(
-  '<leader>kr',
-  [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-  { desc = '[R]ename all occurances' }
-)
+keymap('<leader>kr', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = '[R]ename all occurances' })
 keymap('<leader>ks', function() vim.cmd('LspStylelintFix') end, { desc = 'Style[l]int fix all' })
 keymap('<leader>kt', function()
   vim.ui.input({ prompt = 'Title: ' }, function(input)
@@ -176,16 +172,8 @@ keymap('<leader>ku', function()
     vim.notify('No valid URL found under cursor', vim.log.levels.WARN)
   end
 end, { desc = 'Open [U]RL under the cursor' })
-keymap(
-  '<leader>ky',
-  function() vim.fn.setreg('+', vim.fn.expand('%')) end,
-  { desc = '[Y]ank relative file path' }
-)
-keymap(
-  '<leader>kY',
-  function() vim.fn.setreg('+', vim.fn.expand('%:t:r')) end,
-  { desc = '[Y]ank file name' }
-)
+keymap('<leader>ky', function() vim.fn.setreg('+', vim.fn.expand('%')) end, { desc = '[Y]ank relative file path' })
+keymap('<leader>kY', function() vim.fn.setreg('+', vim.fn.expand('%:t:r')) end, { desc = '[Y]ank file name' })
 keymap('<leader>q', function() vim.cmd('quit') end, { desc = '[Q]uit the current window' })
 keymap('<leader>t', function()
   vim.cmd.vnew()
@@ -226,12 +214,7 @@ end, { desc = '[D]elete inactive plugins' })
 keymap('<leader>pl', function()
   local packages = vim.pack.get()
   for idx, pkg in ipairs(packages) do
-    print(
-      idx <= 9 and '0' .. idx or idx,
-      '| ',
-      pkg.spec.name,
-      pkg.active and '| active' or '| inactive'
-    )
+    print(idx <= 9 and '0' .. idx or idx, '| ', pkg.spec.name, pkg.active and '| active' or '| inactive')
   end
 end, { desc = '[L]ist plugins' })
 keymap('<leader>pu', function() vim.pack.update() end, { desc = '[U]pdate plugins' })
@@ -267,17 +250,9 @@ keymap('<C-/>', '->', nil, 'i')
 
 if vim.g.neovide then
   -- Increase/decrease font size.
-  keymap(
-    '<C-->',
-    ':lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1<CR>',
-    { silent = true }
-  )
+  keymap('<C-->', ':lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1<CR>', { silent = true })
   keymap('<C-0>', ':lua vim.g.neovide_scale_factor = 1<CR>', { silent = true })
-  keymap(
-    '<C-=>',
-    ':lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1<CR>',
-    { silent = true }
-  )
+  keymap('<C-=>', ':lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1<CR>', { silent = true })
 end
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode.
@@ -313,13 +288,7 @@ nvimCreateAutocmd('FileType', {
   callback = function() vim.opt_local.spell = false end,
   desc = 'Disable spellcheck in selected file types.',
   group = vim.api.nvim_create_augroup('custom-disable-spellcheck', { clear = true }),
-  pattern = {
-    'checkhealth',
-    'git',
-    'man',
-    'nvim-pack',
-    'qf',
-  },
+  pattern = { 'checkhealth', 'git', 'man', 'nvim-pack', 'qf' },
 })
 
 nvimCreateAutocmd('FileType', {
@@ -364,11 +333,7 @@ if vim.g.neovide then
       local winHeight = vim.api.nvim_win_get_height(0)
       local winWidth = vim.api.nvim_win_get_width(0)
 
-      vim.api.nvim_echo(
-        { { ('Neovide size: %dx%d'):format(winWidth, winHeight) } },
-        false,
-        { id = 'resizeMsg' }
-      )
+      vim.api.nvim_echo({ { ('Neovide size: %dx%d'):format(winWidth, winHeight) } }, false, { id = 'resizeMsg' })
     end,
     desc = 'Print Neovide window parameters on resize.',
     group = vim.api.nvim_create_augroup('print-window-size', { clear = true }),
