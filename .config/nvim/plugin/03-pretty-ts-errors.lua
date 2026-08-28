@@ -14,11 +14,11 @@ require('pretty-ts-errors').setup({
 ---@diagnostic disable-next-line: duplicate-set-field
 require('pretty-ts-errors.utils').is_ts_source = function(source)
   return vim.tbl_contains({
-    'tsserver',
-    'ts',
-    'typescript',
     'deno-ts',
+    'ts',
     'ts-plugin',
+    'tsserver',
+    'typescript',
   }, source)
 end
 

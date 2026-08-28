@@ -1,4 +1,4 @@
--- Lightweight yet powerful formatter plugin for Neovim
+-- Lightweight yet powerful formatter plugin for Neovim.
 
 vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 
@@ -76,7 +76,7 @@ nvimCreateUserCommand('FormatInfo', function()
   else
     print('Format on save is enabled.')
   end
-end, { desc = 'Print autoformat-on-save info' })
+end, { desc = 'Print autoformat-on-save info.' })
 
 local keymap = require('utils.keymap')
 keymap(

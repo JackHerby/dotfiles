@@ -3,11 +3,13 @@
 local githubUrl = require('utils.github-url')
 local packAdd = require('utils.pack-add')
 packAdd({
-  githubUrl('j-hui/fidget.nvim'), -- https://github.com/j-hui/fidget.nvim
-  githubUrl('mason-org/mason.nvim'), -- https://github.com/mason-org/mason.nvim
-  githubUrl('mason-org/mason-lspconfig.nvim'), -- https://github.com/mason-org/mason-lspconfig.nvim
-  githubUrl('WhoIsSethDaniel/mason-tool-installer.nvim'), -- https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim
   githubUrl('neovim/nvim-lspconfig'), -- https://github.com/neovim/nvim-lspconfig
+  -- Dependencies.
+  githubUrl('WhoIsSethDaniel/mason-tool-installer.nvim'), -- https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim
+  githubUrl('mason-org/mason-lspconfig.nvim'), -- https://github.com/mason-org/mason-lspconfig.nvim
+  githubUrl('mason-org/mason.nvim'), -- https://github.com/mason-org/mason.nvim
+  --
+  githubUrl('j-hui/fidget.nvim'), -- https://github.com/j-hui/fidget.nvim
 })
 
 require('fidget').setup({
@@ -65,22 +67,22 @@ nvimCreateAutocmd('LspAttach', {
         vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
       nvimCreateAutocmd({ 'CursorHold', 'CursorHoldI' }, {
         buffer = event.buf,
-        group = highlightAugroup,
         callback = vim.lsp.buf.document_highlight,
+        group = highlightAugroup,
       })
 
       nvimCreateAutocmd({ 'CursorMoved', 'CursorMovedI' }, {
         buffer = event.buf,
-        group = highlightAugroup,
         callback = vim.lsp.buf.clear_references,
+        group = highlightAugroup,
       })
 
       nvimCreateAutocmd('LspDetach', {
-        group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
         callback = function(event2)
           vim.lsp.buf.clear_references()
           vim.api.nvim_clear_autocmds({ group = 'kickstart-lsp-highlight', buffer = event2.buf })
         end,
+        group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
       })
     end
 
