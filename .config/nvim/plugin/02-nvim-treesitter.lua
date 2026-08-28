@@ -7,6 +7,7 @@ local githubUrl = require('utils.github-url')
 local packAdd = require('utils.pack-add')
 packAdd({
   { src = githubUrl('nvim-treesitter/nvim-treesitter'), version = 'main' }, -- https://github.com/nvim-treesitter/nvim-treesitter
+  -- Dependencies, plugins.
   githubUrl('nvim-treesitter/nvim-treesitter-context'), -- https://github.com/nvim-treesitter/nvim-treesitter-context
   githubUrl('nvim-treesitter/nvim-treesitter-textobjects'), -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 })
@@ -96,7 +97,7 @@ require('nvim-treesitter-textobjects').setup({
   },
 })
 
--- Keymaps
+-- Keymaps.
 -- You can use the capture groups defined in `textobjects.scm`.
 keymap(
   'af',
@@ -146,7 +147,7 @@ keymap(
   { 'x', 'o' }
 )
 
--- Move
+-- Move.
 keymap(
   ']f',
   function()
@@ -264,8 +265,8 @@ keymap(
 
 local tsRepeatMove = require('nvim-treesitter-textobjects.repeatable_move')
 
--- Repeat movement with ; and ,
--- ensure ; goes forward and , goes backward regardless of the last direction
+-- Repeat movement with ; and ,.
+-- Ensure ; goes forward and , goes backward regardless of the last direction.
 keymap(';', tsRepeatMove.repeat_last_move_next, {}, { 'n', 'x', 'o' })
 keymap(',', tsRepeatMove.repeat_last_move_previous, {}, { 'n', 'x', 'o' })
 
@@ -273,7 +274,7 @@ keymap(',', tsRepeatMove.repeat_last_move_previous, {}, { 'n', 'x', 'o' })
 -- keymap(";", tsRepeatMove.repeat_last_move, {}, { "n", "x", "o" })
 -- keymap(",", tsRepeatMove.repeat_last_move_opposite, {}, { "n", "x", "o" })
 
--- Optionally, make builtin f, F, t, T also repeatable with ; and ,
+-- Optionally, make builtin f, F, t, T also repeatable with ; and ,.
 keymap('f', tsRepeatMove.builtin_f_expr, { expr = true }, { 'n', 'x', 'o' })
 keymap('F', tsRepeatMove.builtin_F_expr, { expr = true }, { 'n', 'x', 'o' })
 keymap('t', tsRepeatMove.builtin_t_expr, { expr = true }, { 'n', 'x', 'o' })

@@ -104,33 +104,33 @@ vim.opt.listchars = {
 
 -- Neovide/GUI settings.
 if vim.g.neovide then
-  -- font
+  -- Font.
   vim.o.guifont = 'Fira Code:h12'
 
-  -- padding
-  vim.g.neovide_padding_top = 2
+  -- Padding.
   vim.g.neovide_padding_bottom = 2
-  vim.g.neovide_padding_right = 2
   vim.g.neovide_padding_left = 2
+  vim.g.neovide_padding_right = 2
+  vim.g.neovide_padding_top = 2
 
-  -- opacity
-  vim.g.neovide_opacity = 1
+  -- Opacity.
   vim.g.neovide_normal_opacity = 0.95
+  vim.g.neovide_opacity = 1
 
-  -- animations
+  -- Animations.
   vim.g.neovide_position_animation_length = 0.1
   vim.g.neovide_scroll_animation_length = 0.15
 
-  -- progress bar
+  -- Progress bar.
+  vim.g.neovide_progress_bar_animation_speed = 200.0
   vim.g.neovide_progress_bar_enabled = true
   vim.g.neovide_progress_bar_height = 5.0
-  vim.g.neovide_progress_bar_animation_speed = 200.0
   vim.g.neovide_progress_bar_hide_delay = 0.2
 
-  -- theme
+  -- Theme.
   vim.g.neovide_theme = 'dark'
 
-  -- cursor
+  -- Cursor.
   vim.g.neovide_cursor_animate_in_insert_mode = false
   vim.g.neovide_cursor_smooth_blink = true
   vim.g.neovide_cursor_vfx_mode = 'railgun'
@@ -300,9 +300,9 @@ nvimCreateAutocmd('TextYankPost', {
 -- Terminal mode customization.
 nvimCreateAutocmd('TermOpen', {
   callback = function()
-    vim.opt.spell = false
     vim.opt.number = false
     vim.opt.relativenumber = false
+    vim.opt.spell = false
     vim.cmd('setlocal bufhidden=wipe')
   end,
   desc = 'Customize terminal mode.',
@@ -361,8 +361,8 @@ if vim.g.neovide then
   -- Prints out Neovide window size on resize.
   nvimCreateAutocmd('VimResized', {
     callback = function()
-      local winWidth = vim.api.nvim_win_get_width(0)
       local winHeight = vim.api.nvim_win_get_height(0)
+      local winWidth = vim.api.nvim_win_get_width(0)
 
       vim.api.nvim_echo(
         { { ('Neovide size: %dx%d'):format(winWidth, winHeight) } },

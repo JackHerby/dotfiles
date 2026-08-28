@@ -8,7 +8,6 @@ packAdd({
 
 ---@type opencode.Opts
 vim.g.opencode_opts = {
-  -- Your configuration, if any; goto definition on the type for details
   events = {
     permissions = {
       enabled = false,

@@ -6,9 +6,9 @@ packAdd({
   githubUrl('mbbill/undotree'), -- https://github.com/mbbill/undotree
 })
 
-vim.g.undotree_WindowLayout = 4
-vim.g.undotree_SplitWidth = 50
 vim.g.undotree_DiffpanelHeight = 20
+vim.g.undotree_SplitWidth = 50
+vim.g.undotree_WindowLayout = 4
 
 local keymap = require('utils.keymap')
 keymap('<leader>uf', function() vim.cmd('UndotreeFocus') end, { desc = '[F]ocus Undotree' })
