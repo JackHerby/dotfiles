@@ -347,6 +347,12 @@ nvimCreateAutocmd('PackChanged', {
       if not event.data.active then vim.cmd.packadd('nvim-treesitter') end
       vim.cmd('TSUpdate')
     end
+
+    if name == 'telescope-fzf-native.nvim' and (kind == 'instal' or kind == 'update') then
+      if vim.fn.executable('make') == 1 then
+        vim.fn.system({ 'make', '-C', pack_dir .. 'telescope-fzf-native.nvim' })
+      end
+    end
   end,
   desc = 'Hooks for plugins with build steps.',
 })
