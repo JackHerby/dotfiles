@@ -11,30 +11,24 @@ local dap = require('dap')
 
 -- Adapter: pwa-node (Node.js).
 dap.adapters['pwa-node'] = {
-  type = 'server',
+  executable = {
+    args = { vim.fn.stdpath('data') .. '/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js', '${port}' },
+    command = 'node',
+  },
   host = '127.0.0.1',
   port = '${port}',
-  executable = {
-    command = 'node',
-    args = {
-      vim.fn.stdpath('data') .. '/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js',
-      '${port}',
-    },
-  },
+  type = 'server',
 }
 
 -- Adapter: pwa-chrome (browser).
 dap.adapters['pwa-chrome'] = {
-  type = 'server',
+  executable = {
+    args = { vim.fn.stdpath('data') .. '/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js', '${port}' },
+    command = 'node',
+  },
   host = '127.0.0.1',
   port = '${port}',
-  executable = {
-    command = 'node',
-    args = {
-      vim.fn.stdpath('data') .. '/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js',
-      '${port}',
-    },
-  },
+  type = 'server',
 }
 
 -- Alias: "node" -> "pwa-node" (for launch.json compat).
@@ -57,45 +51,45 @@ local jsFiletypes = {
 for _, lang in ipairs(jsFiletypes) do
   dap.configurations[lang] = {
     {
-      type = 'pwa-node',
-      request = 'launch',
+      cwd = '${workspaceFolder}',
       name = 'Launch file',
       program = '${file}',
-      cwd = '${workspaceFolder}',
+      request = 'launch',
       sourceMaps = true,
+      type = 'pwa-node',
     },
     {
-      type = 'pwa-node',
-      request = 'attach',
+      cwd = '${workspaceFolder}',
       name = 'Attach to Node (pick process)',
       processId = require('dap.utils').pick_process,
-      cwd = '${workspaceFolder}',
+      request = 'attach',
       sourceMaps = true,
+      type = 'pwa-node',
     },
     {
-      type = 'pwa-node',
-      request = 'attach',
+      cwd = '${workspaceFolder}',
       name = 'Attach to port 9229',
       port = 9229,
-      cwd = '${workspaceFolder}',
+      request = 'attach',
       sourceMaps = true,
-    },
-    {
       type = 'pwa-node',
-      request = 'launch',
-      name = 'Nuxt: dev server',
-      runtimeExecutable = 'npx',
-      runtimeArgs = { 'nuxi', 'dev' },
-      cwd = '${workspaceFolder}',
-      sourceMaps = true,
     },
     {
-      type = 'pwa-chrome',
+      cwd = '${workspaceFolder}',
+      name = 'Nuxt: dev server',
       request = 'launch',
+      runtimeArgs = { 'nuxi', 'dev' },
+      runtimeExecutable = 'npx',
+      sourceMaps = true,
+      type = 'pwa-node',
+    },
+    {
       name = 'Chrome: localhost:3000',
+      request = 'launch',
+      sourceMaps = true,
+      type = 'pwa-chrome',
       url = 'http://localhost:3000',
       webRoot = '${workspaceFolder}',
-      sourceMaps = true,
     },
   }
 end
@@ -127,8 +121,8 @@ end
 -- REPL auto-completion.
 local nvimCreateAutocmd = require('utils.nvim-create-autocmd')
 nvimCreateAutocmd('FileType', {
-  pattern = 'dap-repl',
   callback = function() require('dap.ext.autocompl').attach() end,
+  pattern = 'dap-repl',
 })
 
 -- Keymaps.

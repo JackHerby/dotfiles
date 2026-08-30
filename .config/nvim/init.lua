@@ -187,14 +187,14 @@ keymap('<leader>w', function() vim.cmd('write') end, { desc = '[W]rite the curre
 -- Diagnostic Config & Keymaps.
 -- See :help vim.diagnostic.Opts.
 vim.diagnostic.config({
-  update_in_insert = false,
-  severity_sort = true,
   float = { border = 'single', source = 'if_many' },
+  severity_sort = true,
   underline = { severity = { min = vim.diagnostic.severity.WARN } },
+  update_in_insert = false,
 
   -- Can switch between these as you prefer.
-  virtual_text = true, -- Text shows up at the end of the line.
   virtual_lines = false, -- Text shows up underneath the line, with virtual lines.
+  virtual_text = true, -- Text shows up at the end of the line.
 })
 -- Diagnostic list.
 keymap('<leader>ll', vim.diagnostic.setloclist, { desc = 'Open diagnostic [l]ocation list' })
