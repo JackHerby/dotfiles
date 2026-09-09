@@ -65,12 +65,12 @@ keymap(
   { desc = 'Search [/] in open files' }
 )
 keymap(
-  '<leader>sb',
+  '<leader>sB',
   function() require('telescope').extensions.file_browser.file_browser() end,
   { desc = 'File [b]rowser' }
 )
 keymap(
-  '<leader>sB',
+  '<leader>sb',
   function()
     require('telescope').extensions.file_browser.file_browser({ path = vim.fn.expand('%:p:h'), select_buffer = true })
   end,
