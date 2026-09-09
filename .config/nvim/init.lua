@@ -275,10 +275,11 @@ nvimCreateAutocmd('TextYankPost', {
 -- Terminal mode customization.
 nvimCreateAutocmd('TermOpen', {
   callback = function()
+    vim.b.miniindentscope_disable = true
+    vim.cmd('setlocal bufhidden=wipe')
     vim.opt.number = false
     vim.opt.relativenumber = false
     vim.opt.spell = false
-    vim.cmd('setlocal bufhidden=wipe')
   end,
   desc = 'Customize terminal mode.',
   group = vim.api.nvim_create_augroup('custom-term-open', { clear = true }),
