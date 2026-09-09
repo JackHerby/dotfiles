@@ -105,7 +105,7 @@ vim.opt.listchars = {
 -- Neovide/GUI settings.
 if vim.g.neovide then
   -- Font.
-  vim.o.guifont = 'FiraCode Nerd Font Mono:h12'
+  vim.o.guifont = 'Fira Code:h12'
 
   -- Padding.
   vim.g.neovide_padding_bottom = 2
