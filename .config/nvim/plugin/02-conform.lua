@@ -12,6 +12,7 @@ local conform = require('conform')
 conform.setup({
   formatters_by_ft = {
     bash = { 'shellcheck' },
+    c = { 'clang-format' },
     css = { 'prettier', 'prettierd', stop_after_first = true },
     html = { 'prettier', 'prettierd', stop_after_first = true },
     javascript = { 'prettier', 'prettierd', stop_after_first = true },

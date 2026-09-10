@@ -9,6 +9,7 @@ packAdd({
 local lint = require('lint')
 lint.linters_by_ft = {
   bash = { 'shellcheck' },
+  c = { 'clangtidy' },
   markdown = { 'markdownlint' },
   javascript = { 'eslint' },
   sh = { 'shellcheck' },

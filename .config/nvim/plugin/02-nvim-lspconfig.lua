@@ -110,6 +110,7 @@ local servers = {
   bashls = {
     filetypes = { 'sh', 'zsh' },
   },
+  clangd = {},
   cssls = {},
   emmet_language_server = {},
   eslint = {},
@@ -173,6 +174,7 @@ local ensureInstalled = vim
 vim.list_extend(ensureInstalled, {
   'beautysh',
   'black',
+  'clang-format',
   'eslint',
   'isort',
   'js-debug-adapter',
