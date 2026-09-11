@@ -178,8 +178,6 @@ keymap('<leader>q', function() vim.cmd('quit') end, { desc = '[Q]uit the current
 keymap('<leader>t', function()
   vim.cmd.vnew()
   vim.cmd.term()
-  local calculateWindowWidth = function() return math.floor(vim.o.columns * 0.4) end
-  vim.api.nvim_win_set_width(0, calculateWindowWidth())
   vim.cmd('startinsert')
 end, { desc = 'Open [t]erminal in vertical split' })
 keymap('<leader>w', function() vim.cmd('write') end, { desc = '[W]rite the current buffer' })
