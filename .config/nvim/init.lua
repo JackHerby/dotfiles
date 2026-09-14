@@ -176,7 +176,7 @@ keymap('<leader>ky', function() vim.fn.setreg('+', vim.fn.expand('%')) end, { de
 keymap('<leader>kY', function() vim.fn.setreg('+', vim.fn.expand('%:t:r')) end, { desc = '[Y]ank file name' })
 keymap('<leader>q', function() vim.cmd('quit') end, { desc = '[Q]uit the current window' })
 keymap('<leader>t', function()
-  vim.cmd.vnew()
+  vim.cmd.new()
   vim.cmd.term()
   vim.cmd('startinsert')
 end, { desc = 'Open [t]erminal in vertical split' })
