@@ -22,7 +22,6 @@ vim.g.loaded_netrwPlugin = 1
 
 -- Make line numbers default.
 vim.opt.number = true
-vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
@@ -157,6 +156,7 @@ keymap('<leader>kl', function()
   ---@diagnostic disable-next-line undefined-field
   vim.notify('listchars ' .. (vim.opt.list:get() and 'on' or 'off'))
 end, { desc = 'Display listchars' })
+keymap('<leader>kn', function () vim.cmd('set relativenumber!') end, { desc = 'Toggle relative line [n]umbers' })
 keymap('<leader>kr', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = '[R]ename all occurances' })
 keymap('<leader>ks', function() vim.cmd('LspStylelintFix') end, { desc = 'Style[l]int fix all' })
 keymap('<leader>kt', function()
