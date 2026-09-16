@@ -13,6 +13,7 @@ require('which-key').setup({
   -- Document existing key chains.
   spec = {
     { '<leader>a', group = 'LSP [a]ctions' },
+    { '<leader>c', group = '[C]laude Code' },
     { '<leader>d', group = '[D]ebug Adapter Protocol' },
     { '<leader>e', group = 'Pretty TS [E]rrors' },
     { '<leader>f', group = 'Conform [f]ormatting' },
