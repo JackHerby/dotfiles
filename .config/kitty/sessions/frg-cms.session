@@ -1,0 +1,10 @@
+new_os_window
+os_window_state maximized
+new_tab Neovim
+cd ~/Projects/fr/cms/
+launch
+
+new_tab Stack
+cd ~/Projects/fr/cms/tools/
+launch --title='Connection'
+launch --bias=62 --title='Dev'
