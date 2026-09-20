@@ -5,6 +5,10 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# Bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
 # (ble.sh): Add this lines at the top of .bashrc:
 source -- /usr/share/blesh/ble.sh --attach=none
 
@@ -28,30 +32,17 @@ alias cdkinpal='cd ~/Projects/playpal'
 alias cdkitty='cd ~/.config/kitty'
 alias cdnvim='cd ~/.config/nvim'
 alias cdoc='cd ~/.config/opencode'
-alias cdomz='cd /usr/share/oh-my-zsh/'
 alias cn='clear && fastfetch'
 alias dotf='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
 alias dotfnorm='dotf config status.showUntrackedFiles normal'
 alias dotfno='dotf config status.showUntrackedFiles no'
 alias nf='neovide --fork'
-alias nomza='nvim ~/.oh-my-zsh/custom/aliases.zsh'
-alias nzh='nvim ~/.zsh_history'
 alias ocp='opencode --port'
 alias or='omz reload'
 alias s="kitten ssh"
 alias skp="kitten ssh ubuntu@146.59.33.178"
 alias tcheck='sudo timeshift --check'
 alias uds='upower -i /org/freedesktop/UPower/devices/battery_ps_controller_battery_14o3ao9ao8foc1o64'
-
-myfuncs() { grep -E "^[a-zA-Z_][a-zA-Z0-9_]*\(\)" ~/.oh-my-zsh/custom/aliases.zsh | sed 's/().*//'; }
-
-hg() {
-    if [ -z "$1" ]; then
-        echo "Usage: hg <command>"
-        return 1
-    fi
-    history | grep "$1" | less
-}
 
 # Docker
 alias dcup='docker compose up'
@@ -72,22 +63,15 @@ function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"
 	IFS= read -r -d '' cwd < "$tmp"
-	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd" || exit
 	rm -f -- "$tmp"
 }
 
 # Bun completions
 [ -s "/home/jackherby/.bun/_bun" ] && source "/home/jackherby/.bun/_bun"
 
-# Bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
 # fzf
 export FZF_DEFAULT_OPTS="--layout=reverse --preview 'bat --style=numbers --color=always {}'"
-
-# fnm
-eval "$(fnm env --use-on-cd --shell bash)"
 
 # (ble.sh): Add this line at the end of .bashrc:
 [[ ! ${BLE_VERSION-} ]] || ble-attach
