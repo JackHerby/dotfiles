@@ -14,10 +14,11 @@ packAdd({
 })
 
 require('telescope').setup({
-  defaults = {
+  defaults = require('telescope.themes').get_ivy({
+    layout_config = { height = 0.5 },
     path_display = { 'filename_first' },
     wrap_results = true,
-  },
+  }),
   extensions = {
     ['file-browser'] = {
       path_display = { 'filename_first' },
