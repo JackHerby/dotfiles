@@ -1,10 +1,11 @@
 new_os_window
 os_window_state maximized
-new_tab Neovim
+
+new_tab PLG cms Neovim
 cd ~/Projects/pl/bonprix-cms/
 launch
 
-new_tab Stack
+new_tab PLG cms Stack
 cd ~/Projects/pl/bonprix-cms/tools/
 launch --title='Connection'
 launch --bias=62 --title='Dev'

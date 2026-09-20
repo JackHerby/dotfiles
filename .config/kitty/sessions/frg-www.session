@@ -1,10 +1,11 @@
 new_os_window
 os_window_state maximized
-new_tab Neovim
+
+new_tab FRG www Neovim
 cd ~/Projects/fr/bonprix-www/
 launch
 
-new_tab Stack
+new_tab FRG www Stack
 cd ~/Projects/fr/bonprix-www/tools/
 launch --title='Connection'
 launch --bias=62 --title='Dev'
