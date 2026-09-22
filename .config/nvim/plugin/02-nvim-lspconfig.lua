@@ -44,10 +44,18 @@ nvimCreateAutocmd('LspAttach', {
     )
     keymap('<leader>ai', telescopeBuiltin.lsp_implementations, { desc = 'Goto [i]mplementation' })
     keymap('<leader>an', vim.lsp.buf.rename, { desc = 'Re[n]ame symbol' })
-    keymap('<leader>aO', telescopeBuiltin.lsp_document_symbols, { desc = 'Open document symb[o]ls' })
+    keymap(
+      '<leader>aO',
+      telescopeBuiltin.lsp_document_symbols,
+      { desc = 'Open document symb[o]ls' }
+    )
     keymap('<leader>ar', telescopeBuiltin.lsp_references, { desc = 'Goto [r]eferences' })
     keymap('<leader>at', telescopeBuiltin.lsp_type_definitions, { desc = 'Goto [t]ype definition' })
-    keymap('<leader>aW', telescopeBuiltin.lsp_dynamic_workspace_symbols, { desc = 'Open [w]orkspace symbols' })
+    keymap(
+      '<leader>aW',
+      telescopeBuiltin.lsp_dynamic_workspace_symbols,
+      { desc = 'Open [w]orkspace symbols' }
+    )
 
     -- The following two autocommands are used to highlight references of the
     -- word under your cursor when your cursor rests there for a little while.
@@ -55,7 +63,8 @@ nvimCreateAutocmd('LspAttach', {
     -- When you move your cursor, the highlights will be cleared (the second autocommand).
     local client = vim.lsp.get_client_by_id(event.data.client_id)
     if client and client:supports_method('textDocument/documentHighlight', event.buf) then
-      local highlightAugroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
+      local highlightAugroup =
+        vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
       nvimCreateAutocmd({ 'CursorHold', 'CursorHoldI' }, {
         buffer = event.buf,
         callback = vim.lsp.buf.document_highlight,
@@ -83,7 +92,9 @@ nvimCreateAutocmd('LspAttach', {
     if client and client:supports_method('textDocument/inlayHint', event.buf) then
       keymap(
         '<leader>ah',
-        function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf })) end,
+        function()
+          vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
+        end,
         { desc = 'Toggle inlay [h]ints' }
       )
     end

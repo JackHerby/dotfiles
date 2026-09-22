@@ -12,7 +12,10 @@ local dap = require('dap')
 -- Adapter: pwa-node (Node.js).
 dap.adapters['pwa-node'] = {
   executable = {
-    args = { vim.fn.stdpath('data') .. '/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js', '${port}' },
+    args = {
+      vim.fn.stdpath('data') .. '/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js',
+      '${port}',
+    },
     command = 'node',
   },
   host = '127.0.0.1',
@@ -23,7 +26,10 @@ dap.adapters['pwa-node'] = {
 -- Adapter: pwa-chrome (browser).
 dap.adapters['pwa-chrome'] = {
   executable = {
-    args = { vim.fn.stdpath('data') .. '/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js', '${port}' },
+    args = {
+      vim.fn.stdpath('data') .. '/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js',
+      '${port}',
+    },
     command = 'node',
   },
   host = '127.0.0.1',
@@ -138,7 +144,12 @@ keymap('<leader>df', function()
   local w = require('dap.ui.widgets')
   w.centered_float(w.frames)
 end, { desc = 'Float [f]rames' })
-keymap('<leader>dh', function() require('dap.ui.widgets').hover() end, { desc = '[H]over value' }, { 'n', 'v' })
+keymap(
+  '<leader>dh',
+  function() require('dap.ui.widgets').hover() end,
+  { desc = '[H]over value' },
+  { 'n', 'v' }
+)
 keymap('<leader>di', dap.step_into, { desc = 'Step [i]nto' })
 keymap('<leader>dl', dap.run_last, { desc = 'Run [l]ast' })
 keymap(
@@ -147,7 +158,12 @@ keymap(
   { desc = 'Log point [m]essage' }
 )
 keymap('<leader>do', dap.step_over, { desc = 'Step [o]ver' })
-keymap('<leader>dp', function() require('dap.ui.widgets').preview() end, { desc = '[P]review value' }, { 'n', 'v' })
+keymap(
+  '<leader>dp',
+  function() require('dap.ui.widgets').preview() end,
+  { desc = '[P]review value' },
+  { 'n', 'v' }
+)
 keymap('<leader>dr', dap.repl.toggle, { desc = 'Toggle [R]EPL' })
 keymap('<leader>ds', function()
   local w = require('dap.ui.widgets')
