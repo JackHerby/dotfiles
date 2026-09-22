@@ -7,7 +7,6 @@ launch
 
 new_tab FRG cms Stack
 cd ~/Projects/fr/cms/tools/
-launch --bias=62 --title='Dev' --var window=main
-cd ~/Projects/fr/cms/
-launch --title='Connection'
-focus_matching_window var:main
+launch --bias=62 --title='Development'
+launch --title='Connection' --var window=connection
+focus_matching_window var:window=connection

@@ -7,7 +7,6 @@ launch
 
 new_tab PLG cms Stack
 cd ~/Projects/pl/bonprix-cms/tools/
-launch --bias=62 --title='Dev' --var window=main
-cd ~/Projects/pl/bonprix-cms/
-launch --title='Connection'
-focus_matching_window var:main
+launch --bias=62 --title='Development'
+launch --title='Connection' --var window=connection
+focus_matching_window var:window=connection
