@@ -7,5 +7,7 @@ launch
 
 new_tab FRG www Stack
 cd ~/Projects/fr/bonprix-www/tools/
+launch --bias=62 --title='Dev' --var window=main
+cd ~/Projects/fr/bonprix-www/
 launch --title='Connection'
-launch --bias=62 --title='Dev'
+focus_matching_window var:main

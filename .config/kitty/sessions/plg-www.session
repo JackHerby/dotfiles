@@ -7,5 +7,7 @@ launch
 
 new_tab PLG www Stack
 cd ~/Projects/pl/bonprix-www/tools/
+launch --bias=62 --title='Development' --var window=main
+cd ~/Projects/pl/bonprix-www/
 launch --title='Connection'
-launch --bias=62 --title='Development'
+focus_matching_window var:main
