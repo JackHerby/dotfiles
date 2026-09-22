@@ -54,7 +54,9 @@ local keymap = require('utils.keymap')
 keymap(
   '<leader>/',
   function()
-    builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown({ winblend = 10, previewer = false }))
+    builtin.current_buffer_fuzzy_find(
+      require('telescope.themes').get_dropdown({ winblend = 10, previewer = false })
+    )
   end,
   { desc = 'Fuzzily search in current buffer' }
 )
@@ -73,7 +75,10 @@ keymap(
 keymap(
   '<leader>sb',
   function()
-    require('telescope').extensions.file_browser.file_browser({ path = vim.fn.expand('%:p:h'), select_buffer = true })
+    require('telescope').extensions.file_browser.file_browser({
+      path = vim.fn.expand('%:p:h'),
+      select_buffer = true,
+    })
   end,
   { desc = "File [b]rowser - current buffer's path" }
 )
@@ -107,7 +112,11 @@ keymap(
   { desc = 'Grep search in [J]avaScript files' }
 )
 keymap('<leader>sk', builtin.keymaps, { desc = 'Search [k]eymaps' })
-keymap('<leader>sm', function() extensions.node_modules.list() end, { desc = 'Search in node_[m]odules' })
+keymap(
+  '<leader>sm',
+  function() extensions.node_modules.list() end,
+  { desc = 'Search in node_[m]odules' }
+)
 keymap(
   '<leader>sn',
   function() builtin.find_files({ cwd = vim.fn.stdpath('config') }) end,
