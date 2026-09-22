@@ -9,4 +9,5 @@ new_tab PLG www Stack
 cd ~/Projects/pl/bonprix-www/tools/
 launch --bias=62 --title='Development'
 launch --title='Connection' --var window=connection
+launch --title='CLI'
 focus_matching_window var:window=connection
