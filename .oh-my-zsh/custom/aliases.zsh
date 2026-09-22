@@ -8,9 +8,9 @@ alias cdnvim='cd ~/.config/nvim'
 alias cdoc='cd ~/.config/opencode'
 alias cdomz='cd /usr/share/oh-my-zsh/'
 alias cn='clear && fastfetch'
-alias df='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
-alias dfnorm='df config status.showUntrackedFiles normal'
-alias dfno='df config status.showUntrackedFiles no'
+alias dfs='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
+alias dfsnorm='dfs config status.showUntrackedFiles normal'
+alias dfsno='dfs config status.showUntrackedFiles no'
 alias nf='neovide --fork'
 alias nomza='nvim ~/.oh-my-zsh/custom/aliases.zsh'
 alias nzh='nvim ~/.zsh_history'
@@ -23,7 +23,7 @@ alias uds='upower -i /org/freedesktop/UPower/devices/battery_ps_controller_batte
 
 myfuncs() { grep -E "^[a-zA-Z_][a-zA-Z0-9_]*\(\)" ~/.oh-my-zsh/custom/aliases.zsh | sed 's/().*//'; }
 
-hg() {
+hgr() {
     if [ -z "$1" ]; then
         echo "Usage: hg <command>"
         return 1
