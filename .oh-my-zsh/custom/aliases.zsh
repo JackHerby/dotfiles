@@ -8,9 +8,9 @@ alias cdnvim='cd ~/.config/nvim'
 alias cdoc='cd ~/.config/opencode'
 alias cdomz='cd ~/.oh-my-zsh'
 alias cn='clear && neofetch'
-alias dotfiles='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
-alias dotfilesno='dotfiles config status.showUntrackedFiles no'
-alias dotfilesnorm='dotfiles config status.showUntrackedFiles normal'
+alias dfs='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
+alias dfsno='dfs config status.showUntrackedFiles no'
+alias dfsnorm='dfs config status.showUntrackedFiles normal'
 alias eve='echo $VIRTUAL_ENV'
 alias kittyup='curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin'
 alias nf='neovide --fork'
@@ -23,7 +23,7 @@ alias tcheck='sudo timeshift --check'
 
 myfuncs() { grep -E "^[a-zA-Z_][a-zA-Z0-9_]*\(\)" ~/.oh-my-zsh/custom/aliases.zsh | sed 's/().*//'; }
 
-hg() {
+hgs() {
     if [ -z "$1" ]; then
         echo "Usage: hg <command>"
         return 1
