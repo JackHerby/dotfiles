@@ -23,7 +23,7 @@ alias tcheck='sudo timeshift --check'
 
 myfuncs() { grep -E "^[a-zA-Z_][a-zA-Z0-9_]*\(\)" ~/.oh-my-zsh/custom/aliases.zsh | sed 's/().*//'; }
 
-hgs() {
+hgr() {
     if [ -z "$1" ]; then
         echo "Usage: hg <command>"
         return 1
