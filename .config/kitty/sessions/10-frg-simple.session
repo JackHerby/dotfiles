@@ -1,0 +1,14 @@
+new_os_window
+os_window_state maximized
+
+new_tab FRG www Neovim
+cd ~/Projects/fr/bonprix-www/
+launch
+
+new_tab FRG www Development
+cd ~/Projects/fr/bonprix-www/tools/
+launch
+
+new_tab FRG www Connection
+cd ~/Projects/fr/bonprix-www/tools/
+launch
