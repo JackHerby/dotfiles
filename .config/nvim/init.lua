@@ -145,7 +145,6 @@ if vim.g.neovide then
 
   -- Cursor.
   vim.opt.guicursor = 'a:block-blinkwait0-blinkon500-blinkoff500'
-  -- vim.g.neovide_cursor_animate_in_insert_mode = false
   vim.g.neovide_cursor_smooth_blink = true
   vim.g.neovide_cursor_vfx_mode = 'railgun'
 
