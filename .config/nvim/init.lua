@@ -102,6 +102,19 @@ vim.opt.listchars = {
   trail = '∘',
 }
 
+-- Diagnostic config.
+-- See :help vim.diagnostic.Opts.
+vim.diagnostic.config({
+  float = { border = 'single', source = 'if_many' },
+  severity_sort = true,
+  underline = { severity = { min = vim.diagnostic.severity.WARN } },
+  update_in_insert = false,
+
+  -- Can switch between these as you prefer.
+  virtual_lines = false, -- Text shows up underneath the line, with virtual lines.
+  virtual_text = true, -- Text shows up at the end of the line.
+})
+
 -- Neovide/GUI settings.
 if vim.g.neovide then
   -- Font.
@@ -145,18 +158,30 @@ pcall(function() require('vim._core.ui2').enable() end)
 -- See `:help vim.keymap.set()`.
 local keymap = require('utils.keymap')
 
--- Go to next/previous buffer.
-keymap('<C-S-J>', function() vim.cmd('bnext') end)
-keymap('<C-S-K>', function() vim.cmd('bprev') end)
+keymap('<leader>q', function() vim.cmd('quit') end, { desc = '[Q]uit the current window' })
+keymap(
+  '<leader>Q',
+  function() vim.cmd('quitall!') end,
+  { desc = 'Quit [a]ll windows without saving' }
+)
+keymap('<leader>r', function() vim.cmd('restart') end, { desc = '[R]estart Neovim' })
+keymap('<leader>t', function()
+  vim.cmd.new()
+  vim.cmd.term()
+  vim.cmd('startinsert')
+end, { desc = 'Open [t]erminal in vertical split' })
+keymap('<leader>w', function() vim.cmd('write') end, { desc = '[W]rite the current buffer' })
+keymap('<leader>W', function() vim.cmd('writeall') end, { desc = '[W]rite the current buffer' })
 
--- Random, convenient keymaps.
-keymap('<leader>ke', function() vim.cmd('LspEslintFixAll') end, { desc = '[E]SLint fix all' })
-keymap('<leader>kl', function()
-  ---@diagnostic disable-next-line undefined-field
+-- Miscellaneous keymaps.
+keymap('<leader>kc', function()
   vim.opt.list = not vim.opt.list:get()
   ---@diagnostic disable-next-line undefined-field
   vim.notify('listchars ' .. (vim.opt.list:get() and 'on' or 'off'))
-end, { desc = 'Display listchars' })
+end, { desc = 'Display list[c]hars' })
+keymap('<leader>ke', function() vim.cmd('LspEslintFixAll') end, { desc = '[E]SLint fix all' })
+-- Diagnostic list.
+keymap('<leader>kl', vim.diagnostic.setloclist, { desc = 'Open diagnostic [l]ocation list' })
 keymap(
   '<leader>kn',
   function() vim.cmd('set relativenumber!') end,
@@ -191,29 +216,6 @@ keymap(
   function() vim.fn.setreg('+', vim.fn.expand('%:t:r')) end,
   { desc = '[Y]ank file name' }
 )
-keymap('<leader>r', function() vim.cmd('restart') end, { desc = '[R]estart Neovim' })
-keymap('<leader>q', function() vim.cmd('quit') end, { desc = '[Q]uit the current window' })
-keymap('<leader>t', function()
-  vim.cmd.new()
-  vim.cmd.term()
-  vim.cmd('startinsert')
-end, { desc = 'Open [t]erminal in vertical split' })
-keymap('<leader>w', function() vim.cmd('write') end, { desc = '[W]rite the current buffer' })
-
--- Diagnostic Config & Keymaps.
--- See :help vim.diagnostic.Opts.
-vim.diagnostic.config({
-  float = { border = 'single', source = 'if_many' },
-  severity_sort = true,
-  underline = { severity = { min = vim.diagnostic.severity.WARN } },
-  update_in_insert = false,
-
-  -- Can switch between these as you prefer.
-  virtual_lines = false, -- Text shows up underneath the line, with virtual lines.
-  virtual_text = true, -- Text shows up at the end of the line.
-})
--- Diagnostic list.
-keymap('<leader>ll', vim.diagnostic.setloclist, { desc = 'Open diagnostic [l]ocation list' })
 
 -- Vim.pack keymaps.
 keymap('<leader>pd', function()
@@ -240,12 +242,9 @@ keymap('<leader>pl', function()
 end, { desc = '[L]ist plugins' })
 keymap('<leader>pu', function() vim.pack.update() end, { desc = '[U]pdate plugins' })
 
--- TIP: Disable arrow keys in normal mode.
--- Utilize arrows to resize windows in normal mode.
-keymap('<down>', function() vim.cmd('resize -1') end, { desc = 'Resize window down' })
-keymap('<left>', function() vim.cmd('vertical resize -1') end, { desc = 'Resize window left' })
-keymap('<right>', function() vim.cmd('vertical resize +1') end, { desc = 'Resize window right' })
-keymap('<up>', function() vim.cmd('resize +1') end, { desc = 'Resize window up' })
+-- Go to next/previous buffer.
+keymap('<C-S-J>', function() vim.cmd('bnext') end)
+keymap('<C-S-K>', function() vim.cmd('bprev') end)
 
 -- Keybinds to make split navigation easier.
 keymap('<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
@@ -262,6 +261,13 @@ keymap('<C-M-l>', '<C-w>L', { desc = 'Move window to the right' })
 
 -- Exit terminal mode.
 keymap('<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }, 't')
+
+-- TIP: Disable arrow keys in normal mode.
+-- Utilize arrows to resize windows in normal mode.
+keymap('<down>', function() vim.cmd('resize -1') end, { desc = 'Resize window down' })
+keymap('<left>', function() vim.cmd('vertical resize -1') end, { desc = 'Resize window left' })
+keymap('<right>', function() vim.cmd('vertical resize +1') end, { desc = 'Resize window right' })
+keymap('<up>', function() vim.cmd('resize +1') end, { desc = 'Resize window up' })
 
 -- JavaScript/Typescript quality of life mappings.
 keymap("<C-'>", '() => ', nil, 'i')
