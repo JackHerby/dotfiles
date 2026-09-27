@@ -34,25 +34,25 @@ nvimCreateAutocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
   callback = function(event)
     local telescopeBuiltin = require('telescope.builtin')
-    keymap('<leader>aa', vim.lsp.buf.code_action, { desc = 'Goto code [a]ction' }, { 'n', 'x' })
-    keymap('<leader>ad', telescopeBuiltin.lsp_definitions, { desc = 'Goto [d]efinition' })
-    keymap('<leader>aD', vim.lsp.buf.declaration, { desc = 'Goto [d]eclaration' })
+    keymap('<leader>la', vim.lsp.buf.code_action, { desc = 'Goto code [a]ction' }, { 'n', 'x' })
+    keymap('<leader>ld', telescopeBuiltin.lsp_definitions, { desc = 'Goto [d]efinition' })
+    keymap('<leader>lD', vim.lsp.buf.declaration, { desc = 'Goto [d]eclaration' })
     keymap(
-      '<leader>af',
+      '<leader>lf',
       function() vim.diagnostic.open_float({ scope = 'cursor', source = true, width = 128 }) end,
       { desc = 'Open [f]loating window for diagnostics' }
     )
-    keymap('<leader>ai', telescopeBuiltin.lsp_implementations, { desc = 'Goto [i]mplementation' })
-    keymap('<leader>an', vim.lsp.buf.rename, { desc = 'Re[n]ame symbol' })
+    keymap('<leader>li', telescopeBuiltin.lsp_implementations, { desc = 'Goto [i]mplementation' })
+    keymap('<leader>ln', vim.lsp.buf.rename, { desc = 'Re[n]ame symbol' })
     keymap(
-      '<leader>aO',
+      '<leader>lO',
       telescopeBuiltin.lsp_document_symbols,
       { desc = 'Open document symb[o]ls' }
     )
-    keymap('<leader>ar', telescopeBuiltin.lsp_references, { desc = 'Goto [r]eferences' })
-    keymap('<leader>at', telescopeBuiltin.lsp_type_definitions, { desc = 'Goto [t]ype definition' })
+    keymap('<leader>lr', telescopeBuiltin.lsp_references, { desc = 'Goto [r]eferences' })
+    keymap('<leader>lt', telescopeBuiltin.lsp_type_definitions, { desc = 'Goto [t]ype definition' })
     keymap(
-      '<leader>aW',
+      '<leader>lW',
       telescopeBuiltin.lsp_dynamic_workspace_symbols,
       { desc = 'Open [w]orkspace symbols' }
     )
@@ -91,7 +91,7 @@ nvimCreateAutocmd('LspAttach', {
     -- This may be unwanted, since they displace some of your code.
     if client and client:supports_method('textDocument/inlayHint', event.buf) then
       keymap(
-        '<leader>ah',
+        '<leader>lh',
         function()
           vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
         end,

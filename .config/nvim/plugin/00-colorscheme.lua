@@ -11,7 +11,7 @@ packAdd({
 
 require('catppuccin').setup({
   flavour = 'mocha',
-  transparent_background = true,
+  transparent_background = not vim.g.neovide
 })
 
 vim.cmd.colorscheme('catppuccin-nvim')
