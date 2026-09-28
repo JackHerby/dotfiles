@@ -12,7 +12,7 @@ alias dfs='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
 alias dfsno='dfs config status.showUntrackedFiles no'
 alias dfsnorm='dfs config status.showUntrackedFiles normal'
 alias eve='echo $VIRTUAL_ENV'
-alias kgc="kitty +runpy 'from kitty.config import *; print(commented_out_default_config())' > kitty.conf.new"
+alias kgc="kitty +runpy 'from kitty.config import *; print(commented_out_default_config())' > ~/.config/kitty/kitty.conf.new"
 alias kittyup='curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin'
 alias knm='kitty --detach -o single_window_margin_width=0'
 alias nf='neovide --fork'
