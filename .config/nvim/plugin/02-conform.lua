@@ -20,6 +20,7 @@ conform.setup({
     jsonc = { 'prettier', 'prettierd', stop_after_first = true },
     lua = { 'stylua' },
     markdown = { 'markdownlint' },
+    php = { 'php_cs_fixer' },
     python = { 'isort', 'black' },
     sh = { 'shellcheck' },
     typescript = { 'prettier', 'prettierd', stop_after_first = true },

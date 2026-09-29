@@ -115,6 +115,7 @@ local servers = {
   eslint = {},
   html = {},
   hyprls = {},
+  intelephense = {},
   lemminx = {
     filetypes = { 'xml', 'xsd', 'xsl', 'xslt', 'svg', 'xlf', 'xliff', 'tmx' },
   },
@@ -177,6 +178,7 @@ vim.list_extend(ensureInstalled, {
   'isort',
   'js-debug-adapter',
   'markdownlint',
+  'php-cs-fixer',
   'prettier',
   'prettierd',
   'shellcheck',
