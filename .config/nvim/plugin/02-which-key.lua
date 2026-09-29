@@ -20,7 +20,6 @@ require('which-key').setup({
     { '<leader>k', group = 'Miscellaneous [k]eymaps' },
     { '<leader>l', group = '[L]SP actions' },
     { '<leader>m', group = '[M]ini' },
-    { '<leader>o', group = '[O]pencode' },
     { '<leader>p', group = 'Neovim [p]ackage manager' },
     { '<leader>s', group = 'Telescope [s]earch' },
     { '<leader>u', group = '[U]dotree' },

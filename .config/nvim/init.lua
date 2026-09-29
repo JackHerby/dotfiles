@@ -34,6 +34,20 @@ vim.opt.showmode = false
 -- Schedule the setting after `UiEnter` because it can increase startup-time.
 -- Remove this option if you want your OS clipboard to remain independent.
 -- See `:help 'clipboard'`.
+-- Use xclip (via XWayland) instead of wl-clipboard: GNOME lacks wlr-data-control,
+-- so wl-copy/wl-paste spawn a focus-stealing popup that blocks until clicked.
+vim.g.clipboard = {
+  name = 'xclip',
+  copy = {
+    ['+'] = { 'xclip', '-quiet', '-i', '-selection', 'clipboard' },
+    ['*'] = { 'xclip', '-quiet', '-i', '-selection', 'primary' },
+  },
+  paste = {
+    ['+'] = { 'xclip', '-o', '-selection', 'clipboard' },
+    ['*'] = { 'xclip', '-o', '-selection', 'primary' },
+  },
+  cache_enabled = 1,
+}
 vim.schedule(function() vim.opt.clipboard = 'unnamedplus' end)
 
 -- Enable break indent.
