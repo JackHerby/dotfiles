@@ -342,7 +342,7 @@ nvimCreateAutocmd('PackChanged', {
     local name, kind = event.data.spec.name, event.data.kind
     local pack_dir = vim.fn.stdpath('data') .. '/site/pack/core/opt/'
 
-    if name == 'LuaSnip' and (kind == 'instal' or kind == 'update') then
+    if name == 'LuaSnip' and (kind == 'install' or kind == 'update') then
       if vim.fn.has('win32') == 0 and vim.fn.executable('make') == 1 then
         vim.fn.system({ 'make', 'install_jsregexp', '-C', pack_dir .. 'LuaSnip' })
       end
@@ -353,7 +353,7 @@ nvimCreateAutocmd('PackChanged', {
       vim.cmd('TSUpdate')
     end
 
-    if name == 'telescope-fzf-native.nvim' and (kind == 'instal' or kind == 'update') then
+    if name == 'telescope-fzf-native.nvim' and (kind == 'install' or kind == 'update') then
       if vim.fn.executable('make') == 1 then
         vim.fn.system({ 'make', '-C', pack_dir .. 'telescope-fzf-native.nvim' })
       end
