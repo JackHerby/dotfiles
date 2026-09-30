@@ -339,27 +339,38 @@ nvimCreateAutocmd('FileType', {
 -- Must be defined before the very first vim.pack.add() call.
 nvimCreateAutocmd('PackChanged', {
   callback = function(event)
-    local name, kind = event.data.spec.name, event.data.kind
-    local pack_dir = vim.fn.stdpath('data') .. '/site/pack/core/opt/'
-
-    if name == 'LuaSnip' and (kind == 'install' or kind == 'update') then
-      if vim.fn.has('win32') == 0 and vim.fn.executable('make') == 1 then
-        vim.fn.system({ 'make', 'install_jsregexp', '-C', pack_dir .. 'LuaSnip' })
-      end
-    end
-
-    if name == 'nvim-treesitter' and kind == 'update' then
-      if not event.data.active then vim.cmd.packadd('nvim-treesitter') end
-      vim.cmd('TSUpdate')
-    end
-
-    if name == 'telescope-fzf-native.nvim' and (kind == 'install' or kind == 'update') then
-      if vim.fn.executable('make') == 1 then
-        vim.fn.system({ 'make', '-C', pack_dir .. 'telescope-fzf-native.nvim' })
-      end
-    end
+    local name, kind, path = event.data.spec.name, event.data.kind, event.data.path
+    local install_or_update = kind == 'install' or kind == 'update'
+    if name ~= 'LuaSnip' or not install_or_update then return end
+    if vim.fn.has('win32') == 1 or vim.fn.executable('make') == 0 then return end
+    local res = vim.system({ 'make', 'install_jsregexp', '-C', path }, { text = true }):wait()
+    if res.code == 0 then return end
+    vim.notify('LuaSnip jsregexp build failed:\n' .. res.stderr, vim.log.levels.ERROR)
   end,
-  desc = 'Hooks for plugins with build steps.',
+  desc = 'Build LuaSnip jsregexp.',
+})
+
+nvimCreateAutocmd('PackChanged', {
+  callback = function(event)
+    local name, kind = event.data.spec.name, event.data.kind
+    if name ~= 'nvim-treesitter' or kind ~= 'update' then return end
+    if not event.data.active then vim.cmd.packadd('nvim-treesitter') end
+    vim.cmd('TSUpdate')
+  end,
+  desc = 'Update nvim-treesitter.',
+})
+
+nvimCreateAutocmd('PackChanged', {
+  callback = function(event)
+    local name, kind, path = event.data.spec.name, event.data.kind, event.data.path
+    local install_or_update = kind == 'install' or kind == 'update'
+    if name ~= 'telescope-fzf-native.nvim' or not install_or_update then return end
+    if vim.fn.executable('make') == 0 then return end
+    local res = vim.system({ 'make', '-C', path }, { text = true }):wait()
+    if res.code == 0 then return end
+    vim.notify('telescope-fzf-native build failed:\n' .. res.stderr, vim.log.levels.ERROR)
+  end,
+  desc = 'Build telescope-fzf-native.',
 })
 
 if vim.g.neovide then
@@ -368,7 +379,6 @@ if vim.g.neovide then
     callback = function()
       local winHeight = vim.api.nvim_win_get_height(0)
       local winWidth = vim.api.nvim_win_get_width(0)
-
       vim.api.nvim_echo(
         { { ('Neovide size: %dx%d'):format(winWidth, winHeight) } },
         false,
