@@ -21,6 +21,7 @@ require('which-key').setup({
     { '<leader>l', group = '[L]SP actions' },
     { '<leader>m', group = '[M]ini' },
     { '<leader>p', group = 'Neovim [p]ackage manager' },
+    { '<leader>o', group = '[O]rgmode' },
     { '<leader>s', group = 'Telescope [s]earch' },
     { '<leader>u', group = '[U]dotree' },
   },
