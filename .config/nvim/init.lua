@@ -22,7 +22,7 @@ vim.g.loaded_netrwPlugin = 1
 
 -- Make line numbers default.
 vim.opt.number = true
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
@@ -159,11 +159,6 @@ pcall(function() require('vim._core.ui2').enable() end)
 local keymap = require('utils.keymap')
 
 keymap('<leader>q', function() vim.cmd('quit') end, { desc = '[Q]uit the current window' })
-keymap(
-  '<leader>Q',
-  function() vim.cmd('quitall!') end,
-  { desc = 'Quit [a]ll windows without saving' }
-)
 keymap('<leader>r', function() vim.cmd('restart') end, { desc = '[R]estart Neovim' })
 keymap('<leader>t', function()
   vim.cmd.new()
@@ -171,7 +166,6 @@ keymap('<leader>t', function()
   vim.cmd('startinsert')
 end, { desc = 'Open [t]erminal in vertical split' })
 keymap('<leader>w', function() vim.cmd('write') end, { desc = '[W]rite the current buffer' })
-keymap('<leader>W', function() vim.cmd('writeall') end, { desc = '[W]rite the current buffer' })
 
 -- Miscellaneous keymaps.
 keymap('<leader>kc', function()

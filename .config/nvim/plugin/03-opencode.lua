@@ -32,30 +32,30 @@ keymap(
   { 'n', 'x' }
 )
 keymap(
-  '<leader>oa',
+  '<leader>ca',
   function() require('opencode').ask('') end,
   { desc = '[A]sk Opencode' },
   { 'n', 'v', 'x' }
 )
 keymap(
-  '<leader>oc',
+  '<leader>cc',
   function() require('opencode').ask('@this: ') end,
   { desc = 'Opencode ask with [c]ontext' },
   { 'n', 'v', 'x' }
 )
 keymap(
-  '<leader>ol',
+  '<leader>cl',
   function() return require('opencode').operator('@this ') .. '_' end,
   { desc = 'Add [l]ine to Opencode', expr = true }
 )
 keymap(
-  '<leader>or',
+  '<leader>cr',
   function() return require('opencode').operator('@this ') end,
   { desc = 'Add [r]ange to Opencode', expr = true },
   { 'n', 'x' }
 )
 keymap(
-  '<leader>os',
+  '<leader>cs',
   function() require('opencode').select() end,
   { desc = 'Execute Opencode [s]elected action' },
   { 'n', 'v', 'x' }

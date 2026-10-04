@@ -12,6 +12,7 @@ require('which-key').setup({
   icons = { mappings = vim.g.have_nerd_font },
   -- Document existing key chains.
   spec = {
+    { '<leader>c', group = 'Open[c]ode' },
     { '<leader>d', group = '[D]ebug Adapter Protocol' },
     { '<leader>e', group = 'Pretty TS [E]rrors' },
     { '<leader>f', group = 'Conform [f]ormatting' },
@@ -19,8 +20,8 @@ require('which-key').setup({
     { '<leader>k', group = 'Miscellaneous [k]eymaps' },
     { '<leader>l', group = '[L]SP actions' },
     { '<leader>m', group = '[M]ini' },
-    { '<leader>o', group = '[O]pencode' },
     { '<leader>p', group = 'Neovim [p]ackage manager' },
+    { '<leader>o', group = '[O]rgmode' },
     { '<leader>s', group = 'Telescope [s]earch' },
     { '<leader>u', group = '[U]dotree' },
   },
