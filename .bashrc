@@ -5,6 +5,8 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+export PATH="$HOME/.local/bin:$PATH"
+
 # Bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
@@ -33,9 +35,9 @@ alias cdkitty='cd ~/.config/kitty'
 alias cdnvim='cd ~/.config/nvim'
 alias cdoc='cd ~/.config/opencode'
 alias cn='clear && fastfetch'
-alias dotf='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
-alias dotfnorm='dotf config status.showUntrackedFiles normal'
-alias dotfno='dotf config status.showUntrackedFiles no'
+alias dfs='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
+alias dfsnorm='dfs config status.showUntrackedFiles normal'
+alias dfsno='dfs config status.showUntrackedFiles no'
 alias nf='neovide --fork'
 alias ocp='opencode --port'
 alias or='omz reload'
