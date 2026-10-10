@@ -20,7 +20,7 @@ require('lazydev').setup({
 
 require('blink.cmp').setup({
   appearance = { nerd_font_variant = 'mono' },
-  completion = { documentation = { auto_show = false, auto_show_delay_ms = 500 } },
+  completion = { documentation = { auto_show = false }, menu = { auto_show = false } },
   -- See :h blink-cmp-config-fuzzy for more information.
   fuzzy = { implementation = 'prefer_rust_with_warning' },
   keymap = {
@@ -30,7 +30,7 @@ require('blink.cmp').setup({
     preset = 'default',
   },
   -- Shows a signature help window while you type arguments for a function.
-  signature = { enabled = true },
+  signature = { enabled = true, trigger = { enabled = false } },
   snippets = { preset = 'luasnip' },
   sources = {
     default = { 'lsp', 'path', 'snippets', 'lazydev', 'buffer' },
