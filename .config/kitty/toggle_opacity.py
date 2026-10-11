@@ -9,8 +9,8 @@ DEFAULT = "default"
 TRANSLUCENT = "0.6"
 
 
-def main(args: list[str]) -> str | None:
-    pass
+def main(args: list[str]) -> str:
+    return ""
 
 
 @result_handler(no_ui=True)
