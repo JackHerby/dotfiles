@@ -37,7 +37,11 @@ conform.setup({
     return { timeout_ms = 500, lsp_format = 'fallback' }
   end,
   -- Customize formatters.
-  formatters = {},
+  formatters = {
+    black = {
+      prepend_args = { '--line-length', '111' },
+    },
+  },
 })
 
 vim.g.disable_autoformat = true
