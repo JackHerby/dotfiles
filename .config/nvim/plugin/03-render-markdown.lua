@@ -7,7 +7,6 @@ packAdd({
 })
 
 require('render-markdown').setup({
-  anti_conceal = { enabled = false },
   completions = { lsp = { enabled = true } },
 })
 
