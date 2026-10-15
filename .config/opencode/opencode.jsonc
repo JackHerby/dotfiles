@@ -1,15 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "agent": {
-    "plan": {
-      "permission": {
-        "todoread": "allow",
-        "todowrite": "allow",
-      },
-    },
-  },
-  "default_agent": "plan",
-  "model": "opencode-go/deepseek-v4-flash",
+  "model": "opencode-go/deepseek-v4.1-flash",
   "permission": {
     "bash": "ask",
     "webfetch": "ask",
