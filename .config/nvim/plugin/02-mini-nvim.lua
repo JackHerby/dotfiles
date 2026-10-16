@@ -14,7 +14,3 @@ require('mini.statusline').setup({ use_icons = vim.g.have_nerd_font })
 ---@diagnostic disable-next-line: duplicate-set-field
 MiniStatusline.section_location = function() return '%2l:%-2v' end
 require('mini.tabline').setup()
-require('mini.trailspace').setup()
-
-keymap('<leader>il', MiniTrailspace.trim_last_lines, { desc = 'Trim [l]ast lines' })
-keymap('<leader>it', MiniTrailspace.trim, { desc = '[T]rim' })
