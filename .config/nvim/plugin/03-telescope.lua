@@ -16,8 +16,8 @@ packAdd({
 require('telescope').setup({
   defaults = {
     layout_config = {
-      height = 0.95,
-      width = 0.95,
+      height = 0.9,
+      width = { 0.65, min = 120 },
     },
     layout_strategy = 'vertical',
     path_display = { 'filename_first' },
