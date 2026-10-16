@@ -131,12 +131,6 @@ function y() {
 	rm -f -- "$tmp"
 }
 
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - bash)"
-
-eval "$(pyenv virtualenv-init -)"
-
 # opencode
 export PATH=/home/jacek/.opencode/bin:$PATH
 
