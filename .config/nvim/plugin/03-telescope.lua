@@ -1,40 +1,40 @@
 -- Gaze deeply into unknown regions using the power of the moon.
 
-local githubUrl = require('utils.github-url')
-local packAdd = require('utils.pack-add')
+local githubUrl = require("utils.github-url")
+local packAdd = require("utils.pack-add")
 packAdd({
-  githubUrl('nvim-telescope/telescope.nvim'), -- https://github.com/nvim-telescope/telescope.nvim
+  githubUrl("nvim-telescope/telescope.nvim"), -- https://github.com/nvim-telescope/telescope.nvim
   -- Dependencies, plugins.
-  githubUrl('nvim-telescope/telescope-file-browser.nvim'), -- https://github.com/nvim-telescope/telescope-file-browser.nvim
-  githubUrl('nvim-telescope/telescope-fzf-native.nvim'), -- https://github.com/nvim-telescope/telescope-fzf-native.nvim
-  githubUrl('nvim-telescope/telescope-node-modules.nvim'), -- https://github.com/nvim-telescope/telescope-node-modules.nvim
-  githubUrl('nvim-telescope/telescope-project.nvim'), -- https://github.com/nvim-telescope/telescope-project.nvim
-  githubUrl('nvim-telescope/telescope-symbols.nvim'), -- https://github.com/nvim-telescope/telescope-symbols.nvim
-  githubUrl('nvim-telescope/telescope-ui-select.nvim'), -- https://github.com/nvim-telescope/telescope-ui-select.nvim
+  githubUrl("nvim-telescope/telescope-file-browser.nvim"), -- https://github.com/nvim-telescope/telescope-file-browser.nvim
+  githubUrl("nvim-telescope/telescope-fzf-native.nvim"), -- https://github.com/nvim-telescope/telescope-fzf-native.nvim
+  githubUrl("nvim-telescope/telescope-node-modules.nvim"), -- https://github.com/nvim-telescope/telescope-node-modules.nvim
+  githubUrl("nvim-telescope/telescope-project.nvim"), -- https://github.com/nvim-telescope/telescope-project.nvim
+  githubUrl("nvim-telescope/telescope-symbols.nvim"), -- https://github.com/nvim-telescope/telescope-symbols.nvim
+  githubUrl("nvim-telescope/telescope-ui-select.nvim"), -- https://github.com/nvim-telescope/telescope-ui-select.nvim
 })
 
-require('telescope').setup({
+require("telescope").setup({
   defaults = {
     layout_config = {
       height = 0.9,
       width = { 0.65, min = 120 },
     },
-    layout_strategy = 'vertical',
-    path_display = { 'filename_first' },
+    layout_strategy = "vertical",
+    path_display = { "filename_first" },
     wrap_results = true,
   },
   extensions = {
-    ['file-browser'] = {
-      path_display = { 'filename_first' },
+    ["file-browser"] = {
+      path_display = { "filename_first" },
     },
     fzf = {
-      case_mode = 'smart_case',
+      case_mode = "smart_case",
       fuzzy = true,
       override_file_sorter = true,
       override_generic_sorter = true,
     },
-    ['ui-select'] = {
-      require('telescope.themes').get_dropdown(),
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown(),
     },
   },
   pickers = {
@@ -45,88 +45,84 @@ require('telescope').setup({
   },
 })
 
-pcall(require('telescope').load_extension, 'file-browser')
-pcall(require('telescope').load_extension, 'fzf')
-pcall(require('telescope').load_extension, 'node_modules')
-pcall(require('telescope').load_extension, 'project')
-pcall(require('telescope').load_extension, 'symbols')
-pcall(require('telescope').load_extension, 'ui-select')
+pcall(require("telescope").load_extension, "file-browser")
+pcall(require("telescope").load_extension, "fzf")
+pcall(require("telescope").load_extension, "node_modules")
+pcall(require("telescope").load_extension, "project")
+pcall(require("telescope").load_extension, "symbols")
+pcall(require("telescope").load_extension, "ui-select")
 
-local builtin = require('telescope.builtin')
-local extensions = require('telescope').extensions
-local keymap = require('utils.keymap')
+local builtin = require("telescope.builtin")
+local extensions = require("telescope").extensions
+local keymap = require("utils.keymap")
 keymap(
-  '<leader>/',
+  "<leader>/",
   function()
     builtin.current_buffer_fuzzy_find(
-      require('telescope.themes').get_dropdown({ winblend = 10, previewer = false })
+      require("telescope.themes").get_dropdown({ winblend = 10, previewer = false })
     )
   end,
-  { desc = 'Fuzzily search in current buffer' }
+  { desc = "Fuzzily search in current buffer" }
 )
-keymap('<leader><leader>', builtin.buffers, { desc = 'Search in opened buffers' })
-keymap('<leader>s.', builtin.oldfiles, { desc = 'Search recent files ("." for repeat)' })
+keymap("<leader><leader>", builtin.buffers, { desc = "Search in opened buffers" })
+keymap("<leader>s.", builtin.oldfiles, { desc = 'Search recent files ("." for repeat)' })
 keymap(
-  '<leader>s/',
-  function() builtin.live_grep({ grep_open_files = true, prompt_title = 'Live Grep in Open Files' }) end,
-  { desc = 'Search [/] in open files' }
-)
-keymap(
-  '<leader>sB',
-  function() require('telescope').extensions.file_browser.file_browser() end,
-  { desc = 'File [b]rowser' }
+  "<leader>s/",
+  function() builtin.live_grep({ grep_open_files = true, prompt_title = "Live Grep in Open Files" }) end,
+  { desc = "Search [/] in open files" }
 )
 keymap(
-  '<leader>sb',
+  "<leader>sB",
+  function() require("telescope").extensions.file_browser.file_browser() end,
+  { desc = "File [b]rowser" }
+)
+keymap(
+  "<leader>sb",
   function()
-    require('telescope').extensions.file_browser.file_browser({
-      path = vim.fn.expand('%:p:h'),
+    require("telescope").extensions.file_browser.file_browser({
+      path = vim.fn.expand("%:p:h"),
       select_buffer = true,
     })
   end,
   { desc = "File [b]rowser - current buffer's path" }
 )
 keymap(
-  '<leader>sc',
-  function() builtin.live_grep({ type_filter = 'css' }) end,
-  { desc = 'Search by grep in [c]ss files' }
+  "<leader>sc",
+  function() builtin.live_grep({ type_filter = "css" }) end,
+  { desc = "Search by grep in [c]ss files" }
 )
-keymap('<leader>sd', builtin.diagnostics, { desc = 'Search in [d]iagnostics' })
-keymap('<leader>sf', builtin.find_files, { desc = 'Search for [f]iles' })
+keymap("<leader>sd", builtin.diagnostics, { desc = "Search in [d]iagnostics" })
+keymap("<leader>sf", builtin.find_files, { desc = "Search for [f]iles" })
 keymap(
-  '<leader>sF',
-  function() builtin.find_files({ default_text = vim.fn.expand('<cword>') }) end,
-  { desc = 'Search [F]iles by word under cursor' }
+  "<leader>sF",
+  function() builtin.find_files({ default_text = vim.fn.expand("<cword>") }) end,
+  { desc = "Search [F]iles by word under cursor" }
 )
-keymap('<leader>sg', builtin.live_grep, { desc = '[G]rep search' })
-keymap('<leader>sh', builtin.help_tags, { desc = 'Search in [h]elp' })
+keymap("<leader>sg", builtin.live_grep, { desc = "[G]rep search" })
+keymap("<leader>sh", builtin.help_tags, { desc = "Search in [h]elp" })
 keymap(
-  '<leader>sH',
-  function() builtin.help_tags({ default_text = vim.fn.expand('<cword>') }) end,
-  { desc = 'Search [h]elp for the word under the cursor' }
+  "<leader>sH",
+  function() builtin.help_tags({ default_text = vim.fn.expand("<cword>") }) end,
+  { desc = "Search [h]elp for the word under the cursor" }
 )
 keymap(
-  '<leader>si',
+  "<leader>si",
   function() builtin.find_files({ hidden = true, no_ignore = true }) end,
-  { desc = 'Search by grep including hidden and git [i]gnored files' }
+  { desc = "Search by grep including hidden and git [i]gnored files" }
 )
 keymap(
-  '<leader>sj',
-  function() builtin.live_grep({ type_filter = 'js', additional_args = { '--type=ts' } }) end,
-  { desc = 'Grep search in [J]avaScript files' }
+  "<leader>sj",
+  function() builtin.live_grep({ type_filter = "js", additional_args = { "--type=ts" } }) end,
+  { desc = "Grep search in [J]avaScript files" }
 )
-keymap('<leader>sk', builtin.keymaps, { desc = 'Search [k]eymaps' })
+keymap("<leader>sk", builtin.keymaps, { desc = "Search [k]eymaps" })
+keymap("<leader>sm", function() extensions.node_modules.list() end, { desc = "Search in node_[m]odules" })
 keymap(
-  '<leader>sm',
-  function() extensions.node_modules.list() end,
-  { desc = 'Search in node_[m]odules' }
+  "<leader>sn",
+  function() builtin.find_files({ cwd = vim.fn.stdpath("config") }) end,
+  { desc = "Search in [N]eovim files" }
 )
-keymap(
-  '<leader>sn',
-  function() builtin.find_files({ cwd = vim.fn.stdpath('config') }) end,
-  { desc = 'Search in [N]eovim files' }
-)
-keymap('<leader>sp', function() extensions.project.project() end, { desc = 'Search in [p]rojects' })
-keymap('<leader>sr', builtin.resume, { desc = '[R]esume search' })
-keymap('<leader>ss', builtin.symbols, { desc = 'Search for [s]ymbols' })
-keymap('<leader>sw', builtin.grep_string, { desc = 'Search for current [w]ord' })
+keymap("<leader>sp", function() extensions.project.project() end, { desc = "Search in [p]rojects" })
+keymap("<leader>sr", builtin.resume, { desc = "[R]esume search" })
+keymap("<leader>ss", builtin.symbols, { desc = "Search for [s]ymbols" })
+keymap("<leader>sw", builtin.grep_string, { desc = "Search for current [w]ord" })
