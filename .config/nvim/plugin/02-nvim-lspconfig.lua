@@ -107,17 +107,15 @@ local vueLanguageServerPath = vim.fn.expand('$MASON/packages')
   .. '/node_modules/@vue/language-server'
 
 local servers = {
-  bashls = {
-    filetypes = { 'sh', 'zsh' },
-  },
+  bashls = { filetypes = { 'sh', 'zsh' } },
   clangd = {},
   cssls = {},
   emmet_language_server = {},
   eslint = {},
   html = {},
-  hyprls = {},
+  htmx = {},
   lemminx = {
-    filetypes = { 'xml', 'xsd', 'xsl', 'xslt', 'svg', 'xlf', 'xliff', 'tmx' },
+    filetypes = { 'svg', 'tmx', 'xlf', 'xliff', 'xml', 'xsd', 'xsl', 'xslt' },
   },
   lua_ls = {
     settings = {
@@ -131,11 +129,11 @@ local servers = {
   pyright = {},
   rust_analyzer = {},
   stylelint_lsp = {
-    filetypes = { 'css', 'scss', 'less', 'vue' },
+    filetypes = { 'css', 'less', 'scss', 'vue' },
     settings = {
       stylelint = {
-        validate = { 'css', 'scss', 'less', 'postcss', 'vue' },
         snippet = { 'css', 'scss', 'less', 'postcss', 'vue' },
+        validate = { 'css', 'less', 'postcss', 'scss', 'vue' },
       },
     },
   },
@@ -146,16 +144,16 @@ local servers = {
         tsserver = {
           globalPlugins = {
             {
-              name = '@vue/typescript-plugin',
-              location = vueLanguageServerPath,
-              languages = { 'vue' },
               configNamespace = 'typescript',
+              languages = { 'vue' },
+              location = vueLanguageServerPath,
+              name = '@vue/typescript-plugin',
             },
           },
         },
       },
     },
-    filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+    filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'vue' },
   },
   vue_ls = {},
 }
