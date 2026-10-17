@@ -16,9 +16,9 @@ source -- /usr/share/blesh/ble.sh --attach=none
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
+	export EDITOR='vim'
 else
-  export EDITOR='nvim'
+	export EDITOR='nvim'
 fi
 
 # Aliases
@@ -56,8 +56,8 @@ alias dcrestart='docker compose restart'
 
 # Git
 gbprune() {
-    git fetch -p
-    git branch -vv | awk '/: gone]/{print $1}' | xargs -r git branch -D
+	git fetch -p
+	git branch -vv | awk '/: gone]/{print $1}' | xargs -r git branch -D
 }
 
 # Misc
