@@ -1,9 +1,9 @@
 -- Opencode integration for Neovim.
 
-local githubUrl = require('utils.github-url')
-local packAdd = require('utils.pack-add')
+local githubUrl = require("utils.github-url")
+local packAdd = require("utils.pack-add")
 packAdd({
-  githubUrl('NickvanDyke/opencode.nvim'), -- https://github.com/NickvanDyke/opencode.nvim
+  githubUrl("NickvanDyke/opencode.nvim"), -- https://github.com/NickvanDyke/opencode.nvim
 })
 
 ---@type opencode.Opts
@@ -18,47 +18,47 @@ vim.g.opencode_opts = {
 -- Required for `opts.events.reload`.
 vim.o.autoread = true
 
-local keymap = require('utils.keymap')
+local keymap = require("utils.keymap")
 keymap(
-  '<C-a>',
-  function() require('opencode').command('session.half.page.up') end,
-  { desc = 'Half page up' },
-  { 'n', 'x' }
+  "<C-a>",
+  function() require("opencode").command("session.half.page.up") end,
+  { desc = "Half page up" },
+  { "n", "x" }
 )
 keymap(
-  '<C-x>',
-  function() require('opencode').command('session.half.page.down') end,
-  { desc = 'Half page down' },
-  { 'n', 'x' }
+  "<C-x>",
+  function() require("opencode").command("session.half.page.down") end,
+  { desc = "Half page down" },
+  { "n", "x" }
 )
 keymap(
-  '<leader>ca',
-  function() require('opencode').ask('') end,
-  { desc = '[A]sk Opencode' },
-  { 'n', 'v', 'x' }
+  "<leader>ca",
+  function() require("opencode").ask("") end,
+  { desc = "[A]sk Opencode" },
+  { "n", "v", "x" }
 )
 keymap(
-  '<leader>cc',
-  function() require('opencode').ask('@this: ') end,
-  { desc = 'Opencode ask with [c]ontext' },
-  { 'n', 'v', 'x' }
+  "<leader>cc",
+  function() require("opencode").ask("@this: ") end,
+  { desc = "Opencode ask with [c]ontext" },
+  { "n", "v", "x" }
 )
 keymap(
-  '<leader>cl',
-  function() return require('opencode').operator('@this ') .. '_' end,
-  { desc = 'Add [l]ine to Opencode', expr = true }
+  "<leader>cl",
+  function() return require("opencode").operator("@this ") .. "_" end,
+  { desc = "Add [l]ine to Opencode", expr = true }
 )
 keymap(
-  '<leader>cr',
-  function() return require('opencode').operator('@this ') end,
-  { desc = 'Add [r]ange to Opencode', expr = true },
-  { 'n', 'x' }
+  "<leader>cr",
+  function() return require("opencode").operator("@this ") end,
+  { desc = "Add [r]ange to Opencode", expr = true },
+  { "n", "x" }
 )
 keymap(
-  '<leader>cs',
-  function() require('opencode').select() end,
-  { desc = 'Execute Opencode [s]elected action' },
-  { 'n', 'v', 'x' }
+  "<leader>cs",
+  function() require("opencode").select() end,
+  { desc = "Execute Opencode [s]elected action" },
+  { "n", "v", "x" }
 )
-keymap('+', '<C-a>', { desc = 'increment', noremap = true })
-keymap('-', '<C-x>', { desc = 'decrement', noremap = true })
+keymap("+", "<C-a>", { desc = "increment", noremap = true })
+keymap("-", "<C-x>", { desc = "decrement", noremap = true })
