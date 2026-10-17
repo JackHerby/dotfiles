@@ -3,7 +3,7 @@
 local githubUrl = require("utils.github-url")
 local packAdd = require("utils.pack-add")
 packAdd({
-  githubUrl("folke/todo-comments.nvim"), -- https://github.com/folke/todo-comments.nvim
+    githubUrl("folke/todo-comments.nvim"), -- https://github.com/folke/todo-comments.nvim
 })
 
 require("todo-comments").setup({ signs = false })

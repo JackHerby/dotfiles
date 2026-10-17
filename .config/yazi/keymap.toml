@@ -1,0 +1,14 @@
+[[mgr.prepend_keymap]]
+on   = [ "g", "p" ]
+run  = "cd ~/Projects"
+desc = "Cd to Projects"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "n" ]
+run  = "cd ~/Documents/notes"
+desc = "Cd to Documents/notes"
+
+[[mgr.prepend_keymap]]
+on = [ "g", "r" ]
+run = 'shell -- ya emit cd "$(git rev-parse --show-toplevel)"'
+desc = "Go to Git root"

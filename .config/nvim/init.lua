@@ -87,13 +87,13 @@ vim.opt.guicursor = ""
 vim.opt.colorcolumn = "100,120"
 
 -- Tab settings.
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
 -- Pressing tab will insert spaces according to the tabstop and shiftwidth settings.
 vim.opt.expandtab = true
 vim.opt.autoindent = true
 -- Specifies the number of spaces to use for a tab character when editing a buffer.
-vim.bo.softtabstop = 2
+vim.bo.softtabstop = 4
 
 -- Optionally enable 24-bit color.
 vim.opt.termguicolors = true
@@ -107,62 +107,62 @@ vim.opt.spelllang = { "en_us", "pl" }
 
 -- Enable list mode to show white space characters.
 vim.opt.listchars = {
-  eol = "↵",
-  extends = "›",
-  nbsp = "⊗",
-  precedes = "‹",
-  space = "·",
-  tab = "» ",
-  trail = "∘",
+    eol = "↵",
+    extends = "›",
+    nbsp = "⊗",
+    precedes = "‹",
+    space = "·",
+    tab = "» ",
+    trail = "∘",
 }
 
 -- Diagnostic config.
 -- See :help vim.diagnostic.Opts.
 vim.diagnostic.config({
-  float = { border = "single", source = "if_many" },
-  severity_sort = true,
-  underline = { severity = { min = vim.diagnostic.severity.WARN } },
-  update_in_insert = false,
+    float = { border = "single", source = "if_many" },
+    severity_sort = true,
+    underline = { severity = { min = vim.diagnostic.severity.WARN } },
+    update_in_insert = false,
 
-  -- Can switch between these as you prefer.
-  virtual_lines = false, -- Text shows up underneath the line, with virtual lines.
-  virtual_text = true, -- Text shows up at the end of the line.
+    -- Can switch between these as you prefer.
+    virtual_lines = false, -- Text shows up underneath the line, with virtual lines.
+    virtual_text = true, -- Text shows up at the end of the line.
 })
 
 -- Neovide/GUI settings.
 if vim.g.neovide then
-  -- Font.
-  vim.o.guifont = "Fira Code:h12"
+    -- Font.
+    vim.o.guifont = "Fira Code:h12"
 
-  -- Padding.
-  vim.g.neovide_padding_bottom = 2
-  vim.g.neovide_padding_left = 2
-  vim.g.neovide_padding_right = 2
-  vim.g.neovide_padding_top = 2
+    -- Padding.
+    vim.g.neovide_padding_bottom = 2
+    vim.g.neovide_padding_left = 2
+    vim.g.neovide_padding_right = 2
+    vim.g.neovide_padding_top = 2
 
-  -- Opacity.
-  vim.g.neovide_normal_opacity = 0.95
-  vim.g.neovide_opacity = 1
+    -- Opacity.
+    vim.g.neovide_normal_opacity = 0.95
+    vim.g.neovide_opacity = 1
 
-  -- Animations.
-  vim.g.neovide_position_animation_length = 0.1
-  vim.g.neovide_scroll_animation_length = 0.15
+    -- Animations.
+    vim.g.neovide_position_animation_length = 0.1
+    vim.g.neovide_scroll_animation_length = 0.15
 
-  -- Progress bar.
-  vim.g.neovide_progress_bar_animation_speed = 200.0
-  vim.g.neovide_progress_bar_enabled = true
-  vim.g.neovide_progress_bar_height = 5.0
-  vim.g.neovide_progress_bar_hide_delay = 0.2
+    -- Progress bar.
+    vim.g.neovide_progress_bar_animation_speed = 200.0
+    vim.g.neovide_progress_bar_enabled = true
+    vim.g.neovide_progress_bar_height = 5.0
+    vim.g.neovide_progress_bar_hide_delay = 0.2
 
-  -- Theme.
-  vim.g.neovide_theme = "dark"
+    -- Theme.
+    vim.g.neovide_theme = "dark"
 
-  -- Cursor.
-  vim.opt.guicursor = "a:block-blinkwait0-blinkon500-blinkoff500"
-  vim.g.neovide_cursor_smooth_blink = true
-  vim.g.neovide_cursor_vfx_mode = "railgun"
+    -- Cursor.
+    vim.opt.guicursor = "a:block-blinkwait0-blinkon500-blinkoff500"
+    vim.g.neovide_cursor_smooth_blink = true
+    vim.g.neovide_cursor_vfx_mode = "railgun"
 
-  vim.env.TERM = "xterm-256color"
+    vim.env.TERM = "xterm-256color"
 end
 
 -- Enable experimental ui2.
@@ -175,69 +175,68 @@ local keymap = require("utils.keymap")
 keymap("<leader>q", function() vim.cmd("quit") end, { desc = "[Q]uit the current window" })
 keymap("<leader>r", function() vim.cmd("restart") end, { desc = "[R]estart Neovim" })
 keymap("<leader>t", function()
-  vim.cmd.new()
-  vim.cmd.term()
-  vim.cmd("startinsert")
+    vim.cmd.new()
+    vim.cmd.term()
+    vim.cmd("startinsert")
 end, { desc = "Open [t]erminal in vertical split" })
 keymap("<leader>w", function() vim.cmd("write") end, { desc = "[W]rite the current buffer" })
 
 -- Miscellaneous keymaps.
 keymap("<leader>kc", function()
-  vim.opt.list = not vim.opt.list:get()
-  ---@diagnostic disable-next-line undefined-field
-  vim.notify("listchars " .. (vim.opt.list:get() and "on" or "off"))
+    vim.opt.list = not vim.opt.list:get()
+    ---@diagnostic disable-next-line undefined-field
+    vim.notify("listchars " .. (vim.opt.list:get() and "on" or "off"))
 end, { desc = "Display list[c]hars" })
 keymap("<leader>ke", function() vim.cmd("LspEslintFixAll") end, { desc = "[E]SLint fix all" })
 -- Diagnostic list.
 keymap("<leader>kl", vim.diagnostic.setloclist, { desc = "Open diagnostic [l]ocation list" })
 keymap(
-  "<leader>kn",
-  function() vim.cmd("set relativenumber!") end,
-  { desc = "Toggle relative line [n]umbers" }
+    "<leader>kn",
+    function() vim.cmd("set relativenumber!") end,
+    { desc = "Toggle relative line [n]umbers" }
 )
 keymap(
-  "<leader>kr",
-  [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-  { desc = "[R]ename all occurances" }
+    "<leader>kr",
+    [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+    { desc = "[R]ename all occurances" }
 )
 keymap("<leader>ks", function() vim.cmd("LspStylelintFix") end, { desc = "Style[l]int fix all" })
 keymap("<leader>kt", function()
-  vim.ui.input({ prompt = "Title: " }, function(input)
-    if input then vim.o.titlestring = input end
-  end)
+    vim.ui.input({ prompt = "Title: " }, function(input)
+        if input then vim.o.titlestring = input end
+    end)
 end, { desc = "Set [t]itlestring" })
 keymap("<leader>ku", function()
-  local url = vim.fn.expand("<cWORD>")
-  if url:match("^https?://") then
-    vim.fn.jobstart({ "xdg-open", url }, { detach = true })
-  else
-    vim.notify("No valid URL found under cursor", vim.log.levels.WARN)
-  end
+    local url = vim.fn.expand("<cWORD>")
+    if url:match("^https?://") then
+        vim.fn.jobstart({ "xdg-open", url }, { detach = true })
+    else
+        vim.notify("No valid URL found under cursor", vim.log.levels.WARN)
+    end
 end, { desc = "Open [U]RL under the cursor" })
 keymap(
-  "<leader>ky",
-  function() vim.fn.setreg("+", vim.fn.expand("%")) end,
-  { desc = "[Y]ank relative file path" }
+    "<leader>ky",
+    function() vim.fn.setreg("+", vim.fn.expand("%")) end,
+    { desc = "[Y]ank relative file path" }
 )
 keymap("<leader>kY", function() vim.fn.setreg("+", vim.fn.expand("%:t:r")) end, { desc = "[Y]ank file name" })
 
 -- Vim.pack keymaps.
 keymap("<leader>pd", function()
-  local pluginsToDelete = vim
-    .iter(vim.pack.get())
-    :filter(function(x) return not x.active end)
-    :map(function(x) return x.spec.name end)
-    :totable()
-  vim.pack.del(pluginsToDelete)
-  for _, plugin in ipairs(pluginsToDelete) do
-    print("Deleted plugins: " .. plugin)
-  end
+    local pluginsToDelete = vim.iter(vim.pack.get())
+        :filter(function(x) return not x.active end)
+        :map(function(x) return x.spec.name end)
+        :totable()
+    vim.pack.del(pluginsToDelete)
+    for _, plugin in ipairs(pluginsToDelete) do
+        print("Deleted plugins: " .. plugin)
+    end
 end, { desc = "[D]elete inactive plugins" })
 keymap("<leader>pl", function()
-  local packages = vim.pack.get()
-  for idx, pkg in ipairs(packages) do
-    print(idx <= 9 and "0" .. idx or idx, "| ", pkg.spec.name, pkg.active and "| active" or "| inactive")
-  end
+    local packages = vim.pack.get()
+    for idx, pkg in ipairs(packages) do
+        print(idx <= 9 and "0" .. idx or idx, "| ", pkg.spec.name, pkg.active and "| active" or "| inactive")
+    end
 end, { desc = "[L]ist plugins" })
 keymap("<leader>pu", function() vim.pack.update() end, { desc = "[U]pdate plugins" })
 
@@ -275,10 +274,18 @@ keymap("<C-.>", "=>", nil, "i")
 keymap("<C-/>", "->", nil, "i")
 
 if vim.g.neovide then
-  -- Increase/decrease font size.
-  keymap("<C-->", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1<CR>", { silent = true })
-  keymap("<C-0>", ":lua vim.g.neovide_scale_factor = 1<CR>", { silent = true })
-  keymap("<C-=>", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1<CR>", { silent = true })
+    -- Increase/decrease font size.
+    keymap(
+        "<C-->",
+        ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1<CR>",
+        { silent = true }
+    )
+    keymap("<C-0>", ":lua vim.g.neovide_scale_factor = 1<CR>", { silent = true })
+    keymap(
+        "<C-=>",
+        ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1<CR>",
+        { silent = true }
+    )
 end
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode.
@@ -293,90 +300,90 @@ keymap('<Esc>', function() vim.cmd('nohlsearch') end, { desc = 'Clear highligth 
 --  See `:help vim.highlight.on_yank()`.
 local nvimCreateAutocmd = require("utils.nvim-create-autocmd")
 nvimCreateAutocmd("TextYankPost", {
-  callback = function() vim.highlight.on_yank() end,
-  desc = "Highlight when yanking text.",
-  group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+    callback = function() vim.highlight.on_yank() end,
+    desc = "Highlight when yanking text.",
+    group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
 })
 
 -- Terminal mode customization.
 nvimCreateAutocmd("TermOpen", {
-  callback = function()
-    vim.b.miniindentscope_disable = true
-    vim.cmd("setlocal bufhidden=wipe")
-    vim.opt.number = false
-    vim.opt.relativenumber = false
-    vim.opt.spell = false
-  end,
-  desc = "Customize terminal mode.",
-  group = vim.api.nvim_create_augroup("custom-term-open", { clear = true }),
+    callback = function()
+        vim.b.miniindentscope_disable = true
+        vim.cmd("setlocal bufhidden=wipe")
+        vim.opt.number = false
+        vim.opt.relativenumber = false
+        vim.opt.spell = false
+    end,
+    desc = "Customize terminal mode.",
+    group = vim.api.nvim_create_augroup("custom-term-open", { clear = true }),
 })
 
 nvimCreateAutocmd("FileType", {
-  callback = function() vim.opt_local.spell = false end,
-  desc = "Disable spellcheck in selected file types.",
-  group = vim.api.nvim_create_augroup("custom-disable-spellcheck", { clear = true }),
-  pattern = { "checkhealth", "git", "man", "nvim-pack", "qf" },
+    callback = function() vim.opt_local.spell = false end,
+    desc = "Disable spellcheck in selected file types.",
+    group = vim.api.nvim_create_augroup("custom-disable-spellcheck", { clear = true }),
+    pattern = { "checkhealth", "git", "man", "nvim-pack", "qf" },
 })
 
 nvimCreateAutocmd("FileType", {
-  callback = function()
-    vim.opt_local.number = true
-    vim.opt_local.relativenumber = true
-  end,
-  desc = "Enable absolute and relative line numbers in help buffers.",
-  pattern = "help",
+    callback = function()
+        vim.opt_local.number = true
+        vim.opt_local.relativenumber = true
+    end,
+    desc = "Enable absolute and relative line numbers in help buffers.",
+    pattern = "help",
 })
 
 -- Must be defined before the very first vim.pack.add() call.
 nvimCreateAutocmd("PackChanged", {
-  callback = function(event)
-    local name, kind, path = event.data.spec.name, event.data.kind, event.data.path
-    local install_or_update = kind == "install" or kind == "update"
-    if name ~= "LuaSnip" or not install_or_update then return end
-    if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then return end
-    local res = vim.system({ "make", "install_jsregexp", "-C", path }, { text = true }):wait()
-    if res.code == 0 then return end
-    vim.notify("LuaSnip jsregexp build failed:\n" .. res.stderr, vim.log.levels.ERROR)
-  end,
-  desc = "Build LuaSnip jsregexp.",
+    callback = function(event)
+        local name, kind, path = event.data.spec.name, event.data.kind, event.data.path
+        local install_or_update = kind == "install" or kind == "update"
+        if name ~= "LuaSnip" or not install_or_update then return end
+        if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then return end
+        local res = vim.system({ "make", "install_jsregexp", "-C", path }, { text = true }):wait()
+        if res.code == 0 then return end
+        vim.notify("LuaSnip jsregexp build failed:\n" .. res.stderr, vim.log.levels.ERROR)
+    end,
+    desc = "Build LuaSnip jsregexp.",
 })
 
 nvimCreateAutocmd("PackChanged", {
-  callback = function(event)
-    local name, kind = event.data.spec.name, event.data.kind
-    if name ~= "nvim-treesitter" or kind ~= "update" then return end
-    if not event.data.active then vim.cmd.packadd("nvim-treesitter") end
-    vim.cmd("TSUpdate")
-  end,
-  desc = "Update nvim-treesitter.",
+    callback = function(event)
+        local name, kind = event.data.spec.name, event.data.kind
+        if name ~= "nvim-treesitter" or kind ~= "update" then return end
+        if not event.data.active then vim.cmd.packadd("nvim-treesitter") end
+        vim.cmd("TSUpdate")
+    end,
+    desc = "Update nvim-treesitter.",
 })
 
 nvimCreateAutocmd("PackChanged", {
-  callback = function(event)
-    local name, kind, path = event.data.spec.name, event.data.kind, event.data.path
-    local install_or_update = kind == "install" or kind == "update"
-    if name ~= "telescope-fzf-native.nvim" or not install_or_update then return end
-    if vim.fn.executable("make") == 0 then return end
-    local res = vim.system({ "make", "-C", path }, { text = true }):wait()
-    if res.code == 0 then return end
-    vim.notify("telescope-fzf-native build failed:\n" .. res.stderr, vim.log.levels.ERROR)
-  end,
-  desc = "Build telescope-fzf-native.",
+    callback = function(event)
+        local name, kind, path = event.data.spec.name, event.data.kind, event.data.path
+        local install_or_update = kind == "install" or kind == "update"
+        if name ~= "telescope-fzf-native.nvim" or not install_or_update then return end
+        if vim.fn.executable("make") == 0 then return end
+        local res = vim.system({ "make", "-C", path }, { text = true }):wait()
+        if res.code == 0 then return end
+        vim.notify("telescope-fzf-native build failed:\n" .. res.stderr, vim.log.levels.ERROR)
+    end,
+    desc = "Build telescope-fzf-native.",
 })
 
 if vim.g.neovide then
-  -- Prints out Neovide window size on resize.
-  nvimCreateAutocmd("VimResized", {
-    callback = function()
-      local winHeight = vim.api.nvim_win_get_height(0)
-      local winWidth = vim.api.nvim_win_get_width(0)
-      vim.api.nvim_echo(
-        { { ("Neovide size: %dx%d"):format(winWidth, winHeight) } },
-        false,
-        { id = "resizeMsg" }
-      )
-    end,
-    desc = "Print Neovide window parameters on resize.",
-    group = vim.api.nvim_create_augroup("print-window-size", { clear = true }),
-  })
+    -- Prints out Neovide window size on resize.
+    nvimCreateAutocmd("VimResized", {
+        callback = function()
+            local winHeight = vim.api.nvim_win_get_height(0)
+            local winWidth = vim.api.nvim_win_get_width(0)
+            vim.api.nvim_echo(
+                { { ("Neovide size: %dx%d"):format(winWidth, winHeight) } },
+                false,
+                { id = "resizeMsg" }
+            )
+        end,
+        desc = "Print Neovide window parameters on resize.",
+        group = vim.api.nvim_create_augroup("print-window-size", { clear = true }),
+    })
 end

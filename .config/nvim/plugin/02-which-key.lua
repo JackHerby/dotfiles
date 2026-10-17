@@ -3,25 +3,25 @@
 local githubUrl = require("utils.github-url")
 local packAdd = require("utils.pack-add")
 packAdd({
-  githubUrl("folke/which-key.nvim"), -- https://github.com/folke/which-key.nvim
+    githubUrl("folke/which-key.nvim"), -- https://github.com/folke/which-key.nvim
 })
 
 require("which-key").setup({
-  -- Delay between pressing a key and opening which-key (milliseconds).
-  delay = 0,
-  icons = { mappings = vim.g.have_nerd_font },
-  -- Document existing key chains.
-  spec = {
-    { "<leader>c", group = "Open[c]ode" },
-    { "<leader>d", group = "[D]ebug Adapter Protocol" },
-    { "<leader>e", group = "Pretty TS [E]rrors" },
-    { "<leader>f", group = "Conform [f]ormatting" },
-    { "<leader>g", group = "Vim Fugitive [g]it" },
-    { "<leader>k", group = "Miscellaneous [k]eymaps" },
-    { "<leader>l", group = "[L]SP actions" },
-    { "<leader>m", group = "Render [m]arkdown" },
-    { "<leader>p", group = "Neovim [p]ackage manager" },
-    { "<leader>s", group = "Telescope [s]earch" },
-    { "<leader>u", group = "[U]dotree" },
-  },
+    -- Delay between pressing a key and opening which-key (milliseconds).
+    delay = 0,
+    icons = { mappings = vim.g.have_nerd_font },
+    -- Document existing key chains.
+    spec = {
+        { "<leader>c", group = "Open[c]ode" },
+        { "<leader>d", group = "[D]ebug Adapter Protocol" },
+        { "<leader>e", group = "Pretty TS [E]rrors" },
+        { "<leader>f", group = "Conform [f]ormatting" },
+        { "<leader>g", group = "Vim Fugitive [g]it" },
+        { "<leader>k", group = "Miscellaneous [k]eymaps" },
+        { "<leader>l", group = "[L]SP actions" },
+        { "<leader>m", group = "Render [m]arkdown" },
+        { "<leader>p", group = "Neovim [p]ackage manager" },
+        { "<leader>s", group = "Telescope [s]earch" },
+        { "<leader>u", group = "[U]dotree" },
+    },
 })

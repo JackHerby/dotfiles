@@ -3,5 +3,5 @@
 local githubUrl = require("utils.github-url")
 local packAdd = require("utils.pack-add")
 packAdd({
-  githubUrl("lambdalisue/suda.vim"), -- https://github.com/lambdalisue/vim-suda
+    githubUrl("lambdalisue/suda.vim"), -- https://github.com/lambdalisue/vim-suda
 })

@@ -5,7 +5,7 @@ local packAdd = require("utils.pack-add")
 local keymap = require("utils.keymap")
 
 packAdd({
-  githubUrl("echasnovski/mini.nvim"), -- https://github.com/echasnovski/mini.nvim
+    githubUrl("echasnovski/mini.nvim"), -- https://github.com/echasnovski/mini.nvim
 })
 
 require("mini.move").setup()
