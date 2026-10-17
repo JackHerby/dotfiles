@@ -28,23 +28,24 @@ PS1='[\u@\h \W]\$ '
 
 # Utils
 alias ccn='cd && clear && fastfetch'
-alias cdghostty='cd ~/.config/ghostty'
-alias cdhypr='cd ~/.config/hypr'
-alias cdkinpal='cd ~/Projects/playpal'
-alias cdkitty='cd ~/.config/kitty'
-alias cdnvim='cd ~/.config/nvim'
-alias cdoc='cd ~/.config/opencode'
+alias cdghostty='cd $HOME/.config/ghostty'
+alias cdhypr='cd $HOME/.config/hypr'
+alias cdkinpal='cd $HOME/Projects/playpal'
+alias cdkitty='cd $HOME/.config/kitty'
+alias cdnvim='cd $HOME/.config/nvim'
+alias cdoc='cd $HOME/.config/opencode'
 alias cn='clear && fastfetch'
 alias dfs='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
-alias dfsnorm='dfs config status.showUntrackedFiles normal'
 alias dfsno='dfs config status.showUntrackedFiles no'
+alias dfsnorm='dfs config status.showUntrackedFiles normal'
+alias hd='history -d -2 && history -w'
 alias nf='neovide --fork'
 alias ocp='opencode --port'
 alias or='omz reload'
-alias s="kitten ssh"
-alias skp="kitten ssh ubuntu@146.59.33.178"
+alias s='kitten ssh'
 alias tcheck='sudo timeshift --check'
 alias uds='upower -i /org/freedesktop/UPower/devices/battery_ps_controller_battery_14o3ao9ao8foc1o64'
+alias vb='$EDITOR $HOME/.bashrc'
 
 # Docker
 alias dcup='docker compose up'
@@ -62,11 +63,11 @@ gbprune() {
 
 # Misc
 function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	yazi "$@" --cwd-file="$tmp"
+	local tmp cwd; tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	command yazi "$@" --cwd-file="$tmp"
 	IFS= read -r -d '' cwd < "$tmp"
-	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd" || exit
-	rm -f -- "$tmp"
+	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd" || builtin true
+	command rm -f -- "$tmp"
 }
 
 # Bun completions
