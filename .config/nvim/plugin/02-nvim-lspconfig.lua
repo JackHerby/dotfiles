@@ -3,19 +3,19 @@
 local githubUrl = require("utils.github-url")
 local packAdd = require("utils.pack-add")
 packAdd({
-  githubUrl("neovim/nvim-lspconfig"), -- https://github.com/neovim/nvim-lspconfig
-  -- Dependencies.
-  githubUrl("WhoIsSethDaniel/mason-tool-installer.nvim"), -- https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim
-  githubUrl("mason-org/mason-lspconfig.nvim"), -- https://github.com/mason-org/mason-lspconfig.nvim
-  githubUrl("mason-org/mason.nvim"), -- https://github.com/mason-org/mason.nvim
-  --
-  githubUrl("j-hui/fidget.nvim"), -- https://github.com/j-hui/fidget.nvim
+    githubUrl("neovim/nvim-lspconfig"), -- https://github.com/neovim/nvim-lspconfig
+    -- Dependencies.
+    githubUrl("WhoIsSethDaniel/mason-tool-installer.nvim"), -- https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim
+    githubUrl("mason-org/mason-lspconfig.nvim"), -- https://github.com/mason-org/mason-lspconfig.nvim
+    githubUrl("mason-org/mason.nvim"), -- https://github.com/mason-org/mason.nvim
+    --
+    githubUrl("j-hui/fidget.nvim"), -- https://github.com/j-hui/fidget.nvim
 })
 
 require("fidget").setup({
-  notification = {
-    window = { border = "single", winblend = 0 },
-  },
+    notification = {
+        window = { border = "single", winblend = 0 },
+    },
 })
 
 require("mason").setup({})
@@ -27,151 +27,154 @@ require("mason").setup({})
 local keymap = require("utils.keymap")
 local nvimCreateAutocmd = require("utils.nvim-create-autocmd")
 nvimCreateAutocmd("LspAttach", {
-  group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
-  callback = function(event)
-    local telescopeBuiltin = require("telescope.builtin")
-    keymap("<leader>la", vim.lsp.buf.code_action, { desc = "Goto code [a]ction" }, { "n", "x" })
-    keymap("<leader>ld", telescopeBuiltin.lsp_definitions, { desc = "Goto [d]efinition" })
-    keymap("<leader>lD", vim.lsp.buf.declaration, { desc = "Goto [d]eclaration" })
-    keymap(
-      "<leader>lf",
-      function() vim.diagnostic.open_float({ scope = "cursor", source = true, width = 128 }) end,
-      { desc = "Open [f]loating window for diagnostics" }
-    )
-    keymap("<leader>li", telescopeBuiltin.lsp_implementations, { desc = "Goto [i]mplementation" })
-    keymap("<leader>ln", vim.lsp.buf.rename, { desc = "Re[n]ame symbol" })
-    keymap("<leader>lO", telescopeBuiltin.lsp_document_symbols, { desc = "Open document symb[o]ls" })
-    keymap("<leader>lr", telescopeBuiltin.lsp_references, { desc = "Goto [r]eferences" })
-    keymap("<leader>lt", telescopeBuiltin.lsp_type_definitions, { desc = "Goto [t]ype definition" })
-    keymap("<leader>lW", telescopeBuiltin.lsp_dynamic_workspace_symbols, { desc = "Open [w]orkspace symbols" })
+    group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
+    callback = function(event)
+        local telescopeBuiltin = require("telescope.builtin")
+        keymap("<leader>la", vim.lsp.buf.code_action, { desc = "Goto code [a]ction" }, { "n", "x" })
+        keymap("<leader>ld", telescopeBuiltin.lsp_definitions, { desc = "Goto [d]efinition" })
+        keymap("<leader>lD", vim.lsp.buf.declaration, { desc = "Goto [d]eclaration" })
+        keymap(
+            "<leader>lf",
+            function() vim.diagnostic.open_float({ scope = "cursor", source = true, width = 128 }) end,
+            { desc = "Open [f]loating window for diagnostics" }
+        )
+        keymap("<leader>li", telescopeBuiltin.lsp_implementations, { desc = "Goto [i]mplementation" })
+        keymap("<leader>ln", vim.lsp.buf.rename, { desc = "Re[n]ame symbol" })
+        keymap("<leader>lO", telescopeBuiltin.lsp_document_symbols, { desc = "Open document symb[o]ls" })
+        keymap("<leader>lr", telescopeBuiltin.lsp_references, { desc = "Goto [r]eferences" })
+        keymap("<leader>lt", telescopeBuiltin.lsp_type_definitions, { desc = "Goto [t]ype definition" })
+        keymap(
+            "<leader>lW",
+            telescopeBuiltin.lsp_dynamic_workspace_symbols,
+            { desc = "Open [w]orkspace symbols" }
+        )
 
-    -- The following two autocommands are used to highlight references of the
-    -- word under your cursor when your cursor rests there for a little while.
-    -- See `:help CursorHold` for information about when this is executed.
-    -- When you move your cursor, the highlights will be cleared (the second autocommand).
-    local client = vim.lsp.get_client_by_id(event.data.client_id)
-    if client and client:supports_method("textDocument/documentHighlight", event.buf) then
-      local highlightAugroup = vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
-      nvimCreateAutocmd({ "CursorHold", "CursorHoldI" }, {
-        buffer = event.buf,
-        callback = vim.lsp.buf.document_highlight,
-        group = highlightAugroup,
-      })
+        -- The following two autocommands are used to highlight references of the
+        -- word under your cursor when your cursor rests there for a little while.
+        -- See `:help CursorHold` for information about when this is executed.
+        -- When you move your cursor, the highlights will be cleared (the second autocommand).
+        local client = vim.lsp.get_client_by_id(event.data.client_id)
+        if client and client:supports_method("textDocument/documentHighlight", event.buf) then
+            local highlightAugroup = vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
+            nvimCreateAutocmd({ "CursorHold", "CursorHoldI" }, {
+                buffer = event.buf,
+                callback = vim.lsp.buf.document_highlight,
+                group = highlightAugroup,
+            })
 
-      nvimCreateAutocmd({ "CursorMoved", "CursorMovedI" }, {
-        buffer = event.buf,
-        callback = vim.lsp.buf.clear_references,
-        group = highlightAugroup,
-      })
+            nvimCreateAutocmd({ "CursorMoved", "CursorMovedI" }, {
+                buffer = event.buf,
+                callback = vim.lsp.buf.clear_references,
+                group = highlightAugroup,
+            })
 
-      nvimCreateAutocmd("LspDetach", {
-        callback = function(event2)
-          vim.lsp.buf.clear_references()
-          vim.api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = event2.buf })
-        end,
-        group = vim.api.nvim_create_augroup("kickstart-lsp-detach", { clear = true }),
-      })
-    end
+            nvimCreateAutocmd("LspDetach", {
+                callback = function(event2)
+                    vim.lsp.buf.clear_references()
+                    vim.api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = event2.buf })
+                end,
+                group = vim.api.nvim_create_augroup("kickstart-lsp-detach", { clear = true }),
+            })
+        end
 
-    -- The following code creates a keymap to toggle inlay hints in your code,
-    -- if the language server you are using supports them.
-    -- This may be unwanted, since they displace some of your code.
-    if client and client:supports_method("textDocument/inlayHint", event.buf) then
-      keymap(
-        "<leader>lh",
-        function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf })) end,
-        { desc = "Toggle inlay [h]ints" }
-      )
-    end
-  end,
+        -- The following code creates a keymap to toggle inlay hints in your code,
+        -- if the language server you are using supports them.
+        -- This may be unwanted, since they displace some of your code.
+        if client and client:supports_method("textDocument/inlayHint", event.buf) then
+            keymap(
+                "<leader>lh",
+                function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf })) end,
+                { desc = "Toggle inlay [h]ints" }
+            )
+        end
+    end,
 })
 
 -- Enable the following language servers.
 local vueLanguageServerPath = vim.fn.expand("$MASON/packages")
-  .. "/vue-language-server"
-  .. "/node_modules/@vue/language-server"
+    .. "/vue-language-server"
+    .. "/node_modules/@vue/language-server"
 
 local servers = {
-  bashls = { filetypes = { "sh", "zsh" } },
-  clangd = {},
-  cssls = {},
-  emmet_language_server = {},
-  eslint = {},
-  html = {},
-  htmx = {},
-  lemminx = {
-    filetypes = { "svg", "tmx", "xlf", "xliff", "xml", "xsd", "xsl", "xslt" },
-  },
-  lua_ls = {
-    settings = {
-      Lua = {
-        diagnostics = {
-          globals = { "hl" },
-        },
-      },
+    bashls = { filetypes = { "sh", "zsh" } },
+    clangd = {},
+    cssls = {},
+    emmet_language_server = {},
+    eslint = {},
+    html = {},
+    htmx = {},
+    lemminx = {
+        filetypes = { "svg", "tmx", "xlf", "xliff", "xml", "xsd", "xsl", "xslt" },
     },
-  },
-  pyright = {},
-  rust_analyzer = {},
-  stylelint_lsp = {
-    filetypes = { "css", "less", "scss", "vue" },
-    settings = {
-      stylelint = {
-        snippet = { "css", "scss", "less", "postcss", "vue" },
-        validate = { "css", "less", "postcss", "scss", "vue" },
-      },
-    },
-  },
-  tailwindcss = {},
-  vtsls = {
-    settings = {
-      vtsls = {
-        tsserver = {
-          globalPlugins = {
-            {
-              configNamespace = "typescript",
-              languages = { "vue" },
-              location = vueLanguageServerPath,
-              name = "@vue/typescript-plugin",
+    lua_ls = {
+        settings = {
+            Lua = {
+                diagnostics = {
+                    globals = { "hl" },
+                },
             },
-          },
         },
-      },
     },
-    filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
-  },
-  vue_ls = {},
+    pyright = {},
+    rust_analyzer = {},
+    stylelint_lsp = {
+        filetypes = { "css", "less", "scss", "vue" },
+        settings = {
+            stylelint = {
+                snippet = { "css", "scss", "less", "postcss", "vue" },
+                validate = { "css", "less", "postcss", "scss", "vue" },
+            },
+        },
+    },
+    tailwindcss = {},
+    vtsls = {
+        settings = {
+            vtsls = {
+                tsserver = {
+                    globalPlugins = {
+                        {
+                            configNamespace = "typescript",
+                            languages = { "vue" },
+                            location = vueLanguageServerPath,
+                            name = "@vue/typescript-plugin",
+                        },
+                    },
+                },
+            },
+        },
+        filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
+    },
+    vue_ls = {},
 }
 
 ---@type MasonLspconfigSettings
 ---@diagnostic disable-next-line: missing-fields
 require("mason-lspconfig").setup({
-  automatic_enable = vim.tbl_keys(servers or {}),
+    automatic_enable = vim.tbl_keys(servers or {}),
 })
 
 -- Ensure the servers and tools above are installed.
-local ensureInstalled = vim
-  .iter(vim.tbl_keys(servers or {}))
-  :filter(function(name) return name ~= "stylelint_lsp" end)
-  :totable()
+local ensureInstalled = vim.iter(vim.tbl_keys(servers or {}))
+    :filter(function(name) return name ~= "stylelint_lsp" end)
+    :totable()
 vim.list_extend(ensureInstalled, {
-  "beautysh",
-  "black",
-  "clang-format",
-  "eslint",
-  "isort",
-  "js-debug-adapter",
-  "markdownlint",
-  "prettier",
-  "prettierd",
-  "shellcheck",
-  "stylelint-language-server",
-  "stylua",
+    "beautysh",
+    "black",
+    "clang-format",
+    "eslint",
+    "isort",
+    "js-debug-adapter",
+    "markdownlint",
+    "prettier",
+    "prettierd",
+    "shellcheck",
+    "stylelint-language-server",
+    "stylua",
 })
 
 require("mason-tool-installer").setup({ ensure_installed = ensureInstalled })
 
 for name, server in pairs(servers) do
-  vim.lsp.config(name, server)
-  vim.lsp.enable(name)
+    vim.lsp.config(name, server)
+    vim.lsp.enable(name)
 end

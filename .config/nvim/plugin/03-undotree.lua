@@ -3,7 +3,7 @@
 local githubUrl = require("utils.github-url")
 local packAdd = require("utils.pack-add")
 packAdd({
-  githubUrl("mbbill/undotree"), -- https://github.com/mbbill/undotree
+    githubUrl("mbbill/undotree"), -- https://github.com/mbbill/undotree
 })
 
 vim.g.undotree_DiffpanelHeight = 20
