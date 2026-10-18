@@ -162,6 +162,7 @@ vim.list_extend(ensureInstalled, {
     "beautysh",
     "black",
     "clang-format",
+    "djlint",
     "eslint",
     "isort",
     "js-debug-adapter",
