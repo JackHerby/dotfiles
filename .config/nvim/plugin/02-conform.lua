@@ -42,6 +42,9 @@ conform.setup({
         black = {
             prepend_args = { "--line-length", "111" },
         },
+        prettier = {
+            prepend_args = { "--tab-width", "4" },
+        },
     },
 })
 
