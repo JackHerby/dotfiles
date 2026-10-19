@@ -116,7 +116,7 @@ local servers = {
             },
         },
     },
-    pyright = {},
+    pyrefly = {},
     rust_analyzer = {},
     stylelint_lsp = {
         filetypes = { "css", "less", "scss", "vue" },
