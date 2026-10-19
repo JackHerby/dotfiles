@@ -1,0 +1,17 @@
+new_os_window
+os_window_state maximized
+
+new_tab PLG www Neovim
+cd ~/Projects/pl/bonprix-www/
+launch
+
+new_tab PLG www Stack
+cd ~/Projects/pl/bonprix-www/tools/
+launch --title='Development'
+launch --title='Connection' --var window=connection
+launch --location=hsplit --title='CLI'
+focus_matching_window var:window=connection
+
+new_tab Misc
+cd ~
+launch
