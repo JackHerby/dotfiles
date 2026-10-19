@@ -15,22 +15,10 @@ vim.g.opencode_opts = {
     },
 }
 
--- Required for `opts.events.reload`.
+-- `opts.events.reload` sets this automatically; kept explicit for clarity.
 vim.o.autoread = true
 
 local keymap = require("utils.keymap")
-keymap(
-    "<C-a>",
-    function() require("opencode").command("session.half.page.up") end,
-    { desc = "Half page up" },
-    { "n", "x" }
-)
-keymap(
-    "<C-x>",
-    function() require("opencode").command("session.half.page.down") end,
-    { desc = "Half page down" },
-    { "n", "x" }
-)
 keymap(
     "<leader>ca",
     function() require("opencode").ask("") end,
@@ -44,21 +32,8 @@ keymap(
     { "n", "v", "x" }
 )
 keymap(
-    "<leader>cl",
-    function() return require("opencode").operator("@this ") .. "_" end,
-    { desc = "Add [l]ine to Opencode", expr = true }
-)
-keymap(
-    "<leader>cr",
-    function() return require("opencode").operator("@this ") end,
-    { desc = "Add [r]ange to Opencode", expr = true },
-    { "n", "x" }
-)
-keymap(
     "<leader>cs",
     function() require("opencode").select() end,
     { desc = "Execute Opencode [s]elected action" },
     { "n", "v", "x" }
 )
-keymap("+", "<C-a>", { desc = "increment", noremap = true })
-keymap("-", "<C-x>", { desc = "decrement", noremap = true })
