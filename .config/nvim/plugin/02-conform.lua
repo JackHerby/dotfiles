@@ -24,6 +24,7 @@ conform.setup({
         markdown = { "markdownlint" },
         python = { "isort", "black" },
         sh = { "shellcheck" },
+        twig = { "djlint" },
         typescript = { "prettier", "prettierd", stop_after_first = true },
         typescriptreact = { "prettier", "prettierd", stop_after_first = true },
         vue = { "prettier", "prettierd", stop_after_first = true },

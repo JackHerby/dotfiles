@@ -22,7 +22,7 @@ vim.g.loaded_netrwPlugin = 1
 
 -- Make line numbers default.
 vim.opt.number = true
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = "a"
@@ -37,16 +37,16 @@ vim.opt.showmode = false
 -- Use xclip (via XWayland) instead of wl-clipboard: GNOME lacks wlr-data-control,
 -- so wl-copy/wl-paste spawn a focus-stealing popup that blocks until clicked.
 vim.g.clipboard = {
-  name = 'xclip',
-  copy = {
-    ['+'] = { 'xclip', '-quiet', '-i', '-selection', 'clipboard' },
-    ['*'] = { 'xclip', '-quiet', '-i', '-selection', 'primary' },
-  },
-  paste = {
-    ['+'] = { 'xclip', '-o', '-selection', 'clipboard' },
-    ['*'] = { 'xclip', '-o', '-selection', 'primary' },
-  },
-  cache_enabled = 1,
+    name = "xclip",
+    copy = {
+        ["+"] = { "xclip", "-quiet", "-i", "-selection", "clipboard" },
+        ["*"] = { "xclip", "-quiet", "-i", "-selection", "primary" },
+    },
+    paste = {
+        ["+"] = { "xclip", "-o", "-selection", "clipboard" },
+        ["*"] = { "xclip", "-o", "-selection", "primary" },
+    },
+    cache_enabled = 1,
 }
 vim.schedule(function() vim.opt.clipboard = "unnamedplus" end)
 
@@ -290,7 +290,7 @@ end
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode.
 -- See `:help hlsearch`.
-keymap('<Esc>', function() vim.cmd('nohlsearch') end, { desc = 'Clear highligth search.' })
+keymap("<Esc>", function() vim.cmd("nohlsearch") end, { desc = "Clear highligth search." })
 
 -- Basic autocommands.
 -- See `:help lua-guide-autocommands`.
