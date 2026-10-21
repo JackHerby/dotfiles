@@ -6,7 +6,7 @@ from kitty.fast_data_types import os_window_has_background_image
 OFF = -1
 ON = 0
 DEFAULT = "default"
-TRANSLUCENT = "0.6"
+TRANSLUCENT = "0.0"
 
 
 def main(args: list[str]) -> str:
