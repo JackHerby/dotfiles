@@ -102,7 +102,6 @@ local servers = {
     emmet_language_server = {},
     eslint = {},
     html = {},
-    htmx = {},
     intelephense = {},
     lemminx = {
         filetypes = { "svg", "tmx", "xlf", "xliff", "xml", "xsd", "xsl", "xslt" },
