@@ -15,6 +15,7 @@ packAdd({
 
 require("telescope").setup({
     defaults = {
+        borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
         layout_config = {
             height = 0.9,
             width = { 0.65, min = 120 },
