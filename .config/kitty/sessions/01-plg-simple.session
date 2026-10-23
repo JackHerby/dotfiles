@@ -1,0 +1,11 @@
+new_tab plg/bonprix-www
+cd ~/Projects/plg/bonprix-www/
+launch
+
+new_tab plg/bonprix-www/tools
+cd ~/Projects/plg/bonprix-www/tools/
+launch
+
+new_tab plg/bonprix-www/tools
+cd ~/Projects/plg/bonprix-www/tools/
+launch

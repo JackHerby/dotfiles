@@ -1,17 +1,13 @@
 new_os_window
 os_window_state maximized
 
-new_tab FRG www Neovim
-cd ~/Projects/fr/bonprix-www/
+new_tab plg/bonprix-cms
+cd ~/Projects/plg/bonprix-cms/
 launch
 
-new_tab FRG www Stack
-cd ~/Projects/fr/bonprix-www/tools/
+new_tab plg/bonprix-cms/tools
+cd ~/Projects/plg/bonprix-cms/tools/
 launch --title='Development'
 launch --title='Connection' --var window=connection
 launch --location=hsplit --title='CLI'
 focus_matching_window var:window=connection
-
-new_tab Misc
-cd ~
-launch
