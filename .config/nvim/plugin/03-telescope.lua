@@ -5,10 +5,8 @@ local packAdd = require("utils.pack-add")
 packAdd({
     githubUrl("nvim-telescope/telescope.nvim"), -- https://github.com/nvim-telescope/telescope.nvim
     -- Dependencies, plugins.
-    githubUrl("nvim-telescope/telescope-file-browser.nvim"), -- https://github.com/nvim-telescope/telescope-file-browser.nvim
     githubUrl("nvim-telescope/telescope-fzf-native.nvim"), -- https://github.com/nvim-telescope/telescope-fzf-native.nvim
     githubUrl("nvim-telescope/telescope-node-modules.nvim"), -- https://github.com/nvim-telescope/telescope-node-modules.nvim
-    githubUrl("nvim-telescope/telescope-project.nvim"), -- https://github.com/nvim-telescope/telescope-project.nvim
     githubUrl("nvim-telescope/telescope-symbols.nvim"), -- https://github.com/nvim-telescope/telescope-symbols.nvim
     githubUrl("nvim-telescope/telescope-ui-select.nvim"), -- https://github.com/nvim-telescope/telescope-ui-select.nvim
 })
@@ -46,10 +44,8 @@ require("telescope").setup({
     },
 })
 
-pcall(require("telescope").load_extension, "file-browser")
 pcall(require("telescope").load_extension, "fzf")
 pcall(require("telescope").load_extension, "node_modules")
-pcall(require("telescope").load_extension, "project")
 pcall(require("telescope").load_extension, "symbols")
 pcall(require("telescope").load_extension, "ui-select")
 
@@ -71,21 +67,6 @@ keymap(
     "<leader>s/",
     function() builtin.live_grep({ grep_open_files = true, prompt_title = "Live Grep in Open Files" }) end,
     { desc = "Search [/] in open files" }
-)
-keymap(
-    "<leader>sB",
-    function() require("telescope").extensions.file_browser.file_browser() end,
-    { desc = "File [b]rowser" }
-)
-keymap(
-    "<leader>sb",
-    function()
-        require("telescope").extensions.file_browser.file_browser({
-            path = vim.fn.expand("%:p:h"),
-            select_buffer = true,
-        })
-    end,
-    { desc = "File [b]rowser - current buffer's path" }
 )
 keymap(
     "<leader>sc",
@@ -123,7 +104,6 @@ keymap(
     function() builtin.find_files({ cwd = vim.fn.stdpath("config") }) end,
     { desc = "Search in [N]eovim files" }
 )
-keymap("<leader>sp", function() extensions.project.project() end, { desc = "Search in [p]rojects" })
 keymap("<leader>sr", builtin.resume, { desc = "[R]esume search" })
 keymap("<leader>ss", builtin.symbols, { desc = "Search for [s]ymbols" })
 keymap("<leader>sw", builtin.grep_string, { desc = "Search for current [w]ord" })

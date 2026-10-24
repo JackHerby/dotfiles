@@ -8,14 +8,6 @@ packAdd({
     githubUrl("WhoIsSethDaniel/mason-tool-installer.nvim"), -- https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim
     githubUrl("mason-org/mason-lspconfig.nvim"), -- https://github.com/mason-org/mason-lspconfig.nvim
     githubUrl("mason-org/mason.nvim"), -- https://github.com/mason-org/mason.nvim
-    --
-    githubUrl("j-hui/fidget.nvim"), -- https://github.com/j-hui/fidget.nvim
-})
-
-require("fidget").setup({
-    notification = {
-        window = { border = "single", winblend = 0 },
-    },
 })
 
 require("mason").setup({})
@@ -90,6 +82,18 @@ nvimCreateAutocmd("LspAttach", {
     end,
 })
 
+-- LSP progress in the message window (replaces fidget.nvim).
+nvimCreateAutocmd("LspProgress", {
+    callback = function(event)
+        -- Only announce when a task starts; skip the percentage spam.
+        if event.data.params.value.kind ~= "begin" then return end
+        local status = table.concat(vim.split(vim.lsp.status(), ", ", { plain = true }), "\n")
+        if status ~= "" then vim.api.nvim_echo({ { status } }, false, {}) end
+    end,
+    desc = "Echo LSP progress messages.",
+    group = vim.api.nvim_create_augroup("lsp-progress-echo", { clear = true }),
+})
+
 -- Enable the following language servers.
 local vueLanguageServerPath = vim.fn.expand("$MASON/packages")
     .. "/vue-language-server"
@@ -97,7 +101,7 @@ local vueLanguageServerPath = vim.fn.expand("$MASON/packages")
 
 local servers = {
     bashls = { filetypes = { "sh", "zsh" } },
-    clangd = {},
+    clangd = { cmd = { "clangd", "--clang-tidy" } },
     cssls = {},
     emmet_language_server = {},
     eslint = {},

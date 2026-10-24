@@ -6,4 +6,4 @@ packAdd({
     githubUrl("folke/todo-comments.nvim"), -- https://github.com/folke/todo-comments.nvim
 })
 
-require("todo-comments").setup({ signs = false })
+require("todo-comments").setup()
