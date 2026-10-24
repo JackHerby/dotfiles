@@ -11,9 +11,6 @@ export PATH="$HOME/.local/bin:$PATH"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-# (ble.sh): Add this lines at the top of .bashrc:
-source -- /usr/share/blesh/ble.sh --attach=none
-
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
 	export EDITOR='vim'
@@ -75,10 +72,17 @@ function y() {
 [ -s "/home/jackherby/.bun/_bun" ] && source "/home/jackherby/.bun/_bun"
 
 # fzf
-export FZF_DEFAULT_OPTS="--bind 'enter:become($EDITOR {})' \
---preview 'bat --style=numbers --color=always {}' \
---preview-border=sharp \
---preview-window=up"
-
-# (ble.sh): Add this line at the end of .bashrc:
-[[ ! ${BLE_VERSION-} ]] || ble-attach
+eval "$(fzf --bash)"   
+# export FZF_DEFAULT_OPTS="--bind 'enter:become($EDITOR {})' \
+# --preview 'bat --style=numbers --color=always {}' \
+# --preview-border=sharp \
+# --preview-window=up"
+export FZF_ALT_C_OPTS="--height 100% --layout=default"
+export FZF_CTRL_R_OPTS="--height 100% --layout=default"
+export FZF_CTRL_T_OPTS="
+--height=100%
+--layout=default
+--preview 'bat --style=numbers --color=always {}'
+--preview-border=sharp
+--preview-window=up
+"
