@@ -227,8 +227,8 @@ end, { desc = "[L]ist plugins" })
 keymap("<leader>pu", function() vim.pack.update() end, { desc = "[U]pdate plugins" })
 
 -- Go to next/previous buffer.
-keymap("<C-S-J>", function() vim.cmd("bnext") end)
-keymap("<C-S-K>", function() vim.cmd("bprev") end)
+keymap("<C-S-J>", function() vim.cmd("bprev") end)
+keymap("<C-S-K>", function() vim.cmd("bnext") end)
 
 -- Keybinds to make split navigation easier.
 keymap("<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
