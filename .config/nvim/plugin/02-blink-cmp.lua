@@ -6,12 +6,8 @@ packAdd({
     { src = githubUrl("saghen/blink.cmp"), version = vim.version.range("1.x") }, -- https://github.com/saghen/blink.cmp
     -- Dependencies.
     githubUrl("folke/lazydev.nvim"), -- https://github.com/folke/lazydev.nvim
-    githubUrl("rafamadriz/friendly-snippets"), -- https://github.com/rafamadriz/friendly-snippets
-    { src = githubUrl("L3MON4D3/LuaSnip"), version = vim.version.range("2.x") }, -- https://github.com/L3MON4D3/LuaSnip
 })
 
-require("luasnip.loaders.from_vscode").lazy_load()
-require("luasnip").setup({})
 require("lazydev").setup({
     library = {
         { path = "${3rd}/luv/library", words = { "vim%.uv" } },
@@ -31,7 +27,6 @@ require("blink.cmp").setup({
     },
     -- Shows a signature help window while you type arguments for a function.
     signature = { enabled = true, trigger = { enabled = false } },
-    snippets = { preset = "luasnip" },
     sources = {
         default = { "lsp", "path", "snippets", "lazydev", "buffer" },
         providers = { lazydev = { module = "lazydev.integrations.blink", score_offset = 100 } },

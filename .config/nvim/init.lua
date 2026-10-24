@@ -9,6 +9,9 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- Catppuccin is bundled with Neovim.
+vim.cmd.colorscheme("catppuccin")
+
 -- Set to true if you have a Nerd Font installed.
 vim.g.have_nerd_font = true
 
@@ -27,8 +30,7 @@ vim.opt.relativenumber = true
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = "a"
 
--- Don't show the mode, since it's already in the status line.
-vim.opt.showmode = false
+vim.o.statusline = "%<%f %m%r %{exists('*FugitiveHead') ? FugitiveHead(7) : ''} %=%y %{&ff} %2l:%-2v %p%%"
 
 -- Sync clipboard between OS and Neovim.
 -- Schedule the setting after `UiEnter` because it can increase startup-time.
@@ -115,48 +117,18 @@ vim.diagnostic.config({
     virtual_text = true, -- Text shows up at the end of the line.
 })
 
--- Neovide/GUI settings.
-if vim.g.neovide then
-    -- Font.
-    vim.o.guifont = "Fira Code:h12"
-
-    -- Padding.
-    vim.g.neovide_padding_bottom = 2
-    vim.g.neovide_padding_left = 2
-    vim.g.neovide_padding_right = 2
-    vim.g.neovide_padding_top = 2
-
-    -- Opacity.
-    vim.g.neovide_normal_opacity = 0.95
-    vim.g.neovide_opacity = 1
-
-    -- Animations.
-    vim.g.neovide_position_animation_length = 0.1
-    vim.g.neovide_scroll_animation_length = 0.15
-
-    -- Progress bar.
-    vim.g.neovide_progress_bar_animation_speed = 200.0
-    vim.g.neovide_progress_bar_enabled = true
-    vim.g.neovide_progress_bar_height = 5.0
-    vim.g.neovide_progress_bar_hide_delay = 0.2
-
-    -- Theme.
-    vim.g.neovide_theme = "dark"
-
-    -- Cursor.
-    vim.opt.guicursor = "a:block-blinkwait0-blinkon500-blinkoff500"
-    vim.g.neovide_cursor_smooth_blink = true
-    vim.g.neovide_cursor_vfx_mode = "railgun"
-
-    vim.env.TERM = "xterm-256color"
-end
-
 -- Enable experimental ui2.
 pcall(function() require("vim._core.ui2").enable() end)
 
 -- Basic keymaps.
 -- See `:help vim.keymap.set()`.
 local keymap = require("utils.keymap")
+
+-- Move lines/selections up and down.
+keymap("<M-j>", ":move .+1<CR>==", { desc = "Move line down" })
+keymap("<M-k>", ":move .-2<CR>==", { desc = "Move line up" })
+keymap("<M-j>", ":move '>+1<CR>gv=gv", { desc = "Move selection down" }, "x")
+keymap("<M-k>", ":move '<-2<CR>gv=gv", { desc = "Move selection up" }, "x")
 
 keymap("<leader>q", function() vim.cmd("quit") end, { desc = "[Q]uit the current window" })
 keymap("<leader>r", function() vim.cmd("restart") end, { desc = "[R]estart Neovim" })
@@ -318,20 +290,6 @@ nvimCreateAutocmd("FileType", {
     end,
     desc = "Enable absolute and relative line numbers in help buffers.",
     pattern = "help",
-})
-
--- Must be defined before the very first vim.pack.add() call.
-nvimCreateAutocmd("PackChanged", {
-    callback = function(event)
-        local name, kind, path = event.data.spec.name, event.data.kind, event.data.path
-        local install_or_update = kind == "install" or kind == "update"
-        if name ~= "LuaSnip" or not install_or_update then return end
-        if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then return end
-        local res = vim.system({ "make", "install_jsregexp", "-C", path }, { text = true }):wait()
-        if res.code == 0 then return end
-        vim.notify("LuaSnip jsregexp build failed:\n" .. res.stderr, vim.log.levels.ERROR)
-    end,
-    desc = "Build LuaSnip jsregexp.",
 })
 
 nvimCreateAutocmd("PackChanged", {
