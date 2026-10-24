@@ -27,25 +27,26 @@ alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
 
 # Utils
-alias ccn='cd && clear && fastfetch'
+alias c="clear"
+alias ccf='cd && clear && fastfetch'
 alias cdghostty='cd $HOME/.config/ghostty'
 alias cdhypr='cd $HOME/.config/hypr'
 alias cdkinpal='cd $HOME/Projects/playpal'
 alias cdkitty='cd $HOME/.config/kitty'
 alias cdnvim='cd $HOME/.config/nvim'
 alias cdoc='cd $HOME/.config/opencode'
-alias cn='clear && fastfetch'
+alias cf='clear && fastfetch'
 alias dfs='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
 alias dfsno='dfs config status.showUntrackedFiles no'
 alias dfsnorm='dfs config status.showUntrackedFiles normal'
-alias hd='history -d -2 && history -w'
 alias nf='neovide --fork'
-alias ocp='opencode --port'
 alias or='omz reload'
 alias s='kitten ssh'
+alias sb='source ~/.bashrc'
 alias tcheck='sudo timeshift --check'
 alias uds='upower -i /org/freedesktop/UPower/devices/battery_ps_controller_battery_14o3ao9ao8foc1o64'
 alias vb='$EDITOR $HOME/.bashrc'
+alias kgn='kitty +runpy "from kitty.config import *; print(commented_out_default_config())" > ~/.config/kitty/kittty.conf.new'
 
 # Docker
 alias dcup='docker compose up'
@@ -74,7 +75,10 @@ function y() {
 [ -s "/home/jackherby/.bun/_bun" ] && source "/home/jackherby/.bun/_bun"
 
 # fzf
-export FZF_DEFAULT_OPTS="--layout=reverse --preview 'bat --style=numbers --color=always {}'"
+export FZF_DEFAULT_OPTS="--bind 'enter:become($EDITOR {})' \
+--preview 'bat --style=numbers --color=always {}' \
+--preview-border=sharp \
+--preview-window=up"
 
 # (ble.sh): Add this line at the end of .bashrc:
 [[ ! ${BLE_VERSION-} ]] || ble-attach
