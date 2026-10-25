@@ -381,8 +381,7 @@ cursor_trail_start_threshold 1
 #: started. When the cursor moves less than the threshold in both
 #: dimensions, the trail is skipped, reducing unnecessary cursor trail
 #: animation.
-
-cursor_trail_color #ba8d25
+# cursor_trail_color #ba8d25
 
 #: Set the color of the cursor trail when cursor_trail is enabled. If
 #: set to 'none' (the default), the cursor trail will use the cursor's
@@ -1110,7 +1109,7 @@ enable_audio_bell no
 #: selection background color. If you feel that the visual bell is too
 #: bright, you can set it to a darker color.
 
-# window_alert_on_bell yes
+window_alert_on_bell no
 
 #: Request window attention on bell. Makes the dock icon bounce on
 #: macOS or the taskbar flash on Linux.
@@ -1197,7 +1196,7 @@ enable_audio_bell no
 #: works on Wayland. See also kitty --position to specify the position
 #: when launching kitty.
 
-enabled_layouts splits,tall:mirrored=true,fat:mirrored=true
+enabled_layouts tall:mirrored=true,*
 
 #: The enabled window layouts. A comma separated list of layout names.
 #: The special value all means all layouts. The first listed layout
@@ -1213,7 +1212,7 @@ window_resize_step_lines 1
 #: start_resizing_window. The cells value is used for horizontal
 #: resizing, and the lines value is used for vertical resizing.
 
-# window_border_width 0.5pt
+window_border_width 1.5pt
 
 #: The width of window borders. Can be either in pixels (px) or pts
 #: (pt). Values in pts will be rounded to the nearest number of pixels
@@ -1257,7 +1256,7 @@ window_resize_step_lines 1
 #: horizontal sides. Three values set top, horizontal and bottom. Four
 #: values set top, right, bottom and left.
 
-single_window_margin_width 0 240
+# single_window_margin_width -1
 
 #: The window margin to use when only a single window is visible (in
 #: pts). Negative values will cause the value of window_margin_width
@@ -1265,7 +1264,7 @@ single_window_margin_width 0 240
 #: set the vertical and horizontal sides. Three values set top,
 #: horizontal and bottom. Four values set top, right, bottom and left.
 
-window_padding_width 4
+window_padding_width 0 2
 
 #: The window padding (in pts) (blank area between the text and the
 #: window border). A single value sets all four sides. Two values set
@@ -1759,7 +1758,7 @@ window_title_bar_min_windows 2
 
 #: The foreground and background colors.
 
-background_opacity 0.95
+# background_opacity 1.0
 
 #: The opacity of the terminal background color. A number between zero
 #: and one, where one is opaque and zero is fully transparent. This
@@ -1831,7 +1830,7 @@ dynamic_background_opacity yes
 #: decrease_background_opacity) or the remote control facility.
 #: Changing this option by reloading the config is not supported.
 
-# background_image none
+background_image ./backgrounds/anime_blue_eyes.png
 
 #: Glob pattern matching one or more background images. Must be in
 #: PNG/JPEG/WEBP/TIFF/GIF/BMP format. The first one is used as the
@@ -1846,7 +1845,7 @@ dynamic_background_opacity yes
 #: this option is overridden by the color scheme file and must be set
 #: inside it to take effect.
 
-# background_image_layout tiled
+background_image_layout cscaled
 
 #: Whether to tile, scale or clamp the background image. The value can
 #: be one of tiled, mirror-tiled, scaled, clamped, centered or
@@ -1865,7 +1864,7 @@ dynamic_background_opacity yes
 #: this option is overridden by the color scheme file and must be set
 #: inside it to take effect.
 
-# background_tint 0.0
+background_tint 0.2
 
 #: How much to tint the background image by the background color. This
 #: option makes it easier to read the text. Tinting is done using the
@@ -2145,7 +2144,7 @@ dynamic_background_opacity yes
 #: recursive expansion and they will override any variables set by
 #: other env directives.
 
-# custom_shaders
+custom_shaders cursor-trail-blaze
 
 #: Space separated list of custom shader pipeline names. If multiple
 #: names are specified they are loaded in order and concatenated. You
@@ -3485,6 +3484,6 @@ bold_italic_font auto
 # END_KITTY_FONTS
 
 # BEGIN_KITTY_THEME
-# Gruvbox Dark Hard
+# Catppuccin-Mocha
 include current-theme.conf
 # END_KITTY_THEME
