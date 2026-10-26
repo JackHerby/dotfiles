@@ -10,7 +10,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Catppuccin is bundled with Neovim.
-vim.cmd.colorscheme("catppuccin")
+vim.cmd.colorscheme("retrobox")
 
 -- Set to true if you have a Nerd Font installed.
 vim.g.have_nerd_font = true
