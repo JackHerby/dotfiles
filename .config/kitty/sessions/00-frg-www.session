@@ -1,0 +1,13 @@
+new_os_window
+os_window_state maximized
+
+new_tab frg/bonprix-www
+cd ~/Projects/frg/bonprix-www/
+launch
+
+new_tab frg/bonprix-www/tools
+cd ~/Projects/frg/bonprix-www/tools/
+launch --title="development"
+launch --title="connection" --var window=connection
+launch --location=hsplit --title="cmdline"
+focus_matching_window var:window=connection

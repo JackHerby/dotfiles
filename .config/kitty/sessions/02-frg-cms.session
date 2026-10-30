@@ -7,7 +7,7 @@ launch
 
 new_tab frg/cms/tools
 cd ~/Projects/frg/cms/tools/
-launch --title='Development'
-launch --title='Connection' --var window=connection
-launch --location=hsplit --title='CLI'
+launch --title="development"
+launch --title="connection" --var window=connection
+launch --location=hsplit --title="cmdline"
 focus_matching_window var:window=connection
