@@ -119,6 +119,7 @@ local servers = {
         },
     },
     pyrefly = {},
+    rumdl = {},
     rust_analyzer = {},
     stylelint_lsp = {
         filetypes = { "css", "less", "scss", "vue" },
@@ -168,7 +169,6 @@ vim.list_extend(ensureInstalled, {
     "eslint",
     "isort",
     "js-debug-adapter",
-    "markdownlint",
     "prettier",
     "prettierd",
     "shellcheck",
