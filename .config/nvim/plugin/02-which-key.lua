@@ -17,6 +17,7 @@ require("which-key").setup({
         { "<leader>e", group = "Pretty TS [E]rrors" },
         { "<leader>f", group = "Conform [f]ormatting" },
         { "<leader>g", group = "Vim Fugitive [g]it" },
+        { "<leader>h", group = "[H]arpoon" },
         { "<leader>k", group = "Miscellaneous [k]eymaps" },
         { "<leader>l", group = "[L]SP actions" },
         { "<leader>m", group = "Render [m]arkdown" },
