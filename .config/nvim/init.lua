@@ -7,7 +7,7 @@
 -- See `:help mapleader`.
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used).
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.maplocalleader = "\\"
 
 -- Catppuccin is bundled with Neovim.
 vim.cmd.colorscheme("retrobox")
@@ -227,21 +227,6 @@ keymap("<C-,>", "()", nil, "i")
 keymap("<C-.>", "=>", nil, "i")
 keymap("<C-/>", "->", nil, "i")
 
-if vim.g.neovide then
-    -- Increase/decrease font size.
-    keymap(
-        "<C-->",
-        ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1<CR>",
-        { silent = true }
-    )
-    keymap("<C-0>", ":lua vim.g.neovide_scale_factor = 1<CR>", { silent = true })
-    keymap(
-        "<C-=>",
-        ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1<CR>",
-        { silent = true }
-    )
-end
-
 -- Set highlight on search, but clear on pressing <Esc> in normal mode.
 -- See `:help hlsearch`.
 keymap("<Esc>", function() vim.cmd("nohlsearch") end, { desc = "Clear highligth search and" })
@@ -310,20 +295,3 @@ nvimCreateAutocmd("PackChanged", {
     end,
     desc = "Build telescope-fzf-native.",
 })
-
-if vim.g.neovide then
-    -- Prints out Neovide window size on resize.
-    nvimCreateAutocmd("VimResized", {
-        callback = function()
-            local winHeight = vim.api.nvim_win_get_height(0)
-            local winWidth = vim.api.nvim_win_get_width(0)
-            vim.api.nvim_echo(
-                { { ("Neovide size: %dx%d"):format(winWidth, winHeight) } },
-                false,
-                { id = "resizeMsg" }
-            )
-        end,
-        desc = "Print Neovide window parameters on resize.",
-        group = vim.api.nvim_create_augroup("print-window-size", { clear = true }),
-    })
-end
