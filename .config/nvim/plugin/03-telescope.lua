@@ -62,7 +62,6 @@ keymap(
     { desc = "Fuzzily search in current buffer" }
 )
 keymap("<leader><leader>", builtin.buffers, { desc = "Search in opened buffers" })
-keymap("<leader>s.", builtin.oldfiles, { desc = 'Search recent files ("." for repeat)' })
 keymap(
     "<leader>s/",
     function() builtin.live_grep({ grep_open_files = true, prompt_title = "Live Grep in Open Files" }) end,
@@ -74,19 +73,7 @@ keymap(
     { desc = "Search by grep in [c]ss files" }
 )
 keymap("<leader>sd", builtin.diagnostics, { desc = "Search in [d]iagnostics" })
-keymap("<leader>sf", builtin.find_files, { desc = "Search for [f]iles" })
-keymap(
-    "<leader>sF",
-    function() builtin.find_files({ default_text = vim.fn.expand("<cword>") }) end,
-    { desc = "Search [F]iles by word under cursor" }
-)
-keymap("<leader>sg", builtin.live_grep, { desc = "[G]rep search" })
 keymap("<leader>sh", builtin.help_tags, { desc = "Search in [h]elp" })
-keymap(
-    "<leader>sH",
-    function() builtin.help_tags({ default_text = vim.fn.expand("<cword>") }) end,
-    { desc = "Search [h]elp for the word under the cursor" }
-)
 keymap(
     "<leader>si",
     function() builtin.find_files({ hidden = true, no_ignore = true }) end,
@@ -99,11 +86,8 @@ keymap(
 )
 keymap("<leader>sk", builtin.keymaps, { desc = "Search [k]eymaps" })
 keymap("<leader>sm", function() extensions.node_modules.list() end, { desc = "Search in node_[m]odules" })
-keymap(
-    "<leader>sn",
-    function() builtin.find_files({ cwd = vim.fn.stdpath("config") }) end,
-    { desc = "Search in [N]eovim files" }
-)
 keymap("<leader>sr", builtin.resume, { desc = "[R]esume search" })
 keymap("<leader>ss", builtin.symbols, { desc = "Search for [s]ymbols" })
 keymap("<leader>sw", builtin.grep_string, { desc = "Search for current [w]ord" })
+keymap("<M-f>", builtin.find_files, { desc = "Search for [f]iles" })
+keymap("<M-l>", builtin.live_grep, { desc = "[L]ive grep search" })

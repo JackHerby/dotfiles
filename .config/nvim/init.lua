@@ -154,14 +154,17 @@ keymap("<M-k>", ":move .-2<CR>==", { desc = "Move line up" })
 keymap("<M-j>", ":move '>+1<CR>gv=gv", { desc = "Move selection down" }, "x")
 keymap("<M-k>", ":move '<-2<CR>gv=gv", { desc = "Move selection up" }, "x")
 
-keymap("<leader>q", function() vim.cmd("quit") end, { desc = "[Q]uit the current window" })
-keymap("<leader>r", function() vim.cmd("restart") end, { desc = "[R]estart Neovim" })
+keymap("<C-c>", function() vim.cmd("quitall!") end, { desc = "Quit all windows without saving" })
+keymap("<M-a>", function() vim.cmd("wall") end, { desc = "Write [a]ll" })
+keymap("<M-q>", function() vim.cmd("quit") end, { desc = "[Q]uit the current window" })
+keymap("<M-r>", function() vim.cmd("restart") end, { desc = "[R]estart Neovim" })
+keymap("<M-w>", function() vim.cmd("write") end, { desc = "[W]rite the current buffer" })
+
 keymap("<leader>t", function()
     vim.cmd.new()
     vim.cmd.term()
     vim.cmd("startinsert")
 end, { desc = "Open [t]erminal in vertical split" })
-keymap("<leader>w", function() vim.cmd("write") end, { desc = "[W]rite the current buffer" })
 
 -- Miscellaneous keymaps.
 keymap("<leader>kc", function()
