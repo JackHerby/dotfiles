@@ -89,5 +89,5 @@ keymap("<leader>sm", function() extensions.node_modules.list() end, { desc = "Se
 keymap("<leader>sr", builtin.resume, { desc = "[R]esume search" })
 keymap("<leader>ss", builtin.symbols, { desc = "Search for [s]ymbols" })
 keymap("<leader>sw", builtin.grep_string, { desc = "Search for current [w]ord" })
-keymap("<M-f>", builtin.find_files, { desc = "Search for [f]iles" })
+keymap("<M-o>", builtin.find_files, { desc = "[O]pen file" })
 keymap("<M-l>", builtin.live_grep, { desc = "[L]ive grep search" })
