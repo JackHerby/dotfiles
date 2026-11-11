@@ -11,16 +11,16 @@ vim.g.maplocalleader = "\\"
 
 -- Pre AI Prime nostalgia...
 local function colorMyPencils(color)
-    color = color or "retrobox"
-    -- Retrobox is bundled with Neovim now.
-    vim.cmd.colorscheme("retrobox")
+    color = color or "catppuccin"
+    -- Catppuccin is bundled with Neovim now.
+    vim.cmd.colorscheme("catppuccin")
 
     local groups = { "Normal", "NormalFloat" }
     for _, group in ipairs(groups) do
         vim.api.nvim_set_hl(0, group, { bg = "none" })
     end
 end
-colorMyPencils("retrobox")
+colorMyPencils("catppuccin")
 
 -- Set to true if you have a Nerd Font installed.
 vim.g.have_nerd_font = true
