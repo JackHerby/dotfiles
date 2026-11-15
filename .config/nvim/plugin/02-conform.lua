@@ -95,9 +95,9 @@ keymap(
 keymap("<leader>fc", function() vim.cmd("ConformInfo") end, { desc = "[C]onform info" })
 keymap("<leader>fd", function() vim.cmd("FormatDisable") end, { desc = "[D]isable autoformatting" })
 keymap("<leader>fe", function() vim.cmd("FormatEnable") end, { desc = "[E]nable autoformatting" })
+keymap("<leader>fi", function() vim.cmd("FormatInfo") end, { desc = "Autoformat [i]nfo" })
 keymap(
-    "<leader>ff",
+    "<M-f>",
     function() conform.format({ async = true, lsp_format = "fallback" }) end,
     { desc = "[F]ormat buffer" }
 )
-keymap("<leader>fi", function() vim.cmd("FormatInfo") end, { desc = "Autoformat [i]nfo" })
