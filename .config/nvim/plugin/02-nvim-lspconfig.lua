@@ -17,6 +17,7 @@ require("mason").setup({})
 -- an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
 -- function will be executed to configure the current buffer.
 local keymap = require("utils.keymap")
+keymap("<M-m>", function() vim.cmd("Mason") end, { desc = "Launch Mason" })
 local nvimCreateAutocmd = require("utils.nvim-create-autocmd")
 nvimCreateAutocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
