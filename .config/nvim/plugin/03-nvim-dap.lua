@@ -15,6 +15,8 @@ dap.adapters["pwa-node"] = {
         args = {
             vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js",
             "${port}",
+            -- js-debug defaults to `localhost`, which can bind ::1 while we connect via IPv4.
+            "127.0.0.1",
         },
         command = "node",
     },
@@ -29,6 +31,8 @@ dap.adapters["pwa-chrome"] = {
         args = {
             vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js",
             "${port}",
+            -- js-debug defaults to `localhost`, which can bind ::1 while we connect via IPv4.
+            "127.0.0.1",
         },
         command = "node",
     },
@@ -47,14 +51,14 @@ dap.adapters["node"] = function(cb, config)
 end
 
 -- Configurations.
-local jsFiletypes = {
+local js_filetypes = {
     "javascript",
     "typescript",
     "javascriptreact",
     "typescriptreact",
     "vue",
 }
-for _, lang in ipairs(jsFiletypes) do
+for _, lang in ipairs(js_filetypes) do
     dap.configurations[lang] = {
         {
             cwd = "${workspaceFolder}",
@@ -90,7 +94,7 @@ for _, lang in ipairs(jsFiletypes) do
             type = "pwa-node",
         },
         {
-            name = "Chrome: localhost:3000",
+            name = "Chromium: localhost:3000",
             request = "launch",
             sourceMaps = true,
             type = "pwa-chrome",
@@ -133,13 +137,11 @@ nvimCreateAutocmd("FileType", {
 
 -- Keymaps.
 local keymap = require("utils.keymap")
-keymap("<leader>db", dap.toggle_breakpoint, { desc = "Toggle [b]reakpoint" })
 keymap(
-    "<leader>dB",
+    "<leader>db",
     function() dap.set_breakpoint(vim.fn.input("Breakpoint condition: ")) end,
     { desc = "Conditional [B]reakpoint" }
 )
-keymap("<leader>dc", dap.continue, { desc = "[C]ontinue / start" })
 keymap("<leader>df", function()
     local w = require("dap.ui.widgets")
     w.centered_float(w.frames)
@@ -150,14 +152,12 @@ keymap(
     { desc = "[H]over value" },
     { "n", "v" }
 )
-keymap("<leader>di", dap.step_into, { desc = "Step [i]nto" })
 keymap("<leader>dl", dap.run_last, { desc = "Run [l]ast" })
 keymap(
     "<leader>dm",
     function() dap.set_breakpoint(nil, nil, vim.fn.input("Log point message: ")) end,
     { desc = "Log point [m]essage" }
 )
-keymap("<leader>do", dap.step_over, { desc = "Step [o]ver" })
 keymap(
     "<leader>dp",
     function() require("dap.ui.widgets").preview() end,
@@ -169,5 +169,10 @@ keymap("<leader>ds", function()
     local w = require("dap.ui.widgets")
     w.centered_float(w.scopes)
 end, { desc = "Float [s]copes" })
-keymap("<leader>dt", dap.step_out, { desc = "Step out" })
 keymap("<leader>dx", dap.terminate, { desc = "Terminate session" })
+keymap("<M-b>", dap.toggle_breakpoint, { desc = "Toggle [b]reakpoint" })
+keymap("<M-d>", dap.continue, { desc = "Continue / start [d]ebugging" })
+keymap("<M-down>", dap.step_over, { desc = "Step [o]ver" })
+keymap("<M-left>", dap.step_out, { desc = "Step out" })
+keymap("<M-right>", dap.step_into, { desc = "Step [i]nto" })
+keymap("<M-up>", dap.restart_frame, { desc = "Restart frame" })
