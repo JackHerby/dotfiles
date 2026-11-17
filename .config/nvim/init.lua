@@ -9,18 +9,8 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Pre AI Prime nostalgia...
-local function colorMyPencils(color)
-    color = color or "catppuccin"
-    -- Catppuccin is bundled with Neovim now.
-    vim.cmd.colorscheme("catppuccin")
-
-    local groups = { "Normal", "NormalFloat" }
-    for _, group in ipairs(groups) do
-        vim.api.nvim_set_hl(0, group, { bg = "none" })
-    end
-end
-colorMyPencils("catppuccin")
+-- Catppuccin is bundled with Neovim now.
+vim.cmd.colorscheme("catppuccin")
 
 -- Set to true if you have a Nerd Font installed.
 vim.g.have_nerd_font = true
@@ -96,7 +86,7 @@ vim.bo.softtabstop = 4
 -- Optionally enable 24-bit color.
 vim.opt.termguicolors = true
 
--- Set rounded borders for all floating windows (Neovim 0.11+).
+-- Set border type for all floating windows (Neovim 0.11+).
 vim.o.winborder = "single"
 
 -- Spelling options.
@@ -172,6 +162,11 @@ keymap(
     { desc = "[R]ename all occurances" }
 )
 keymap("<leader>ks", function() vim.cmd("LspStylelintFix") end, { desc = "Style[l]int fix all" })
+keymap("<leader>ks", function()
+    vim.cmd("set spell!")
+    ---@diagnostic disable-next-line undefined-field
+    vim.notify("Spellcheck is " .. (vim.opt.spell:get() and "on" or "off"))
+end, { desc = "Toggle [s]pellcheck" })
 keymap("<leader>kt", function()
     vim.ui.input({ prompt = "Title: " }, function(input)
         if input then vim.o.titlestring = input end
