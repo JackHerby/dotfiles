@@ -24,7 +24,7 @@ nvimCreateAutocmd("LspAttach", {
     callback = function(event)
         local telescopeBuiltin = require("telescope.builtin")
         keymap("<leader>la", vim.lsp.buf.code_action, { desc = "Goto code [a]ction" }, { "n", "x" })
-        keymap("<leader>ld", telescopeBuiltin.lsp_definitions, { desc = "Goto [d]efinition" })
+        keymap("<M-d>", telescopeBuiltin.lsp_definitions, { desc = "Goto [d]efinition" })
         keymap("<leader>lD", vim.lsp.buf.declaration, { desc = "Goto [d]eclaration" })
         keymap(
             "<leader>lf",
@@ -120,6 +120,7 @@ local servers = {
             },
         },
     },
+    marksman = {},
     pyrefly = {},
     rumdl = {},
     rust_analyzer = {},

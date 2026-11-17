@@ -9,45 +9,33 @@ packAdd({
 
 local dap = require("dap")
 
--- Adapter: pwa-node (Node.js).
-dap.adapters["pwa-node"] = {
-    executable = {
-        args = {
-            vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js",
-            "${port}",
-            -- js-debug defaults to `localhost`, which can bind ::1 while we connect via IPv4.
-            "127.0.0.1",
+-- Adapters: js-debug serves both Node.js (pwa-node) and the browser (pwa-chrome).
+-- The aliases let a VS Code launch.json with `"type": "node"` / `"chrome"` work unchanged:
+-- js-debug itself only accepts the `pwa-*` names, so the type is rewritten before the session starts.
+local jsDebugTypes = { ["pwa-chrome"] = "chrome", ["pwa-node"] = "node" }
+for type, alias in pairs(jsDebugTypes) do
+    local adapter = {
+        executable = {
+            args = {
+                vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js",
+                "${port}",
+                -- js-debug defaults to `localhost`, which can bind ::1 while we connect via IPv4.
+                "127.0.0.1",
+            },
+            command = "node",
         },
-        command = "node",
-    },
-    host = "127.0.0.1",
-    port = "${port}",
-    type = "server",
-}
-
--- Adapter: pwa-chrome (browser).
-dap.adapters["pwa-chrome"] = {
-    executable = {
-        args = {
-            vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js",
-            "${port}",
-            -- js-debug defaults to `localhost`, which can bind ::1 while we connect via IPv4.
-            "127.0.0.1",
-        },
-        command = "node",
-    },
-    host = "127.0.0.1",
-    port = "${port}",
-    type = "server",
-}
-
--- Alias: "node" -> "pwa-node" (for launch.json compat).
-dap.adapters["node"] = function(cb, config)
-    if config.type == "node" then
-        config = vim.deepcopy(config)
-        config.type = "pwa-node"
-    end
-    cb(dap.adapters["pwa-node"]) ---@diagnostic disable-line: param-type-mismatch
+        host = "127.0.0.1",
+        port = "${port}",
+        type = "server",
+    }
+    dap.adapters[type] = adapter
+    dap.adapters[alias] = vim.tbl_extend("force", adapter, {
+        enrich_config = function(config, on_config)
+            config = vim.deepcopy(config)
+            config.type = type
+            on_config(config)
+        end,
+    })
 end
 
 -- Configurations.
@@ -58,47 +46,61 @@ local js_filetypes = {
     "typescriptreact",
     "vue",
 }
+-- These are generic, host-only setups. Anything project-specific (Docker, path mappings, custom URLs)
+-- belongs in the project's `.vscode/launch.json`, which nvim-dap picks up from the cwd automatically.
+local skipFiles = { "<node_internals>/**", "**/node_modules/**" }
 for _, lang in ipairs(js_filetypes) do
     dap.configurations[lang] = {
         {
             cwd = "${workspaceFolder}",
-            name = "Launch file",
+            name = "Node: launch current file",
             program = "${file}",
             request = "launch",
-            sourceMaps = true,
+            skipFiles = skipFiles,
             type = "pwa-node",
         },
         {
             cwd = "${workspaceFolder}",
-            name = "Attach to Node (pick process)",
-            processId = require("dap.utils").pick_process,
-            request = "attach",
-            sourceMaps = true,
+            name = "Node: launch npm script",
+            request = "launch",
+            runtimeArgs = function() return { "run", vim.fn.input("npm script: ", "dev") } end,
+            runtimeExecutable = "npm",
+            skipFiles = skipFiles,
             type = "pwa-node",
         },
         {
             cwd = "${workspaceFolder}",
-            name = "Attach to port 9229",
-            port = 9229,
+            name = "Node: attach to process",
+            processId = function() return require("dap.utils").pick_process({ filter = "node" }) end,
             request = "attach",
-            sourceMaps = true,
+            skipFiles = skipFiles,
             type = "pwa-node",
         },
         {
+            address = "127.0.0.1",
+            cwd = "${workspaceFolder}",
+            name = "Node: attach to port",
+            port = function() return tonumber(vim.fn.input("Inspector port: ", "9229")) end,
+            request = "attach",
+            skipFiles = skipFiles,
+            type = "pwa-node",
+        },
+        {
+            -- Server side (Nitro, SSR). js-debug follows the child process that `nuxt dev` forks.
             cwd = "${workspaceFolder}",
             name = "Nuxt: dev server",
             request = "launch",
-            runtimeArgs = { "nuxi", "dev" },
+            runtimeArgs = { "nuxt", "dev" },
             runtimeExecutable = "npx",
-            sourceMaps = true,
+            skipFiles = skipFiles,
             type = "pwa-node",
         },
         {
-            name = "Chromium: localhost:3000",
+            -- Client side of a Vue (Vite, :5173) or Nuxt (:3000) app; the dev server must already be running.
+            name = "Browser: launch Chrome",
             request = "launch",
-            sourceMaps = true,
             type = "pwa-chrome",
-            url = "http://localhost:3000",
+            url = function() return vim.fn.input("URL: ", "http://localhost:3000") end,
             webRoot = "${workspaceFolder}",
         },
     }
@@ -171,7 +173,7 @@ keymap("<leader>ds", function()
 end, { desc = "Float [s]copes" })
 keymap("<leader>dx", dap.terminate, { desc = "Terminate session" })
 keymap("<M-b>", dap.toggle_breakpoint, { desc = "Toggle [b]reakpoint" })
-keymap("<M-d>", dap.continue, { desc = "Continue / start [d]ebugging" })
+keymap("<M-c>", dap.continue, { desc = "[C]ontinue / start debugging" })
 keymap("<M-down>", dap.step_over, { desc = "Step [o]ver" })
 keymap("<M-left>", dap.step_out, { desc = "Step out" })
 keymap("<M-right>", dap.step_into, { desc = "Step [i]nto" })
