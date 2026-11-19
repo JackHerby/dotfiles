@@ -5,7 +5,7 @@ from kitty.fast_data_types import get_options
 from kitty.options.utils import optional_edge_width
 
 OFF = "-1"
-ON = "0 360"
+ON = "2 360"
 
 
 def main(args: list[str]) -> str:
