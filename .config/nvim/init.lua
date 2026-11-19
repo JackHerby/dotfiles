@@ -9,9 +9,6 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Catppuccin is bundled with Neovim now.
-vim.cmd.colorscheme("catppuccin")
-
 -- Set to true if you have a Nerd Font installed.
 vim.g.have_nerd_font = true
 
@@ -90,7 +87,7 @@ vim.opt.termguicolors = true
 vim.o.winborder = "single"
 
 -- Spelling options.
-vim.opt.spell = true
+vim.opt.spell = false
 vim.opt.spelllang = { "en_us", "pl" }
 
 -- Enable list mode to show white space characters.
